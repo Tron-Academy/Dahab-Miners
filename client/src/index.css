@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* dark mode looking scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #555;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #121212;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #242424;
+}
+
+.gradient-heading {
+  background: linear-gradient(to right, #1ecbaf, #2663bf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.gradient-bg {
+  background: linear-gradient(282.46deg, #2663bf 11.63%, #62c6c0 94.38%);
+}
+
+.footer-bg {
+  background: linear-gradient(180deg, #081433 0%, #000000 165.14%);
+}
+.nav-link {
+  transition: 0.3s ease-in-out all;
+}
+.active {
+  @apply text-btnGreen;
+}
+
+.buy-miners-heading-bg {
+  background: linear-gradient(155.88deg, #0a162b 28.02%, #000000 93.61%);
+}
+.buy-miners-heading {
+  background: linear-gradient(306.72deg, #2569cf 26.43%, #1ecbaf 115.45%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.popupwidth {
+  width: calc(100vw - 100px);
+}
+
+.form {
+  width: 90vw;
+  @apply max-w-xl bg-white rounded shadow-lg py-8 px-10 my-12 mx-auto;
+}
+.form-label {
+  @apply block text-sm mb-3 capitalize leading-normal;
+}
+.form-input,
+.form-textarea,
+.form-select {
+  @apply w-full py-1 px-3 rounded-lg  border border-gray-300 text-gray-900 h-11;
+}
+.form-input,
+.form-select,
+.form-btn {
+  @apply h-11;
+}
+.form-row {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.form-textarea {
+  height: 7rem;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  width: 3rem;
+  height: 3rem;
+  border: 4px solid #64748b;
+  border-radius: 50%;
+  border-top-color: rgb(5, 8, 48);
+  animation: spinner 0.6s linear infinite;
+}

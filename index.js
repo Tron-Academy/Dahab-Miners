@@ -32,6 +32,8 @@ app.use(cookieParser());
 const allowedOrigins = [
   "http://localhost:5173",
   "https://dahabminers.ae",
+  "http://dahabminers.com",
+  "https://dahabminers.com",
   "https://visit.dahabminers.ae",
 ];
 

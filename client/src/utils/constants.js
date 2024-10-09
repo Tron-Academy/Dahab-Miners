@@ -1,1 +1,1 @@
-export const BASE_URL = "https://backend-api.dahabminers.ae/api";
+export const BASE_URL = "https://api.dahabminers.com/api";

@@ -14,6 +14,7 @@ import authRouter from "./routes/authRouter.js";
 import adminProductRouter from "./routes/adminProductRouter.js";
 import userProductRouter from "./routes/userProductRouter.js";
 import adminBlogRouter from "./routes/adminBlogRouter.js";
+import adminDashboardRouter from "./routes/adminDashboardRouter.js";
 import userBlogRouter from "./routes/userBlogRouter.js";
 import { authenticateUser } from "./middleware/authMiddleware.js";
 
@@ -61,6 +62,7 @@ app.get("/", (req, res) => {
 app.use("/api/admin/auth", authRouter);
 app.use("/api/admin/product", authenticateUser, adminProductRouter);
 app.use("/api/admin/blogs", authenticateUser, adminBlogRouter);
+app.use("/api/admin/dashboard", authenticateUser, adminDashboardRouter);
 app.use("/api/users/product", userProductRouter);
 app.use("/api/users/blogs", userBlogRouter);
 

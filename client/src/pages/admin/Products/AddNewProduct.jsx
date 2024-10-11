@@ -126,7 +126,7 @@ export default function AddNewProduct() {
           onchange={handleCryptoChange}
         />
         <h3 className="mb-2">Selected Cryptocurrencies:</h3>
-        <ul>
+        <ul className="my-5">
           {cryptoCurrencyItem.map((crypto, index) => (
             <li key={index} className="flex gap-2 items-center">
               <span>
@@ -137,9 +137,9 @@ export default function AddNewProduct() {
           ))}
         </ul>
         <FormInput
-          title={"HashRate (Th/s)"}
-          type={"Number"}
-          placeholder={"Enter hashrate in Th/s"}
+          title={"HashRate"}
+          type={"text"}
+          placeholder={"Enter hashrate"}
           value={hashRate}
           onchange={(e) => setHashRate(e.target.value)}
         />

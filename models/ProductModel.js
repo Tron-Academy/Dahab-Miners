@@ -18,7 +18,7 @@ const ProductSchema = new Schema(
       type: String,
     },
     hashRate: {
-      type: Number,
+      type: String,
     },
     power: {
       type: Number,

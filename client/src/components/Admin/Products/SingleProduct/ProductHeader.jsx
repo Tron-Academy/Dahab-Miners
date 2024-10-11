@@ -12,7 +12,7 @@ export default function ProductHeader({ img, name, price }) {
         />
         <div>
           <h1 className="text-2xl font-semibold my-2">{name}</h1>
-          <p className="text-xl font-light">{price}</p>
+          <p className="text-xl font-light">{`${price} AED`}</p>
         </div>
       </div>
       <Link

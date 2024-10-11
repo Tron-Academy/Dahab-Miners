@@ -31,7 +31,7 @@ export default function FeaturedCard({
               <GoCpu />
             </div>
             <span className="text-sm font-normal">HashRate</span>
-            <span className="text-lg font-medium">{hash} Th/s</span>
+            <span className="text-lg font-medium">{hash}</span>
           </div>
           <div className="flex flex-col gap-1">
             <div className="w-10 h-10 bg-gray-200 rounded-full text-xl text-gray-400 flex justify-center items-center">

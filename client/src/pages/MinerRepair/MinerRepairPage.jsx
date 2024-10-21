@@ -5,6 +5,7 @@ import BuyBox from "../../components/HostMining/BuyBox";
 import PriceSection from "../../components/MinerRepair/PriceSection";
 import RepairSolutions from "../../components/MinerRepair/RepairSolutions";
 import FAQ from "../../components/MinerRepair/FAQ";
+import { Helmet } from "react-helmet";
 
 export default function MinerRepairPage() {
   useEffect(() => {
@@ -17,6 +18,14 @@ export default function MinerRepairPage() {
   };
   return (
     <div>
+      <Helmet>
+        <title>Expert Miner Repair Services in the UAE | Dahab Miners</title>
+        <meta
+          name="description"
+          content="Get fast and efficient repair services for your mining equipment with Dahab Miners. We specialize in fixing crypto miners for optimal performance."
+        />
+        <meta name="keywords" content="Bitcoin Miner Repair Services" />
+      </Helmet>
       <MinerRepairHeadSection scrollfunction={scrollToView} />
       <RepairFeatures scrollfunction={scrollToView} />
       <BuyBox />

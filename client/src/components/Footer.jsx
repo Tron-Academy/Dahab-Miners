@@ -9,13 +9,16 @@ export default function Footer() {
     <footer className="px-5 md:px-10 lg:px-[120px] py-20 footer-bg">
       <div className="flex lg:flex-row flex-col gap-10 justify-between items-start lg:items-center">
         <div className="flex flex-col gap-7">
-          <div className="w-[170px] h-[170px] rounded-md overflow-hidden">
+          <Link
+            to={"/"}
+            className="w-[170px] h-[170px] rounded-md overflow-hidden"
+          >
             <img
               src="/footerlogo.png"
               alt="asic-miners-in-abu-dhabi-UAE-for-new-miners"
               title="Dahab Miners is the premier crypto mining service in UAE Explore our Bitcoin machines in Abu Dhabi and maximize your cryptocurrency earnings!"
             ></img>
-          </div>
+          </Link>
           <div className="flex md:flex-row flex-col gap-5 text-base font-medium text-white">
             <Link to={"/buy"}>Buy Miners</Link>
             <Link to={"/host"}>Host Mining</Link>

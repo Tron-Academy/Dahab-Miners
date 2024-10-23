@@ -11,7 +11,9 @@ export default function MiningFacilitiesSection() {
               Host Mining
             </h4>
             <h3 className="text-base font-semibold text-btnGreen">
-              <a href="https://dahabminers.ae/">ASIC Miner in Abu Dhabi, UAE</a>
+              <a href="https://dahabminers.com/">
+                ASIC Miner in Abu Dhabi, UAE
+              </a>
             </h3>
           </div>
 

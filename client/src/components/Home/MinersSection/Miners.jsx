@@ -9,7 +9,7 @@ export default function Miners() {
       <div className="text-center">
         <p className="text-base font-semibold text-btnGreen py-5">Miners</p>
         <h2 className="text-[40px] font-semibold gradient-heading mb-5">
-          <a href="https://dahabminers.ae/">Buy Bitcoin Machines in Dubai</a>
+          <a href="https://dahabminers.com/">Buy Bitcoin Machines in Dubai</a>
         </h2>
         <Link
           to={"/buy"}

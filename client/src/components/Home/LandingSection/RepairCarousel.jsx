@@ -12,7 +12,9 @@ export default function RepairCarousel({ setItem, item }) {
         <div className="flex flex-col lg:items-start items-center lg:text-left text-center gap-10 max-w-[678px] animate-slideInLeft">
           <div>
             <h4 className="text-5xl my-3 font-semibold leading-[60px] text-btnGreen">
-              <a href="https://dahabminers.ae/">ASIC Miner in Abu Dhabi, UAE</a>
+              <a href="https://dahabminers.com/">
+                ASIC Miner in Abu Dhabi, UAE
+              </a>
             </h4>
             <h4 className="text-5xl font-semibold text-btnGreen">
               Repair Services

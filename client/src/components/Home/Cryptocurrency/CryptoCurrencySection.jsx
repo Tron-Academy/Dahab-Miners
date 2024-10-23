@@ -21,7 +21,7 @@ export default function CryptoCurrencySection() {
             Explore the future of cryptocurrency
           </h4>
           <h3 className="text-base font-semibold text-homeBgGradient">
-            <a href="https://dahabminers.ae/">Crypto Mining in UAE</a>
+            <a href="https://dahabminers.com/">Crypto Mining in UAE</a>
           </h3>
         </div>
         <p className="text-lg font-medium text-white leading-7">

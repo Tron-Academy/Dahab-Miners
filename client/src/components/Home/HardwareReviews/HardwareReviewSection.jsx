@@ -28,27 +28,24 @@ export default function HardwareReviewSection() {
         </div>
         <HardwareReviewCard
           icon={<CiHeart />}
-          content={
-            "Our success depends on your satisfaction and profitability. We're committed to ensuring you thrive because your success is our success."
-          }
+          content={`Dahab Miner's mission statement: "Our success depends on your satisfaction and profitability. We're committed to ensuring you thrive because your success is our success." As a Bitcoin mining agency in UAE, we prioritize your growth, ensuring that our services are aligned with your success and the profitability of our bitcoin mining machines in Dubai.
+`}
         />
         <HardwareReviewCard
           icon={<BsTruck />}
-          content={
-            "We ensure fast processing and shipping times to meet your needs efficiently and reliably."
-          }
+          content={`As a Crypto mining company in UAE, we ensure fast processing and shipping times to meet your needs efficiently and reliably, guaranteeing that your bitcoin mining machines in Dubai receive the support they need for your crypto mining operations when they need it.
+`}
         />
         <HardwareReviewCard
           icon={<FaRegComment />}
           content={
-            "We offer professional and transparent consultation for your upcoming mining project, ensuring clarity and expert guidance throughout."
+            "We offer professional and transparent consultation for your upcoming mining project, ensuring clarity and expert guidance throughout. Our expertise with Bitcoin Mining in Dubai guarantees that you receive the best solutions tailored to your needs."
           }
         />
         <HardwareReviewCard
           icon={<CgDatabase />}
-          content={
-            "Complete end-to-end crypto mining solutions, covering procurement, hosting, repair, and after-sales support."
-          }
+          content={`We provide complete end-to-end crypto mining solutions, covering procurement, hosting, repair, and after-sales support, making us a leading Bitcoin Mining Agency in the UAE. Our comprehensive services ensure that every aspect of your mining operations is handled efficiently and effectively.
+`}
         />
       </div>
     </div>

@@ -59,7 +59,7 @@ export default function Testimonials() {
       </h4>
       <Slider {...settings} className="my-10">
         {testimonials.map((x, index) => (
-          <div key={index} className="px-2">
+          <div key={index} className="p-2">
             <TestimonialCard name={x.name} content={x.review} />
           </div>
         ))}

@@ -7,7 +7,7 @@ const WhatsApp = () => {
       className="w-14 h-14  rounded-xl overflow-hidden cursor-pointer fixed right-3 bottom-3"
       onClick={handleChatClick}
     >
-      <img src="/whatsapp_logo.png" alt="" />
+      <img src="/whatsapp_logo.webp" alt="" />
     </div>
   );
 };

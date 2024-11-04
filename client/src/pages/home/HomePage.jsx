@@ -30,7 +30,7 @@ cost-effective crypto mining and hosting solutions for your miners in UAE."
         />
         <meta
           name="keywords"
-          content="Bitcoin Mining Dubai, Bitcoin Mining Machines in Dubai, Bitcoin mining agency uae, crypto mining company"
+          content="Bitcoin Mining in Dubai, Bitcoin Mining Machines in Dubai, Bitcoin mining agency in uae, crypto mining company in uae"
         />
       </Helmet>
       <LandingSection />

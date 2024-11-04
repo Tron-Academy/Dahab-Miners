@@ -24,7 +24,7 @@ export default function ConsultationSection() {
         <div>
           <div className="max-w-[490px] max-h-[340px] rounded-lg overflow-hidden">
             <img
-              src="/consultation.jpg"
+              src="/consultation.webp"
               alt="Professional-advice-on-crypto-mining-in-abu-dhabi-UAE"
               title="Dahab Miners is the premier crypto mining service in UAE Explore our Bitcoin machines in Abu Dhabi and maximize your cryptocurrency earnings!"
             ></img>

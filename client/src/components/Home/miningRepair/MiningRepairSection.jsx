@@ -30,14 +30,16 @@ export default function MiningRepairSection() {
         <div className="flex 2xl:flex-row flex-col items-center justify-center gap-10">
           <div className="max-w-[600px] max-h-[400px] overflow-hidden rounded-lg">
             <img
-              src="/repair1.jpg"
+              src="/repair1.webp"
+              className="max-w-[600px] max-h-[400px] overflow-hidden rounded-lg"
               alt="Expert-solutions-for-crypto-mining-in-abu-dhabi-UAE"
               title="Dahab Miners is the premier crypto mining service in UAE Explore our Bitcoin machines in Abu Dhabi and maximize your cryptocurrency earnings!"
             ></img>
           </div>
           <div className="max-w-[600px] max-h-[400px] overflow-hidden rounded-lg">
             <img
-              src="/repair2.jpg"
+              src="/repair2.webp"
+              className="max-w-[600px] max-h-[400px] overflow-hidden rounded-lg"
               alt="Durable-and-robust-asic-miners-in-abu-dhabi-UAE"
               title="Dahab Miners is the premier crypto mining service in UAE Explore our Bitcoin machines in Abu Dhabi and maximize your cryptocurrency earnings!"
             ></img>

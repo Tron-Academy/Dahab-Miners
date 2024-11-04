@@ -32,7 +32,7 @@ export default function HostMiningHead() {
         <div className="bg-white p-3 rounded-lg flex flex-col gap-5 text-sm font-medium  top-0 left-0">
           <p className="flex gap-1 items-center">
             <div className="w-6 h-6 rounded-full overflow-hidden">
-              <img src="/uaeflag.png"></img>{" "}
+              <img src="/uaeflag.webp"></img>{" "}
             </div>
             UAE
           </p>

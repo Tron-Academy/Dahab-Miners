@@ -34,7 +34,7 @@ export default function MiningFacilitiesSection() {
         </div>
         <div className="max-h-[330px] max-w-[478px] rounded-md overflow-hidden">
           <img
-            src="/miningfacility.jpg"
+            src="/miningfacility.webp"
             alt="Cutting-edge-technology-in-crypto-mining-machines-in-abu-dhabi-UAE"
             title="Looking for reliable crypto mining solutions in UAE? Dahab Miners provides cutting-edge ASIC miners in Abu Dhabi, perfect for beginners and pros alike. Check out our CRYPTO MINING MACHINES IN UAE and start mining efficiently today!"
           ></img>

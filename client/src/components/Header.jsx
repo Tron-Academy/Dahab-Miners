@@ -15,7 +15,7 @@ export default function Header() {
         onClick={() => window.scrollTo(0, 0)}
       >
         <img
-          src="/mainlogo.png"
+          src="/mainlogo.webp"
           alt="Special-offers-on-crypto-mining-machines-in-abu-dhabi-UAE"
           title="Explore top-tier CRYPTO MINING MACHINES IN UAE at Dahab Miners. Specializing in high-efficiency ASIC miners in Abu Dhabi, UAE, we offer the best solutions for crypto mining in UAE. Browse our range today and enhance your mining setup!"
         ></img>

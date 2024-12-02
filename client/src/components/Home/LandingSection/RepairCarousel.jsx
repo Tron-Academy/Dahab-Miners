@@ -4,19 +4,20 @@ import svgbg from "../../../assets/homebg.svg";
 import PgBar from "./PbBar";
 import CarouselNavigation from "./CarouselNavigation";
 import { handleChatClick } from "../../../utils/whatsapp";
+import { motion } from "framer-motion";
 export default function RepairCarousel({ setItem, item }) {
   return (
     <>
       <PgBar repair setItem={setItem} />
       <div className="flex lg:flex-row flex-col justify-between items-center pt-28 pb-10 w-full -mt-20">
-        <div className="flex flex-col lg:items-start items-center lg:text-left text-center gap-10 max-w-[678px] animate-slideInLeft">
+        <div className="flex flex-col lg:items-start items-center lg:text-left text-center md:gap-10 gap-5 max-w-[678px] animate-slideInLeft">
           <div>
-            <h4 className="text-5xl my-3 font-semibold leading-[60px] text-btnGreen">
+            <h4 className="md:text-5xl text-3xl my-3 font-semibold md:leading-[60px] leading-10 text-btnGreen">
               <a href="https://dahabminers.com/">
                 ASIC Miner in Abu Dhabi, UAE
               </a>
             </h4>
-            <h4 className="text-5xl font-semibold text-btnGreen">
+            <h4 className="md:text-5xl text-3xl font-semibold text-btnGreen">
               Repair Services
             </h4>
           </div>
@@ -27,12 +28,16 @@ export default function RepairCarousel({ setItem, item }) {
             <br></br>
             Ensure expert care for your equipment.
           </h4>
-          <button
-            className="text-base font-semibold text-white bg-btnGreen hover:bg-btnHover nav-link px-5 py-3 w-fit rounded-lg"
+          <motion.button
+            initial={{ scale: 1 }}
+            whileHover={{ scale: 1.1, backgroundColor: "#7decda" }} // Change color on hover
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 300 }} // Smooth animation
+            className="text-base font-semibold text-white bg-btnGreen px-5 py-3 w-fit rounded-lg"
             onClick={handleChatClick}
           >
             View Prices
-          </button>
+          </motion.button>
           <div className="w-full">
             <CarouselNavigation setItem={setItem} item={item} />
           </div>

@@ -3,6 +3,7 @@ import TestimonialCard from "./TestimonialCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { motion } from "framer-motion";
 
 const testimonials = [
   {
@@ -28,6 +29,14 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const sectionVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
   const settings = {
     dots: true,
     infinite: true,
@@ -49,17 +58,25 @@ export default function Testimonials() {
       },
     ],
   };
+
   return (
     <div className="px-5 md:px-10 lg:px-[120px] py-10">
-      <h4 className="text-base font-semibold text-btnGreen text-center">
-        Testimonials
-      </h4>
-      <h4 className="text-[40px] font-semibold gradient-heading text-center">
-        What our customers say about us
-      </h4>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
+        variants={sectionVariants}
+      >
+        <h4 className="text-base font-semibold text-btnGreen text-center">
+          Testimonials
+        </h4>
+        <h4 className="text-[40px] font-semibold gradient-heading text-center">
+          What our customers say about us
+        </h4>
+      </motion.div>
       <Slider {...settings} className="my-10">
         {testimonials.map((x, index) => (
-          <div key={index} className="p-2">
+          <div key={index} className="px-2">
             <TestimonialCard name={x.name} content={x.review} />
           </div>
         ))}

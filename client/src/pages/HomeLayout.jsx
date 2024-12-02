@@ -12,7 +12,7 @@ export default function HomeLayout() {
       <div className="sticky top-0 z-50 ">
         <Header />
         <WhatsApp />
-        <EnquireButton />
+        {/* <EnquireButton /> */}
       </div>
       <div className="overflow-x-hidden">
         <Outlet />

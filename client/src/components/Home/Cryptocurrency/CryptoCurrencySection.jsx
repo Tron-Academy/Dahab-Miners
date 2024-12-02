@@ -1,18 +1,30 @@
 import React from "react";
-import crypto from "../../../assets/crypto.svg";
-import bg from "../../../assets/cryptobg.svg";
-import { handleChatClick } from "../../../utils/whatsapp";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 export default function CryptoCurrencySection() {
+  const sectionVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
   return (
     <div
-      className="bg-homeBg bg-blend-color-dodge px-5 md:px-10 lg:px-[120px] py-10 flex lg:flex-row flex-col justify-between items-center"
+      className=" px-5 md:px-10 lg:px-[120px] py-10 flex lg:flex-row flex-col justify-between items-center"
       style={{
-        backgroundImage: `url(${bg})`,
+        backgroundImage: `url("/cryptobg.jpg")`,
         backgroundSize: "cover",
       }}
     >
-      <div className="max-w-[610px] flex flex-col lg:items-start items-center lg:text-left text-center gap-10">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
+        variants={sectionVariants}
+        className="max-w-[610px] flex flex-col lg:items-start items-center lg:text-left text-center gap-10"
+      >
         <p className="text-base font-semibold text-homeBgGradient">
           Unlock the potential of crypto
         </p>
@@ -35,16 +47,37 @@ export default function CryptoCurrencySection() {
         >
           View Products
         </Link>
-      </div>
-      <div>
-        <div className="max-w-[590px] max-h-[645px] overflow-hidden">
-          <img
-            src={crypto}
+      </motion.div>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
+        variants={sectionVariants}
+      >
+        <div className="max-w-[590px] max-h-[645px] ">
+          <motion.img
+            animate={{
+              rotateX: [0, 360], // Full rotation on X-axis
+              rotateZ: [0, 360], // Full rotation on Y-axis
+            }}
+            transition={{
+              rotateX: {
+                repeat: Infinity,
+                duration: 20, // X-axis rotation duration
+                ease: "linear",
+              },
+              rotateZ: {
+                repeat: Infinity,
+                duration: 20, // Y-axis rotation duration
+                ease: "linear",
+              },
+            }}
+            src="/crypto.png"
             alt="Explore-the-potential-of-crypto-mining-in-abu-dhabi-UAE"
             title="Dahab Miners is the premier crypto mining service in UAE Explore our Bitcoin machines in Abu Dhabi and maximize your cryptocurrency earnings!"
-          ></img>
+          ></motion.img>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

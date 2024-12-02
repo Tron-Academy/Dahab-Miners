@@ -1,12 +1,26 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
 import FeaturedCarousel from "./FeaturedCarousel";
+import { motion } from "framer-motion";
 
 export default function Miners() {
+  const sectionVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
   return (
     <div className="bg-white px-5 md:px-10 lg:px-[120px] py-10">
-      <div className="text-center">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
+        variants={sectionVariants}
+        className="text-center"
+      >
         <p className="text-base font-semibold text-btnGreen py-5">Miners</p>
         <h2 className="text-[40px] font-semibold gradient-heading mb-5">
           <a href="https://dahabminers.com/">Buy Bitcoin Machines in Dubai</a>
@@ -17,7 +31,7 @@ export default function Miners() {
         >
           View all Products
         </Link>
-      </div>
+      </motion.div>
       <FeaturedCarousel />
       <div className="flex justify-around">
         <div></div>

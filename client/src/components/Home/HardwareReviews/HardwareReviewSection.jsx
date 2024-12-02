@@ -5,11 +5,26 @@ import { CiHeart } from "react-icons/ci";
 import { BsTruck } from "react-icons/bs";
 import { FaRegComment } from "react-icons/fa6";
 import { CgDatabase } from "react-icons/cg";
+import { motion } from "framer-motion";
 
 export default function HardwareReviewSection() {
+  const sectionVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
   return (
     <div className="bg-homeBg px-5 md:px-10 lg:px-[120px] py-10 pt-20">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-7">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
+        variants={sectionVariants}
+        className="grid grid-cols-1 lg:grid-cols-3 gap-7"
+      >
         <div className="text-white flex flex-col gap-5 lg:col-span-2">
           <h4 className="text-[40px] font-semibold gradient-heading max-w-[680px]">
             Why you should buy your mining hardware from DAHAB miners
@@ -47,7 +62,7 @@ export default function HardwareReviewSection() {
           content={`We provide complete end-to-end crypto mining solutions, covering procurement, hosting, repair, and after-sales support, making us a leading Bitcoin Mining Agency in the UAE. Our comprehensive services ensure that every aspect of your mining operations is handled efficiently and effectively.
 `}
         />
-      </div>
+      </motion.div>
     </div>
   );
 }

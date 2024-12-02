@@ -3,12 +3,13 @@ import { NavLink, Link } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import SmallHeader from "./SmallHeader";
 import { handleChatClick } from "../utils/whatsapp";
+import { motion } from "framer-motion";
 
 export default function Header() {
   const [showSmallBar, setShowSmallBar] = useState(false);
 
   return (
-    <div className="bg-white h-20 px-5 md:px-10 lg:px-[120px] cursor-pointer py-5 border-b flex justify-between items-center relative z-50">
+    <div className="bg-white md:h-20 h-16 px-5 md:px-10 lg:px-[120px] cursor-pointer md:py-5 py-2 border-b flex justify-between items-center relative z-50">
       <Link
         to={"/"}
         className="w-36 h-14 mt-5"
@@ -27,12 +28,16 @@ export default function Header() {
         <NavLink to={"/repair"}>Miner Repair</NavLink>
         <NavLink to={"/blogs"}>Blogs</NavLink>
       </div>
-      <button
-        className="bg-btnGreen hover:bg-btnHover nav-link text-white rounded-lg px-4 py-2 hidden lg:block"
+      <motion.button
+        initial={{ scale: 1 }}
+        whileHover={{ scale: 1.1, backgroundColor: "#7decda" }} // Change color on hover
+        whileTap={{ scale: 0.9 }}
+        transition={{ type: "spring", stiffness: 300 }} // Smooth animation
+        className="bg-btnGreen text-white rounded-lg px-4 py-2 hidden lg:block"
         onClick={handleChatClick}
       >
         Contact us
-      </button>
+      </motion.button>
       <button
         className="lg:hidden"
         onClick={() => setShowSmallBar(!showSmallBar)}

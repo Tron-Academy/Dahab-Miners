@@ -2,11 +2,26 @@ import React from "react";
 import BlogCard from "./BlogCard";
 import useGetUserBlogs from "../../../hooks/userBlogs/useGetUserBlogs";
 import Loading from "../../Loading";
+import { motion } from "framer-motion";
 
 export default function BlogSection() {
   const { loading, blogs } = useGetUserBlogs();
+  const sectionVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
   return (
-    <div className="px-5 md:px-10 lg:px-[120px] py-10">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
+      variants={sectionVariants}
+      className="px-5 md:px-10 lg:px-[120px] py-10"
+    >
       <h4 className="text-base font-semibold text-btnGreen text-center">
         Blogs
       </h4>
@@ -32,6 +47,6 @@ export default function BlogSection() {
               ))}
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

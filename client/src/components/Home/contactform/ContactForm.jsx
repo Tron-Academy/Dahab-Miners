@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { handleEnquiryFormClick } from "../../../utils/whatsapp";
+import { motion } from "framer-motion";
 
 const ContactForm = ({ popup }) => {
   const [phone, setPhone] = useState("");
@@ -10,8 +11,23 @@ const ContactForm = ({ popup }) => {
   const [email, setEmail] = useState("");
   const [message, SetMessage] = useState("");
 
+  const sectionVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   return (
-    <div className="px-3 xl:px-[120px] py-10 w-full flex flex-col gap-2 lg:gap-7">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
+      variants={sectionVariants}
+      className="px-3 xl:px-[120px] py-10 w-full flex flex-col gap-2 lg:gap-7"
+    >
       <h5
         className={`font-semibold gradient-heading ${
           popup ? "text-xl" : "text-[40px] "
@@ -78,15 +94,19 @@ const ContactForm = ({ popup }) => {
           onChange={(e) => SetMessage(e.target.value)}
         />
       </div>
-      <button
+      <motion.button
+        initial={{ scale: 1 }}
+        whileHover={{ scale: 0.9, backgroundColor: "#7decda" }} // Change color on hover
+        whileTap={{ scale: 0.9 }}
+        transition={{ type: "spring", stiffness: 300 }} // Smooth animation
         onClick={() =>
           handleEnquiryFormClick({ firstName, lastName, email, phone, message })
         }
-        className="text-base font-semibold bg-[#1ECBAF] text-white p-2 hover:bg-btnHover nav-link rounded-lg"
+        className="text-base font-semibold bg-[#1ECBAF] text-white p-2 rounded-lg"
       >
         Send Message
-      </button>
-    </div>
+      </motion.button>
+    </motion.div>
   );
 };
 

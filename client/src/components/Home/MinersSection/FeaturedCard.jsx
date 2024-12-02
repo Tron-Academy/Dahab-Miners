@@ -3,6 +3,7 @@ import { handleProductEnquiry } from "../../../utils/whatsapp";
 import { HiOutlineCube } from "react-icons/hi2";
 import { PiLightning } from "react-icons/pi";
 import { GoCpu } from "react-icons/go";
+import { motion } from "framer-motion";
 
 export default function FeaturedCard({
   img,
@@ -49,12 +50,16 @@ export default function FeaturedCard({
           </div>
         </div>
         <div className="text-lg font-semibold flex justify-between items-center">
-          <button
-            className="bg-btnGreen text-white px-10 hover:bg-btnHover nav-link py-3 rounded-lg"
+          <motion.button
+            initial={{ scale: 1 }}
+            whileHover={{ scale: 1.1, backgroundColor: "#7decda" }} // Change color on hover
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 300 }} // Smooth animation
+            className="bg-btnGreen text-white px-10 py-3 rounded-lg"
             onClick={() => handleProductEnquiry({ name })}
           >
             Buy Now
-          </button>
+          </motion.button>
         </div>
       </div>
     </div>

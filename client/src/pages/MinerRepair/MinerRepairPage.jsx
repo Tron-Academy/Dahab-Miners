@@ -24,7 +24,10 @@ export default function MinerRepairPage() {
           name="description"
           content="Get fast and efficient repair services for your mining equipment with Dahab Miners. We specialize in fixing crypto miners for optimal performance."
         />
-        <meta name="keywords" content="Bitcoin Miner Repair Services" />
+        <meta
+          name="keywords"
+          content="ASIC miner repair Dubai, Cryptocurrency miner repair Abu Dhabi, Miner repair service, Bitcoin mining hardware repair UAE"
+        />
       </Helmet>
       <MinerRepairHeadSection scrollfunction={scrollToView} />
       <RepairFeatures scrollfunction={scrollToView} />

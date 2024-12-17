@@ -18,7 +18,10 @@ export default function HostMiningPage() {
           name="description"
           content="Host your mining equipment securely with Dahab Miners' top-notch facilities in the UAE. Reliable and cost-effective miner hosting solutions."
         />
-        <meta name="keywords" content="Bitcoin Miner Hosting Services UAE" />
+        <meta
+          name="keywords"
+          content="Bitcoin mining hosting Abu Dhabi, ASIC miner hosting services UAE, Crypto mining hosting UAE, Cryptocurrency miner hosting UAE"
+        />
       </Helmet>
       <HostMiningHead />
       <HostMiningDescription />

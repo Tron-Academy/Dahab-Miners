@@ -14,7 +14,10 @@ export default function BuyMinersPage() {
           name="description"
           content="Purchase powerful, reliable crypto miners at competitive prices from Dahab Miners. Get the best equipment for your mining operations in the UAE."
         />
-        <meta name="keywords" content="Buy Bitcoin Miners in Abu Dhabi" />
+        <meta
+          name="keywords"
+          content="Buy Bitcoin Miners UAE, Crypto mining hardware Dubai, Bitcoin mining equipment Abu Dhabi, Purchase crypto miners UAE"
+        />
       </Helmet>
       <BuyMinersSection />
     </div>

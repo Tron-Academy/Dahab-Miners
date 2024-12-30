@@ -1,7 +1,5 @@
 import React from "react";
-import svgbg from "../../../assets/homebg.svg";
-import ProgressBar from "./ProgressBar";
-import PgBar from "./PbBar";
+
 import CarouselNavigation from "./CarouselNavigation";
 import { handleChatClick } from "../../../utils/whatsapp";
 import { motion } from "framer-motion";
@@ -9,12 +7,22 @@ import { motion } from "framer-motion";
 export default function BuyingCarousel({ setItem, item }) {
   return (
     <>
-      <PgBar setItem={setItem} />
+      {/* <PgBar setItem={setItem} /> */}
       <div className="flex lg:flex-row flex-col justify-between items-center pt-28 pb-10 overflow-hidden">
         <div className="flex flex-col lg:items-start items-center lg:text-left text-center max-w-[750px] md:gap-10 gap-5 animate-slideInLeft -mt-20 z-20">
-          <h4 className="md:text-5xl text-3xl md:leading-[60px] leading-10 inline-block font-semibold text-btnGreen pt-5">
-            Unleash Unmatched Power With Our Premium Crypto Mining Equipment.
-          </h4>
+          <div>
+            <div className="flex gap-5 items-center">
+              <img src="/home/thunder.png" className="w-[20px]" />
+              <div className="text-[#00C4F4] flex gap-3 items-center">
+                <img src="/home/short-line.png" />
+                <p>Buy</p>
+                <img src="/home/long-line.png" />
+              </div>
+            </div>
+            <h4 className="md:text-5xl text-3xl md:leading-[60px] leading-10 inline-block font-semibold text-btnGreen pt-5">
+              Unleash Unmatched Power With Our Premium Crypto Mining Equipment.
+            </h4>
+          </div>
           <div>
             <h1 className="text-base font-light text-white leading-6 tracking-wider">
               <a href="https://dahabminers.com/">Crypto Mining in UAE</a>
@@ -38,9 +46,9 @@ export default function BuyingCarousel({ setItem, item }) {
           >
             View Products
           </motion.button>
-          <div className="w-full ">
+          {/* <div className="w-full ">
             <CarouselNavigation setItem={setItem} item={item} />
-          </div>
+          </div> */}
         </div>
 
         <div className="w-full max-w-[300px] h-[250px] md:max-w-[550px] md:h-[450px] mx-auto z-10 animate-slideInRight mt-4 md:mt-7 lg:-mt-20">
@@ -52,11 +60,21 @@ export default function BuyingCarousel({ setItem, item }) {
           />
         </div>
 
-        <div className="absolute right-0 top-0 hidden lg:block overflow-hidden ">
+        <div className="absolute top-1/2 left-1/4 overflow-hidden">
           <img
-            src={svgbg}
+            src={"/home/homeline-1.png"}
+            className="object-cover"
             alt="crypto-mining-machines-in-abu-dhabi-UAE-for-sale"
             title="Dahab Miners is your trusted partner for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."
+          ></img>
+        </div>
+        <div className="absolute flex gap-2 top-20 right-20 overflow-hidden">
+          {/* <div className="glowing-box"></div> */}
+          <img
+            src={"/home/homeline-2.png"}
+            className="object-cover"
+            alt="crypto-mining-machines-in-abu-dhabi-UAE-for-sale 2"
+            title="Dahab Miners is your trusted partner 2 for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."
           ></img>
         </div>
       </div>

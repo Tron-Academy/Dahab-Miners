@@ -9,25 +9,38 @@ export default function Header() {
   const [showSmallBar, setShowSmallBar] = useState(false);
 
   return (
-    <div className="bg-white md:h-20 h-16 px-5 md:px-10 lg:px-[120px] cursor-pointer md:py-5 py-2 border-b flex justify-between items-center relative z-50">
+    <header
+      className="md:h-20 h-16 px-5 md:px-10 lg:px-[120px] cursor-pointer md:py-5 py-2 flex justify-between items-center relative z-50 bg-bottom bg-cover"
+      style={{ backgroundImage: `url("/home/headerbg.jpg")` }}
+    >
       <Link
         to={"/"}
         className="w-36 h-14 mt-5"
         onClick={() => window.scrollTo(0, 0)}
       >
         <img
-          src="/mainlogo.webp"
+          src="/home/logo.png"
           alt="Special-offers-on-crypto-mining-machines-in-abu-dhabi-UAE"
           title="Explore top-tier CRYPTO MINING MACHINES IN UAE at Dahab Miners. Specializing in high-efficiency ASIC miners in Abu Dhabi, UAE, we offer the best solutions for crypto mining in UAE. Browse our range today and enhance your mining setup!"
         ></img>
       </Link>
-      <div className="lg:flex gap-5 xl:gap-14 text-sm xl:text-base font-medium hidden">
-        <NavLink to={"/"}>Home</NavLink>
-        <NavLink to={"/buy"}>Buy Miners</NavLink>
-        <NavLink to={"/host"}>Host Mining</NavLink>
-        <NavLink to={"/repair"}>Miner Repair</NavLink>
-        <NavLink to={"/blogs"}>Blogs</NavLink>
-      </div>
+      <nav className="lg:flex gap-5 xl:gap-14 text-sm xl:text-base font-medium hidden">
+        <NavLink className={"text-white"} to={"/"}>
+          Home
+        </NavLink>
+        <NavLink className={"text-white"} to={"/buy"}>
+          Buy Miners
+        </NavLink>
+        <NavLink className={"text-white"} to={"/host"}>
+          Host Mining
+        </NavLink>
+        <NavLink className={"text-white"} to={"/repair"}>
+          Miner Repair
+        </NavLink>
+        <NavLink className={"text-white"} to={"/blogs"}>
+          Blogs
+        </NavLink>
+      </nav>
       <motion.button
         initial={{ scale: 1 }}
         whileHover={{ scale: 1.1, backgroundColor: "#7decda" }} // Change color on hover
@@ -49,6 +62,6 @@ export default function Header() {
           <SmallHeader setSmallBar={setShowSmallBar} />
         </div>
       )}
-    </div>
+    </header>
   );
 }

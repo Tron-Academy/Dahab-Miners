@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 /* dark mode looking scrollbar */
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -90,4 +91,22 @@
   border-radius: 50%;
   border-top-color: rgb(5, 8, 48);
   animation: spinner 0.6s linear infinite;
+}
+
+.landingHeight {
+  height: calc(100vh - 80px);
+}
+
+@media (max-width: 768px) {
+  .landingHeight {
+    height: calc(100vh - 64px);
+  }
+}
+
+.glowing-box {
+  width: 200px;
+  height: 200px;
+  background-color: #22def96e; /* Base color of the box */
+  border-radius: 50%; /* Optional: for rounded corners */
+  box-shadow: 0 0 20px #22def96e, 0 0 40px #22def96e, 0 0 60px #22def96e;
 }

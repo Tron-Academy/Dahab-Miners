@@ -12,6 +12,8 @@ import Testimonials from "../../components/Home/Testimonials/Testimonials";
 import CryptoCurrencySection from "../../components/Home/Cryptocurrency/CryptoCurrencySection";
 import ContactForm from "../../components/Home/contactform/ContactForm";
 import { Helmet } from "react-helmet";
+import SecondSection from "../../components/Home/secondsection/SecondSection";
+import ThirdSection from "../../components/Home/thirdsection/ThirdSection";
 
 export default function HomePage() {
   useEffect(() => {
@@ -35,6 +37,8 @@ cost-effective crypto mining and hosting solutions for your miners in UAE."
       </Helmet>
       <LandingSection />
       {/* <ProfitSection /> */}
+      <SecondSection />
+      <ThirdSection />
       <Miners />
       <MiningFacilitiesSection />
       <HardwareReviewSection />

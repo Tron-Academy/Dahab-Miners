@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 /* dark mode looking scrollbar */
-
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -13,7 +12,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #121212;
+  background: #000618;
   border-radius: 5px;
 }
 
@@ -22,10 +21,11 @@
 }
 
 .gradient-heading {
-  background: linear-gradient(to right, #1ecbaf, #2663bf);
+  background: linear-gradient(290.95deg, #2663bf 5.51%, #1ecbaf 96.94%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .gradient-bg {
   background: linear-gradient(282.46deg, #2663bf 11.63%, #62c6c0 94.38%);
 }
@@ -38,6 +38,11 @@
 }
 .active {
   @apply text-btnGreen;
+}
+
+.main-bg {
+  background: linear-gradient(178.57deg, #01081A 44.66%, #05253D 69.09%);
+
 }
 
 .buy-miners-heading-bg {
@@ -104,9 +109,11 @@
 }
 
 .glowing-box {
-  width: 200px;
-  height: 200px;
-  background-color: #22def96e; /* Base color of the box */
+  width: 40px;
+  height: 40px;
+  background-color: #73d3e26e; /* Base color of the box */
   border-radius: 50%; /* Optional: for rounded corners */
-  box-shadow: 0 0 20px #22def96e, 0 0 40px #22def96e, 0 0 60px #22def96e;
+  box-shadow: 0 0 60px 30px #2fd7f16e, 0 0 100px 60px #a4e3ed6e,
+    0 0 140px 90px #f8fafb6e ;
 }
+

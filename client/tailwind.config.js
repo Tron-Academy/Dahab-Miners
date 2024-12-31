@@ -37,14 +37,4 @@ export default {
       },
     },
   },
-  daisyui: {
-    themes: [
-      {
-        mytheme: {
-          primary: "#6FC6B8",
-        },
-      },
-    ],
-  },
-  plugins: [require("daisyui")],
 };

@@ -8,8 +8,8 @@ export default function BuyingCarousel({ setItem, item }) {
   return (
     <>
       {/* <PgBar setItem={setItem} /> */}
-      <div className="flex lg:flex-row flex-col justify-between items-center pt-28 pb-10 overflow-hidden">
-        <div className="flex flex-col lg:items-start items-center lg:text-left text-center max-w-[750px] md:gap-10 gap-5 animate-slideInLeft -mt-20 z-20">
+      <section className="flex lg:flex-row flex-col justify-between items-center pt-28 pb-10 overflow-hidden">
+        <div className="flex flex-col lg:items-start items-center lg:text-left text-center max-w-[650px] md:gap-10 gap-5 animate-slideInLeft -mt-20 z-20">
           <div>
             <div className="flex gap-5 items-center">
               <img src="/home/thunder.png" className="w-[20px]" />
@@ -19,8 +19,16 @@ export default function BuyingCarousel({ setItem, item }) {
                 <img src="/home/long-line.png" />
               </div>
             </div>
-            <h4 className="md:text-5xl text-3xl md:leading-[60px] leading-10 inline-block font-semibold text-btnGreen pt-5">
-              Unleash Unmatched Power With Our Premium Crypto Mining Equipment.
+            <h4 className="md:text-5xl text-3xl md:leading-[60px] leading-10 inline-block font-semibold gradient-heading pt-5">
+              Unleash Unmatched Power With Our{" "}
+              <span className="relative gradient-heading">
+                Premium{" "}
+                <img
+                  className="absolute w-48 left-0 -bottom-1"
+                  src="/home/underline.png"
+                />
+              </span>{" "}
+              Crypto Mining Equipment.
             </h4>
           </div>
           <div>
@@ -46,6 +54,7 @@ export default function BuyingCarousel({ setItem, item }) {
           >
             View Products
           </motion.button>
+          <CarouselNavigation setItem={setItem} item={item} />
           {/* <div className="w-full ">
             <CarouselNavigation setItem={setItem} item={item} />
           </div> */}
@@ -69,7 +78,6 @@ export default function BuyingCarousel({ setItem, item }) {
           ></img>
         </div>
         <div className="absolute flex gap-2 top-20 right-20 overflow-hidden">
-          {/* <div className="glowing-box"></div> */}
           <img
             src={"/home/homeline-2.png"}
             className="object-cover"
@@ -77,7 +85,8 @@ export default function BuyingCarousel({ setItem, item }) {
             title="Dahab Miners is your trusted partner 2 for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."
           ></img>
         </div>
-      </div>
+        <div className="absolute glowing-box top-[35%] right-[20%]"></div>
+      </section>
     </>
   );
 }

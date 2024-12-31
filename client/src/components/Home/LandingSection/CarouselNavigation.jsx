@@ -9,7 +9,7 @@ export default function CarouselNavigation({ setItem, item }) {
     setItem(item + 1);
   }
   return (
-    <div className="flex justify-between text-3xl lg:text-5xl text-gray-600  font-thin">
+    <div className="flex justify-between text-3xl lg:text-5xl text-gray-600 font-thin w-[150px]">
       <button
         disabled={item === 1}
         className="hover:text-gray-400 nav-link cursor-pointer"

@@ -1,24 +1,32 @@
 import React from "react";
 import svgbg from "../../../assets/homebg.svg";
-
-import PgBar from "./PbBar";
 import CarouselNavigation from "./CarouselNavigation";
 import { handleChatClick } from "../../../utils/whatsapp";
 import { motion } from "framer-motion";
 export default function RepairCarousel({ setItem, item }) {
   return (
     <>
-      <PgBar repair setItem={setItem} />
       <div className="flex lg:flex-row flex-col justify-between items-center pt-28 pb-10 w-full -mt-20">
         <div className="flex flex-col lg:items-start items-center lg:text-left text-center md:gap-10 gap-5 max-w-[678px] animate-slideInLeft">
           <div>
-            <h4 className="md:text-5xl text-3xl my-3 font-semibold md:leading-[60px] leading-10 text-btnGreen">
+            <div className="flex gap-5 items-center">
+              <img src="/home/thunder.png" className="w-[20px]" />
+              <div className="text-[#00C4F4] flex gap-3 items-center">
+                <img src="/home/short-line.png" />
+                <p>Repair</p>
+                <img src="/home/long-line.png" />
+              </div>
+            </div>
+            <h4 className="md:text-5xl text-3xl my-3 font-semibold md:leading-[60px] leading-10 gradient-heading">
               <a href="https://dahabminers.com/">
                 ASIC Miner in Abu Dhabi, UAE
               </a>
             </h4>
             <h4 className="md:text-5xl text-3xl font-semibold text-btnGreen">
-              Repair Services
+              <span className="relative gradient-heading">
+                Repair <img className="absolute" src="/home/underline.png" />
+              </span>{" "}
+              Services
             </h4>
           </div>
           <h4 className="text-base font-light text-white leading-6 tracking-wider">
@@ -38,9 +46,7 @@ export default function RepairCarousel({ setItem, item }) {
           >
             View Prices
           </motion.button>
-          <div className="w-full">
-            <CarouselNavigation setItem={setItem} item={item} />
-          </div>
+          <CarouselNavigation setItem={setItem} item={item} />
         </div>
 
         <div className="w-[315px] h-[244px] md:w-[600px] md:h-[465px] z-10 animate-slideInRight">
@@ -51,12 +57,23 @@ export default function RepairCarousel({ setItem, item }) {
             title="Explore top-tier CRYPTO MINING MACHINES IN UAE at Dahab Miners. Specializing in high-efficiency ASIC miners in Abu Dhabi, UAE, we offer the best solutions for crypto mining in UAE. Browse our range today and enhance your mining setup!"
           ></img>
         </div>
-        <img
-          className="absolute right-0 top-0 hidden lg:block"
-          src={svgbg}
-          alt="Essential-tools-for-crypto-mining-machines-in-abu-dhabi-UAE"
-          title="Explore top-tier CRYPTO MINING MACHINES IN UAE at Dahab Miners. Specializing in high-efficiency ASIC miners in Abu Dhabi, UAE, we offer the best solutions for crypto mining in UAE. Browse our range today and enhance your mining setup!"
-        ></img>
+        <div className="absolute top-1/2 left-1/4 overflow-hidden">
+          <img
+            src={"/home/homeline-1.png"}
+            className="object-cover"
+            alt="crypto-mining-machines-in-abu-dhabi-UAE-for-sale"
+            title="Dahab Miners is your trusted partner for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."
+          ></img>
+        </div>
+        <div className="absolute flex gap-2 top-20 right-20 overflow-hidden">
+          <img
+            src={"/home/homeline-2.png"}
+            className="object-cover"
+            alt="crypto-mining-machines-in-abu-dhabi-UAE-for-sale 2"
+            title="Dahab Miners is your trusted partner 2 for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."
+          ></img>
+        </div>
+        <div className="absolute glowing-box top-[35%] right-[20%]"></div>
       </div>
     </>
   );

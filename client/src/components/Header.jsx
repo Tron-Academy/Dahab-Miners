@@ -10,7 +10,7 @@ export default function Header() {
 
   return (
     <header
-      className="md:h-20 h-16 px-5 md:px-10 lg:px-[120px] cursor-pointer md:py-5 py-2 flex justify-between items-center relative z-50 bg-bottom bg-cover"
+      className="md:h-20 h-16 px-5 md:px-10 lg:px-[180px] cursor-pointer md:py-5 py-2 flex justify-between items-center relative z-50 bg-bottom bg-cover"
       style={{ backgroundImage: `url("/home/headerbg.jpg")` }}
     >
       <Link
@@ -46,7 +46,7 @@ export default function Header() {
         whileHover={{ scale: 1.1, backgroundColor: "#7decda" }} // Change color on hover
         whileTap={{ scale: 0.9 }}
         transition={{ type: "spring", stiffness: 300 }} // Smooth animation
-        className="bg-btnGreen text-white rounded-lg px-4 py-2 hidden lg:block"
+        className="btn-bg text-white rounded-lg px-4 py-2 hidden lg:block"
         onClick={handleChatClick}
       >
         Contact us

@@ -24,7 +24,8 @@ export default function RepairCarousel({ setItem, item }) {
             </h4>
             <h4 className="md:text-5xl text-3xl font-semibold text-btnGreen">
               <span className="relative gradient-heading">
-                Repair <img className="absolute" src="/home/underline.png" />
+                Repair{" "}
+                <img className="absolute -bottom-2" src="/home/underline.png" />
               </span>{" "}
               Services
             </h4>
@@ -41,7 +42,7 @@ export default function RepairCarousel({ setItem, item }) {
             whileHover={{ scale: 1.1, backgroundColor: "#7decda" }} // Change color on hover
             whileTap={{ scale: 0.9 }}
             transition={{ type: "spring", stiffness: 300 }} // Smooth animation
-            className="text-base font-semibold text-white bg-btnGreen px-5 py-3 w-fit rounded-lg"
+            className="text-base font-semibold text-white btn-bg px-5 py-3 w-fit rounded-lg"
             onClick={handleChatClick}
           >
             View Prices

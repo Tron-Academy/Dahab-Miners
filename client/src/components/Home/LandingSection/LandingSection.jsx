@@ -10,7 +10,7 @@ export default function LandingSection() {
 
   return (
     <div
-      className="landingHeight px-5 md:px-10 lg:px-[120px] pt-10 overflow-hidden bg-top bg-cover"
+      className="landingHeight px-5 md:px-10 lg:px-[180px] pt-10 overflow-hidden bg-top bg-cover"
       style={{ backgroundImage: `url("/home/landingbg.jpg")` }}
     >
       {item === 1 && <BuyingCarousel setItem={setItem} item={item} />}

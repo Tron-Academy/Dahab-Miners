@@ -111,9 +111,112 @@
 .glowing-box {
   width: 40px;
   height: 40px;
-  background-color: #73d3e26e; /* Base color of the box */
-  border-radius: 50%; /* Optional: for rounded corners */
-  box-shadow: 0 0 60px 30px #2fd7f16e, 0 0 100px 60px #a4e3ed6e,
-    0 0 140px 90px #f8fafb6e ;
+  background-color: rgba(142, 240, 255, 0.6); /* No inner circle */
+  border-radius: 50%; /* Keeps it circular */
+  box-shadow: 
+    0 0 60px 30px rgba(47, 215, 241, 0.4), 
+    0 0 100px 60px rgba(164, 227, 237, 0.4),
+    0 0 140px 90px rgba(248, 250, 251, 0.4); /* Glowing effect */
 }
+
+.btn-bg{
+  background: linear-gradient(83.46deg, #07EAD3 -1.94%, #26DDFF 51.77%, #6FC6B8 94.43%);
+}
+.btn-bg:hover{
+  box-shadow: 0px 14px 30px 0px #22DEF96E;
+}
+
+/* .customborder{
+        position: relative;
+        border: 5px solid rgb(5, 8, 48);
+
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          width: 250px;
+          height: 80px;
+          border-radius: 10px;
+          transition: 0.5s ease-in-out;
+         
+        }
+        &::before {
+          top: -5px;
+          left: -5px;
+          border-top: 4px solid #03a9f3;
+          border-left: 4px solid #03a9f3;
+          
+        }
+        &::after {
+          right: -5px;
+          bottom: -5px;
+          border-bottom: 4px solid #03a9f3;
+          border-right: 4px solid #03a9f3;
+        }
+        &:hover::before,
+        &:hover::after {
+          width: calc(100% + 9px);
+          height: calc(100% + 9px);
+        }
+}
+.customborder:hover {
+  box-shadow: 0 0 10px 5px rgba(3, 169, 243, 0.5),  0 0 20px 10px rgba(0, 229, 255, 0.5);
+  transition: 0.5s ease-in-out;
+} */
+
+.customborder {
+    z-index: 0;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    
+
+    &::before {
+          content: "";
+          position: absolute;
+          z-index: -2;
+          left: -50%;
+          top: -50%;
+          width: 200%;
+          height: 200%;
+          background-color: #1a232a;
+          background-repeat: no-repeat;
+          background-position: 0 0;
+          background-image: conic-gradient(
+  from 120.06deg,
+  rgba(0, 77, 244, 0) 13.7%,
+  rgba(0, 77, 244, 0.4) 27.55%,
+  #004DF4 36.4%,
+  #26DDFF 53.88%,
+  rgba(38, 221, 255, 0) 89.18%
+);
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          z-index: -1;
+          left: 3px;
+          top: 3px;
+          width: calc(100% - 6px);
+          height: calc(100% - 6px);
+          background: #000618;
+          border-radius: 5px;
+        }
+        &:hover::before{
+          animation: rotate 10s linear infinite;
+          
+        }
+}
+
+@keyframes rotate {
+        100% {
+          transform: rotate(1turn);
+        }
+      }
+
+.customborder:hover {
+  box-shadow: 0 0 10px 5px rgba(3, 169, 243, 0.5),  0 0 20px 10px rgba(0, 229, 255, 0.5);
+  transition: 0.9s ease-in-out;
+}      
+
 

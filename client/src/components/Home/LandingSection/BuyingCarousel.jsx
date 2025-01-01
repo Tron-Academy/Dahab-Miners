@@ -8,8 +8,8 @@ export default function BuyingCarousel({ setItem, item }) {
   return (
     <>
       {/* <PgBar setItem={setItem} /> */}
-      <section className="flex lg:flex-row flex-col justify-between items-center pt-28 pb-10 overflow-hidden">
-        <div className="flex flex-col lg:items-start items-center lg:text-left text-center max-w-[650px] md:gap-10 gap-5 animate-slideInLeft -mt-20 z-20">
+      <section className="flex lg:flex-row flex-col justify-between items-center pt-28 pb-10">
+        <div className="flex flex-col lg:items-start items-center lg:text-left text-center max-w-[660px] md:gap-10 gap-5 animate-slideInLeft -mt-20 z-20">
           <div>
             <div className="flex gap-5 items-center">
               <img src="/home/thunder.png" className="w-[20px]" />
@@ -46,10 +46,10 @@ export default function BuyingCarousel({ setItem, item }) {
 
           <motion.button
             initial={{ scale: 1 }}
-            whileHover={{ scale: 0.9, backgroundColor: "#7decda" }} // Change color on hover
-            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 0.95, backgroundColor: "#7decda" }} // Change color on hover
+            whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300 }} // Smooth animation
-            className="text-base font-semibold text-white bg-btnGreen px-5 py-3 w-fit rounded-lg z-10"
+            className="text-base font-semibold text-white btn-bg px-5 py-3 w-fit rounded-lg z-10 overflow-visible"
             onClick={handleChatClick}
           >
             View Products

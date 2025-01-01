@@ -22,7 +22,7 @@ function HostingCarousel({ setItem, item }) {
               <span className="relative gradient-heading">
                 Hosting{" "}
                 <img
-                  className="absolute left-0 -bottom-1"
+                  className="absolute left-0 -bottom-2"
                   src="/home/underline.png"
                 />
               </span>{" "}
@@ -39,7 +39,7 @@ function HostingCarousel({ setItem, item }) {
             whileHover={{ scale: 1.1, backgroundColor: "#7decda" }} // Change color on hover
             whileTap={{ scale: 0.9 }}
             transition={{ type: "spring", stiffness: 300 }} // Smooth animation
-            className="text-base font-semibold text-white bg-btnGreen px-5 py-3 w-fit rounded-lg"
+            className="text-base font-semibold text-white btn-bg px-5 py-3 w-fit rounded-lg"
             onClick={handleChatClick}
           >
             Get Started
@@ -55,7 +55,7 @@ function HostingCarousel({ setItem, item }) {
             title="Looking for reliable crypto mining solutions in UAE? Dahab Miners provides cutting-edge ASIC miners in Abu Dhabi, perfect for beginners and pros alike. Check out our CRYPTO MINING MACHINES IN UAE and start mining efficiently today!"
           ></img>
         </div>
-        <div className="absolute top-1/2 left-1/4 overflow-hidden">
+        <div className="absolute top-1/2 left-1/3 overflow-hidden">
           <img
             src={"/home/homeline-1.png"}
             className="object-cover"

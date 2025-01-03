@@ -15,6 +15,7 @@ import { Helmet } from "react-helmet";
 import SecondSection from "../../components/Home/secondsection/SecondSection";
 import ThirdSection from "../../components/Home/thirdsection/ThirdSection";
 import Calculator from "../../components/Home/calculator/Calculator";
+import MapSection from "../../components/Home/mapsection/MapSection";
 
 export default function HomePage() {
   useEffect(() => {
@@ -41,6 +42,7 @@ cost-effective crypto mining and hosting solutions for your miners in UAE."
       <SecondSection />
       <ThirdSection />
       <Calculator />
+      <MapSection />
       <Miners />
       <MiningFacilitiesSection />
       <HardwareReviewSection />

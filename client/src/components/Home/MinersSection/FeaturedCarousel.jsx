@@ -19,7 +19,7 @@ export default function FeaturedCarousel() {
     prevArrow: <SamplePrevArrow />, // Custom previous arrow
   };
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center customborder relative p-5 my-10">
       <Slider {...settings} className="w-full ">
         {products.map((x) => (
           <FeaturedCard
@@ -40,23 +40,23 @@ export default function FeaturedCarousel() {
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div
+    <img
+      src="/home/right-arrow.png"
       className={className}
       style={{
         ...style,
-
-        background: "#6FC6B8",
-        padding: "5px",
-        width: "30px",
-        height: "30px",
+        // background: "#6FC6B8",
+        // padding: "5px",
+        width: "40px",
+        height: "40px",
         marginRight: "20px",
-        borderRadius: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        // borderRadius: "100%",
+        // display: "flex",
+        // justifyContent: "center",
+        // alignItems: "center",
       }}
       onClick={onClick}
-    />
+    ></img>
   );
 }
 
@@ -64,22 +64,23 @@ function SampleNextArrow(props) {
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div
+    <img
+      src="/home/left-arrow.png"
       className={className}
       style={{
         ...style,
-
-        background: "#6FC6B8",
-        padding: "5px",
-        width: "30px",
-        height: "30px",
-        borderRadius: "100%",
-        display: "flex",
+        // background: "#6FC6B8",
+        // padding: "5px",
+        width: "40px",
+        height: "40px",
+        // borderRadius: "100%",
+        // display: "flex",
         marginLeft: "20px",
-        justifyContent: "center",
-        alignItems: "center",
+        zIndex: 1,
+        // justifyContent: "center",
+        // alignItems: "center",
       }}
       onClick={onClick}
-    />
+    ></img>
   );
 }

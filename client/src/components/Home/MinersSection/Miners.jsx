@@ -13,7 +13,7 @@ export default function Miners() {
     },
   };
   return (
-    <div className="bg-white px-5 md:px-10 lg:px-[120px] py-10">
+    <div className="main-bg px-5 md:px-10 lg:px-[180px] py-10">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -27,7 +27,7 @@ export default function Miners() {
         </h2>
         <Link
           to={"/buy"}
-          className="px-3 py-2 my-5 rounded-lg text-base font-semibold border hover:bg-gray-300 nav-link border-gray-300"
+          className="px-3 py-2 my-5 rounded-lg text-base text-white font-semibold border border-[#1ECBAF] nav-link hover:shadow-lg hover:shadow-[#1ECBAF]"
         >
           View all Products
         </Link>

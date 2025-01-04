@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import LandingSection from "../../components/Home/LandingSection/LandingSection";
-import ProfitSection from "../../components/Home/LandingSection/ProfitSection";
 import Miners from "../../components/Home/MinersSection/Miners";
 import MiningFacilitiesSection from "../../components/Home/MiningFacilities/MiningFacilitiesSection";
 import HardwareReviewSection from "../../components/Home/HardwareReviews/HardwareReviewSection";
-import MiningRepairSection from "../../components/Home/miningRepair/MiningRepairSection";
 import PerformanceMetrics from "../../components/Home/performanceMetrics/PerformanceMetrics";
 import ConsultationSection from "../../components/Home/consultation/ConsultationSection";
 import BlogSection from "../../components/Home/blog/BlogSection";
@@ -16,6 +14,7 @@ import SecondSection from "../../components/Home/secondsection/SecondSection";
 import ThirdSection from "../../components/Home/thirdsection/ThirdSection";
 import Calculator from "../../components/Home/calculator/Calculator";
 import MapSection from "../../components/Home/mapsection/MapSection";
+import WhyChooseUs from "../../components/Home/WhyChooseUs/WhyChooseUs";
 
 export default function HomePage() {
   useEffect(() => {
@@ -38,19 +37,20 @@ cost-effective crypto mining and hosting solutions for your miners in UAE."
         />
       </Helmet>
       <LandingSection />
+      <Calculator />
+      {/* <Miners /> */}
       {/* <ProfitSection /> */}
+      <MapSection />
+      <MiningFacilitiesSection />
       <SecondSection />
       <ThirdSection />
-      <Calculator />
-      <MapSection />
-      <Miners />
-      <MiningFacilitiesSection />
       <HardwareReviewSection />
-      <MiningRepairSection />
-      <CryptoCurrencySection />
       <PerformanceMetrics />
+      <WhyChooseUs />
+      <CryptoCurrencySection />
+
       <ConsultationSection />
-      <BlogSection />
+      {/* <BlogSection /> */}
       <Testimonials />
       <ContactForm />
     </div>

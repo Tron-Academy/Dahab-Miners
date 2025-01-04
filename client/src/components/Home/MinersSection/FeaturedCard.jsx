@@ -24,29 +24,35 @@ export default function FeaturedCard({
         />
       </div>
       <div className="max-w-[488px] flex flex-col gap-7">
-        <h4 className="text-2xl font-semibold">{name}</h4>
-        <p className="text-base font-normal">{desc}</p>
+        <h4 className="text-2xl font-semibold text-[#1ECBAF]">{name}</h4>
+        <p className="text-base font-normal text-[#D9EFFF]">{desc}</p>
         <div className="flex justify-between">
           <div className="flex flex-col gap-1">
-            <div className="w-10 h-10 bg-gray-200 rounded-full text-xl text-gray-400 flex justify-center items-center">
+            <div className="w-10 h-10 bg-[#0194FE] rounded-full text-xl text-gray-200 flex justify-center items-center">
               <GoCpu />
             </div>
-            <span className="text-sm font-normal">HashRate</span>
-            <span className="text-lg font-medium">{hash}</span>
+            <span className="text-sm font-normal text-[#D9EFFF]">HashRate</span>
+            <span className="text-lg font-medium text-[#5171B8]">{hash}</span>
           </div>
           <div className="flex flex-col gap-1">
-            <div className="w-10 h-10 bg-gray-200 rounded-full text-xl text-gray-400 flex justify-center items-center">
+            <div className="w-10 h-10 bg-[#0194FE] rounded-full text-xl text-gray-200 flex justify-center items-center">
               <PiLightning />
             </div>
-            <span className="text-sm font-normal">Power</span>
-            <span className="text-lg font-medium">{power} Watts</span>
+            <span className="text-sm font-normal text-[#D9EFFF]">Power</span>
+            <span className="text-lg font-medium text-[#5171B8]">
+              {power} Watts
+            </span>
           </div>
           <div className="flex flex-col gap-1">
-            <div className="w-10 h-10 bg-gray-200 rounded-full text-xl text-gray-400 flex justify-center items-center">
+            <div className="w-10 h-10 bg-[#0194FE] rounded-full text-xl text-gray-200 flex justify-center items-center">
               <HiOutlineCube />
             </div>
-            <span className="text-sm font-normal">Algorithm</span>
-            <span className="text-lg font-medium">{algorithm}</span>
+            <span className="text-sm font-normal text-[#D9EFFF]">
+              Algorithm
+            </span>
+            <span className="text-lg font-medium text-[#5171B8]">
+              {algorithm}
+            </span>
           </div>
         </div>
         <div className="text-lg font-semibold flex justify-between items-center">
@@ -55,7 +61,7 @@ export default function FeaturedCard({
             whileHover={{ scale: 1.1, backgroundColor: "#7decda" }} // Change color on hover
             whileTap={{ scale: 0.9 }}
             transition={{ type: "spring", stiffness: 300 }} // Smooth animation
-            className="bg-btnGreen text-white px-10 py-3 rounded-lg"
+            className="btn-bg text-white px-10 py-3 rounded-lg"
             onClick={() => handleProductEnquiry({ name })}
           >
             Buy Now

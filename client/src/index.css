@@ -41,7 +41,8 @@
 }
 
 .main-bg {
-  background: linear-gradient(178.57deg, #01081A 44.66%, #05253D 69.09%);
+  /* background: linear-gradient(178.57deg, #01081A 44.66%, #05253D 69.09%); */
+  background-color: #020b25;
 
 }
 
@@ -203,7 +204,7 @@
           border-radius: 5px;
         }
         &:hover::before{
-          animation: rotate 10s linear infinite;
+          animation: rotate 5s linear infinite;
           
         }
 }
@@ -216,7 +217,7 @@
 
 .customborder:hover {
   box-shadow: 0 0 10px 5px rgba(3, 169, 243, 0.5),  0 0 20px 10px rgba(0, 229, 255, 0.5);
-  transition: 0.9s ease-in-out;
+  transition: 0.6s ease-in-out;
 }      
 
 

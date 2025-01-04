@@ -17,7 +17,7 @@ export default function HardwareReviewSection() {
     },
   };
   return (
-    <div className="bg-homeBg px-5 md:px-10 lg:px-[120px] py-10 pt-20">
+    <div className="main-bg px-5 md:px-10 lg:px-[180px] py-10 pt-20">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -25,7 +25,7 @@ export default function HardwareReviewSection() {
         variants={sectionVariants}
         className="grid grid-cols-1 lg:grid-cols-3 gap-7"
       >
-        <div className="text-white flex flex-col gap-5 lg:col-span-2">
+        <div className="text-white flex flex-col gap-5 lg:col-span-2 lg:self-center">
           <h4 className="text-[40px] font-semibold gradient-heading max-w-[680px]">
             Why you should buy your mining hardware from DAHAB miners
           </h4>

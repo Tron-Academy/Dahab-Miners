@@ -11,13 +11,7 @@ export default function CryptoCurrencySection() {
     },
   };
   return (
-    <div
-      className=" px-5 md:px-10 lg:px-[120px] py-10 flex lg:flex-row flex-col justify-between items-center"
-      style={{
-        backgroundImage: `url("/cryptobg.jpg")`,
-        backgroundSize: "cover",
-      }}
-    >
+    <div className="main-bg px-5 md:px-10 lg:px-[180px] py-10 flex lg:flex-row flex-col justify-between items-center">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -43,7 +37,7 @@ export default function CryptoCurrencySection() {
         </p>
         <Link
           to={"/buy"}
-          className="px-4 py-2 mb-4 bg-btnGreen text-white text-base font-semibold rounded-lg w-fit hover:bg-btnHover nav-link"
+          className="px-4 py-2 mb-4 btn-bg text-white text-base font-semibold rounded-lg w-fit hover:bg-btnHover nav-link"
         >
           View Products
         </Link>
@@ -57,18 +51,12 @@ export default function CryptoCurrencySection() {
         <div className="max-w-[590px] max-h-[645px] ">
           <motion.img
             animate={{
-              rotateX: [0, 360], // Full rotation on X-axis
-              rotateZ: [0, 360], // Full rotation on Y-axis
+              rotateZ: [0, 360], // Full rotation on Z-axis (clockwise)
             }}
             transition={{
-              rotateX: {
-                repeat: Infinity,
-                duration: 20, // X-axis rotation duration
-                ease: "linear",
-              },
               rotateZ: {
                 repeat: Infinity,
-                duration: 20, // Y-axis rotation duration
+                duration: 20, // Rotation duration
                 ease: "linear",
               },
             }}

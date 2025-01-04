@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import HostingCarousel from "./HostingCarousel";
 import BuyingCarousel from "./BuyingCarousel";
 import RepairCarousel from "./RepairCarousel";
-import CarouselNavigation from "./CarouselNavigation";
 
 export default function LandingSection() {
   const [item, setItem] = useState(1);

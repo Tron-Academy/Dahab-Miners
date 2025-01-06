@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import LandingSection from "../../components/Home/LandingSection/LandingSection";
-import Miners from "../../components/Home/MinersSection/Miners";
+// import Miners from "../../components/Home/MinersSection/Miners";
 import MiningFacilitiesSection from "../../components/Home/MiningFacilities/MiningFacilitiesSection";
 import HardwareReviewSection from "../../components/Home/HardwareReviews/HardwareReviewSection";
 import PerformanceMetrics from "../../components/Home/performanceMetrics/PerformanceMetrics";
-import ConsultationSection from "../../components/Home/consultation/ConsultationSection";
-import BlogSection from "../../components/Home/blog/BlogSection";
+// import ConsultationSection from "../../components/Home/consultation/ConsultationSection";
+// import BlogSection from "../../components/Home/blog/BlogSection";
 import Testimonials from "../../components/Home/Testimonials/Testimonials";
 import CryptoCurrencySection from "../../components/Home/Cryptocurrency/CryptoCurrencySection";
 import ContactForm from "../../components/Home/contactform/ContactForm";
@@ -15,6 +15,7 @@ import ThirdSection from "../../components/Home/thirdsection/ThirdSection";
 import Calculator from "../../components/Home/calculator/Calculator";
 import MapSection from "../../components/Home/mapsection/MapSection";
 import WhyChooseUs from "../../components/Home/WhyChooseUs/WhyChooseUs";
+import FAQSection from "../../components/Home/Faq/FAQSection";
 
 export default function HomePage() {
   useEffect(() => {
@@ -49,10 +50,11 @@ cost-effective crypto mining and hosting solutions for your miners in UAE."
       <WhyChooseUs />
       <CryptoCurrencySection />
 
-      <ConsultationSection />
+      {/* <ConsultationSection /> */}
       {/* <BlogSection /> */}
       <Testimonials />
-      <ContactForm />
+      <FAQSection />
+      {/* {<ContactForm />} */}
     </div>
   );
 }

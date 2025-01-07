@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 
 export default function FAQCard({
@@ -15,9 +15,17 @@ export default function FAQCard({
       setActive(count);
     }
   };
+
+  const variants = {
+    initial: { y: "-100%", opacity: 0 },
+    animate: { y: "0%", opacity: 1 },
+    exit: { y: "-100%", opacity: 0 },
+  };
   return (
     <motion.div
-      className="text-white p-5 rounded-full"
+      className={`text-white p-5 rounded-full duration-500 ease-in-out ${
+        active === count && "row-span-2"
+      }`}
       onClick={() => handleClick()}
       initial={{
         borderImageSource:
@@ -33,7 +41,7 @@ export default function FAQCard({
         borderWidth: "2px",
         boxShadow: "0px 0px 20px rgba(1, 148, 254, 0.6)",
         scale: 1.02,
-        transition: { duration: 0.6, ease: "easeOut" },
+        transition: { duration: 0.4, ease: "easeOut" },
       }}
       style={{
         borderStyle: "solid",
@@ -48,7 +56,21 @@ export default function FAQCard({
         </div>
         <button className="text-[#0194FE] text-3xl">+</button>
       </div>
-      {active === count && <p>{answer}</p>}
+      <AnimatePresence>
+        {active === count && (
+          <motion.p
+            key={`faq-answer-${count}`}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={variants}
+            className="mt-5 px-5 text-sm py-2 bg-[#000618] rounded-lg"
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          >
+            {answer}
+          </motion.p>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

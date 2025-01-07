@@ -4,18 +4,34 @@ import { handleChatClick } from "../utils/whatsapp";
 
 export default function SmallHeader({ setSmallBar }) {
   return (
-    <div className="lg:hidden w-full bg-white py-5">
-      <div className="flex flex-col gap-5 items-center">
-        <NavLink to={"/"} onClick={() => setSmallBar(false)}>
+    <header className="lg:hidden w-full main-bg text-white py-5">
+      <nav className="flex flex-col gap-2 items-center px-3">
+        <NavLink
+          to={"/"}
+          className={"border-b w-full text-center py-2 border-[#9eede0]"}
+          onClick={() => setSmallBar(false)}
+        >
           Home
         </NavLink>
-        <NavLink to={"/buy"} onClick={() => setSmallBar(false)}>
+        <NavLink
+          to={"/buy"}
+          className={"border-b w-full text-center py-2 border-[#9eede0]"}
+          onClick={() => setSmallBar(false)}
+        >
           Buy Miners
         </NavLink>
-        <NavLink to={"/host"} onClick={() => setSmallBar(false)}>
+        <NavLink
+          to={"/host"}
+          className={"border-b w-full text-center py-2 border-[#9eede0]"}
+          onClick={() => setSmallBar(false)}
+        >
           Host Mining
         </NavLink>
-        <NavLink to={"/repair"} onClick={() => setSmallBar(false)}>
+        <NavLink
+          to={"/repair"}
+          className={"border-b w-full text-center py-2 border-[#9eede0]"}
+          onClick={() => setSmallBar(false)}
+        >
           Miner Repair
         </NavLink>
         <button
@@ -24,7 +40,7 @@ export default function SmallHeader({ setSmallBar }) {
         >
           Contact us
         </button>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 }

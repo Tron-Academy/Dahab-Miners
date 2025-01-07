@@ -5,11 +5,11 @@ import FAQCard from "./FAQCard";
 export default function FAQSection() {
   const [active, setActive] = useState(0);
   return (
-    <div className="main-bg px-5 md:px-10 lg:px-[180px] py-10">
+    <section className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10">
       <h4 className="text-[40px] font-semibold gradient-heading text-center">
         Frequently Asked Questions
       </h4>
-      <div className="flex flex-col gap-3 my-10">
+      <div className="grid grid-cols-2 gap-3 my-10">
         {faq.map((x) => (
           <FAQCard
             key={x.id}
@@ -21,6 +21,6 @@ export default function FAQSection() {
           />
         ))}
       </div>
-    </div>
+    </section>
   );
 }

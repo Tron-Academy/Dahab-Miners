@@ -15,12 +15,12 @@ export default function BlogSection() {
     },
   };
   return (
-    <motion.div
+    <motion.section
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
       variants={sectionVariants}
-      className="px-5 md:px-10 lg:px-[120px] py-10"
+      className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10"
     >
       <h4 className="text-base font-semibold text-btnGreen text-center">
         Blogs
@@ -47,6 +47,6 @@ export default function BlogSection() {
               ))}
         </div>
       )}
-    </motion.div>
+    </motion.section>
   );
 }

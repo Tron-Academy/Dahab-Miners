@@ -3,7 +3,7 @@ import WhyChooseCard from "./WhyChooseCard";
 
 export default function WhyChooseUs() {
   return (
-    <div className="main-bg px-5 md:px-10 lg:px-[180px] py-20 flex justify-around items-center relative">
+    <section className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-20 flex justify-around items-center relative">
       <div className="grid grid-cols-2 grid-rows-5 gap-5 w-[420px] h-[580px] z-10">
         <WhyChooseCard
           icon={"/home/c-1.png"}
@@ -43,6 +43,6 @@ export default function WhyChooseUs() {
           Contact Us
         </button>
       </div>
-    </div>
+    </section>
   );
 }

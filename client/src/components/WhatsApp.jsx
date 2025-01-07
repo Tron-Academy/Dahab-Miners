@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const WhatsApp = () => {
   return (
-    <motion.div
+    <motion.button
       initial={{ scale: 1 }}
       whileHover={{ scale: 1.1 }} // Change color on hover
       whileTap={{ scale: 0.9 }}
@@ -13,7 +13,7 @@ const WhatsApp = () => {
       onClick={handleChatClick}
     >
       <img src="/whatsapp_logo.webp" alt="" />
-    </motion.div>
+    </motion.button>
   );
 };
 

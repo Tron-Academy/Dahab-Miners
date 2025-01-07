@@ -5,7 +5,7 @@ function MapSection() {
   const [isHover1, setIsHover1] = useState(false);
   const [isHover2, setIsHover2] = useState(false);
   return (
-    <div className="main-bg px-5 md:px-10 lg:px-[180px] py-10 text-white flex items-center justify-between">
+    <section className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 text-white flex items-center justify-between">
       <div className="flex flex-col gap-10 max-w-[450px]">
         <h4 className="text-[40px] gradient-heading font-semibold">
           Strategic key locations
@@ -68,7 +68,7 @@ function MapSection() {
           />
         )}
       </div>
-    </div>
+    </section>
   );
 }
 

@@ -16,6 +16,7 @@ import Calculator from "../../components/Home/calculator/Calculator";
 import MapSection from "../../components/Home/mapsection/MapSection";
 import WhyChooseUs from "../../components/Home/WhyChooseUs/WhyChooseUs";
 import FAQSection from "../../components/Home/Faq/FAQSection";
+import DiscussSection from "../../components/Home/Discuss/DiscussSection";
 
 export default function HomePage() {
   useEffect(() => {
@@ -54,6 +55,7 @@ cost-effective crypto mining and hosting solutions for your miners in UAE."
       {/* <BlogSection /> */}
       <Testimonials />
       <FAQSection />
+      <DiscussSection />
       {/* {<ContactForm />} */}
     </div>
   );

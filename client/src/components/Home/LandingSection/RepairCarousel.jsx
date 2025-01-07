@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function RepairCarousel({ setItem, item }) {
   return (
     <>
-      <div className="flex lg:flex-row flex-col justify-between items-center pt-28 pb-10 w-full -mt-20">
+      <section className="flex lg:flex-row flex-col justify-between items-center pt-28 pb-10 w-full -mt-20">
         <div className="flex flex-col lg:items-start items-center lg:text-left text-center md:gap-10 gap-5 max-w-[678px] animate-slideInLeft">
           <div>
             <div className="flex gap-5 items-center">
@@ -74,7 +74,7 @@ export default function RepairCarousel({ setItem, item }) {
           ></img>
         </div>
         <div className="absolute glowing-box top-[35%] right-[20%]"></div>
-      </div>
+      </section>
     </>
   );
 }

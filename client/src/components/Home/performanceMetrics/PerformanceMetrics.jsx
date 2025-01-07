@@ -13,7 +13,7 @@ export default function PerformanceMetrics() {
     },
   };
   return (
-    <div className="main-bg px-5 md:px-10 lg:px-[180px] py-10 flex flex-col items-center gap-10 w-full">
+    <section className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col items-center gap-10 w-full">
       <motion.h4
         initial="hidden"
         whileInView="visible"
@@ -35,6 +35,6 @@ export default function PerformanceMetrics() {
         <MetricsCard stat={"2+"} content={"Total facilities"} border />
         <MetricsCard stat={"24/7"} content={"Customer Support"} />
       </motion.div>
-    </div>
+    </section>
   );
 }

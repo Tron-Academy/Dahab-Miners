@@ -11,7 +11,7 @@ export default function CryptoCurrencySection() {
     },
   };
   return (
-    <div className="main-bg px-5 md:px-10 lg:px-[180px] py-10 flex lg:flex-row flex-col justify-between items-center">
+    <section className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex lg:flex-row flex-col justify-between items-center">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -66,6 +66,6 @@ export default function CryptoCurrencySection() {
           ></motion.img>
         </div>
       </motion.div>
-    </div>
+    </section>
   );
 }

@@ -13,7 +13,7 @@ export default function Miners() {
     },
   };
   return (
-    <div className="main-bg px-5 md:px-10 lg:px-[180px] py-10">
+    <section className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -44,6 +44,6 @@ export default function Miners() {
           </div>
         </div> */}
       </div>
-    </div>
+    </section>
   );
 }

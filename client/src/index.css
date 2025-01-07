@@ -20,6 +20,9 @@
   background: #242424;
 }
 
+body{
+   background-color: #020b25;
+}
 .gradient-heading {
   background: linear-gradient(290.95deg, #2663bf 5.51%, #1ecbaf 96.94%);
   -webkit-background-clip: text;
@@ -170,6 +173,8 @@
     border-radius: 10px;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 0 3px 1px rgba(3, 169, 243, 0.5),  0 0 5px 3px rgba(0, 229, 255, 0.5);
+  
     
 
     &::before {
@@ -220,4 +225,6 @@
   transition: 0.6s ease-in-out;
 }      
 
-
+.copyright-bg{
+  background: linear-gradient(90deg, #000618 2.31%, #00C3FD 47.25%, #000618 99.25%);
+}

@@ -17,7 +17,7 @@ export default function HardwareReviewSection() {
     },
   };
   return (
-    <div className="main-bg px-5 md:px-10 lg:px-[180px] py-10 pt-20">
+    <section className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 pt-20">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -63,6 +63,6 @@ export default function HardwareReviewSection() {
 `}
         />
       </motion.div>
-    </div>
+    </section>
   );
 }

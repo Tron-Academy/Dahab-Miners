@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Calculator() {
   return (
-    <section className="main-bg px-5 md:px-10 lg:px-[180px] py-10 flex flex-col gap-10">
+    <section className="main-bg px-5 md:px-10 lg:px-[120] xl:px-[180px] py-10 flex flex-col gap-10">
       <h4 className="gradient-heading text-[40px] font-semibold text-center">
         Calculate Your Bitcoin Mining Profit
       </h4>

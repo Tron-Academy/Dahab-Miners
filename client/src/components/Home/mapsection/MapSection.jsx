@@ -5,12 +5,12 @@ function MapSection() {
   const [isHover1, setIsHover1] = useState(false);
   const [isHover2, setIsHover2] = useState(false);
   return (
-    <section className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 text-white flex items-center justify-between">
-      <div className="flex flex-col gap-10 max-w-[450px]">
+    <section className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 text-white flex lg:flex-row flex-col items-center lg:justify-between gap-20">
+      <div className="flex flex-col lg:items-start items-center gap-5 lg:max-w-[450px]">
         <h4 className="text-[40px] gradient-heading font-semibold">
           Strategic key locations
         </h4>
-        <p className="text-sm max-w-[350px]">
+        <p className="text-sm max-w-[350px] lg:text-left text-center">
           We are operating through mining farms in strategic locations around
           the world
         </p>
@@ -22,7 +22,7 @@ function MapSection() {
             ETHIOPIA
           </button>
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center w-full">
           <div>
             <p className="text-[#0194FE] text-4xl font-semibold">32K+</p>
             <p className="text-sm">People Joined</p>

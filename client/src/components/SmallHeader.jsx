@@ -35,7 +35,7 @@ export default function SmallHeader({ setSmallBar }) {
           Miner Repair
         </NavLink>
         <button
-          className="bg-btnGreen hover:bg-btnHover nav-link text-white rounded-lg px-4 py-2"
+          className="btn-bg text-white rounded-lg px-4 py-2"
           onClick={handleChatClick}
         >
           Contact us

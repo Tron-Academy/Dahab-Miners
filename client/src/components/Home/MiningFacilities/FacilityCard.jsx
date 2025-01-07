@@ -4,7 +4,7 @@ import React from "react";
 export default function FacilityCard({ title, content, image }) {
   return (
     <motion.div
-      className="flex gap-5 justify-between bg-[#050F25] p-5 rounded-lg border max-w-[500px]"
+      className="flex xl:flex-row flex-col gap-5 items-center justify-between bg-[#050F25] p-5 rounded-lg border max-w-[500px]"
       initial={{
         borderImageSource:
           "linear-gradient(to bottom right, #004DF480 0%, transparent 50%, transparent 50%, #0194FE80 100%)",
@@ -26,8 +26,12 @@ export default function FacilityCard({ title, content, image }) {
       }}
     >
       <div>
-        <p className="text-2xl gradient-heading">{title}</p>
-        <p className="text-[#11639D] text-sm">{content}</p>
+        <p className="text-2xl gradient-heading xl:text-left text-center">
+          {title}
+        </p>
+        <p className="text-[#11639D] text-sm xl:text-left text-center">
+          {content}
+        </p>
       </div>
       <img
         src={image}

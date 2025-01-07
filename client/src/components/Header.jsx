@@ -52,7 +52,7 @@ export default function Header() {
         Contact us
       </motion.button>
       <button
-        className="lg:hidden"
+        className="lg:hidden text-white text-xl"
         onClick={() => setShowSmallBar(!showSmallBar)}
       >
         <RxHamburgerMenu />

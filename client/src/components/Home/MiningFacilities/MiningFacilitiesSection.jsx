@@ -36,7 +36,7 @@ export default function MiningFacilitiesSection() {
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
           variants={sectionVariants}
-          className="flex justify-between w-full"
+          className="flex lg:flex-row flex-col items-center gap-5 justify-between w-full"
         >
           <FacilityCard
             title={"Cutting-Edge Mining Facilities"}

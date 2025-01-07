@@ -103,7 +103,7 @@ body{
 }
 
 .landingHeight {
-  height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
 }
 
 @media (max-width: 768px) {

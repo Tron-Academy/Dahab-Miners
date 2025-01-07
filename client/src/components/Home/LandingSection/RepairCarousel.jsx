@@ -49,31 +49,31 @@ export default function RepairCarousel({ setItem, item }) {
           <CarouselNavigation setItem={setItem} item={item} />
         </div>
 
-        <div className="w-[315px] h-[244px] md:w-[600px] md:h-[465px] z-10 animate-slideInRight">
+        <div className="w-[315px] h-[244px] md:w-[600px] md:h-[465px] relative animate-slideInRight">
           <img
-            className=""
+            className="absolute z-10"
             src="/repaircarouselimage.png"
             alt="Essential-tools-for-crypto-mining-machines-in-abu-dhabi-UAE"
             title="Explore top-tier CRYPTO MINING MACHINES IN UAE at Dahab Miners. Specializing in high-efficiency ASIC miners in Abu Dhabi, UAE, we offer the best solutions for crypto mining in UAE. Browse our range today and enhance your mining setup!"
           ></img>
+          <div className="absolute bottom-[15%] -left-[70%] overflow-hidden">
+            <img
+              src={"/home/homeline-1.png"}
+              className="object-cover"
+              alt="crypto-mining-machines-in-abu-dhabi-UAE-for-sale"
+              title="Dahab Miners is your trusted partner for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."
+            ></img>
+          </div>
+          <div className="absolute flex gap-2 -top-[10%] right-0 overflow-hidden">
+            <img
+              src={"/home/homeline-2.png"}
+              className="object-cover"
+              alt="crypto-mining-machines-in-abu-dhabi-UAE-for-sale 2"
+              title="Dahab Miners is your trusted partner 2 for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."
+            ></img>
+          </div>
+          <div className="absolute glowing-box top-[15%] right-[25%]"></div>
         </div>
-        <div className="absolute top-1/2 left-1/4 overflow-hidden">
-          <img
-            src={"/home/homeline-1.png"}
-            className="object-cover"
-            alt="crypto-mining-machines-in-abu-dhabi-UAE-for-sale"
-            title="Dahab Miners is your trusted partner for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."
-          ></img>
-        </div>
-        <div className="absolute flex gap-2 top-20 right-20 overflow-hidden">
-          <img
-            src={"/home/homeline-2.png"}
-            className="object-cover"
-            alt="crypto-mining-machines-in-abu-dhabi-UAE-for-sale 2"
-            title="Dahab Miners is your trusted partner 2 for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."
-          ></img>
-        </div>
-        <div className="absolute glowing-box top-[35%] right-[20%]"></div>
       </section>
     </>
   );

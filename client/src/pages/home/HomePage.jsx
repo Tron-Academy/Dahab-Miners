@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import LandingSection from "../../components/Home/LandingSection/LandingSection";
-// import Miners from "../../components/Home/MinersSection/Miners";
+import Miners from "../../components/Home/MinersSection/Miners";
 import MiningFacilitiesSection from "../../components/Home/MiningFacilities/MiningFacilitiesSection";
 import HardwareReviewSection from "../../components/Home/HardwareReviews/HardwareReviewSection";
 import PerformanceMetrics from "../../components/Home/performanceMetrics/PerformanceMetrics";
@@ -40,7 +40,7 @@ cost-effective crypto mining and hosting solutions for your miners in UAE."
       </Helmet>
       <LandingSection />
       <Calculator />
-      {/* <Miners /> */}
+      <Miners />
       {/* <ProfitSection /> */}
       <MapSection />
       <MiningFacilitiesSection />

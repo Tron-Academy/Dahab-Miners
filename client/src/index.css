@@ -23,6 +23,10 @@
 body{
    background-color: #020b25;
 }
+select option:focus {
+  background-color: #A0E3F9;
+}
+
 .gradient-heading {
   background: linear-gradient(290.95deg, #2663bf 5.51%, #1ecbaf 96.94%);
   -webkit-background-clip: text;
@@ -227,4 +231,25 @@ body{
 
 .copyright-bg{
   background: linear-gradient(90deg, #000618 2.31%, #00C3FD 47.25%, #000618 99.25%);
+}
+
+@media (max-width: 768px){
+.glow-effect {
+  box-shadow: 0 0 5px #118FF9, 0 0 10px #118FF9, 0 0 15px #118FF9;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.glow-effect:hover {
+  box-shadow: 0 0 20px #118FF9, 0 0 40px #118FF9, 0 0 60px #118FF9;
+}
+}
+
+.bigglow-effect {
+  box-shadow: 0 0 5px #118FF9, 0 0 10px #118FF9, 0 0 15px #118FF9;
+  transition: all 0.5s ease-in-out;
+}
+
+.bigglow-effect:hover {
+  box-shadow: 0 0 20px #118FF9, 0 0 40px #118FF9, 0 0 60px #118FF9;
+  transform: scale(1.1);
 }

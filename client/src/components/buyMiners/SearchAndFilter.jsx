@@ -27,7 +27,7 @@ export default function SearchAndFilter({ setShowFilter, refetch }) {
   }, [manufacturerOptions, cryptoCurrencyOption, keyWord, sortby]);
 
   return (
-    <div className="lg:w-72 w-full rounded-xl px-2 py-5 flex flex-col gap-5">
+    <div className="lg:w-72 w-full rounded-xl px-2 py-5 flex flex-col gap-5 text-white">
       <div className="w-full flex justify-between items-center mb-10">
         <div className="flex items-center gap-5 justify-end">
           <h1 className="text-lg font-medium">Filter</h1>
@@ -48,7 +48,7 @@ export default function SearchAndFilter({ setShowFilter, refetch }) {
         value={sortby}
         onchange={(e) => dispatch(setSortBy(e.target.value))}
       />
-      <div className="flex rounded-lg border">
+      <div className="flex rounded-lg border border-[#0B578E]">
         <label className="flex justify-center items-center p-1 ps-3 text-xl">
           <CiSearch />
         </label>
@@ -57,7 +57,7 @@ export default function SearchAndFilter({ setShowFilter, refetch }) {
           placeholder={` Search your item`}
           value={keyWord}
           onChange={(e) => dispatch(setKeyWord(e.target.value))}
-          className="text-base font-normal px-2 py-1"
+          className="text-base font-normal px-2 py-1 bg-transparent outline-none "
         />
       </div>
       <FormSelect

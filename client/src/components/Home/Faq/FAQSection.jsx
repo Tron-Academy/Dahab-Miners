@@ -9,7 +9,7 @@ export default function FAQSection() {
       <h4 className="text-[40px] font-semibold gradient-heading text-center">
         Frequently Asked Questions
       </h4>
-      <div className="grid grid-cols-2 gap-3 my-10">
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-3 my-10">
         {faq.map((x) => (
           <FAQCard
             key={x.id}

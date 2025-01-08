@@ -28,11 +28,11 @@ export default function PerformanceMetrics() {
         whileInView="visible"
         viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
         variants={sectionVariants}
-        className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-y-10 gap-3 justify-items-center w-full"
+        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-y-10 gap-3 justify-items-center w-full"
       >
-        <MetricsCard stat={"5+"} content={"Years of Experience"} border />
-        <MetricsCard stat={"97%"} content={"Approximate uptime"} border />
-        <MetricsCard stat={"2+"} content={"Total facilities"} border />
+        <MetricsCard stat={"5+"} content={"Years of Experience"} />
+        <MetricsCard stat={"97%"} content={"Approximate uptime"} />
+        <MetricsCard stat={"2+"} content={"Total facilities"} />
         <MetricsCard stat={"24/7"} content={"Customer Support"} />
       </motion.div>
     </section>

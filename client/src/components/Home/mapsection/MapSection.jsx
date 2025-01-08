@@ -7,7 +7,7 @@ function MapSection() {
   return (
     <section className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 text-white flex lg:flex-row flex-col items-center lg:justify-between gap-20">
       <div className="flex flex-col lg:items-start items-center gap-5 lg:max-w-[450px]">
-        <h4 className="text-[40px] gradient-heading font-semibold">
+        <h4 className="text-[40px] gradient-heading font-semibold lg:text-left text-center">
           Strategic key locations
         </h4>
         <p className="text-sm max-w-[350px] lg:text-left text-center">

@@ -12,13 +12,13 @@ function FormSelect({ title, value, onchange, list, multi }) {
           value={value}
           multiple={multi ? true : false}
           onChange={onchange}
-          className={`w-full py-1 px-3 rounded-lg bg-purple-50 border border-gray-300 text-gray-900 ${
+          className={`w-full py-1 px-3 rounded-lg bg-transparent border border-[#0B578E] text-[#CCF2FF] outline-none ${
             multi ? "h-40" : "h-11"
           }`}
         >
           {list?.map((item) => (
             <option
-              className="border-b py-1 border-gray-300"
+              className="border-b py-1 border-gray-300 bg-[#CCF2FF] text-black"
               key={item}
               value={item}
             >

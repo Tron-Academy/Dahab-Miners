@@ -32,8 +32,8 @@ export default function BuyMinersSection() {
     refetch();
   }, [currentPage]);
   return (
-    <div className="">
-      <div className="h-24 lg:h-60 buy-miners-heading-bg flex justify-center items-center">
+    <div className="bg-[#000618]">
+      <div className="h-24 lg:h-60 flex justify-center items-center">
         <h1 className="buy-miners-heading text-2xl py-5 lg:text-[40px] font-semibold">
           Shop Best Miners
         </h1>
@@ -60,7 +60,7 @@ export default function BuyMinersSection() {
       )}
 
       <div className="px-5 md:px-10 lg:px-[120px] py-10">
-        <h1 className="text-2xl lg:text-4xl font-semibold text-black text-center">
+        <h1 className="text-2xl lg:text-4xl font-semibold text-[#1ECBAF] text-center">
           Top Rated Products
         </h1>
         {featuredLoading ? (

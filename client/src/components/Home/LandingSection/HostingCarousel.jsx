@@ -53,7 +53,7 @@ function HostingCarousel({ setItem, item }) {
             alt="Reliable-crypto-mining-services-in-abu-dhabi-UAE-support"
             title="Looking for reliable crypto mining solutions in UAE? Dahab Miners provides cutting-edge ASIC miners in Abu Dhabi, perfect for beginners and pros alike. Check out our CRYPTO MINING MACHINES IN UAE and start mining efficiently today!"
           ></img>
-          <div className="absolute -left-[35%] top-[20%]  overflow-hidden">
+          <div className="absolute md:-left-[35%] md:top-[20%] -bottom-[20%] -left-[30%] overflow-hidden">
             <img
               src={"/home/homeline-1.png"}
               className="object-cover"
@@ -61,7 +61,7 @@ function HostingCarousel({ setItem, item }) {
               title="Dahab Miners is your trusted partner for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."
             ></img>
           </div>
-          <div className="absolute flex gap-2 -top-[1%] -right-[20%]  overflow-hidden">
+          <div className="absolute flex gap-2 md:-top-[1%] md:-right-[20%] -top-[3%] right-[15%]  overflow-hidden">
             <img
               src={"/home/homeline-2.png"}
               className="object-cover"
@@ -69,7 +69,7 @@ function HostingCarousel({ setItem, item }) {
               title="Dahab Miners is your trusted partner 2 for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."
             ></img>
           </div>
-          <div className="absolute right-0 top-[15%] glowing-box "></div>
+          <div className="absolute right-0 top-[15%] glowing-box hidden md:block"></div>
         </div>
       </section>
     </>

@@ -49,9 +49,9 @@ export default function FAQCard({
     >
       <div className="flex justify-between items-center">
         <div className="flex gap-5 items-center">
-          <p className="bg-[#000618] w-10 h-10 rounded-full flex justify-center items-center border border-[#0194FE] text-[#0194FE]">
+          {/* <p className="bg-[#000618] w-10 h-10 rounded-full flex justify-center items-center border border-[#0194FE] text-[#0194FE]">
             {count}
-          </p>
+          </p> */}
           <p>{question}</p>
         </div>
         <button className="text-[#0194FE] text-3xl">+</button>

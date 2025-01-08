@@ -65,11 +65,11 @@ export default function Footer() {
           <Link to={"/blogs"}>Blogs</Link>
         </div>
         <div className="bg-[#030815] rounded-md p-5 max-w-[400px]">
-          <p className="text-lg font-semibold text-white text-center">
+          <p className="text-lg font-semibold text-white lg:text-center text-left">
             Contact Us
           </p>
           <div className="flex flex-col gap-7 text-sm font-medium text-white my-5">
-            <div className="flex gap-5 justify-between items-start">
+            <div className="flex sm:flex-row flex-col gap-5 justify-between items-start">
               <div className="flex gap-3 items-start">
                 <div>
                   <CiLocationOn />
@@ -79,7 +79,7 @@ export default function Footer() {
                   Emirates
                 </p>
               </div>
-              <div className="text-4xl font-thin h-10 border-l"></div>
+              <div className="text-4xl font-thin h-10 border-l sm:block hidden"></div>
               <div className="flex gap-3 items-center">
                 <div>
                   <CiLocationOn />

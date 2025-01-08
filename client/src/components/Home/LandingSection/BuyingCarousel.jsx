@@ -62,12 +62,12 @@ export default function BuyingCarousel({ setItem, item }) {
 
         <div className="w-full max-w-[300px] h-[250px] md:max-w-[550px] md:h-[450px] mx-auto animate-slideInRight mt-4 md:mt-7 lg:-mt-20 relative">
           <img
-            className="w-full h-full object-contain z-20 absolute"
+            className="object-contain z-20 absolute "
             src="/buycarousel.webp"
             alt="crypto-mining-machines-in-abu-dhabi-UAE-for-sale"
             title="Dahab Miners is your trusted partner for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."
           />
-          <div className="absolute bottom-0 -left-[70%]  overflow-hidden">
+          <div className="absolute md:bottom-0 -bottom-[20%] md:-left-[70%] -left-[70%]  overflow-hidden">
             <img
               src={"/home/homeline-1.png"}
               className="object-cover"
@@ -75,7 +75,7 @@ export default function BuyingCarousel({ setItem, item }) {
               title="Dahab Miners is your trusted partner for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."
             ></img>
           </div>
-          <div className="absolute flex gap-2 -top-[15%] -right-[5%] overflow-hidden">
+          <div className="absolute flex gap-2 md:-top-[15%] -top-[10%] md:-right-[5%] -right-[20%] overflow-hidden">
             <img
               src={"/home/homeline-2.png"}
               className="object-cover"
@@ -83,7 +83,7 @@ export default function BuyingCarousel({ setItem, item }) {
               title="Dahab Miners is your trusted partner 2 for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."
             ></img>
           </div>
-          <div className="absolute glowing-box top-[15%] right-[20%]"></div>
+          <div className="absolute glowing-box md:top-[15%] md:right-[20%] md:block hidden"></div>
         </div>
       </section>
     </>

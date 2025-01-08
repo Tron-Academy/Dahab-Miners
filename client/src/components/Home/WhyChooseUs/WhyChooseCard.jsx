@@ -3,10 +3,10 @@ import React from "react";
 function WhyChooseCard({ icon, content, position }) {
   return (
     <div
-      className={`flex flex-col gap-5 justify-center items-center p-5 rounded-lg w-[200px] h-[200px] customborder ${position}`}
+      className={`flex flex-col gap-5 justify-center items-center lg:p-5 p-2 rounded-lg lg:w-[200px] lg:h-[200px] w-[150px] h-[150px] customborder ${position}`}
     >
-      <img src={icon} className="w-[50px]" />
-      <p className="text-white text-sm text-center">{content}</p>
+      <img src={icon} className="lg:w-[50px] w-[40px]" />
+      <p className="text-white lg:text-sm text-xs text-center">{content}</p>
     </div>
   );
 }

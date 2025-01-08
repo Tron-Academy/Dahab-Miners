@@ -49,14 +49,14 @@ export default function RepairCarousel({ setItem, item }) {
           <CarouselNavigation setItem={setItem} item={item} />
         </div>
 
-        <div className="w-[315px] h-[244px] md:w-[600px] md:h-[465px] relative animate-slideInRight">
+        <div className="w-[315px] h-[244px] md:w-[600px] md:h-[465px] relative animate-slideInRight mt-6 lg:mt-0">
           <img
             className="absolute z-10"
             src="/repaircarouselimage.png"
             alt="Essential-tools-for-crypto-mining-machines-in-abu-dhabi-UAE"
             title="Explore top-tier CRYPTO MINING MACHINES IN UAE at Dahab Miners. Specializing in high-efficiency ASIC miners in Abu Dhabi, UAE, we offer the best solutions for crypto mining in UAE. Browse our range today and enhance your mining setup!"
           ></img>
-          <div className="absolute bottom-[15%] -left-[70%] overflow-hidden">
+          <div className="absolute md:bottom-[15%] md:-left-[70%] -bottom-[20%] -left-[90%] overflow-hidden">
             <img
               src={"/home/homeline-1.png"}
               className="object-cover"
@@ -64,7 +64,7 @@ export default function RepairCarousel({ setItem, item }) {
               title="Dahab Miners is your trusted partner for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."
             ></img>
           </div>
-          <div className="absolute flex gap-2 -top-[10%] right-0 overflow-hidden">
+          <div className="absolute flex gap-2 md:-top-[10%] md:right-0 -right-[20%] overflow-hidden">
             <img
               src={"/home/homeline-2.png"}
               className="object-cover"
@@ -72,7 +72,7 @@ export default function RepairCarousel({ setItem, item }) {
               title="Dahab Miners is your trusted partner 2 for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."
             ></img>
           </div>
-          <div className="absolute glowing-box top-[15%] right-[25%]"></div>
+          <div className="absolute glowing-box top-[15%] right-[25%] md:block hidden"></div>
         </div>
       </section>
     </>

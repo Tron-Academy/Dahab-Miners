@@ -9,10 +9,10 @@ export default function CarouselNavigation({ setItem, item }) {
     setItem(item + 1);
   }
   return (
-    <div className="flex justify-between text-3xl lg:text-5xl text-gray-600 font-thin w-[150px]">
+    <div className="flex justify-between text-3xl lg:text-5xl text-gray-600 font-thin lg:w-[150px] w-full">
       <button
         disabled={item === 1}
-        className="hover:text-gray-400 nav-link cursor-pointer"
+        className="hover:text-gray-400 nav-link cursor-pointer z-20"
         onClick={prev}
       >
         <BsArrowLeftCircle />

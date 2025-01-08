@@ -3,7 +3,7 @@ import React from "react";
 export default function MetricsCard({ stat, content, border }) {
   return (
     <div
-      className={`p-5 w-[300px] flex flex-col justify-center items-center ${
+      className={`p-5 w-[300px] flex flex-col justify-center items-center md:border-0 border border-[#118FF9] rounded-lg glow-effect ${
         border && "border-e border-[#118FF9]"
       }`}
     >

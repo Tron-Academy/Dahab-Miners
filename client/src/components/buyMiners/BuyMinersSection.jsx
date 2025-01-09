@@ -32,13 +32,13 @@ export default function BuyMinersSection() {
     refetch();
   }, [currentPage]);
   return (
-    <div className="bg-[#000618]">
-      <div className="h-24 lg:h-60 flex justify-center items-center">
-        <h1 className="buy-miners-heading text-2xl py-5 lg:text-[40px] font-semibold">
+    <div className="bg-[#000618] px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10">
+      <div className="h-24 lg:h-40 flex justify-center items-center">
+        <h1 className="buy-miners-heading text-2xl pb-5 lg:text-[40px] font-semibold">
           Shop Best Miners
         </h1>
       </div>
-      <div className="flex lg:flex-row flex-col gap-4 px-5 md:px-10 lg:px-[120px] py-10">
+      <div className="flex lg:flex-row flex-col gap-2">
         <div className="">
           <SearchAndFilter refetch={refetch} />
         </div>
@@ -59,14 +59,14 @@ export default function BuyMinersSection() {
         </div>
       )}
 
-      <div className="px-5 md:px-10 lg:px-[120px] py-10">
+      <div className="">
         <h1 className="text-2xl lg:text-4xl font-semibold text-[#1ECBAF] text-center">
           Top Rated Products
         </h1>
         {featuredLoading ? (
           <Loading />
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 my-10">
             {featuredProducts?.length > 0 &&
               featuredProducts
                 .slice(0, 4)

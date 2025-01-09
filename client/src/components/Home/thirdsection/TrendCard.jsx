@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function TrendCard({ icon, name, short, value, percent, data }) {
   return (
     <motion.div
-      className="p-5 relative text-white w-[250px]"
+      className="p-5 relative text-white w-[250px] my-5 bg-[#000618]"
       initial={{
         borderImageSource:
           "linear-gradient(to bottom right, #004DF480 0%, transparent 50%, transparent 50%, #0194FE80 100%)",
@@ -27,7 +27,7 @@ export default function TrendCard({ icon, name, short, value, percent, data }) {
         borderStyle: "solid",
       }}
     >
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between ">
         <div className="flex items-center gap-3">
           <img src={icon} className="w-10" />
           <p className="text-sm">{short}</p>

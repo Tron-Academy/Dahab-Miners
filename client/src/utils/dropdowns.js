@@ -145,3 +145,11 @@ export const cryptoCurrencySearch = [
   "XVG",
   "ZEC",
 ];
+
+export const categoryDropdowns = [
+  "ALL",
+  "Air Cooled",
+  "Immersion",
+  "Hydro",
+  "Home Miner",
+];

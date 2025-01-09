@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import {
+  categoryDropdowns,
   cryptoCurrencySearch,
   manufacturerSearch,
 } from "../../utils/dropdowns";
 import { useDispatch, useSelector } from "react-redux";
 import {
   resetAll,
+  setCategoryOptions,
   setCryptoCurrencyOption,
   setKeyWord,
   setManufacturerOptions,
@@ -19,15 +21,20 @@ export default function SearchAndFilter({ setShowFilter, refetch }) {
   const sortOptions = ["Newest", "Oldest"];
 
   const dispatch = useDispatch();
-  const { manufacturerOptions, cryptoCurrencyOption, keyWord, sortby } =
-    useSelector((state) => state.userProductSearch);
+  const {
+    manufacturerOptions,
+    categoryOptions,
+    cryptoCurrencyOption,
+    keyWord,
+    sortby,
+  } = useSelector((state) => state.userProductSearch);
 
   useEffect(() => {
     refetch();
   }, [manufacturerOptions, cryptoCurrencyOption, keyWord, sortby]);
 
   return (
-    <div className="lg:w-72 w-full rounded-xl px-2 py-5 flex flex-col gap-5 text-white">
+    <div className="lg:w-60 w-full rounded-xl px-2 py-5 flex flex-col gap-5 text-white">
       <div className="w-full flex justify-between items-center mb-10">
         <div className="flex items-center gap-5 justify-end">
           <h1 className="text-lg font-medium">Filter</h1>
@@ -60,6 +67,12 @@ export default function SearchAndFilter({ setShowFilter, refetch }) {
           className="text-base font-normal px-2 py-1 bg-transparent outline-none "
         />
       </div>
+      <FormSelect
+        title={"Category"}
+        list={categoryDropdowns}
+        value={categoryOptions}
+        onchange={(e) => dispatch(setCategoryOptions(e.target.value))}
+      />
       <FormSelect
         title={"Manufacturer"}
         list={manufacturerSearch}

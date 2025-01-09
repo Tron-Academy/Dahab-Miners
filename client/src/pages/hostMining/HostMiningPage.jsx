@@ -5,6 +5,11 @@ import GraphSection from "../../components/HostMining/GraphSection";
 import BuyBox from "../../components/HostMining/BuyBox";
 import RequestHostingSection from "../../components/HostMining/RequestHostingSection";
 import { Helmet } from "react-helmet";
+import FarmingLocations from "../../components/HostMining/FarmingLocations";
+import MapSection from "../../components/Home/mapsection/MapSection";
+import BitcoinConsulting from "../../components/HostMining/BitcoinConsulting";
+import FAQSection from "../../components/Home/Faq/FAQSection";
+import ContactButtonSection from "../../components/HostMining/ContactButtonSection";
 
 export default function HostMiningPage() {
   useEffect(() => {
@@ -24,10 +29,15 @@ export default function HostMiningPage() {
         />
       </Helmet>
       <HostMiningHead />
-      <HostMiningDescription />
+      {/* <HostMiningDescription /> */}
       <GraphSection />
-      <BuyBox />
-      <RequestHostingSection />
+      <FarmingLocations />
+      <MapSection />
+      <BitcoinConsulting />
+      <FAQSection />
+      <ContactButtonSection />
+      {/* <BuyBox /> */}
+      {/* <RequestHostingSection /> */}
     </div>
   );
 }

@@ -1,17 +1,11 @@
-import React from "react";
-import bg from "../../assets/hostminer.svg";
-import { AiOutlineEuro } from "react-icons/ai";
-import { TbCurrencyEuro } from "react-icons/tb";
-import { FaLeaf } from "react-icons/fa";
+import React, { useState } from "react";
 import { handleChatClick } from "../../utils/whatsapp";
+import DescriptionBox from "../Home/mapsection/DescriptionBox";
 export default function HostMiningHead() {
+  const [isHover1, setIsHover1] = useState(false);
+  const [isHover2, setIsHover2] = useState(false);
   return (
-    <div
-      className="px-5 md:px-10 lg:px-[120px] py-10 bg-no-repeat lg:bg-contain bg-cover lg:bg-center bg-center min-h-[640px] bg-homeBg flex lg:flex-row flex-col justify-around items-center"
-      style={{
-        backgroundImage: `url(${bg})`,
-      }}
-    >
+    <section className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10  min-h-[640px] main-bg flex lg:flex-row flex-col gap-5 justify-between items-center">
       <div className="flex flex-col lg:items-start items-center lg:text-left text-center gap-10 max-w-[620px]">
         <h1 className="text-4xl lg:text-5xl font-semibold gradient-heading">
           Affordable Mining Hosting with DAHAB Miners
@@ -23,37 +17,42 @@ export default function HostMiningHead() {
         </p>
         <button
           onClick={handleChatClick}
-          className="text-base font-semibold px-4 py-3 bg-btnGreen w-fit hover:bg-btnHover nav-link rounded-lg text-white"
+          className="text-base font-semibold px-4 py-3 btn-bg w-fit nav-link rounded-lg text-white"
         >
           View Prices
         </button>
       </div>
-      <div className="">
-        <div className="bg-white p-3 rounded-lg flex flex-col gap-5 text-sm font-medium  top-0 left-0">
-          <p className="flex gap-1 items-center">
-            <div className="w-6 h-6 rounded-full overflow-hidden">
-              <img src="/uaeflag.webp"></img>{" "}
-            </div>
-            UAE
-          </p>
-          <p className="flex gap-1 items-center">
-            <p>
-              <AiOutlineEuro />
-            </p>
-            0.065-0.08
-            <span>
-              <TbCurrencyEuro />
-            </span>
-            /Kwh
-          </p>
-          <p className="flex gap-1 items-center text-green-700">
-            <p>
-              <FaLeaf />
-            </p>
-            100% renewable Energy
-          </p>
-        </div>
+      <div className="relative">
+        <img src="/host/map.png" className="" />
+        <img
+          src="/host/location.png"
+          className="absolute w-3 right-[39%] bottom-[38%] cursor-pointer"
+          onMouseEnter={() => setIsHover1(true)}
+          onMouseLeave={() => setIsHover1(false)}
+        />
+        <img
+          src="/host/location.png"
+          className="absolute w-3 right-[36%] top-[49%] cursor-pointer"
+          onMouseEnter={() => setIsHover2(true)}
+          onMouseLeave={() => setIsHover2(false)}
+        />
+        {isHover1 && (
+          <DescriptionBox
+            flag={"/home/ethiopia.png"}
+            place={"ETHIOPIA"}
+            amt={"$56,623.54"}
+            position={"right-[22%] bottom-[15%] bg-white"}
+          />
+        )}
+        {isHover2 && (
+          <DescriptionBox
+            flag={"/home/uae.png"}
+            place={"UAE"}
+            amt={"$56,623.54"}
+            position={"right-[18%] top-[24%] bg-[#07EAD3]"}
+          />
+        )}
       </div>
-    </div>
+    </section>
   );
 }

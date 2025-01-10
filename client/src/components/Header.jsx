@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { MdArrowDropDown } from "react-icons/md";
 import SmallHeader from "./SmallHeader";
 import { handleChatClick } from "../utils/whatsapp";
 import { motion } from "framer-motion";
 
 export default function Header() {
   const [showSmallBar, setShowSmallBar] = useState(false);
+  const [isHover, setisHover] = useState(false);
 
   return (
     <header
@@ -31,9 +33,42 @@ export default function Header() {
         <NavLink className={"text-white"} to={"/buy"}>
           Buy Miners
         </NavLink>
-        <NavLink className={"text-white"} to={"/host"}>
-          Host Mining
-        </NavLink>
+        <div className="relative">
+          <button
+            className="text-white flex items-center gap-1"
+            onClick={() => setisHover(!isHover)}
+          >
+            Host Mining{" "}
+            <span className="text-xl">
+              <MdArrowDropDown />
+            </span>
+          </button>
+          {isHover && (
+            <div className="absolute bg-[#000618] text-white shadow-lg rounded-md mt-2 w-40">
+              <NavLink
+                to={"/host"}
+                className="block px-4 py-2 hover:bg-[#202225]"
+                onClick={() => setisHover(false)}
+              >
+                Hosting
+              </NavLink>
+              <NavLink
+                to={"/host/abudhabi"}
+                className="block px-4 py-2 hover:bg-[#202225]"
+                onClick={() => setisHover(false)}
+              >
+                Abu Dhabi
+              </NavLink>
+              <NavLink
+                to={"/host/ethiopia"}
+                className="block px-4 py-2 hover:bg-[#202225]"
+                onClick={() => setisHover(false)}
+              >
+                Ethiopia
+              </NavLink>
+            </div>
+          )}
+        </div>
         <NavLink className={"text-white"} to={"/repair"}>
           Miner Repair
         </NavLink>
@@ -58,10 +93,28 @@ export default function Header() {
         <RxHamburgerMenu />
       </button>
       {showSmallBar && (
-        <div className="absolute w-full top-20 left-0 z-20 animate-slideInTop">
+        <div className="absolute w-full top-16 left-0 z-20 animate-slideInTop">
           <SmallHeader setSmallBar={setShowSmallBar} />
         </div>
       )}
     </header>
   );
 }
+
+/*        {isHover && (
+            <div
+              className="bg-[#000618] absolute top-5 right-0 p-5 flex flex-col gap-3 min-w-[150px] rounded-lg "
+              onMouseEnter={() => setisHover(true)}
+              onMouseLeave={() => setisHover(false)}
+            >
+              <NavLink
+                className={"text-white border-b border-[#07EAD3] py-2"}
+                to={"/host/abudhabi"}
+              >
+                Abu Dhabi
+              </NavLink>
+              <NavLink className={"text-white"} to={"/host/abudhabi"}>
+                Ethiopia
+              </NavLink>
+            </div>
+          )} */

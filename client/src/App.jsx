@@ -22,6 +22,8 @@ import SingleBlogPage from "./pages/blogs/SingleBlogPage";
 import AddNewBlog from "./pages/admin/blog/AddNewBlog";
 import AdminSingleBlogPage from "./pages/admin/blog/AdminSingleBlogPage";
 import EditAdminBlog from "./pages/admin/blog/EditAdminBlog";
+import AbuDhabiHosting from "./pages/abuDhabiHosting/AbuDhabiHosting";
+import EthiopiaHosting from "./pages/EthiopiaHosting/EthiopiaHosting";
 
 function App() {
   const router = createBrowserRouter([
@@ -41,6 +43,14 @@ function App() {
         {
           path: "host",
           element: <HostMiningPage />,
+        },
+        {
+          path: "host/abudhabi",
+          element: <AbuDhabiHosting />,
+        },
+        {
+          path: "host/ethiopia",
+          element: <EthiopiaHosting />,
         },
         {
           path: "repair",

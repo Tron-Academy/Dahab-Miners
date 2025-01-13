@@ -22,6 +22,7 @@
 
 body {
   background-color: #020b25;
+  color: white;
 }
 select option:focus {
   background-color: #a0e3f9;

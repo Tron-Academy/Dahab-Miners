@@ -49,6 +49,7 @@ export default function Header() {
                 to={"/host"}
                 className="block px-4 py-2 hover:bg-[#202225]"
                 onClick={() => setisHover(false)}
+                end
               >
                 Hosting
               </NavLink>

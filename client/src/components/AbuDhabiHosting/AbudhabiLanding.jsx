@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import DescriptionBox from "../Home/mapsection/DescriptionBox";
 
 export default function AbudhabiLanding() {
+  const [isHover2, setIsHover2] = useState(false);
   return (
     <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 landingHeight flex justify-between items-center">
       <div className="flex flex-col gap-5 max-w-[620px]">
@@ -16,8 +18,22 @@ export default function AbudhabiLanding() {
           Know More
         </button>
       </div>
-      <div>
+      <div className="relative">
         <img src="/host/map.png" />
+        <img
+          src="/host/location.png"
+          className="absolute w-3 right-[36%] top-[49%] cursor-pointer"
+          onMouseEnter={() => setIsHover2(true)}
+          onMouseLeave={() => setIsHover2(false)}
+        />
+        {isHover2 && (
+          <DescriptionBox
+            flag={"/home/uae.png"}
+            place={"UAE"}
+            amt={"$56,623.54"}
+            position={"right-[18%] top-[24%] bg-[#07EAD3]"}
+          />
+        )}
       </div>
     </div>
   );

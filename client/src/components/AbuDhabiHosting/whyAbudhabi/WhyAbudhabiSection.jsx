@@ -7,7 +7,7 @@ export default function WhyAbudhabiSection() {
       <h4 className="gradient-heading text-3xl font-semibold text-center">
         Why Choose AbuDhabi for Crypto Mining?
       </h4>
-      <div className="p-10 customborder flex gap-10 items-center">
+      <div className="p-10 customborder flex md:flex-row flex-col-reverse gap-10 items-center">
         <div className="flex flex-col gap-3">
           <WhyElt
             title={"Affordable Energy Costs"}
@@ -34,7 +34,7 @@ export default function WhyAbudhabiSection() {
             }
           />
         </div>
-        <img src="/abudhabi/img-1.jpg" className="h-[500px]" />
+        <img src="/abudhabi/img-1.jpg" className="md:h-[500px] w-full" />
       </div>
     </section>
   );

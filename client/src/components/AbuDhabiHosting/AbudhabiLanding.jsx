@@ -4,12 +4,12 @@ import DescriptionBox from "../Home/mapsection/DescriptionBox";
 export default function AbudhabiLanding() {
   const [isHover2, setIsHover2] = useState(false);
   return (
-    <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 landingHeight flex justify-between items-center">
-      <div className="flex flex-col gap-5 max-w-[620px]">
-        <h4 className="text-[40px] gradient-heading font-semibold">
+    <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex md:flex-row flex-col gap-5 justify-between items-center">
+      <div className="flex flex-col md:items-start items-center gap-5 max-w-[620px]">
+        <h4 className="text-[40px] gradient-heading font-semibold md:text-left text-center">
           Bitcoin mining in AbuDhabi
         </h4>
-        <p>
+        <p className="md:text-left text-center">
           Buy a crypto mining machine today and step into the future of crypto
           mining. With expert support, your success is just a step away. Shop
           now

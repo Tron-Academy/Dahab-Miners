@@ -6,7 +6,7 @@ export default function SecurityMeasuresSection() {
       <h4 className="gradient-heading text-3xl font-semibold text-center">
         Security measures of the Bitcoin mining farms
       </h4>
-      <div className="p-10 customborder flex flex-row-reverse gap-10">
+      <div className="p-10 customborder flex lg:flex-row-reverse flex-col-reverse gap-10">
         <div className="flex flex-col gap-5">
           <p>
             Security measures are an important aspect of operating the MIM
@@ -37,7 +37,7 @@ export default function SecurityMeasuresSection() {
             </li>
           </ul>
         </div>
-        <img src="/abudhabi/img-2.jpg" />
+        <img src="/abudhabi/img-2.jpg" className="object-cover" />
       </div>
     </section>
   );

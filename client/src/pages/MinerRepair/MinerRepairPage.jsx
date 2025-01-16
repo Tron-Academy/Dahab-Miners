@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import MinerRepairHeadSection from "../../components/MinerRepair/MinerRepairHeadSection";
 import RepairFeatures from "../../components/MinerRepair/RepairFeatures";
-import BuyBox from "../../components/HostMining/BuyBox";
+// import BuyBox from "../../components/HostMining/BuyBox";
 import PriceSection from "../../components/MinerRepair/PriceSection";
 import RepairSolutions from "../../components/MinerRepair/RepairSolutions";
-import FAQ from "../../components/MinerRepair/FAQ";
 import { Helmet } from "react-helmet";
+import FAQSection from "../../components/Home/Faq/FAQSection";
 
 export default function MinerRepairPage() {
   useEffect(() => {
@@ -31,12 +31,12 @@ export default function MinerRepairPage() {
       </Helmet>
       <MinerRepairHeadSection scrollfunction={scrollToView} />
       <RepairFeatures scrollfunction={scrollToView} />
-      <BuyBox />
+      {/* <BuyBox /> */}
 
       <PriceSection ref={selectedRef} />
       <RepairSolutions />
+      <FAQSection />
       {/* <div className="h-[2px] bg-white"></div> */}
-      <FAQ />
     </div>
   );
 }

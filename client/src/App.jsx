@@ -24,6 +24,7 @@ import AdminSingleBlogPage from "./pages/admin/blog/AdminSingleBlogPage";
 import EditAdminBlog from "./pages/admin/blog/EditAdminBlog";
 import AbuDhabiHosting from "./pages/abuDhabiHosting/AbuDhabiHosting";
 import EthiopiaHosting from "./pages/EthiopiaHosting/EthiopiaHosting";
+import AboutUsPage from "./pages/about/AboutUsPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -63,6 +64,10 @@ function App() {
         {
           path: "blogs/:id",
           element: <SingleBlogPage />,
+        },
+        {
+          path: "about",
+          element: <AboutUsPage />,
         },
       ],
     },

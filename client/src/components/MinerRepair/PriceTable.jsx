@@ -16,10 +16,10 @@ import TableItem from "./TableItem";
 export default function PriceTable() {
   return (
     <div className="max-w-[794px] mx-auto my-10">
-      <div className="bg-[#1ECBAF4D] p-3 text-[#086153] text-2xl font-semibold">
+      <div className="bg-[#26DDFF] p-3 text-[#086153] text-2xl font-semibold">
         THERMAL PASTE
       </div>
-      <div className="p-3 flex justify-between border border-[#B7ECE4] text-base font-medium text-[#B1B1B1]">
+      <div className="p-3 flex justify-between border border-[#B7ECE4] text-base font-medium text-[#26DDFF]">
         <div>{""}</div>
         <div className="ms-20">Price</div>
       </div>
@@ -37,10 +37,10 @@ export default function PriceTable() {
       {iceriverThermalPAsteData.map((x) => (
         <TableItem key={x.id} item={x.item} price={x.price} />
       ))}
-      <div className="bg-[#1ECBAF4D] p-3 text-[#086153] text-2xl font-semibold">
+      <div className="bg-[#26DDFF] p-3 text-[#086153] text-2xl font-semibold">
         TROUBLESHOOTING
       </div>
-      <div className="p-3 flex justify-between border border-[#B7ECE4] text-base font-medium text-[#B1B1B1]">
+      <div className="p-3 flex justify-between border border-[#B7ECE4] text-base font-medium text-[#26DDFF]">
         <div>{""}</div>
         <div className="ms-20">Price</div>
       </div>
@@ -58,10 +58,10 @@ export default function PriceTable() {
       {iceriverTroubleSHootingData.map((x) => (
         <TableItem key={x.id} item={x.item} price={x.price} />
       ))}
-      <div className="bg-[#1ECBAF4D] p-3 text-[#086153] text-2xl font-semibold">
+      <div className="bg-[#26DDFF] p-3 text-[#086153] text-2xl font-semibold">
         POWER SUPPLY REPAIRING
       </div>
-      <div className="p-3 flex justify-between border border-[#B7ECE4] text-base font-medium text-[#B1B1B1]">
+      <div className="p-3 flex justify-between border border-[#B7ECE4] text-base font-medium text-[#26DDFF]">
         <div>{""}</div>
         <div className="ms-20">Price</div>
       </div>
@@ -72,10 +72,10 @@ export default function PriceTable() {
       {antminerPsRepairData.map((x) => (
         <TableItem key={x.id} item={x.item} price={x.price} />
       ))}
-      <div className="bg-[#1ECBAF4D] p-3 text-[#086153] text-2xl font-semibold">
+      <div className="bg-[#26DDFF] p-3 text-[#086153] text-2xl font-semibold">
         HASHBOARD REPAIR (FLAT PRICE)
       </div>
-      <div className="p-3 flex justify-between border border-[#B7ECE4] text-base font-medium text-[#B1B1B1]">
+      <div className="p-3 flex justify-between border border-[#B7ECE4] text-base font-medium text-[#26DDFF]">
         <div>{""}</div>
         <div className="ms-20">Price</div>
       </div>
@@ -104,10 +104,10 @@ export default function PriceTable() {
       {iceriverHashboardRepairData.map((x) => (
         <TableItem key={x.id} price={x.price} item={x.item} />
       ))}
-      <div className="bg-[#1ECBAF4D] p-3 text-[#086153] text-2xl font-semibold">
+      <div className="bg-[#26DDFF] p-3 text-[#086153] text-2xl font-semibold">
         PSU REPLACEMENT (PSU Hardware cost will be additional)
       </div>
-      <div className="p-3 flex justify-between border border-[#B7ECE4] text-base font-medium text-[#B1B1B1]">
+      <div className="p-3 flex justify-between border border-[#B7ECE4] text-base font-medium text-[#26DDFF]">
         <div>{""}</div>
         <div className="ms-20">Price</div>
       </div>
@@ -125,10 +125,10 @@ export default function PriceTable() {
       {iceriverPSUReplacementData.map((x) => (
         <TableItem key={x.id} price={x.price} item={x.item} />
       ))}
-      <div className="bg-[#1ECBAF4D] p-3 text-[#086153] text-2xl font-semibold">
+      <div className="bg-[#26DDFF] p-3 text-[#086153] text-2xl font-semibold">
         FAN CHANGING
       </div>
-      <div className="p-3 flex justify-between border border-[#B7ECE4] text-base font-medium text-[#B1B1B1]">
+      <div className="p-3 flex justify-between border border-[#B7ECE4] text-base font-medium text-[#26DDFF]">
         <div>{""}</div>
         <div className="ms-20">Price</div>
       </div>

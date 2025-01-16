@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import BlogPageHeader from "../../components/blogs/BlogPageHeader";
 import BlogList from "../../components/blogs/BlogList";
 import { Helmet } from "react-helmet";
 
@@ -17,7 +16,7 @@ export default function BlogPage() {
         />
         <meta name="keywords" content="Buy Bitcoin Miners in Abu Dhabi" />
       </Helmet>
-      <BlogPageHeader />
+
       <BlogList />
     </div>
   );

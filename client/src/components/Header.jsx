@@ -26,7 +26,7 @@ export default function Header() {
           title="Explore top-tier CRYPTO MINING MACHINES IN UAE at Dahab Miners. Specializing in high-efficiency ASIC miners in Abu Dhabi, UAE, we offer the best solutions for crypto mining in UAE. Browse our range today and enhance your mining setup!"
         ></img>
       </Link>
-      <nav className="lg:flex gap-5 xl:gap-14 text-sm xl:text-base font-medium hidden">
+      <nav className="lg:flex gap-5 xl:gap-10 text-sm xl:text-base font-medium hidden">
         <NavLink className={"text-white"} to={"/"}>
           Home
         </NavLink>
@@ -75,6 +75,9 @@ export default function Header() {
         </NavLink>
         <NavLink className={"text-white"} to={"/blogs"}>
           Blogs
+        </NavLink>
+        <NavLink className={"text-white"} to={"/about"}>
+          About Us
         </NavLink>
       </nav>
       <motion.button

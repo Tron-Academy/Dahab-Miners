@@ -67,6 +67,20 @@ export default function SmallHeader({ setSmallBar }) {
         >
           Miner Repair
         </NavLink>
+        <NavLink
+          className={"border-b w-full py-2 border-[#9eede0]"}
+          onClick={() => setSmallBar(false)}
+          to={"/blogs"}
+        >
+          Blogs
+        </NavLink>
+        <NavLink
+          className={"border-b w-full py-2 border-[#9eede0]"}
+          onClick={() => setSmallBar(false)}
+          to={"/about"}
+        >
+          About Us
+        </NavLink>
         <button
           className="btn-bg text-white rounded-lg px-4 py-2"
           onClick={handleChatClick}

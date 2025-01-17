@@ -1,0 +1,10 @@
+/* Change the text color of the dropdown list */
+.react-tel-input .country-list {
+  color: black; /* Change this to your desired text color */
+}
+
+/* Optionally, customize the hover state */
+.react-tel-input .country-list .country:hover {
+  background-color: #f0f0f0; /* Light background for hover */
+  color: blue; /* Change hover text color */
+}

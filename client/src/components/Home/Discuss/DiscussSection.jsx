@@ -22,7 +22,7 @@ export default function DiscussSection() {
             <input
               type="email"
               placeholder="Enter your Email"
-              className="px-5 py-2 rounded-full outline-none bg-transparent border border-[#0194FE]"
+              className="px-5 py-2 rounded-full outline-none bg-transparent border border-[#0194FE] min-w-full"
             />
             <button className="btn-bg px-10 py-2 rounded-full md:block hidden absolute -right-[25%]">
               Send

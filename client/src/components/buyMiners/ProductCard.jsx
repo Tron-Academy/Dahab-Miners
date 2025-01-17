@@ -5,7 +5,7 @@ import { handleProductEnquiry } from "../../utils/whatsapp";
 export default function ProductCard({ bgwhite, img, name, price }) {
   return (
     <div
-      className={`pt-2 border border-[#0F3958] flex flex-col gap-5 items-center rounded-lg text-white bigglow-effect`}
+      className={`pt-2 border border-[#0F3958] flex flex-col gap-5 items-center rounded-lg text-white hover:border-[#26ddff] duration-300 ease-in-out bigglow-effect`}
     >
       <div>
         <img

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AbudhabiLanding from "../../components/AbuDhabiHosting/AbudhabiLanding";
 import AbuDgabiFeatureSection from "../../components/AbuDhabiHosting/features/AbuDgabiFeatureSection";
 import WhyAbudhabiSection from "../../components/AbuDhabiHosting/whyAbudhabi/WhyAbudhabiSection";
@@ -8,6 +8,9 @@ import AbudhabiConsulting from "../../components/AbuDhabiHosting/abudhabiconsult
 import AbudhabiContactUs from "../../components/AbuDhabiHosting/abudhabiContact/AbudhabiContactUs";
 
 export default function AbuDhabiHosting() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <AbudhabiLanding />

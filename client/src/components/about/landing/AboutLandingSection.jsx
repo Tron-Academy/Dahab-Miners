@@ -6,7 +6,7 @@ export default function AboutLandingSection() {
   return (
     <section className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 min-h-[640px] flex flex-col gap-5 items-center">
       <div className="flex flex-col items-center gap-5">
-        <h4 className="gradient-heading font-semibold text-3xl">
+        <h4 className="gradient-heading font-semibold text-3xl text-center">
           INTRODUCING DAHAB MINERS
         </h4>
         <p className="max-w-[600px] text-center">
@@ -15,13 +15,15 @@ export default function AboutLandingSection() {
           executed with precision and success.
         </p>
       </div>
-      <div className="flex justify-between items-center gap-5 my-10">
-        <div className="flex flex-col gap-5">
-          <p className="text-sm gradient-heading">About us</p>
-          <h5 className="text-[#2295B7] text-2xl">
+      <div className="flex md:flex-row flex-col-reverse justify-between items-center gap-10 my-10">
+        <div className="flex flex-col md:items-start items-center gap-5">
+          <p className="text-sm gradient-heading md:text-stat text-center">
+            About us
+          </p>
+          <h5 className="text-[#2295B7] text-2xl md:text-stat text-center">
             Crypto Mining Company in Abu Dhabi, UAE
           </h5>
-          <p className="max-w-[600px]">
+          <p className="max-w-[600px] md:text-start text-center">
             Our bitcoin mining journey in UAE in the last two years has helped
             us prepare a much easier path for you, through us! We help you get
             the most profitable crypto mining machines in Dubai at the best

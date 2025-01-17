@@ -13,7 +13,7 @@ export default function ContactButtonSection() {
           </p>
         </div>
         <div>
-          <button className="px-4 py-2 btn-bg rounded-full text-white ">
+          <button className="px-10 py-2 btn-bg rounded-full text-white ">
             Contact us
           </button>
         </div>

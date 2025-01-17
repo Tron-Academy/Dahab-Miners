@@ -19,13 +19,6 @@ export default function Footer() {
         borderRadius: "12px",
         boxShadow: "0px 0px 20px rgba(1, 148, 254, 0.6)",
       }}
-      whileHover={{
-        borderImageSource:
-          "linear-gradient(to bottom right, #004DF480 0%, #A5E7F380 50%, #0194FE80 100%)",
-        borderWidth: "2px",
-        boxShadow: "0px 0px 40px rgba(1, 148, 254, 0.6)",
-        transition: { duration: 0.6, ease: "easeOut" },
-      }}
       style={{
         borderStyle: "solid",
       }}

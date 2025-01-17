@@ -15,10 +15,10 @@ function MapSection() {
           the world
         </p>
         <div className="flex gap-3 items-center">
-          <button className="px-4 py-2 rounded-lg bg-[#0194FE] hover:bg-[#52aced] hover:scale-110 ease-in-out duration-500 hover:shadow-lg hover:shadow-[#0194FE]">
+          <button className="px-4 py-2 rounded-lg bg-[#0194FE] hover:bg-[#52aced] hover:scale-110 ease-in-out duration-500 hover:shadow-sm hover:shadow-[#0194FE]">
             UAE
           </button>
-          <button className="px-4 py-2 rounded-lg bg-[#051D2E] text-[#1994B0] hover:scale-110 ease-in-out duration-500 hover:shadow-lg hover:shadow-[#1994B0]">
+          <button className="px-4 py-2 rounded-lg bg-[#051D2E] text-[#1994B0] hover:scale-110 ease-in-out duration-500 hover:shadow-sm hover:shadow-[#1994B0]">
             ETHIOPIA
           </button>
         </div>

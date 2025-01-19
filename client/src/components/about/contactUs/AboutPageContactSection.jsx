@@ -8,6 +8,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { CiMail } from "react-icons/ci";
 import { CiPhone } from "react-icons/ci";
 import ContactDetailSingleElt from "./ContactDetailSingleElt";
+import { toast } from "react-toastify";
 
 export default function AboutPageContactSection() {
   const [phone, setPhone] = useState("");
@@ -15,6 +16,26 @@ export default function AboutPageContactSection() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [message, SetMessage] = useState("");
+
+  function handleClick() {
+    if (
+      phone === "" ||
+      firstName === "" ||
+      lastName === "" ||
+      email === "" ||
+      message === ""
+    ) {
+      toast.warn("Please fill all fields");
+    } else {
+      handleEnquiryFormClick({
+        firstName,
+        lastName,
+        email,
+        phone,
+        message,
+      });
+    }
+  }
   return (
     <section className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10">
       <div className="flex lg:flex-row flex-col justify-between items-center gap-10 p-10 customborder">
@@ -67,15 +88,7 @@ export default function AboutPageContactSection() {
             />
             <button
               className="px-4 py-2 rounded-full btn-bg w-full"
-              onClick={() =>
-                handleEnquiryFormClick({
-                  firstName,
-                  lastName,
-                  email,
-                  phone,
-                  message,
-                })
-              }
+              onClick={handleClick}
             >
               Send Message
             </button>

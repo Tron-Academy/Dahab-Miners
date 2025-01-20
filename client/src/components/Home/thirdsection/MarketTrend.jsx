@@ -3,16 +3,20 @@ import TrendCard from "./TrendCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import useGetCoinData from "../../../hooks/coins/useGetCoinData";
+import Loading from "../../Loading";
 
 export default function MarketTrend() {
+  const { loading, data, prices } = useGetCoinData();
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 50,
     slidesToShow: 3, // Number of slides to show at a time
     slidesToScroll: 1,
     centerMode: true,
     arrows: false,
+    autoplay: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -28,14 +32,29 @@ export default function MarketTrend() {
       },
     ],
   };
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div>
       <h4 className="gradient-heading text-[40px] font-semibold">
         Market Trend
       </h4>
       <div className="">
         <Slider {...settings} className="my-10">
-          <TrendCard
+          {data.map((x) => (
+            <TrendCard
+              key={x.id}
+              short={x.symbol.toUpperCase()}
+              icon={x.image}
+              name={x.name}
+              value={
+                prices.hasOwnProperty(x.id) ? prices[x.id] : x.current_price
+              }
+              percent={x.market_cap_change_percentage_24h}
+              id={x.id}
+            />
+          ))}
+          {/* <TrendCard
             short={"BTC"}
             icon={"/home/coin-1.png"}
             name={"BITCOIN"}
@@ -66,7 +85,7 @@ export default function MarketTrend() {
             value={0.9998}
             percent={0.03}
             data={[3, 3.5, 2, 4, 5, 10]}
-          />
+          /> */}
         </Slider>
       </div>
     </div>

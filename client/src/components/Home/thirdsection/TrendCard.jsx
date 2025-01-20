@@ -1,9 +1,12 @@
 import React from "react";
-import SmallGraph from "./SmallGraph";
+// import SmallGraph from "./SmallGraph";
 import { GoArrowDownRight, GoArrowUpRight } from "react-icons/go";
 import { motion } from "framer-motion";
+// import useGetSingleCoinGraphData from "../../../hooks/coins/useGetSingleCoinGraphData";
+// import Loading from "../../Loading";
 
-export default function TrendCard({ icon, name, short, value, percent, data }) {
+export default function TrendCard({ icon, name, short, value, percent, id }) {
+  // const { loading, graphData } = useGetSingleCoinGraphData({ id });
   return (
     <motion.div
       className="p-5 relative text-white w-[250px] my-5 bg-[#000618]"
@@ -39,12 +42,21 @@ export default function TrendCard({ icon, name, short, value, percent, data }) {
           <GoArrowUpRight />
         </p>
       </div>
-      <div className="flex justify-between items-center">
-        <div>
-          <p>$ {value}</p>
-          <p className="text-sm">{percent} %</p>
+      <div className="flex justify-between items-center my-3">
+        <div className="flex flex-col gap-3">
+          <p>
+            <span className="text-[#1ecbaf]">Value</span> : $ {value}
+          </p>
+          <p className="text-sm">
+            <span className="text-[#1ecbaf]">24hr</span> : {percent.toFixed(2)}{" "}
+            %
+          </p>
         </div>
-        <SmallGraph data={data} color={"#5FCBC8"} />
+        {/* {loading ? (
+          <Loading />
+        ) : (
+          <SmallGraph data={graphData && graphData} color={"#5FCBC8"} />
+        )} */}
       </div>
     </motion.div>
   );

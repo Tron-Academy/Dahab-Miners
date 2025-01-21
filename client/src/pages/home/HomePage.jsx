@@ -17,11 +17,24 @@ import MapSection from "../../components/Home/mapsection/MapSection";
 import WhyChooseUs from "../../components/Home/WhyChooseUs/WhyChooseUs";
 import FAQSection from "../../components/Home/Faq/FAQSection";
 import DiscussSection from "../../components/Home/Discuss/DiscussSection";
+import useGetBitCoinData from "../../hooks/coins/useGetBitCoinData";
+import { useDispatch } from "react-redux";
+import { setBlockReward, setDifficulty } from "../../slices/userSlice";
 
 export default function HomePage() {
+  const { loading, btcData } = useGetBitCoinData();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (btcData) {
+      dispatch(setDifficulty(btcData[0]?.difficulty));
+      dispatch(setBlockReward(btcData[0]?.reward_block));
+    }
+  }, [loading]);
   return (
     <div className="">
       <Helmet>
@@ -39,7 +52,7 @@ cost-effective crypto mining and hosting solutions for your miners in UAE."
         />
       </Helmet>
       <LandingSection />
-      <ThirdSection />
+      <ThirdSection btcData={btcData} />
       {/* <Miners /> */}
       {/* <ProfitSection /> */}
       <MapSection />

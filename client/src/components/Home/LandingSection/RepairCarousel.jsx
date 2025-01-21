@@ -16,25 +16,22 @@ export default function RepairCarousel({ setItem, item }) {
                 <img src="/home/long-line.png" />
               </div>
             </div>
-            <h4 className="md:text-5xl text-3xl my-3 font-semibold md:leading-[60px] leading-10 gradient-heading">
-              <a href="https://dahabminers.com/">
-                ASIC Miner in Abu Dhabi, UAE
-              </a>
+            <h4 className="md:text-5xl text-3xl my-3 font-semibold  gradient-heading">
+              Restore Peak Performance{" "}
             </h4>
             <h4 className="md:text-5xl text-3xl font-semibold text-btnGreen">
               <span className="relative gradient-heading">
-                Repair{" "}
                 <img className="absolute -bottom-2" src="/home/underline.png" />
               </span>{" "}
-              Services
+              with Expert ASIC Miner Repairs
             </h4>
           </div>
           <h4 className="text-base font-light text-white leading-6 tracking-wider">
-            Get your crypto mining gear back in action fast. Optimise your
-            cryptocurrency mining machine operations with our rapid repair &
-            maintenance service.
-            <br></br>
-            Ensure expert care for your equipment.
+            Downtime costs you money. Trust DAHAB Miners for fast, reliable
+            repairs that get your miners back to work. Don’t settle for
+            less—maximize uptime and profits with our skilled team
+            {/* <br></br>
+            Ensure expert care for your equipment. */}
           </h4>
           <motion.button
             initial={{ scale: 1 }}

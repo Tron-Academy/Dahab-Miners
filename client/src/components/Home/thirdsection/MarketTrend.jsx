@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TrendCard from "./TrendCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useGetCoinData from "../../../hooks/coins/useGetCoinData";
 import Loading from "../../Loading";
+import { useDispatch } from "react-redux";
+import { setBtcData2 } from "../../../slices/userSlice";
 
 export default function MarketTrend() {
-  const { loading, data, prices } = useGetCoinData();
+  const { loading, data, prices, btcData2 } = useGetCoinData();
+  const dispatch = useDispatch();
   const settings = {
     dots: true,
     infinite: true,
@@ -32,6 +35,13 @@ export default function MarketTrend() {
       },
     ],
   };
+
+  useEffect(() => {
+    if (btcData2) {
+      dispatch(setBtcData2(btcData2));
+    }
+  }, [loading]);
+
   return loading ? (
     <Loading />
   ) : (

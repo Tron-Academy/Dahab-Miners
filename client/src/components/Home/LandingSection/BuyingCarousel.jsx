@@ -20,15 +20,15 @@ export default function BuyingCarousel({ setItem, item }) {
               </div>
             </div>
             <h4 className="md:text-5xl text-3xl md:leading-[60px] leading-10 inline-block font-semibold gradient-heading pt-5">
-              Unleash Unmatched Power With Our{" "}
+              Take Control of Your{" "}
               <span className="relative gradient-heading">
-                Premium{" "}
+                Future{" "}
                 <img
                   className="absolute w-48 left-0 -bottom-1"
                   src="/home/underline.png"
                 />
               </span>{" "}
-              Crypto Mining Equipment.
+              – Own a Crypto Mining Machine Today
             </h4>
           </div>
           <div>
@@ -36,12 +36,13 @@ export default function BuyingCarousel({ setItem, item }) {
               <a href="https://dahabminers.com/">Crypto Mining in UAE</a>
             </h1>
             <h4 className="text-base font-light text-white leading-6 tracking-wider">
-              Buy a crypto mining machine today and step into the future of
-              crypto mining.
+              The crypto revolution waits for no one. Equip yourself with
+              cutting-edge mining equipment and step into the UAE's most
+              profitable opportunity. Don’t miss out—secure yours now
             </h4>
-            <h4 className="text-base font-light text-white leading-6 tracking-wider">
+            {/* <h4 className="text-base font-light text-white leading-6 tracking-wider">
               With expert support, your success is just a step away. Shop now
-            </h4>
+            </h4> */}
           </div>
 
           <motion.button
@@ -52,7 +53,7 @@ export default function BuyingCarousel({ setItem, item }) {
             className="text-base font-semibold text-white btn-bg px-5 py-3 w-fit rounded-lg z-10 overflow-visible"
             onClick={handleChatClick}
           >
-            View Products
+            Get Started
           </motion.button>
           <CarouselNavigation setItem={setItem} item={item} />
           {/* <div className="w-full ">

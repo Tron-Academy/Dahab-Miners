@@ -5,6 +5,7 @@ const useGetCoinData = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [prices, setPrices] = useState([]);
+  const [btcData2, setBtcData2] = useState([]);
 
   const getCoinData = async () => {
     setLoading(true);
@@ -14,6 +15,8 @@ const useGetCoinData = () => {
       );
       const data = res.data;
       setData(data);
+      const bit = data.filter((x) => x.id === "bitcoin");
+      setBtcData2(bit);
     } catch (error) {
       console.log(error);
     } finally {
@@ -34,7 +37,7 @@ const useGetCoinData = () => {
     return () => ws.close();
   }, []);
 
-  return { loading, data, prices };
+  return { loading, data, prices, btcData2 };
 };
 
 export default useGetCoinData;

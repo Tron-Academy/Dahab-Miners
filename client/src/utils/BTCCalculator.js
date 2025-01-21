@@ -9,3 +9,8 @@ export const dailyEarnings = (btc, price) => {
   const earnings = btc * price;
   return earnings;
 };
+
+export const bitcoinBought = (investment, btcPrice) => {
+  const bit = parseFloat(investment / btcPrice);
+  return bit;
+};

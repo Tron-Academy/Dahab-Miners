@@ -48,7 +48,7 @@ export default function CryptoCurrencySection() {
         viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
         variants={sectionVariants}
       >
-        <div className="max-w-[590px] max-h-[645px] ">
+        <div className="max-w-[590px] max-h-[645px]">
           <motion.img
             animate={{
               rotateZ: [0, 360], // Full rotation on Z-axis (clockwise)
@@ -60,7 +60,7 @@ export default function CryptoCurrencySection() {
                 ease: "linear",
               },
             }}
-            src="/crypto.png"
+            src="/home/crypto.png"
             alt="Explore-the-potential-of-crypto-mining-in-abu-dhabi-UAE"
             title="Dahab Miners is the premier crypto mining service in UAE Explore our Bitcoin machines in Abu Dhabi and maximize your cryptocurrency earnings!"
           ></motion.img>

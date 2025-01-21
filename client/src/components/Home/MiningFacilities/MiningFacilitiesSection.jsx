@@ -23,12 +23,11 @@ export default function MiningFacilitiesSection() {
           className="flex flex-col gap-3 items-center"
         >
           <h4 className="text-[40px] font-semibold gradient-heading text-center">
-            Our Hosting & Repair Services
+            Effortless Hosting. Reliable Repairs
           </h4>
           <p className="text-white text-sm max-w-[550px] text-center">
-            We offer you turnkey solutions for getting started in mining,
-            without having to manage the purchase, installation, management and
-            maintenance of the machines!
+            We provide end-to-end solutions for mining—hosting, maintenance, and
+            repairs—so you can focus on what matters: maximizing your profits
           </p>
         </motion.div>
         <motion.div
@@ -41,14 +40,14 @@ export default function MiningFacilitiesSection() {
           <FacilityCard
             title={"Cutting-Edge Mining Facilities"}
             content={
-              "Our mining farms provide the most modern and secure locations for your ASIC miners, ensuring optimal infrastructure conditions for peak performance."
+              "Our hosting farms offer secure, high-performance environments for your ASIC miners, ensuring peak efficiency and uptime."
             }
             image={"/home/miningfacility.webp"}
           />
           <FacilityCard
             title={"Repair Services and maintenance"}
             content={
-              " Our repair team of qualified repair technicians and engineers consists of out repair team and is major profit generator for our company."
+              " Our expert repair team keeps your mining operations running smoothly, minimizing downtime and maximizing profitability."
             }
             image={"/home/repair2.webp"}
           />

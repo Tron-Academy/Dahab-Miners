@@ -17,21 +17,21 @@ function HostingCarousel({ setItem, item }) {
               </div>
             </div>
             <h4 className="md:text-5xl text-3xl font-semibold md:leading-[72px] leading-10 gradient-heading ">
-              Affordable Mining{" "}
+              Host Your Crypto Miners with{" "}
               <span className="relative gradient-heading">
-                Hosting{" "}
+                Confidence{" "}
                 <img
                   className="absolute left-0 -bottom-2"
                   src="/home/underline.png"
                 />
               </span>{" "}
-              with DAHAB miners
+              – Only at DAHAB Miners
             </h4>
           </div>
           <h4 className="text-base font-light text-white leading-6 tracking-wider">
-            Need a top-notch hosting location for your ASIC miners?. DAHAB
-            Miners provides the best and most affordable options in our modern
-            hosting farms for your Bitcoin mining machine in UAE
+            Maximize your mining efficiency with our state-of-the-art, secure,
+            and affordable hosting facilities in UAE and Ethiopia. Join the
+            leaders in crypto mining hosting and secure your spot today
           </h4>
           <motion.button
             initial={{ scale: 1 }}

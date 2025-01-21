@@ -6,13 +6,14 @@ function MapSection() {
   const [isHover2, setIsHover2] = useState(false);
   return (
     <section className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 text-white flex lg:flex-row flex-col items-center lg:justify-between gap-20">
-      <div className="flex flex-col lg:items-start items-center gap-5 lg:max-w-[450px]">
+      <div className="flex flex-col lg:items-start items-center gap-5 lg:max-w-[470px]">
         <h4 className="text-[40px] gradient-heading font-semibold lg:text-left text-center">
-          Strategic key locations
+          Global Reach. Strategic Locations
         </h4>
         <p className="text-sm max-w-[350px] lg:text-left text-center">
-          We are operating through mining farms in strategic locations around
-          the world
+          Our mining farms are strategically placed in the UAE and Ethiopia to
+          maximize efficiency and profitability. Join a global network of crypto
+          miners today
         </p>
         <div className="flex gap-3 items-center">
           <button className="px-4 py-2 rounded-lg bg-[#0194FE] hover:bg-[#52aced] hover:scale-110 ease-in-out duration-500 hover:shadow-sm hover:shadow-[#0194FE]">
@@ -24,16 +25,16 @@ function MapSection() {
         </div>
         <div className="flex justify-between items-center w-full">
           <div>
-            <p className="text-[#0194FE] text-4xl font-semibold">32K+</p>
-            <p className="text-sm">People Joined</p>
+            <p className="text-[#0194FE] text-4xl font-semibold">2K+</p>
+            <p className="text-sm">Miners Hosted</p>
           </div>
           <div>
             <p className="text-[#0194FE] text-4xl font-semibold">250+</p>
-            <p className="text-sm">Users</p>
+            <p className="text-sm">Customers</p>
           </div>
           <div>
-            <p className="text-[#0194FE] text-4xl font-semibold">87+</p>
-            <p className="text-sm">Big Company</p>
+            <p className="text-[#0194FE] text-4xl font-semibold">10+</p>
+            <p className="text-sm">B2B Clients</p>
           </div>
         </div>
       </div>

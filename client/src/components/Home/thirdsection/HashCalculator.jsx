@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import useGetBitCoinData from "../../../hooks/coins/useGetBitCoinData";
 import { coinsPerDay, dailyEarnings } from "../../../utils/BTCCalculator";
 
-export default function HashCalculator() {
+export default function HashCalculator({ btcData }) {
   const [value, setValue] = useState(0);
-  const { loading, btcData } = useGetBitCoinData();
+
   const [coins, setCoins] = useState(0);
   const [earnings, setEarnings] = useState(0);
 

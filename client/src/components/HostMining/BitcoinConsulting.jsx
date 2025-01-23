@@ -1,8 +1,9 @@
 import React from "react";
+import { handleChatClick } from "../../utils/whatsapp";
 
 export default function BitcoinConsulting() {
   return (
-    <section className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col items-center gap-5">
+    <section className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col items-center gap-5 ">
       <h5 className="gradient-heading text-[40px] font-semibold text-center">
         Bitcoin Mining Consulting
       </h5>
@@ -28,7 +29,12 @@ export default function BitcoinConsulting() {
             <img src="/host/icon-4.png" className="w-5" />
             <p>Workshops & Training</p>
           </div>
-          <button className="px-4 py-2 rounded-full btn-bg">Know More</button>
+          <button
+            className="px-4 py-2 rounded-full btn-bg"
+            onClick={() => handleChatClick()}
+          >
+            Know More
+          </button>
         </div>
         <img src="/home/repair2.webp" className="max-w-[400px] rounded-lg" />
       </div>

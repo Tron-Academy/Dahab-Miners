@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function FarmLocationCard({
   image,
   power,
   location,
   hostingInfo,
+  path,
   generalInfo,
 }) {
   return (
@@ -61,7 +63,9 @@ export default function FarmLocationCard({
           </ul>
         </div>
       </div>
-      <button className="p-2 rounded-full btn-bg">Know More Details</button>
+      <Link to={path} className="p-2 rounded-full btn-bg text-center">
+        Know More Details
+      </Link>
     </motion.div>
   );
 }

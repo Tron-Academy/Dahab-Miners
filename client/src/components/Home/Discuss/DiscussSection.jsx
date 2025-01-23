@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { handleEmailEnquiry } from "../../../utils/whatsapp";
 
 export default function DiscussSection() {
+  const [email, setEmail] = useState("");
+  function handleSend() {
+    if (email === "") {
+      toast.warn("Please Enter email");
+    } else {
+      handleEmailEnquiry({ email });
+      setEmail("");
+    }
+  }
   return (
     <section className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 main-bg">
       <div className="flex md:flex-row flex-col justify-between gap-5 items-center customborder p-10">
@@ -22,12 +33,20 @@ export default function DiscussSection() {
             <input
               type="email"
               placeholder="Enter your Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="px-5 py-2 rounded-full outline-none bg-transparent border border-[#0194FE] min-w-full"
             />
-            <button className="btn-bg px-10 py-2 rounded-full md:block hidden absolute -right-[25%]">
+            <button
+              className="btn-bg px-10 py-2 rounded-full md:block hidden absolute -right-[25%]"
+              onClick={handleSend}
+            >
               Send
             </button>
-            <button className="btn-bg px-10 py-2 rounded-full md:hidden">
+            <button
+              className="btn-bg px-10 py-2 rounded-full md:hidden"
+              onClick={handleSend}
+            >
               Send
             </button>
           </div>

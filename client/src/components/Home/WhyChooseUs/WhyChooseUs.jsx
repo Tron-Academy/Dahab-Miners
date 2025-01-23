@@ -1,10 +1,32 @@
 import React from "react";
 import WhyChooseCard from "./WhyChooseCard";
+import { handleChatClick } from "../../../utils/whatsapp";
+import { motion } from "framer-motion";
 
 export default function WhyChooseUs() {
+  const sectionVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
   return (
-    <section className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-20 flex md:flex-row flex-col-reverse md:justify-around gap-5 items-center relative">
-      <div className="grid grid-cols-2 grid-rows-5 gap-5 w-[420px] h-[580px] z-10 place-items-center">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
+      variants={sectionVariants}
+      className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-20 flex md:flex-row flex-col-reverse md:justify-around gap-5 items-center relative"
+    >
+      <motion.div
+        initial={{ rotate: 50, opacity: 0 }} // Start rotated and invisible
+        whileInView={{ rotate: 0, opacity: 1 }} // Rotate to 0 and fade in
+        viewport={{ once: false, amount: 0.9 }} // Trigger animation only once
+        transition={{ duration: 0.3, ease: "easeOut" }} // Animation settings
+        className="grid grid-cols-2 grid-rows-5 gap-5 w-[420px] h-[580px] z-10 place-items-center"
+      >
         <WhyChooseCard
           icon={"/home/c-1.png"}
           content={"User-Friendly Interface"}
@@ -25,7 +47,7 @@ export default function WhyChooseUs() {
           content={"Fast Transaction Processing"}
           position={"col-start-2 col-end-3 row-start-4 row-end-6"}
         />
-      </div>
+      </motion.div>
       <div className="bg-[#001030] w-[650px] h-[650px] absolute xl:left-0 lg:-left-[10%] -left-[30%] rounded-e-full md:block hidden"></div>
       <img
         src="/home/arrow-1.png"
@@ -42,10 +64,13 @@ export default function WhyChooseUs() {
         <p className="text-sm text-white w-[250px] md:text-left text-center">
           Diverse ecosystem. Long experience in the Cryptocurrency Industry.
         </p>
-        <button className="btn-bg px-5 py-2 rounded-lg text-white w-fit">
+        <button
+          className="btn-bg px-5 py-2 rounded-lg text-white w-fit"
+          onClick={() => handleChatClick()}
+        >
           Contact Us
         </button>
       </div>
-    </section>
+    </motion.section>
   );
 }

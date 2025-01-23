@@ -1,9 +1,24 @@
 import React from "react";
 import WhyElt from "./WhyElt";
+import { motion } from "framer-motion";
 
 export default function WhyAbudhabiSection() {
+  const sectionVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
   return (
-    <section className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col gap-10">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
+      variants={sectionVariants}
+      className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col gap-10"
+    >
       <h4 className="gradient-heading text-3xl font-semibold text-center">
         Why Choose AbuDhabi for Crypto Mining?
       </h4>
@@ -36,6 +51,6 @@ export default function WhyAbudhabiSection() {
         </div>
         <img src="/abudhabi/img-1.jpg" className="md:h-[500px] w-full" />
       </div>
-    </section>
+    </motion.section>
   );
 }

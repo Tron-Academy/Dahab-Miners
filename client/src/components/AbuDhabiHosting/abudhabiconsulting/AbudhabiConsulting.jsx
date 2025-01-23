@@ -1,9 +1,25 @@
 import React from "react";
 import AbudhabiConsultingDetailElt from "./AbudhabiConsultingDetailElt";
+import { handleChatClick } from "../../../utils/whatsapp";
+import { motion } from "framer-motion";
 
 export default function AbudhabiConsulting() {
+  const sectionVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
   return (
-    <section className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
+      variants={sectionVariants}
+      className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10"
+    >
       <div className="flex flex-col gap-4 items-center">
         <h5 className="text-3xl text-center font-semibold gradient-heading">
           Bitcoin & Mining Consulting
@@ -32,11 +48,14 @@ export default function AbudhabiConsulting() {
             image={"/abudhabi/icon-7.png"}
             content={"Workshops & Training"}
           />
-          <button className="px-4 py-2 rounded-lg btn-bg md:w-fit w-full">
+          <button
+            className="px-4 py-2 rounded-lg btn-bg md:w-fit w-full"
+            onClick={() => handleChatClick()}
+          >
             Know More
           </button>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

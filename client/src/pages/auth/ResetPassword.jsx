@@ -11,8 +11,9 @@ export default function ResetPassword() {
   const { loading, resetPassword } = useResetPassword();
   return (
     <div className="bg-white p-5 rounded-lg md:w-1/3 w-11/12 flex flex-col items-center">
-      <h1 className="text-xl font-semibold ">Enter new Password</h1>
+      <h1 className="text-xl font-semibold text-black">Enter new Password</h1>
       <div className="w-full my-5">
+        <label className="form-label text-black">{"Email"}</label>
         <FormInput
           title={"Email"}
           type={"email"}
@@ -20,18 +21,21 @@ export default function ResetPassword() {
           value={email}
           onchange={(e) => setEmail(e.target.value)}
         />
+        <label className="form-label text-black">{"Verification Code"}</label>
         <FormInput
           title={"Verification Code"}
           type={"number"}
           value={verificationCode}
           onchange={(e) => setVerificationCode(e.target.value)}
         />
+        <label className="form-label text-black">{"New Password"}</label>
         <FormInput
           title={"New Password"}
           type={"password"}
           value={password}
           onchange={(e) => setPassword(e.target.value)}
         />
+        <label className="form-label text-black">{"Confirm Password"}</label>
         <FormInput
           title={"Confirm Password"}
           type={"password"}
@@ -39,7 +43,7 @@ export default function ResetPassword() {
           onchange={(e) => setConfirmPassword(e.target.value)}
         />
         <button
-          className="p-2 w-full bg-btnGreen rounded-lg font-semibold mt-3 hover:bg-btnHover nav-link"
+          className="p-2 w-full btn-bg rounded-lg font-semibold mt-3 "
           onClick={() =>
             resetPassword({
               email,

@@ -6,7 +6,7 @@ export default function HostMiningHead() {
   const [isHover2, setIsHover2] = useState(false);
   return (
     <section className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10  min-h-[640px] main-bg flex lg:flex-row flex-col gap-5 justify-between items-center">
-      <div className="flex flex-col lg:items-start items-center lg:text-left text-center gap-10 max-w-[620px]">
+      <div className="flex flex-col lg:items-start items-center lg:text-left text-center gap-10 max-w-[620px] animate-slideInLeft">
         <h1 className="text-4xl lg:text-5xl font-semibold gradient-heading">
           Affordable Mining Hosting with DAHAB Miners
         </h1>
@@ -22,7 +22,7 @@ export default function HostMiningHead() {
           View Prices
         </button>
       </div>
-      <div className="relative">
+      <div className="relative animate-slideInRight">
         <img src="/host/map.png" className="" />
         <img
           src="/host/location.png"

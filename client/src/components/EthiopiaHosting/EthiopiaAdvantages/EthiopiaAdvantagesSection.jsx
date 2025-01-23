@@ -1,9 +1,24 @@
 import React from "react";
 import EthiopiaAdvantageElt from "./EthiopiaAdvantageElt";
+import { motion } from "framer-motion";
 
 export default function EthiopiaAdvantagesSection() {
+  const sectionVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
   return (
-    <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col gap-10 items-center">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
+      variants={sectionVariants}
+      className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col gap-10 items-center"
+    >
       <h4 className="text-3xl font-semibold gradient-heading">
         The advantages of the Bitcoin Mining Farm in Ethiopia
       </h4>
@@ -30,6 +45,6 @@ export default function EthiopiaAdvantagesSection() {
         </div>
         <img src="/home/miningfacility.webp" className="max-w-[400px]" />
       </div>
-    </div>
+    </motion.div>
   );
 }

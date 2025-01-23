@@ -1,4 +1,5 @@
 import React from "react";
+import { handleChatClick } from "../../utils/whatsapp";
 
 export default function ContactButtonSection() {
   return (
@@ -13,7 +14,10 @@ export default function ContactButtonSection() {
           </p>
         </div>
         <div>
-          <button className="px-10 py-2 btn-bg rounded-full text-white ">
+          <button
+            className="px-10 py-2 btn-bg rounded-full text-white "
+            onClick={() => handleChatClick()}
+          >
             Contact us
           </button>
         </div>

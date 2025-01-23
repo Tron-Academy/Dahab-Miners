@@ -1,9 +1,24 @@
 import React from "react";
 import FarmLocationCard from "./FarmLocationCard";
+import { motion } from "framer-motion";
 
 export default function FarmingLocations() {
+  const sectionVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
   return (
-    <section className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col items-center">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
+      variants={sectionVariants}
+      className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col items-center"
+    >
       <h4 className="gradient-heading text-[40px] text-center font-semibold">
         Bitcoin mining farm locations
       </h4>
@@ -28,6 +43,7 @@ export default function FarmingLocations() {
             "Security: Employees on site",
             "Camera surveillance: 24 hours",
           ]}
+          path={"/host/abudhabi"}
         />
         <FarmLocationCard
           image={"/home/miningfacility.webp"}
@@ -45,8 +61,9 @@ export default function FarmingLocations() {
             "Security: Employees on site",
             "Camera surveillance: 24 hours",
           ]}
+          path={"/host/ethiopia"}
         />
       </div>
-    </section>
+    </motion.section>
   );
 }

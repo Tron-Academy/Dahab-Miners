@@ -30,3 +30,12 @@ export const handleProductEnquiry = ({ name }) => {
 
   window.open(whatsappUrl, "_blank");
 };
+
+export const handleEmailEnquiry = ({ email }) => {
+  const phoneNumber = "+971544463803";
+  const messageContent = `Hi i would like to know more details. My Email id is: ${email}`;
+  const encodedMessage = encodeURIComponent(messageContent);
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+  window.open(whatsappUrl, "_blank");
+};

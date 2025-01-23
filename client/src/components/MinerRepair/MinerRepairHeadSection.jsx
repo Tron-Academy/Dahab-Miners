@@ -2,7 +2,7 @@ import React from "react";
 
 export default function MinerRepairHeadSection({ scrollfunction }) {
   return (
-    <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 min-h-[640px] flex justify-center items-center ">
+    <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 min-h-[640px] flex justify-center items-center animate-slideInTop">
       <div className="max-w-[970px] flex flex-col gap-10 justify-center items-center relative">
         <h1 className="text-4xl lg:text-5xl font-semibold gradient-heading max-w-[850px] text-center">
           Premier Bitcoin ASIC Miner Repair Services

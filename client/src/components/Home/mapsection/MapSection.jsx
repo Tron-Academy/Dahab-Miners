@@ -1,11 +1,28 @@
 import React, { useState } from "react";
 import DescriptionBox from "./DescriptionBox";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function MapSection() {
   const [isHover1, setIsHover1] = useState(false);
   const [isHover2, setIsHover2] = useState(false);
+  const sectionVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   return (
-    <section className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 text-white flex lg:flex-row flex-col items-center lg:justify-between gap-20">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
+      variants={sectionVariants}
+      className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 text-white flex lg:flex-row flex-col items-center lg:justify-between gap-20"
+    >
       <div className="flex flex-col lg:items-start items-center gap-5 lg:max-w-[470px]">
         <h4 className="text-[40px] gradient-heading font-semibold lg:text-left text-center">
           Global Reach. Strategic Locations
@@ -16,12 +33,18 @@ function MapSection() {
           miners today
         </p>
         <div className="flex gap-3 items-center">
-          <button className="px-4 py-2 rounded-lg bg-[#0194FE] hover:bg-[#52aced] hover:scale-110 ease-in-out duration-500 hover:shadow-sm hover:shadow-[#0194FE]">
+          <Link
+            to={"/host/abudhabi"}
+            className="px-4 py-2 rounded-lg bg-[#0194FE] hover:bg-[#52aced] hover:scale-110 ease-in-out duration-500 hover:shadow-sm hover:shadow-[#0194FE]"
+          >
             UAE
-          </button>
-          <button className="px-4 py-2 rounded-lg bg-[#051D2E] text-[#1994B0] hover:scale-110 ease-in-out duration-500 hover:shadow-sm hover:shadow-[#1994B0]">
+          </Link>
+          <Link
+            to={"/host/ethiopia"}
+            className="px-4 py-2 rounded-lg bg-[#051D2E] text-[#1994B0] hover:scale-110 ease-in-out duration-500 hover:shadow-sm hover:shadow-[#1994B0]"
+          >
             ETHIOPIA
-          </button>
+          </Link>
         </div>
         <div className="flex justify-between items-center w-full">
           <div>
@@ -69,7 +92,7 @@ function MapSection() {
           />
         )}
       </div>
-    </section>
+    </motion.section>
   );
 }
 

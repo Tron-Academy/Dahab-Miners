@@ -6,7 +6,7 @@ export default function AdminSidebar() {
   return (
     <div className="hidden md:block w-64 bg-homeBg h-screen overflow-auto rounded-2xl p-2 sticky top-0 animate-slideInLeft">
       <div className="flex justify-center">
-        <img className="w-32 h-32 " src="/footerlogo.png"></img>
+        <img className="w-32 h-32 " src="/adminlogo.png"></img>
       </div>
       <div className="mt-10 flex flex-col gap-3">
         {adminNavLinks.map((x) => (

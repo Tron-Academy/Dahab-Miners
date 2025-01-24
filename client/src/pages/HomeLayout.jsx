@@ -5,6 +5,8 @@ import Footer from "../components/Footer";
 import WhatsApp from "../components/WhatsApp";
 
 import EnquireButton from "../components/Home/contactform/EnquireButton";
+import SpotlightCard from "../components/SpotLightColor";
+import SplashCursor from "../components/SplashCursor";
 
 export default function HomeLayout() {
   return (
@@ -15,7 +17,9 @@ export default function HomeLayout() {
         {/* <EnquireButton /> */}
       </div>
       <div className="overflow-x-hidden">
+        <SplashCursor />
         <Outlet />
+
         <Footer />
       </div>
     </div>

@@ -39,4 +39,29 @@ export const faq = [
     q: "What are the system requirements for mining?",
     a: "To mine effectively, use an ASIC miner for optimal performance. Ensure a high-wattage, 80 PLUS certified power supply and proper cooling. You can operate on Windows, Linux, or a mining OS like Hive OS with suitable software. Also, maintain a stable internet connection.",
   },
+  {
+    id: 9,
+    q: "What is the process for buying a crypto miner from DAHAB Miners?",
+    a: "Buying a miner is simple and straightforward. Browse our range of mining machines, choose the one that suits your needs, and place your order online. Once the payment is processed, we can deliver your miner door-to-door if you prefer. We also offer free installation and setup if you want to host the miner yourself. Alternatively, we can host it in our secure facilities. Our team is always available to guide you through the process if needed.",
+  },
+  {
+    id: 10,
+    q: "What are the benefits of hosting my miners with DAHAB Miners compared to doing it myself?",
+    a: "Hosting your miners with DAHAB Miners ensures maximum uptime, optimal performance, and cost efficiency. Our facilities are designed for seamless mining with stable power, cooling, and security. You also save on setup costs and the hassle of managing the equipment yourself. Plus, all the earnings that your miners make go directly to your wallet—no hidden fees or commissions.",
+  },
+  {
+    id: 11,
+    q: "How does the repair service work if my miner breaks down?",
+    a: "If your miner experiences an issue, simply contact our support team. We offer quick and efficient repair services to minimize downtime. Depending on the issue, repairs can be done on-site or at our dedicated repair center. Our technicians are highly skilled and use quality parts to ensure your miner is back to optimal performance as quickly as possible.",
+  },
+  {
+    id: 12,
+    q: "Why is Ethiopia such a good location for hosting miners?",
+    a: "Ethiopia offers some of the most affordable electricity rates in the world, which significantly reduces operational costs. The climate is naturally cool, helping miners run efficiently without excessive cooling requirements. Combined with DAHAB Miners’ secure and advanced facilities, and near-zero downtime, hosting in Ethiopia provides steady and profitable returns.",
+  },
+  {
+    id: 13,
+    q: "Are there any hidden fees or commissions with DAHAB Miners’ services?",
+    a: "Absolutely not. At DAHAB Miners, we believe in complete transparency. We charge only for hosting and any optional services you choose. All the revenue your miners generate goes directly to your wallet—no commissions, no hidden fees, ever.",
+  },
 ];

@@ -7,28 +7,28 @@ import { motion } from "framer-motion";
 
 const testimonials = [
   {
-    name: "Michael Johnson",
+    name: "Omar Al Mansoori",
     image: "/home/review-1.png",
     review:
-      "The repair service at DAHAB Miners is outstanding. They quickly diagnosed and fixed my ASIC miner, minimizing downtime and getting me back to mining efficiently.",
+      "I’ve had uptime issues with other hosting companies, but DAHAB Miners is on another level. My miners have been running at full capacity with almost zero downtime, and their repair services are exceptional. Whenever there’s an issue, their team gets it fixed fast and efficiently, reducing downtime- keeping my earnings steady",
   },
   {
-    name: "Emily Chen",
+    name: "Sergei Ivanov",
     image: "/home/review-2.png",
     review:
-      "Hosting my miners with DAHAB Miners has been a game-changer. Their facilities are secure and well-maintained, ensuring my equipment runs smoothly without any issues.",
+      "I’ve worked with mining companies all over the world, but DAHAB Miners stands out. Their setup process was quick and hassle-free, and I was mining within days. On top of that, they don’t take any commissions—every bit of what I earn is mine. It’s rare to find a company this reliable.",
   },
   {
-    name: "David Miller",
+    name: "Hans Müller",
     image: "/home/review-4.png",
     review:
-      "I've been impressed with DAHAB Miner's commitment to quality and customer service. From purchasing ASIC miners to receiving support, they've exceeded my expectations.",
+      " I have been trading crypto for a long time now, yet I was hesitant about crypto mining at first, but DAHAB Miners made it so simple. I bought my first miner from them, and they even hosted it for me. The team is incredibly helpful, and now I’m making steady profits from both mining and trading!",
   },
   {
-    name: "Sophia Lee",
+    name: "Johann Krause",
     image: "/home/review-3.png",
     review:
-      "DAHAB Miners provides excellent and cost-effective hosting solutions for mining equipment, allowing me to maximize my profitability.",
+      "Hosting my miners in Ethiopia with DAHAB Miners has been a game-changer. The low costs, the stable climate, and their modern facilities have given me incredible returns. The conditions are optimal, and downtime is almost nonexistent. This was the smartest investment I’ve ever made.",
   },
 ];
 

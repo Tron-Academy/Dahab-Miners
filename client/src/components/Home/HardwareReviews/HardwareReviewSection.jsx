@@ -27,9 +27,9 @@ export default function HardwareReviewSection() {
       >
         <div className="text-white flex flex-col gap-5 lg:col-span-2 lg:self-center">
           <h4 className="text-[40px] font-semibold gradient-heading max-w-[680px]">
-            Why you should buy your mining hardware from DAHAB miners
+            Why DAHAB Miners is Your Ideal Crypto Mining Partner
           </h4>
-          {/* <p className="text-5xl font-medium">4.9/5</p>
+          <p className="text-5xl font-medium">4.9/5</p>
           <div className="flex gap-3 items-center">
             <div className="flex gap-1 text-amber-500">
               <FaStar />
@@ -38,29 +38,28 @@ export default function HardwareReviewSection() {
               <FaStar />
               <FaStar />
             </div>
-            <h3 className="text-lg font-medium">Based on 100+ reviews</h3>
-          </div> */}
+            <h3 className="text-lg font-medium">
+              Trusted by 100+ Happy Customers
+            </h3>
+          </div>
         </div>
         <HardwareReviewCard
           icon={<CiHeart />}
-          content={`Dahab Miner's mission statement: "Our success depends on your satisfaction and profitability. We're committed to ensuring you thrive because your success is our success." As a Bitcoin mining agency in UAE, we prioritize your growth, ensuring that our services are aligned with your success and the profitability of our bitcoin mining machines in Dubai.
-`}
+          content={`Customer-Centric Approach: Your growth is our mission. We succeed only when you profit.`}
         />
         <HardwareReviewCard
           icon={<BsTruck />}
-          content={`As a Crypto mining company in UAE, we ensure fast processing and shipping times to meet your needs efficiently and reliably, guaranteeing that your bitcoin mining machines in Dubai receive the support they need for your crypto mining operations when they need it.
-`}
+          content={`Lightning-Fast Service: From procurement to shipping, we ensure swift and hassle-free delivery.`}
         />
         <HardwareReviewCard
           icon={<FaRegComment />}
           content={
-            "We offer professional and transparent consultation for your upcoming mining project, ensuring clarity and expert guidance throughout. Our expertise with Bitcoin Mining in Dubai guarantees that you receive the best solutions tailored to your needs."
+            "Expert Guidance: Get transparent and professional advice to maximize your mining success."
           }
         />
         <HardwareReviewCard
           icon={<CgDatabase />}
-          content={`We provide complete end-to-end crypto mining solutions, covering procurement, hosting, repair, and after-sales support, making us a leading Bitcoin Mining Agency in the UAE. Our comprehensive services ensure that every aspect of your mining operations is handled efficiently and effectively.
-`}
+          content={`Comprehensive Solutions: We handle everything—hosting, repairs, and after-sales support—all under one roof.`}
         />
       </motion.div>
     </section>

@@ -30,9 +30,9 @@ export default function PerformanceMetrics() {
         variants={sectionVariants}
         className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-y-10 gap-3 justify-items-center w-full"
       >
-        <MetricsCard stat={"5+"} content={"Years of Experience"} />
-        <MetricsCard stat={"97%"} content={"Approximate uptime"} />
-        <MetricsCard stat={"2+"} content={"Total facilities"} />
+        <MetricsCard stat={"4+"} content={"Years of Experience"} />
+        <MetricsCard stat={"98%"} content={"average uptime"} />
+        <MetricsCard stat={"15+"} content={"Total facilities"} />
         <MetricsCard stat={"24/7"} content={"Customer Support"} />
       </motion.div>
     </section>

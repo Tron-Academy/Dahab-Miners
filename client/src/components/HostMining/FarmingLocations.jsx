@@ -29,36 +29,36 @@ export default function FarmingLocations() {
       <div className="flex md:flex-row flex-col justify-center gap-10 my-10">
         <FarmLocationCard
           image={"/home/repair2.webp"}
-          power={"4.0ct / kWh"}
+          power={"From $0.06 / kWh"}
           location={"Abu Dhabi"}
           hostingInfo={[
-            "Hostingpreis: ab 4.0ct / kWh",
+            "Hosting price: from $0.06 / kWh",
             "Minimum order quantity: 1 piece",
-            "Setup Fee: ab $150",
+            "Setup fee; from $75",
           ]}
           generalInfo={[
-            "Power source: Hydropower",
-            "Capacity: 30 MW",
-            "Accommodation: Warehouse/container",
-            "Security: Employees on site",
+            "Power Source: Various",
+            "Capacity: 5 MW",
+            "Accommodation: Various",
+            "Security: Team on the site",
             "Camera surveillance: 24 hours",
           ]}
           path={"/host/abudhabi"}
         />
         <FarmLocationCard
           image={"/home/miningfacility.webp"}
-          power={"4.0ct / kWh"}
+          power={"From $0.05 / kWh"}
           location={"Ethiopia"}
           hostingInfo={[
-            "Hostingpreis: ab 4.0ct / kWh",
-            "Minimum order quantity: 1 piece",
-            "Setup Fee: ab $150",
+            "Hosting price: from $0.05 / kWh",
+            "Minimum order quantity: 50 piece",
+            "Setup fee; None",
           ]}
           generalInfo={[
-            "Power source: Hydropower",
-            "Capacity: 30 MW",
-            "Accommodation: Warehouse/container",
-            "Security: Employees on site",
+            "Power Source: Hydropower",
+            "Capacity: 10 MW",
+            "Accommodation: Warehouse",
+            "Security: Armed Personal on the site",
             "Camera surveillance: 24 hours",
           ]}
           path={"/host/ethiopia"}

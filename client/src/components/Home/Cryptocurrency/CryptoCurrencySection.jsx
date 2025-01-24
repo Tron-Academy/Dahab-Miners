@@ -19,21 +19,21 @@ export default function CryptoCurrencySection() {
         variants={sectionVariants}
         className="max-w-[610px] flex flex-col lg:items-start items-center lg:text-left text-center gap-10"
       >
-        <p className="text-base font-semibold text-homeBgGradient">
+        {/* <p className="text-base font-semibold text-homeBgGradient">
           Unlock the potential of crypto
-        </p>
+        </p> */}
         <div>
           <h4 className="text-5xl pb-3 font-semibold gradient-heading">
-            Explore the future of cryptocurrency
+            Empower Your Mining Journey with DAHAB Miners
           </h4>
           <h3 className="text-base font-semibold text-homeBgGradient">
             <a href="https://dahabminers.com/">Crypto Mining in UAE</a>
           </h3>
         </div>
-        <p className="text-lg font-medium text-white leading-7">
-          Discover Bitcoin, Ethereum, and Kaspa with our top-tier selection.
-          Invest, trade or mine securely and innovatively. Start your journey
-          with us and shape the future of finance today.
+        <p className="text-sm font-medium text-white leading-7 max-w-[500px]">
+          From buying top-tier mining machines to hosting them in secure
+          facilities and ensuring seamless repairs, we cover every step of your
+          crypto mining needs. Start mining smarter with us today.
         </p>
         <Link
           to={"/buy"}

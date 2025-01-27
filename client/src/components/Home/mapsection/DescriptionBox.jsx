@@ -11,6 +11,7 @@ export default function DescriptionBox({ flag, place, amt, position }) {
         <img src="/home/currency.png" />
         <p>{amt}</p>
       </div>
+      {/* <p className="text-xs text-blue">Click to learn more</p> */}
     </div>
   );
 }

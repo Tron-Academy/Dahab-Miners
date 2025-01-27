@@ -33,7 +33,7 @@ export const handleProductEnquiry = ({ name }) => {
 
 export const handleEmailEnquiry = ({ email }) => {
   const phoneNumber = "+971544463803";
-  const messageContent = `Hi i would like to know more details. My Email id is: ${email}`;
+  const messageContent = `Hi i would like to know more about ${email}`;
   const encodedMessage = encodeURIComponent(messageContent);
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 

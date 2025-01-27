@@ -32,7 +32,7 @@ export default function BuyMinersSection() {
     refetch();
   }, [currentPage]);
   return (
-    <div className="bg-[#000618] px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10">
+    <div className="bg-[#000618] px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 z-[1]">
       <div className="h-24 lg:h-40 flex justify-center items-center">
         <h1 className="buy-miners-heading text-2xl pb-5 lg:text-[40px] font-semibold">
           Shop Best Miners

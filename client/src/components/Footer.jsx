@@ -62,36 +62,56 @@ export default function Footer() {
             Contact Us
           </p>
           <div className="flex flex-col gap-7 text-sm font-medium text-white my-5">
-            <div className="flex sm:flex-row flex-col gap-5 justify-between items-start">
-              <div className="flex gap-3 items-start">
-                <div>
-                  <CiLocationOn />
-                </div>
-                <p>
-                  Plaza 30, Unit 2B-SF - شارع دلما - Abu Dhabi - United Arab
-                  Emirates
-                </p>
+            {/* <div className="flex sm:flex-row flex-col gap-5 justify-between items-start"> */}
+            <a
+              className="flex gap-3 items-start"
+              href="https://maps.app.goo.gl/x1abqfaprP8Ag5Ps8"
+              target="_blank"
+            >
+              <div>
+                <CiLocationOn />
               </div>
-              <div className="text-4xl font-thin h-10 border-l sm:block hidden"></div>
-              <div className="flex gap-3 items-center">
-                <div>
-                  <CiLocationOn />
-                </div>
-                <p>Ethiopia</p>
+              <p>
+                Plaza 30, Unit 2B-SF - شارع دلما - Abu Dhabi - United Arab
+                Emirates
+              </p>
+            </a>
+            {/* <div className="text-4xl font-thin h-10 border-l sm:block hidden"></div> */}
+            <a
+              className="flex gap-3 items-start"
+              href="https://maps.app.goo.gl/k8iRT2e9ZLGvBmau5"
+              target="_blank"
+            >
+              <div>
+                <CiLocationOn />
               </div>
-            </div>
+              <p>Ethiopia, Oromia, Sheggar, Sebeta, Meta woreda</p>
+            </a>
+            {/* </div> */}
 
             <div className="flex gap-3 items-center">
               <div>
                 <CiMail />
               </div>
-              <p>Rizwan@dahabminers.ae</p>
+              <p
+                className="cursor-pointer"
+                onClick={() =>
+                  (window.location.href = `mailto:Rizwan@dahabminers.ae`)
+                }
+              >
+                Rizwan@dahabminers.ae
+              </p>
             </div>
             <div className="flex gap-3 items-center">
               <div>
                 <CiPhone />
               </div>
-              <p>+971568145866</p>
+              <p
+                className="cursor-pointer"
+                onClick={() => (window.location.href = `tel:${+971568145866}`)}
+              >
+                +971568145866
+              </p>
             </div>
           </div>
         </div>

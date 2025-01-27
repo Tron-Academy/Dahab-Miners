@@ -16,7 +16,7 @@ function HostingCarousel({ setItem, item }) {
                 <img src="/home/long-line.png" />
               </div>
             </div>
-            <h4 className="md:text-5xl text-3xl font-semibold md:leading-[72px] leading-10 gradient-heading ">
+            <h4 className="md:text-5xl text-3xl font-semibold md:leading-[72px] leading-10 gradient-heading z-[10]">
               Host Your Crypto Miners with{" "}
               <span className="relative gradient-heading">
                 Confidence{" "}
@@ -46,7 +46,7 @@ function HostingCarousel({ setItem, item }) {
           <CarouselNavigation setItem={setItem} item={item} />
         </div>
 
-        <div className="w-[550px] h-[310px]  md:w-[960px] md:h-[540px] relative animate-slideInRight">
+        <div className="w-[550px] h-[310px]  md:w-[960px] md:h-[540px] relative animate-slideInRight z-[5]">
           <img
             className="absolute z-10 translate-y-10 object-cover"
             src="/hostingcarouselimage.png"

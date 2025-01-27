@@ -52,11 +52,11 @@ cost-effective crypto mining and hosting solutions for your miners in UAE."
         />
       </Helmet>
       <LandingSection />
-      <ThirdSection btcData={btcData} />
-      {/* <Miners /> */}
+      <Miners />
       {/* <ProfitSection /> */}
       <MapSection />
-      <Calculator />
+      <ThirdSection btcData={btcData} />
+      {/* <Calculator /> */}
       <MiningFacilitiesSection />
       <SecondSection />
 
@@ -68,7 +68,7 @@ cost-effective crypto mining and hosting solutions for your miners in UAE."
       {/* <ConsultationSection /> */}
       {/* <BlogSection /> */}
       <Testimonials />
-      <FAQSection />
+      <FAQSection full={false} />
       <DiscussSection />
       {/* {<ContactForm />} */}
     </div>

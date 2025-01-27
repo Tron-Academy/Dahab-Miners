@@ -35,7 +35,7 @@ export default function MinerRepairPage() {
 
       <PriceSection ref={selectedRef} />
       <RepairSolutions />
-      <FAQSection />
+      <FAQSection full />
       {/* <div className="h-[2px] bg-white"></div> */}
     </div>
   );

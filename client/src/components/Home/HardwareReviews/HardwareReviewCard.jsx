@@ -21,7 +21,7 @@ export default function HardwareReviewCard({ icon, content }) {
 
   return (
     <motion.div
-      className="bg-[#000618] text-white rounded-lg p-5 flex flex-col gap-5"
+      className="bg-[#000618] text-white rounded-lg p-5 flex flex-col gap-5 z-[1]"
       initial={{
         borderImageSource:
           "linear-gradient(to bottom right, #004DF480 0%, transparent 50%, transparent 50%, #0194FE80 100%)",

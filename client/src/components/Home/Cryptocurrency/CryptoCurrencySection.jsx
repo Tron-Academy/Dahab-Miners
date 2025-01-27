@@ -23,7 +23,7 @@ export default function CryptoCurrencySection() {
           Unlock the potential of crypto
         </p> */}
         <div>
-          <h4 className="text-5xl pb-3 font-semibold gradient-heading">
+          <h4 className="text-5xl pb-3 font-semibold gradient-heading z-[2]">
             Empower Your Mining Journey with DAHAB Miners
           </h4>
           <h3 className="text-base font-semibold text-homeBgGradient">

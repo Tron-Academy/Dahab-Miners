@@ -8,7 +8,7 @@ export default function BuyingCarousel({ setItem, item }) {
   return (
     <>
       {/* <PgBar setItem={setItem} /> */}
-      <section className="flex lg:flex-row flex-col justify-between items-center pt-28 pb-10">
+      <section className="flex lg:flex-row flex-col justify-between items-center pt-28 pb-10 h-fit">
         <div className="flex flex-col lg:items-start items-center lg:text-left text-center max-w-[660px] md:gap-10 gap-5 animate-slideInLeft -mt-20 z-20">
           <div>
             <div className="flex gap-5 items-center">
@@ -61,9 +61,9 @@ export default function BuyingCarousel({ setItem, item }) {
           </div> */}
         </div>
 
-        <div className="w-full max-w-[300px] h-[250px] md:max-w-[550px] md:h-[450px] mx-auto animate-slideInRight mt-4 md:mt-7 lg:-mt-20 relative">
+        <div className="w-full max-w-[300px] h-[250px] md:max-w-[550px] md:h-[450px] mx-auto animate-slideInRight mt-4 md:mt-7 lg:-mt-20 relative z-[5]">
           <img
-            className="object-contain z-20 absolute "
+            className="object-cover z-20 absolute "
             src="/buycarousel.webp"
             alt="crypto-mining-machines-in-abu-dhabi-UAE-for-sale"
             title="Dahab Miners is your trusted partner for crypto mining in UAE, offering a diverse array of advanced ASIC miners in Abu Dhabi. Discover our premium CRYPTO MINING MACHINES IN UAE and optimize your mining operations with the best tools available."

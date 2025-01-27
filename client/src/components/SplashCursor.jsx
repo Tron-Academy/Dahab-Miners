@@ -11,7 +11,7 @@ function SplashCursor({
   PRESSURE = 0.1,
   PRESSURE_ITERATIONS = 20,
   CURL = 3,
-  SPLAT_RADIUS = 0.2,
+  SPLAT_RADIUS = 0.1,
   SPLAT_FORCE = 6000,
   SHADING = true,
   COLOR_UPDATE_SPEED = 10,
@@ -1085,14 +1085,25 @@ function SplashCursor({
       //   return Math.random() > 0.5 ? color1 : color2;
       const color1 = { r: 0.00392, g: 0.58039, b: 0.99608 }; // rgba(1, 148, 254, 1)
       const color2 = { r: 0.11765, g: 0.79608, b: 0.68627 }; // rgba(30, 203, 175, 1)
+      const color3 = { r: 0.47059, g: 0.11765, b: 0.81176 };
 
-      // Blend ratio (0 to 1)
-      const blendRatio = Math.random();
+      const blendRatio1 = Math.random(); // Ratio for color1
+      const blendRatio2 = Math.random() * (1 - blendRatio1); // Ratio for color2
+      const blendRatio3 = 1 - blendRatio1 - blendRatio2; // Ratio for color3
 
-      // Blend the two colors
-      const r = color1.r * (1 - blendRatio) + color2.r * blendRatio;
-      const g = color1.g * (1 - blendRatio) + color2.g * blendRatio;
-      const b = color1.b * (1 - blendRatio) + color2.b * blendRatio;
+      // Blend the three colors
+      const r =
+        color1.r * blendRatio1 +
+        color2.r * blendRatio2 +
+        color3.r * blendRatio3;
+      const g =
+        color1.g * blendRatio1 +
+        color2.g * blendRatio2 +
+        color3.g * blendRatio3;
+      const b =
+        color1.b * blendRatio1 +
+        color2.b * blendRatio2 +
+        color3.b * blendRatio3;
 
       return { r, g, b };
     }

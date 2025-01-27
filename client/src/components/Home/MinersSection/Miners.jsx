@@ -21,8 +21,10 @@ export default function Miners() {
         variants={sectionVariants}
         className="text-center"
       >
-        <p className="text-base font-semibold text-btnGreen py-5">Miners</p>
-        <p className="text-[40px] font-semibold gradient-heading">
+        <p className="text-base font-semibold text-btnGreen py-5 z-[5]">
+          Miners
+        </p>
+        <p className="text-[40px] font-semibold gradient-heading z-[5]">
           Affordable Crypto Miners for Maximum Profits
         </p>
         <h2 className="mt-5 mb-7 max-w-[500px] mx-auto">

@@ -1,6 +1,7 @@
 import React from "react";
 import FarmLocationCard from "./FarmLocationCard";
 import { motion } from "framer-motion";
+import { handleEmailEnquiry } from "../../utils/whatsapp";
 
 export default function FarmingLocations() {
   const sectionVariants = {
@@ -43,7 +44,8 @@ export default function FarmingLocations() {
             "Security: Team on the site",
             "Camera surveillance: 24 hours",
           ]}
-          path={"/host/abudhabi"}
+          // path={"/host/abudhabi"}
+          action={() => handleEmailEnquiry({ email: `hosting in abudhabi` })}
         />
         <FarmLocationCard
           image={"/home/miningfacility.webp"}
@@ -61,7 +63,8 @@ export default function FarmingLocations() {
             "Security: Armed Personal on the site",
             "Camera surveillance: 24 hours",
           ]}
-          path={"/host/ethiopia"}
+          // path={"/host/ethiopia"}
+          action={() => handleEmailEnquiry({ email: `hosting in Ethiopia` })}
         />
       </div>
     </motion.section>

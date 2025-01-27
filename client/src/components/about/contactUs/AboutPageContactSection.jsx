@@ -81,7 +81,7 @@ export default function AboutPageContactSection() {
               }}
             />
             <textarea
-              className="p-2 my-4 border rounded-lg border-[#D0D5DD] w-full"
+              className="p-2 my-4 border rounded-lg bg-white border-[#D0D5DD] w-full text-black"
               rows={"6"}
               value={message}
               onChange={(e) => SetMessage(e.target.value)}

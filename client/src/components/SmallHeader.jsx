@@ -23,16 +23,18 @@ export default function SmallHeader({ setSmallBar }) {
           Buy Miners
         </NavLink>
         <div className={"border-b w-full py-2 border-[#9eede0]"}>
-          <div
+          <NavLink
+            to={"/host"}
+            onClick={() => setSmallBar(false)}
             className="flex gap-2 items-center"
-            onClick={() => setShowDrop(!showDrop)}
+            // onClick={() => setShowDrop(!showDrop)}
           >
             <p>Host Mining</p>
-            <span className="text-xl">
+            {/* <span className="text-xl">
               <MdArrowDropDown />
-            </span>
-          </div>
-          {showDrop && (
+            </span> */}
+          </NavLink>
+          {/* {showDrop && (
             <div className="flex flex-col gap-3 ms-7 my-5">
               <NavLink
                 to={"/host"}
@@ -58,7 +60,7 @@ export default function SmallHeader({ setSmallBar }) {
                 - Ethiopia
               </NavLink>
             </div>
-          )}
+          )} */}
         </div>
         <NavLink
           to={"/repair"}
@@ -74,13 +76,13 @@ export default function SmallHeader({ setSmallBar }) {
         >
           Blogs
         </NavLink>
-        <NavLink
+        {/* <NavLink
           className={"border-b w-full py-2 border-[#9eede0]"}
           onClick={() => setSmallBar(false)}
           to={"/about"}
         >
           About Us
-        </NavLink>
+        </NavLink> */}
         <button
           className="btn-bg text-white rounded-lg px-4 py-2"
           onClick={handleChatClick}

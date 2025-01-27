@@ -11,8 +11,8 @@ export default function BitcoinConsulting() {
         Your needs always come first in our customer-centric advice. An excerpt
         of our consulting areas.
       </p>
-      <div className="p-5 py-10 customborder flex justify-around w-full">
-        <div className="text-white flex flex-col gap-5">
+      <div className="p-5 py-10 customborder flex md:flex-row flex-col gap-7 items-center justify-around w-full">
+        <div className="text-white flex flex-col md:items-start items-center gap-5">
           <div className="flex gap-5 items-center">
             <img src="/host/icon-1.png" className="w-5" />
             <p>Purchasing advice</p>

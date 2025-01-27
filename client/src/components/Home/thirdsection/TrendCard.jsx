@@ -9,7 +9,7 @@ export default function TrendCard({ icon, name, short, value, percent, id }) {
   // const { loading, graphData } = useGetSingleCoinGraphData({ id });
   return (
     <motion.div
-      className="p-5 relative text-white w-[250px] my-5 bg-[#000618]"
+      className="p-5 relative text-white w-[250px] my-5 bg-[#000618] z-[5]"
       initial={{
         borderImageSource:
           "linear-gradient(to bottom right, #004DF480 0%, transparent 50%, transparent 50%, #0194FE80 100%)",
@@ -17,6 +17,7 @@ export default function TrendCard({ icon, name, short, value, percent, id }) {
         borderImageSlice: 1,
         borderRadius: "12px",
         scale: 1,
+        zIndex: 5,
       }}
       whileHover={{
         borderImageSource:
@@ -25,9 +26,11 @@ export default function TrendCard({ icon, name, short, value, percent, id }) {
         boxShadow: "0px 0px 20px rgba(1, 148, 254, 0.6)",
         scale: 1.01,
         transition: { duration: 0.6, ease: "easeOut" },
+        zIndex: 5,
       }}
       style={{
         borderStyle: "solid",
+        zIndex: 5,
       }}
     >
       <div className="flex items-center justify-between ">

@@ -21,7 +21,7 @@ function MapSection() {
       whileInView="visible"
       viewport={{ once: false, amount: 0.3 }} // Triggers when 20% of the section is visible
       variants={sectionVariants}
-      className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 text-white flex lg:flex-row flex-col items-center lg:justify-between gap-20"
+      className="main-bg px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-20 text-white flex lg:flex-row flex-col items-center lg:justify-between gap-20"
     >
       <div className="flex flex-col lg:items-start items-center gap-5 lg:max-w-[470px]">
         <h4 className="text-[40px] gradient-heading font-semibold lg:text-left text-center">
@@ -33,20 +33,36 @@ function MapSection() {
           miners today
         </p>
         <div className="flex gap-3 items-center">
-          <Link
-            to={"/host/abudhabi"}
-            className="px-4 py-2 rounded-lg bg-[#0194FE] hover:bg-[#52aced] hover:scale-110 ease-in-out duration-500 hover:shadow-sm hover:shadow-[#0194FE]"
+          <button
+            // to={"/host/abudhabi"}
+            onClick={() => {
+              setIsHover1(true);
+              setIsHover2(false);
+            }}
+            className={`px-4 py-2 rounded-lg ${
+              isHover1
+                ? "bg-[#0194FE] text-white"
+                : "bg-[#051D2E] text-[#1994B0]"
+            }  hover:scale-110 ease-in-out duration-500 hover:shadow-sm hover:shadow-[#0194FE] `}
           >
             UAE
-          </Link>
-          <Link
-            to={"/host/ethiopia"}
-            className="px-4 py-2 rounded-lg bg-[#051D2E] text-[#1994B0] hover:scale-110 ease-in-out duration-500 hover:shadow-sm hover:shadow-[#1994B0]"
+          </button>
+          <button
+            // to={"/host/ethiopia"}
+            onClick={() => {
+              setIsHover1(false);
+              setIsHover2(true);
+            }}
+            className={`px-4 py-2 ${
+              isHover2
+                ? "bg-[#0194FE] text-white"
+                : "bg-[#051D2E] text-[#1994B0]"
+            } rounded-lg  hover:scale-110 ease-in-out duration-500 hover:shadow-sm hover:shadow-[#1994B0]`}
           >
             ETHIOPIA
-          </Link>
+          </button>
         </div>
-        <div className="flex justify-between items-center w-full">
+        <div className="flex justify-between items-center w-full z-[1]">
           <div>
             <p className="text-[#0194FE] text-4xl font-semibold">2K+</p>
             <p className="text-sm">Miners Hosted</p>
@@ -66,20 +82,20 @@ function MapSection() {
         <img
           className="absolute right-[42%] bottom-[45%] z-10 w-3 cursor-pointer"
           src="/home/location-1.png"
-          onMouseEnter={() => setIsHover2(true)}
-          onMouseLeave={() => setIsHover2(false)}
+          // onMouseEnter={() => setIsHover2(true)}
+          // onMouseLeave={() => setIsHover2(false)}
         />
         <img
           className="absolute right-[38%] top-[33%] w-3 cursor-pointer"
           src="/home/location-2.png"
-          onMouseEnter={() => setIsHover1(true)}
-          onMouseLeave={() => setIsHover1(false)}
+          // onMouseEnter={() => setIsHover1(true)}
+          // onMouseLeave={() => setIsHover1(false)}
         />
         {isHover1 && (
           <DescriptionBox
             flag={"/home/uae.png"}
             place={"UAE"}
-            amt={"$56,623.54"}
+            amt={"$0.06 / kWh"}
             position={"right-[18%] top-[18%] bg-[#07EAD3]"}
           />
         )}
@@ -87,7 +103,7 @@ function MapSection() {
           <DescriptionBox
             flag={"/home/ethiopia.png"}
             place={"ETHIOPIA"}
-            amt={"$56,623.54"}
+            amt={"$0.05 / kWh"}
             position={"right-[22%] bottom-[30%] bg-white"}
           />
         )}

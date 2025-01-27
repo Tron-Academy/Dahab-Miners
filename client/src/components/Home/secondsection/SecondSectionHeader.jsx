@@ -3,7 +3,7 @@ import SecondSectionHeaderElement from "./SecondSectionHeaderElement";
 
 export default function SecondSectionHeader() {
   return (
-    <div className="grid lg:grid-cols-3 grid-cols-4 gap-5">
+    <div className="grid lg:grid-cols-3 grid-cols-4 gap-5 z-[1]">
       <SecondSectionHeaderElement
         icon={"/home/icon-3.png"}
         text={"6-12 months warranty for your miners"}

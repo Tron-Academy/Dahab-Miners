@@ -8,6 +8,7 @@ export default function FarmLocationCard({
   location,
   hostingInfo,
   path,
+  action,
   generalInfo,
 }) {
   return (
@@ -30,7 +31,7 @@ export default function FarmLocationCard({
       style={{
         borderStyle: "solid",
       }}
-      className="text-white p-5 border rounded-lg flex flex-col gap-5 bg-[#000618]"
+      className="text-white p-5 border rounded-lg flex flex-col gap-5 bg-[#000618] z-[1]"
     >
       <div className="flex flex-col gap-3">
         <img
@@ -63,9 +64,9 @@ export default function FarmLocationCard({
           </ul>
         </div>
       </div>
-      <Link to={path} className="p-2 rounded-full btn-bg text-center">
+      <button onClick={action} className="p-2 rounded-full btn-bg text-center">
         Know More Details
-      </Link>
+      </button>
     </motion.div>
   );
 }

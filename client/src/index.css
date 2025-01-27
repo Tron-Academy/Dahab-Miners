@@ -34,11 +34,13 @@ h6,
 span,
 li,
 input,
+select,
+option,
 label,
 button,
 img,
 a {
-  z-index: 1;
+  z-index: 5;
 }
 select option:focus {
   background-color: #a0e3f9;
@@ -125,15 +127,15 @@ ul {
   animation: spinner 0.6s linear infinite;
 }
 
-.landingHeight {
+/* .landingHeight {
   min-height: calc(100vh - 80px);
-}
+} */
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .landingHeight {
     height: calc(100vh - 64px);
   }
-}
+} */
 
 .glowing-box {
   width: 40px;
@@ -196,7 +198,7 @@ ul {
 } */
 
 .customborder {
-  z-index: 0;
+  z-index: 5;
   border-radius: 10px;
   position: relative;
   overflow: hidden;

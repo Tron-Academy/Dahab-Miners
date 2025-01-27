@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const WhatsApp = () => {
   return (
     <div className="flex items-center gap-3 fixed right-3 bottom-3">
-      <div className="px-4 py-4 rounded-s-full rounded-e-full bg-[#CCF2FF] text-black text-xs font-semibold">
+      <div className="px-4 py-4 rounded-s-full rounded-e-full bg-[#CCF2FF] text-black text-xs font-semibold md:block hidden">
         Questions? We’re here—connect anytime!
       </div>
       <motion.button

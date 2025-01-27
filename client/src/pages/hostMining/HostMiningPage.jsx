@@ -34,7 +34,7 @@ export default function HostMiningPage() {
       <FarmingLocations />
       <MapSection />
       <BitcoinConsulting />
-      <FAQSection />
+      <FAQSection full />
       <ContactButtonSection />
       {/* <BuyBox /> */}
       {/* <RequestHostingSection /> */}

@@ -15,7 +15,7 @@ import TableItem from "./TableItem";
 
 export default function PriceTable() {
   return (
-    <div className="max-w-[794px] mx-auto my-10">
+    <div className="max-w-[794px] mx-auto my-10 z-[1]">
       <div className="bg-[#26DDFF] p-3 text-[#086153] text-2xl font-semibold">
         THERMAL PASTE
       </div>

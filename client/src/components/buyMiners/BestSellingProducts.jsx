@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 
 export default function BestSellingProducts({ products }) {
   return (
-    <div className="px-2 py-5 w-full">
+    <div className="px-2 py-5 w-full z-[1]">
       <div className="flex justify-between items-center">
         <h1 className="text-base lg:text-2xl font-semibold text-[#1ECBAF]">
           Our Bestselling Products

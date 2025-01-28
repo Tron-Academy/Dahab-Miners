@@ -96,7 +96,7 @@ function MapSection() {
             flag={"/home/uae.png"}
             place={"UAE"}
             amt={"$0.06 / kWh"}
-            position={"right-[18%] top-[18%] bg-[#07EAD3]"}
+            position={"md:right-[18%] right-4 md:top-[18%] top-5 bg-[#07EAD3]"}
           />
         )}
         {isHover2 && (
@@ -104,7 +104,9 @@ function MapSection() {
             flag={"/home/ethiopia.png"}
             place={"ETHIOPIA"}
             amt={"$0.05 / kWh"}
-            position={"right-[22%] bottom-[30%] bg-white"}
+            position={
+              "md:right-[22%] right-10 md:bottom-[30%] bottom-5 bg-white"
+            }
           />
         )}
       </div>

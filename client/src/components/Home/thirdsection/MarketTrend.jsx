@@ -46,7 +46,7 @@ export default function MarketTrend() {
     <Loading />
   ) : (
     <div>
-      <h4 className="gradient-heading text-[40px] font-semibold">
+      <h4 className="gradient-heading md:text-4xl text-3xl font-semibold">
         Market Trend
       </h4>
       <div className="">

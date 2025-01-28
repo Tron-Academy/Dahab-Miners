@@ -25,7 +25,7 @@ export default function WhyChooseUs() {
         whileInView={{ rotate: 0, opacity: 1 }} // Rotate to 0 and fade in
         viewport={{ once: false, amount: 0.3 }} // Trigger animation only once
         transition={{ duration: 0.3, ease: "easeOut" }} // Animation settings
-        className="grid grid-cols-2 grid-rows-5 gap-x-9 w-[420px] h-[580px] z-[1] place-items-center"
+        className="grid grid-cols-2 grid-rows-5 md:gap-x-9 gap-x-2 w-[420px] h-[580px] z-[1] place-items-center"
       >
         <WhyChooseCard
           icon={"/home/c-3.png"}

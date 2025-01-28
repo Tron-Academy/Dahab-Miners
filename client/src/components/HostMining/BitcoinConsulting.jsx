@@ -12,7 +12,7 @@ export default function BitcoinConsulting() {
         of our consulting areas.
       </p>
       <div className="p-5 py-10 customborder flex md:flex-row flex-col gap-7 items-center justify-around w-full">
-        <div className="text-white flex flex-col md:items-start items-center gap-5">
+        <div className="text-white flex flex-col items-start gap-5">
           <div className="flex gap-5 items-center">
             <img src="/host/icon-1.png" className="w-5" />
             <p>Purchasing advice</p>
@@ -30,13 +30,16 @@ export default function BitcoinConsulting() {
             <p>Workshops & Training</p>
           </div>
           <button
-            className="px-4 py-2 rounded-full btn-bg"
+            className="px-4 py-2 rounded-full btn-bg mx-auto"
             onClick={() => handleChatClick()}
           >
             Know More
           </button>
         </div>
-        <img src="/home/repair2.webp" className="max-w-[400px] rounded-lg" />
+        <img
+          src="/home/repair2.webp"
+          className="md:max-w-[400px] max-w-[350px] rounded-lg overflow-hidden object-cover"
+        />
       </div>
     </section>
   );

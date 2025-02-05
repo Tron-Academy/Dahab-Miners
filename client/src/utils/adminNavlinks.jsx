@@ -18,13 +18,13 @@ export const adminNavLinks = [
     urlword: "products",
     icon: <AiFillProduct />,
   },
-  // {
-  //   id: 3,
-  //   name: "Category",
-  //   path: "/admin/category",
-  //   urlword: "category",
-  //   icon: <MdCategory />,
-  // },
+  {
+    id: 3,
+    name: "Data",
+    path: "/admin/data",
+    urlword: "data",
+    icon: <MdCategory />,
+  },
   {
     id: 4,
     name: "Blogs",

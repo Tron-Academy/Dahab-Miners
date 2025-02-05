@@ -96,3 +96,11 @@ export const validateBlogInput = withValidationErrors([
     .withMessage("Error in image upload. try again"),
   body("content").notEmpty().withMessage("Content is required"),
 ]);
+
+export const validateDataInput = withValidationErrors([
+  body("location").notEmpty().withMessage("location is required"),
+  body("macAddress").notEmpty().withMessage("mac address is required"),
+  body("serialNumber").notEmpty().withMessage("serial number is required"),
+  body("modelNumber").notEmpty().withMessage("model number is required"),
+  body("clientName").notEmpty().withMessage("client name is required"),
+]);

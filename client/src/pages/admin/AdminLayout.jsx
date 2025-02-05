@@ -5,15 +5,18 @@ import { Outlet } from "react-router-dom";
 import useGetUser from "../../hooks/auth/useGetUser";
 import Loading from "../../components/Loading";
 import SmallSizeSideBar from "../../components/Admin/SmallSizeSideBar";
+import { useSelector } from "react-redux";
+import DeletePopup from "../../components/Admin/DeletePopup";
 
 export default function AdminLayout() {
   const { loading } = useGetUser();
   const [showSideBar, setShowSideBar] = useState(true);
   const [showSmallSizeBar, setShowSmallSizeBar] = useState(false);
+  const { showPopup } = useSelector((state) => state.admin);
   return loading ? (
     <Loading />
   ) : (
-    <div className="bg-neutral-300 md:pt-2 md:px-2">
+    <div className="bg-neutral-300 md:pt-2 md:px-2 text-black">
       <div className="flex gap-2">
         {showSideBar && <AdminSidebar />}
         <div className="w-full">
@@ -26,6 +29,7 @@ export default function AdminLayout() {
           {showSmallSizeBar && (
             <SmallSizeSideBar setSmall={setShowSmallSizeBar} />
           )}
+          {showPopup && <DeletePopup />}
           <div className="p-3 px-5 min-h-screen">
             <Outlet />
           </div>

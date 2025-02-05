@@ -28,7 +28,7 @@ export default function AdminProductPage() {
           </span>
         </Link>
       </div>
-      <h1 className="md:text-2xl text-lg my-2">All Products</h1>
+      <h1 className="md:text-2xl text-lg my-2 text-black">All Products</h1>
       {loading ? (
         <Loading />
       ) : (

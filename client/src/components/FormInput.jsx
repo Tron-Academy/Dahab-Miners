@@ -6,10 +6,11 @@ export default function FormInput({
   placeholder,
   value,
   onchange,
+  admin,
 }) {
   return (
     <div className="form-row">
-      {/* <label className="form-label">{title}</label> */}
+      {admin && <label className="form-label">{title}</label>}
       <div className="flex items-center">
         <input
           type={type}

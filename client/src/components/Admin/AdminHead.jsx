@@ -12,7 +12,7 @@ export default function AdminHead({ toggle, toggleFunction, small, setSmall }) {
   const [showLogout, setShowLogout] = useState(false);
   const { logout, loading } = useLogoutUser();
   return (
-    <div className="p-3 h-20 bg-homeBg md:rounded-2xl w-full text-white flex justify-between items-center sticky top-0">
+    <div className="p-3 h-20 bg-homeBg md:rounded-2xl w-full text-white flex justify-between items-center sticky top-0 z-10">
       <div
         className="text-2xl hidden md:block"
         onClick={() => toggleFunction(!toggle)}

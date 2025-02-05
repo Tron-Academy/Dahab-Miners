@@ -25,6 +25,9 @@ import EditAdminBlog from "./pages/admin/blog/EditAdminBlog";
 import AbuDhabiHosting from "./pages/abuDhabiHosting/AbuDhabiHosting";
 import EthiopiaHosting from "./pages/EthiopiaHosting/EthiopiaHosting";
 import AboutUsPage from "./pages/about/AboutUsPage";
+import DataPage from "./pages/admin/datas/DataPage";
+import AddNewDataPage from "./pages/admin/datas/AddNewDataPage";
+import EditDataPage from "./pages/admin/datas/EditDataPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -115,6 +118,18 @@ function App() {
         {
           path: "blogs/:id/edit",
           element: <EditAdminBlog />,
+        },
+        {
+          path: "data",
+          element: <DataPage />,
+        },
+        {
+          path: "data/new",
+          element: <AddNewDataPage />,
+        },
+        {
+          path: "data/:id/edit",
+          element: <EditDataPage />,
         },
       ],
     },

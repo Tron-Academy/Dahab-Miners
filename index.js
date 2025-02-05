@@ -16,6 +16,7 @@ import userProductRouter from "./routes/userProductRouter.js";
 import adminBlogRouter from "./routes/adminBlogRouter.js";
 import adminDashboardRouter from "./routes/adminDashboardRouter.js";
 import userBlogRouter from "./routes/userBlogRouter.js";
+import dataRouter from "./routes/adminDataRouter.js";
 import { authenticateUser } from "./middleware/authMiddleware.js";
 
 const app = express();
@@ -65,6 +66,7 @@ app.use("/api/admin/blogs", authenticateUser, adminBlogRouter);
 app.use("/api/admin/dashboard", authenticateUser, adminDashboardRouter);
 app.use("/api/users/product", userProductRouter);
 app.use("/api/users/blogs", userBlogRouter);
+app.use("/api/admin/data", authenticateUser, dataRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });

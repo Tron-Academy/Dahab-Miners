@@ -77,9 +77,9 @@ export default function Header() {
         <NavLink className={"text-white"} to={"/blogs"}>
           Blogs
         </NavLink>
-        {/* <NavLink className={"text-white"} to={"/about"}>
+        <NavLink className={"text-white"} to={"/about"}>
           About Us
-        </NavLink> */}
+        </NavLink>
       </nav>
       <motion.button
         initial={{ scale: 1 }}

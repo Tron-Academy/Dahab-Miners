@@ -16,7 +16,7 @@ const WhatsApp = () => {
         className="w-14 h-14  rounded-xl overflow-hidden cursor-pointer"
         onClick={handleChatClick}
       >
-        <img src="/chat.png" alt="" />
+        <img src="/whatsapp_logo.webp" alt="" />
       </motion.button>
     </div>
   );

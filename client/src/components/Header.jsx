@@ -39,7 +39,7 @@ export default function Header() {
             className="text-white flex items-center gap-1"
             // onClick={() => setisHover(!isHover)}
           >
-            Host Mining{" "}
+            Host Miners
             {/* <span className="text-xl">
               <MdArrowDropDown />
             </span> */}
@@ -77,9 +77,9 @@ export default function Header() {
         <NavLink className={"text-white"} to={"/blogs"}>
           Blogs
         </NavLink>
-        <NavLink className={"text-white"} to={"/about"}>
+        {/* <NavLink className={"text-white"} to={"/about"}>
           About Us
-        </NavLink>
+        </NavLink> */}
       </nav>
       <motion.button
         initial={{ scale: 1 }}

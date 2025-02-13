@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 function MapSection() {
-  const [isHover1, setIsHover1] = useState(false);
+  const [isHover1, setIsHover1] = useState(true);
   const [isHover2, setIsHover2] = useState(false);
   const sectionVariants = {
     hidden: { scale: 0.8, opacity: 0 },

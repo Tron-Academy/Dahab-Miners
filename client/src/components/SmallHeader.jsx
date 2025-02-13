@@ -29,7 +29,7 @@ export default function SmallHeader({ setSmallBar }) {
             className="flex gap-2 items-center"
             // onClick={() => setShowDrop(!showDrop)}
           >
-            <p>Host Mining</p>
+            <p>Host Miners</p>
             {/* <span className="text-xl">
               <MdArrowDropDown />
             </span> */}

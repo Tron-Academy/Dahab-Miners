@@ -20,36 +20,36 @@ export default function WhyAbudhabiSection() {
       className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col gap-10"
     >
       <h4 className="gradient-heading text-3xl font-semibold text-center">
-        Why Choose AbuDhabi for Crypto Mining?
+        Why Choose Abu Dhabi for Crypto mining?
       </h4>
       <div className="p-10 customborder flex md:flex-row flex-col-reverse gap-10 items-center">
         <div className="flex flex-col gap-3">
           <WhyElt
-            title={"Affordable Energy Costs"}
+            title={"Cost-Effective Hosting"}
             content={
-              "Our 30 MW plant is powered entirely by hydropower, Ethiopia's key to green energy. This enables us to offer our customers one of the most competitive hosting prices in the global Bitcoin mining market."
+              "Enjoy some of the most competitive electricity rates in the industry, ensuring higher profitability for your mining operations."
             }
           />
           <WhyElt
-            title={"Renewable Energy Sources"}
+            title={"Stable & Secure Energy Supply"}
             content={
-              "Bei MIM profitieren unsere Kunden von einem äußerst wettbewerbsfähigen Hosting-Preis von nur 4,0 Cent pro kWh. Dieser Preis spiegelt unser Engagement wider, Bitcoin-Mining für eine breite Palette von Investoren zugänglich zu machen."
+              "Abu Dhabi's power infrastructure, backed by oil, gas, and nuclear energy, guarantees a stable and uninterrupted power source for 24/7 mining."
             }
           />
           <WhyElt
-            title={"Strategic Location"}
+            title={"Advanced Cooling Efficiency"}
             content={
-              "With a capacity of 30 MW and the use of mining containers, we offer flexible and scalable solutions for your mining requirements. We accept orders for as little as one Asic miner with no setup fee. This makes us an attractive partner for your mining project of any size."
+              "With cutting-edge cooling systems and an optimized setup, our hosting facilities ensure your miners run efficiently even in high-temperature climates, with 95% uptime guaranteed."
             }
           />
           <WhyElt
-            title={"Developing Infrastructure"}
+            title={"Scalability & Infrastructure"}
             content={
-              "With a capacity of 30 MW and the use of mining containers, we offer flexible and scalable solutions for your mining requirements. We accept orders for as little as one Asic miner with no setup fee. This makes us an attractive partner for your mining project of any size."
+              "From single-unit miners to large-scale operations, our hosting facilities are built for seamless expansion, offering up to 10 MW of capacity."
             }
           />
         </div>
-        <img src="/abudhabi/img-1.jpg" className="md:h-[500px] w-full" />
+        <img src="/6.jpg" className="max-w-[500px] rounded-lg object-cover" />
       </div>
     </motion.section>
   );

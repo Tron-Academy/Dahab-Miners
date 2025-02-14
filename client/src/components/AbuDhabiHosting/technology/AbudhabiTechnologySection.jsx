@@ -21,21 +21,35 @@ export default function AbudhabiTechnologySection() {
       <div className="flex lg:flex-row flex-col-reverse justify-between gap-3 items-center p-10 customborder">
         <div className="max-w-[600px] flex flex-col lg:items-start items-center gap-5">
           <h4 className="gradient-heading lg:text-left text-center text-3xl font-semibold">
-            The technology behind an efficient Bitcoin mining farm
+            Cutting-Edge Technology for Maximum Mining Efficiency
           </h4>
           <p className="lg:text-left text-center">
-            The safety of our facility and your investment is our top priority.
-            MIM is equipped with a team of on-site staff and 24-hour camera
-            surveillance to ensure safe operation around the clock.The Bitmain
-            Repair Center and the MicroBT Repair Center (for Whatsminer) are
-            currently opening new locations in Ethiopia, providing the important
-            infrastructure for repairs and spare parts supply.
+            At Dahab Miners, we leverage advanced infrastructure to ensure
+            maximum uptime, efficiency, and security for your mining operations.
           </p>
+          <ul className="ml-5 font-light">
+            <li>
+              <span className="font-semibold">24/7 Security & Monitoring:</span>{" "}
+              Our facilities are equipped with on-site staff and round-the-clock
+              surveillance to keep your investment safe.
+            </li>
+            <li>
+              <span className="font-semibold">
+                State-of-the-Art Repair Facilities:
+              </span>{" "}
+              We are actively working towards setting up ASIC repair centers,
+              ensuring fast and reliable maintenance for your miners.
+            </li>
+            <li>
+              <span className="font-semibold">
+                Optimized Hosting Conditions:
+              </span>{" "}
+              Our mining farms are designed for peak performance, with efficient
+              cooling and power management systems.
+            </li>
+          </ul>
         </div>
-        <img
-          src="/home/repair2.webp"
-          className="max-w-[350px] object-cover rounded-md"
-        />
+        <img src="/1.jpg" className="max-w-[350px] object-cover rounded-md" />
       </div>
     </motion.section>
   );

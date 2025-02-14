@@ -31,10 +31,12 @@ export default function Footer() {
           >
             <img
               src="/home/footerLogo.png"
+              className="overflow-hidden"
               alt="asic-miners-in-abu-dhabi-UAE-for-new-miners"
               title="Dahab Miners is the premier crypto mining service in UAE Explore our Bitcoin machines in Abu Dhabi and maximize your cryptocurrency earnings!"
             ></img>
           </a>
+
           <div className="flex gap-5 text-base font-normal text-white">
             <FooterLinks
               link={"https://www.instagram.com/dahabminersuae/"}
@@ -49,13 +51,16 @@ export default function Footer() {
               icon={<FaLinkedinIn />}
             />
           </div>
+          <div className="flex flex-col gap-5"></div>
         </div>
-        <div className="flex flex-col gap-5 text-sm font-medium text-white">
+        <div className="flex flex-col gap-3 text-sm font-medium text-white">
           <Link to={"/"}>Home</Link>
           <Link to={"/buy"}>Buy Miners</Link>
           <Link to={"/host"}>Host Mining</Link>
           <Link to={"/repair"}>Miner Repair</Link>
           <Link to={"/blogs"}>Blogs</Link>
+          <Link to={"/terms_and_conditions"}>Terms & Conditions</Link>
+          <Link to={"/privacy_policy"}>Privacy Policy</Link>
         </div>
         <div className="bg-[#030815] rounded-md p-5 max-w-[400px]">
           <p className="text-lg font-semibold text-white lg:text-center text-left">

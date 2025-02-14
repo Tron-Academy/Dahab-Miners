@@ -21,21 +21,21 @@ export default function RepairFeatures({ scrollfunction }) {
     >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         <FeatureCard
-          title={"Clear and Honest Pricing"}
+          title={"Transparent Pricing"}
           content={
-            "Discover our upfront pricing for all services. Our transparent pricing guide ensures you know what to expect with no hidden fees. Benefit from competitive rates on diagnostics, part replacements, and full repairs."
+            "No surprises—just fair and upfront pricing. We offer competitive rates for diagnostics, part replacements, and full repairs, ensuring no hidden fees."
           }
         />
         <FeatureCard
-          title={"Rapid Service Turnaround"}
+          title={"Fast Turnaround Time"}
           content={
-            "We value your time in the fast-paced world of cryptocurrency mining. Our efficient repair process ensures minimal downtime. Expect swift turnaround times without compromising quality."
+            "Time is money in mining. Our efficient repair process minimizes downtime, getting your ASIC miners back online quickly without sacrificing quality."
           }
         />
         <FeatureCard
-          title={"Comprehensive Diagnostics"}
+          title={"Precision Diagnostics"}
           content={
-            "Our in-depth diagnostics accurately pinpoint issues with your ASIC miners. Whether diagnosing full units or specific parts, we identify problems precisely to deliver effective repair solutions."
+            "We pinpoint and resolve issues with expert diagnostics. Whether it’s a full unit inspection or specific part replacement, we ensure a precise and effective repair solution."
           }
         />
       </div>

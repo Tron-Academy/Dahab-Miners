@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 
-export default function RepairSolutions() {
+export default function SolutionsSection() {
   const sectionVariants = {
     hidden: { scale: 0.8, opacity: 0 },
     visible: {
@@ -24,13 +24,12 @@ export default function RepairSolutions() {
         </p>
         <h1 className="text-3xl lg:text-4xl pb-5 font-semibold gradient-heading shadow-[#1ECBAF] max-w-[768px] drop-shadow-2xl">
           {" "}
-          Maximize Your Mining Potential with Expert ASIC Repairs
+          Maximize Your Mining Potential with Expert ASIC Repair
         </h1>
         <p className="text-base font-medium text-white leading-6 max-w-[900px] mb-10">
-          From troubleshooting to full-scale repairs, our team ensures your ASIC
-          miners stay efficient and perform at their peak. Whether it's
-          diagnostics, maintenance, or part replacements, we’ve got you covered
-          with industry-leading solutions.
+          Ensure peak performance for your miners with our professional repair
+          services. From diagnostics to full repairs, we keep your mining
+          operations running smoothly with minimal downtime.
         </p>
       </div>
     </motion.div>

@@ -29,7 +29,7 @@ export default function FarmingLocations() {
       </p>
       <div className="flex md:flex-row flex-col justify-center gap-10 my-10">
         <FarmLocationCard
-          image={"/home/repair2.webp"}
+          image={"/1.jpg"}
           power={"From $0.06 / kWh"}
           location={"Abu Dhabi"}
           hostingInfo={[
@@ -48,7 +48,7 @@ export default function FarmingLocations() {
           action={() => handleEmailEnquiry({ email: `hosting in abudhabi` })}
         />
         <FarmLocationCard
-          image={"/home/miningfacility.webp"}
+          image={"/2.jpg"}
           power={"From $0.05 / kWh"}
           location={"Ethiopia"}
           hostingInfo={[

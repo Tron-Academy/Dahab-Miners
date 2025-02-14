@@ -7,10 +7,11 @@ export default function ContactButtonSection() {
       <div className="p-5 px-10 customborder flex md:flex-row flex-col gap-5 justify-around items-center">
         <div className="max-w-[400px]">
           <h5 className="text-[#0194FE] text-3xl font-semibold md:text-left text-center">
-            Do you want to start mining?
+            Ready to Start Mining?
           </h5>
           <p className="text-white md:text-left text-center">
-            No matter what questions or concerns you have, we are happy to help.
+            Whether you need a miner, hosting, or expert guidance, we’re here to
+            help. Let’s get you mining today!
           </p>
         </div>
         <div>

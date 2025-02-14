@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 export default function Header() {
   const [showSmallBar, setShowSmallBar] = useState(false);
-  // const [isHover, setisHover] = useState(false);
+  const [isHover, setisHover] = useState(false);
 
   return (
     <header
@@ -34,17 +34,16 @@ export default function Header() {
           Buy Miners
         </NavLink>
         <div className="relative">
-          <NavLink
-            to={"/host"}
+          <div
             className="text-white flex items-center gap-1"
-            // onClick={() => setisHover(!isHover)}
+            onClick={() => setisHover(!isHover)}
           >
             Host Miners
-            {/* <span className="text-xl">
+            <span className="text-xl">
               <MdArrowDropDown />
-            </span> */}
-          </NavLink>
-          {/* {isHover && (
+            </span>
+          </div>
+          {isHover && (
             <div className="absolute bg-[#000618] text-white shadow-lg rounded-md mt-2 w-40">
               <NavLink
                 to={"/host"}
@@ -69,7 +68,7 @@ export default function Header() {
                 Ethiopia
               </NavLink>
             </div>
-          )} */}
+          )}
         </div>
         <NavLink className={"text-white"} to={"/repair"}>
           Miner Repair
@@ -77,9 +76,9 @@ export default function Header() {
         <NavLink className={"text-white"} to={"/blogs"}>
           Blogs
         </NavLink>
-        {/* <NavLink className={"text-white"} to={"/about"}>
+        <NavLink className={"text-white"} to={"/about"}>
           About Us
-        </NavLink> */}
+        </NavLink>
       </nav>
       <motion.button
         initial={{ scale: 1 }}

@@ -28,6 +28,8 @@ import AboutUsPage from "./pages/about/AboutUsPage";
 import DataPage from "./pages/admin/datas/DataPage";
 import AddNewDataPage from "./pages/admin/datas/AddNewDataPage";
 import EditDataPage from "./pages/admin/datas/EditDataPage";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
   const router = createBrowserRouter([
@@ -73,6 +75,14 @@ function App() {
           element: <AboutUsPage />,
         },
       ],
+    },
+    {
+      path: "/terms_and_conditions",
+      element: <TermsAndConditions />,
+    },
+    {
+      path: "/privacy_policy",
+      element: <PrivacyPolicy />,
     },
     {
       path: "/admin",

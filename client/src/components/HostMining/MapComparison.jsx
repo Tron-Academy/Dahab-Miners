@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import DescriptionBox from "./DescriptionBox";
+import DescriptionBox from "../Home/mapsection/DescriptionBox";
 // import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-function MapSection() {
+export default function MapComparison() {
   const [isHover1, setIsHover1] = useState(true);
   const [isHover2, setIsHover2] = useState(false);
   const sectionVariants = {
@@ -25,12 +25,12 @@ function MapSection() {
     >
       <div className="flex flex-col lg:items-start items-center gap-5 lg:max-w-[470px]">
         <h4 className="text-[40px] gradient-heading font-semibold lg:text-left text-center">
-          Global Reach. Strategic Locations
+          Strategic Global Locations
         </h4>
         <p className="text-sm max-w-[350px] lg:text-left text-center">
-          Our mining farms are strategically placed in the UAE and Ethiopia to
-          maximize efficiency and profitability. Join a global network of crypto
-          miners today
+          We operate state-of-the-art mining farms in key locations, ensuring
+          stable power, secure facilities, and optimal performance for your
+          miners
         </p>
         <div className="flex gap-3 items-center">
           <button
@@ -64,16 +64,22 @@ function MapSection() {
         </div>
         <div className="flex justify-between items-center w-full z-[1]">
           <div>
-            <p className="text-[#0194FE] text-4xl font-semibold">2K+</p>
+            <p className="text-[#0194FE] text-4xl font-semibold">
+              {isHover1 ? "3K+" : "2K+"}
+            </p>
             <p className="text-sm">Miners Hosted</p>
           </div>
           <div>
-            <p className="text-[#0194FE] text-4xl font-semibold">250+</p>
-            <p className="text-sm">Customers</p>
+            <p className="text-[#0194FE] text-4xl font-semibold">
+              {isHover1 ? "35+" : "10+"}
+            </p>
+            <p className="text-sm">Active Clients</p>
           </div>
           <div>
-            <p className="text-[#0194FE] text-4xl font-semibold">10+</p>
-            <p className="text-sm">B2B Clients</p>
+            <p className="text-[#0194FE] text-4xl font-semibold">
+              {isHover1 ? "5+" : "10+"}
+            </p>
+            <p className="text-sm">MW Capacity</p>
           </div>
         </div>
       </div>
@@ -113,5 +119,3 @@ function MapSection() {
     </motion.section>
   );
 }
-
-export default MapSection;

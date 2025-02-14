@@ -22,10 +22,11 @@ export default function AbudhabiContactUs() {
       <div className="customborder p-10 flex md:flex-row flex-col gap-5 justify-between items-center">
         <div className="flex flex-col md:items-start items-center gap-3">
           <h5 className="text-[#0194FE] text-3xl md:text-left text-center font-semibold">
-            Do you want to start mining?
+            Ready to Start Mining?
           </h5>
           <p className="text-[#A1D3F8] md:text-left text-center">
-            No matter what questions or concerns you have, we are happy to help.
+            Whether you need a miner, hosting, or expert guidance, we’re here to
+            help. Let’s get you mining today!
           </p>
         </div>
         <button

@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
 import HostMiningHead from "../../components/HostMining/HostMiningHead";
-import HostMiningDescription from "../../components/HostMining/HostMiningDescription";
+// import HostMiningDescription from "../../components/HostMining/HostMiningDescription";
 import GraphSection from "../../components/HostMining/GraphSection";
-import BuyBox from "../../components/HostMining/BuyBox";
-import RequestHostingSection from "../../components/HostMining/RequestHostingSection";
+// import BuyBox from "../../components/HostMining/BuyBox";
+// import RequestHostingSection from "../../components/HostMining/RequestHostingSection";
 import { Helmet } from "react-helmet";
 import FarmingLocations from "../../components/HostMining/FarmingLocations";
 import MapSection from "../../components/Home/mapsection/MapSection";
 import BitcoinConsulting from "../../components/HostMining/BitcoinConsulting";
 import FAQSection from "../../components/Home/Faq/FAQSection";
 import ContactButtonSection from "../../components/HostMining/ContactButtonSection";
+import MapComparison from "../../components/HostMining/MapComparison";
 
 export default function HostMiningPage() {
   useEffect(() => {
@@ -32,7 +33,7 @@ export default function HostMiningPage() {
       {/* <HostMiningDescription /> */}
       <GraphSection />
       <FarmingLocations />
-      <MapSection />
+      <MapComparison />
       <BitcoinConsulting />
       <FAQSection full />
       <ContactButtonSection />

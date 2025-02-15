@@ -4,8 +4,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import WhatsApp from "../components/WhatsApp";
 
-import EnquireButton from "../components/Home/contactform/EnquireButton";
-import SpotlightCard from "../components/SpotLightColor";
+// import EnquireButton from "../components/Home/contactform/EnquireButton";
+// import SpotlightCard from "../components/SpotLightColor";
 import SplashCursor from "../components/SplashCursor";
 
 export default function HomeLayout() {

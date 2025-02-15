@@ -13,3 +13,17 @@ export const authenticateUser = async (req, res, next) => {
     throw new UnauthenticatedError("invalid authorization");
   }
 };
+
+export const superAdmin = async (req, res, next) => {
+  try {
+    const { userId, username } = req.user;
+    if (username === "Admin") {
+      next();
+    } else {
+      throw new UnauthenticatedError("invalid authorization");
+    }
+  } catch (error) {
+    console.log(error);
+    throw new UnauthenticatedError("invalid authorization");
+  }
+};

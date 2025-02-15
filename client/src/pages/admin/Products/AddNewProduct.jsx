@@ -97,6 +97,7 @@ export default function AddNewProduct() {
           title={"Name"}
           type={"text"}
           placeholder={"Enter Name"}
+          admin
           value={productName}
           onchange={(e) => setProductName(e.target.value)}
         />
@@ -139,6 +140,7 @@ export default function AddNewProduct() {
         <FormInput
           title={"HashRate"}
           type={"text"}
+          admin
           placeholder={"Enter hashrate"}
           value={hashRate}
           onchange={(e) => setHashRate(e.target.value)}
@@ -146,6 +148,7 @@ export default function AddNewProduct() {
         <FormInput
           title={"Power (Watts)"}
           type={"Number"}
+          admin
           placeholder={"Enter power in Watts"}
           value={power}
           onchange={(e) => setPower(e.target.value)}
@@ -153,6 +156,7 @@ export default function AddNewProduct() {
         <FormInput
           title={"Algorithm"}
           type={"text"}
+          admin
           placeholder={"Enter the algorithm of your Miner"}
           value={algorithm}
           onchange={(e) => setAlgorithm(e.target.value)}
@@ -160,6 +164,7 @@ export default function AddNewProduct() {
         <FormInput
           title={"Price (AED)"}
           type={"Number"}
+          admin
           placeholder={"Enter price of product"}
           value={price}
           onchange={(e) => setPrice(e.target.value)}

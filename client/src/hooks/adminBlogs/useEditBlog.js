@@ -12,6 +12,10 @@ const useEditBlog = () => {
     blogImage,
     blogImagePublicId,
     content,
+    slug,
+    metaTitle,
+    metaDescription,
+    metaKeywords,
     id,
   }) => {
     setLoading(true);
@@ -23,6 +27,10 @@ const useEditBlog = () => {
           blogImage,
           blogImagePublicId,
           content,
+          slug,
+          metaTitle,
+          metaDescription,
+          metaKeywords,
         },
         { withCredentials: true }
       );

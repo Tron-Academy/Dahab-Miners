@@ -18,11 +18,17 @@ export const uploadBlogImage = async (req, res) => {
 };
 
 export const addNewBlog = async (req, res) => {
+  const blog = await Blog.find({ slug: req.body.slug });
+  if (blog.length > 0) throw new BadRequestError("Slug already exists");
   const newBlog = new Blog({
     title: req.body.title,
     blogImage: req.body.blogImage,
     blogImagePublicId: req.body.blogImagePublicId,
     content: req.body.content,
+    slug: req.body.slug,
+    metaTitle: req.body.metaTitle,
+    metaDescription: req.body.metaDescription,
+    metaKeywords: req.body.metaKeywords || "",
   });
   await newBlog.save();
   res.status(201).json({ msg: "success" });
@@ -65,10 +71,18 @@ export const updateBlogImage = async (req, res) => {
 export const editBlog = async (req, res) => {
   const blog = await Blog.findById(req.params.id);
   if (!blog) throw new NotFoundError("No blog found");
+  const existingBlog = await Blog.findOne({ slug: req.body.slug });
+  if (existingBlog && existingBlog._id.toString() !== blog._id.toString()) {
+    throw new BadRequestError("slug already exists");
+  }
   blog.title = req.body.title;
   blog.blogImage = req.body.blogImage;
   blog.blogImagePublicId = req.body.blogImagePublicId;
   blog.content = req.body.content;
+  blog.slug = req.body.slug;
+  blog.metaTitle = req.body.metaTitle;
+  blog.metaDescription = req.body.metaDescription;
+  blog.metaKeywords = req.body.metaKeywords;
   await blog.save();
   res.status(200).json({ msg: "success" });
 };

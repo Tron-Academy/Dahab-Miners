@@ -30,12 +30,9 @@ export default function SingleBlogPage() {
   ) : (
     <div>
       <Helmet>
-        <title>Crypto Mining Insights and Tips | Dahab Miners Blog</title>
-        <meta
-          name="description"
-          content="Stay updated with the latest news, tips, and insights on crypto mining at Dahab Miners' blog. Learn how to optimize your mining operations today"
-        />
-        <meta name="keywords" content="Buy Bitcoin Miners in Abu Dhabi" />
+        <title>{blog?.metaTitle}</title>
+        <meta name="description" content={blog?.metaDescription} />
+        <meta name="keywords" content={blog?.metaKeywords} />
       </Helmet>
       <div className="my-5 flex justify-end">
         <Link

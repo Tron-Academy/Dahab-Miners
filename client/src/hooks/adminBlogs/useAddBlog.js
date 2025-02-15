@@ -7,7 +7,16 @@ import { toast } from "react-toastify";
 const useAddBlog = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const addBlog = async ({ title, blogImage, blogImagePublicId, content }) => {
+  const addBlog = async ({
+    title,
+    blogImage,
+    blogImagePublicId,
+    content,
+    slug,
+    metaTitle,
+    metaDescription,
+    metaKeywords,
+  }) => {
     setLoading(true);
     try {
       const res = await axios.post(
@@ -17,6 +26,10 @@ const useAddBlog = () => {
           blogImage,
           blogImagePublicId,
           content,
+          slug,
+          metaTitle,
+          metaDescription,
+          metaKeywords,
         },
         { withCredentials: true }
       );

@@ -13,6 +13,10 @@ export default function AddNewBlog() {
   const [title, setTitle] = useState("");
   const [blogImage, setBlogImage] = useState("");
   const [blogImageId, setBlogImageId] = useState("");
+  const [slug, setSlug] = useState("");
+  const [metaTitle, setMetaTitle] = useState("");
+  const [metaDescription, setMetaDescription] = useState("");
+  const [metaKeywords, setMetaKeywords] = useState("");
 
   const { loading, uploadBlogImage, details } = useUploadBlogImage();
   const { loading: blogLoading, addBlog } = useAddBlog();
@@ -40,6 +44,7 @@ export default function AddNewBlog() {
           type={"text"}
           title={"Blog Title"}
           value={title}
+          admin
           onchange={(e) => setTitle(e.target.value)}
           placeholder={"Enter Title"}
         />
@@ -59,7 +64,39 @@ export default function AddNewBlog() {
           theme="snow"
           value={content}
           onChange={(value) => setContent(value)}
-          className="bg-purple-50 rounded-lg"
+          className="bg-purple-50 rounded-lg mb-5"
+        />
+        <FormInput
+          type={"text"}
+          title={"Blog Slug"}
+          admin
+          value={slug}
+          onchange={(e) => setSlug(e.target.value)}
+          placeholder={"Enter blog slug"}
+        />
+        <FormInput
+          type={"text"}
+          admin
+          title={"Blog Meta Title"}
+          value={metaTitle}
+          onchange={(e) => setMetaTitle(e.target.value)}
+          placeholder={"Enter Blog Meta Title"}
+        />
+        <FormInput
+          type={"text"}
+          admin
+          value={metaDescription}
+          onchange={(e) => setMetaDescription(e.target.value)}
+          title={"Blog Meta Description"}
+          placeholder={"Enter blog Meta description"}
+        />
+        <FormInput
+          type={"text"}
+          admin
+          value={metaKeywords}
+          onchange={(e) => setMetaKeywords(e.target.value)}
+          title={"Blog Meta Keywords"}
+          placeholder={"Enter blog Meta keywords"}
         />
         <button
           onClick={() =>
@@ -68,6 +105,10 @@ export default function AddNewBlog() {
               blogImage,
               blogImagePublicId: blogImageId,
               content,
+              slug,
+              metaDescription,
+              metaKeywords,
+              metaTitle,
             })
           }
           className="bg-homeBg p-2 my-5 rounded-lg text-white hover:bg-blue-500 nav-link"

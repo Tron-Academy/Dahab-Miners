@@ -14,6 +14,18 @@ const BlogSchema = new Schema(
     content: {
       type: String,
     },
+    slug: {
+      type: String,
+    },
+    metaTitle: {
+      type: String,
+    },
+    metaDescription: {
+      type: String,
+    },
+    metaKeywords: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

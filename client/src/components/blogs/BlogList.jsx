@@ -27,7 +27,7 @@ export default function BlogList() {
               date={x.createdAt.toString().slice(0, 10)}
               title={x.title}
               content={x.content}
-              id={x._id}
+              id={x.slug}
             />
           ))}
       </div>

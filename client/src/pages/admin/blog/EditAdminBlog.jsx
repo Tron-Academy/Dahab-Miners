@@ -16,6 +16,10 @@ export default function EditAdminBlog() {
   const [title, setTitle] = useState("");
   const [blogImage, setBlogImage] = useState("");
   const [blogImageId, setBlogImageId] = useState("");
+  const [slug, setSlug] = useState("");
+  const [metaTitle, setMetaTitle] = useState("");
+  const [metaDescription, setMetaDescription] = useState("");
+  const [metaKeywords, setMetaKeywords] = useState("");
   const {
     loading: imageLoading,
     details,
@@ -29,6 +33,10 @@ export default function EditAdminBlog() {
       setTitle(blog.title);
       setBlogImage(blog.blogImage);
       setBlogImageId(blog.blogImagePublicId);
+      setSlug(blog.slug || "");
+      setMetaTitle(blog.metaTitle || "");
+      setMetaDescription(blog.metaDescription || "");
+      setMetaKeywords(blog.metaKeywords || "");
     }
   }, [blog]);
 
@@ -57,6 +65,7 @@ export default function EditAdminBlog() {
           type={"text"}
           title={"Blog Title"}
           value={title}
+          admin
           onchange={(e) => setTitle(e.target.value)}
           placeholder={"Enter Title"}
         />
@@ -78,6 +87,38 @@ export default function EditAdminBlog() {
           onChange={(value) => setContent(value)}
           className="bg-purple-50 rounded-lg"
         />
+        <FormInput
+          type={"text"}
+          title={"Blog Slug"}
+          admin
+          value={slug}
+          onchange={(e) => setSlug(e.target.value)}
+          placeholder={"Enter blog slug"}
+        />
+        <FormInput
+          type={"text"}
+          admin
+          title={"Blog Meta Title"}
+          value={metaTitle}
+          onchange={(e) => setMetaTitle(e.target.value)}
+          placeholder={"Enter Blog Meta Title"}
+        />
+        <FormInput
+          type={"text"}
+          admin
+          value={metaDescription}
+          onchange={(e) => setMetaDescription(e.target.value)}
+          title={"Blog Meta Description"}
+          placeholder={"Enter blog Meta description"}
+        />
+        <FormInput
+          type={"text"}
+          admin
+          value={metaKeywords}
+          onchange={(e) => setMetaKeywords(e.target.value)}
+          title={"Blog Meta Keywords"}
+          placeholder={"Enter blog Meta keywords"}
+        />
         <button
           onClick={() =>
             editBlog({
@@ -86,6 +127,10 @@ export default function EditAdminBlog() {
               blogImagePublicId: blogImageId,
               content,
               id,
+              slug,
+              metaDescription,
+              metaKeywords,
+              metaTitle,
             })
           }
           className="bg-homeBg p-2 my-5 rounded-lg text-white hover:bg-blue-500 nav-link"

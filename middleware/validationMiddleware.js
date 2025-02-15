@@ -95,6 +95,12 @@ export const validateBlogInput = withValidationErrors([
     .notEmpty()
     .withMessage("Error in image upload. try again"),
   body("content").notEmpty().withMessage("Content is required"),
+  body("slug").notEmpty().withMessage("Slug is required"),
+  body("metaTitle").notEmpty().withMessage("Meta title is required"),
+  body("metaDescription")
+    .notEmpty()
+    .withMessage("Meta Description is required"),
+  // body("metaKeywords").notEmpty().withMessage("Meta keywords is required"),
 ]);
 
 export const validateDataInput = withValidationErrors([

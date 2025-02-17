@@ -36,7 +36,7 @@ export default function CryptoCurrencySection() {
           crypto mining needs. Start mining smarter with us today.
         </p>
         <Link
-          to={"/buy"}
+          to={"/buy-bitcoin-miners-uae"}
           className="px-4 py-2 mb-4 btn-bg text-white text-base font-semibold rounded-lg w-fit hover:bg-btnHover nav-link"
         >
           View Products

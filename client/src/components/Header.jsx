@@ -30,7 +30,7 @@ export default function Header() {
         <NavLink className={"text-white"} to={"/"}>
           Home
         </NavLink>
-        <NavLink className={"text-white"} to={"/buy"}>
+        <NavLink className={"text-white"} to={"/buy-bitcoin-miners-uae"}>
           Buy Miners
         </NavLink>
         <div className="relative">
@@ -46,7 +46,7 @@ export default function Header() {
           {isHover && (
             <div className="absolute bg-[#000618] text-white shadow-lg rounded-md mt-2 w-40">
               <NavLink
-                to={"/host"}
+                to={"/host-miners"}
                 className="block px-4 py-2 hover:bg-[#202225]"
                 onClick={() => setisHover(false)}
                 end
@@ -54,14 +54,14 @@ export default function Header() {
                 Hosting
               </NavLink>
               <NavLink
-                to={"/host/abudhabi"}
+                to={"/host-miners/bitcoin-mining-hosting-abu-dhabi"}
                 className="block px-4 py-2 hover:bg-[#202225]"
                 onClick={() => setisHover(false)}
               >
                 Abu Dhabi
               </NavLink>
               <NavLink
-                to={"/host/ethiopia"}
+                to={"/host-miners/bitcoin-mining-hosting-ethiopia"}
                 className="block px-4 py-2 hover:bg-[#202225]"
                 onClick={() => setisHover(false)}
               >
@@ -70,13 +70,13 @@ export default function Header() {
             </div>
           )}
         </div>
-        <NavLink className={"text-white"} to={"/repair"}>
+        <NavLink className={"text-white"} to={"/asic-miner-repair-dubai"}>
           Miner Repair
         </NavLink>
         <NavLink className={"text-white"} to={"/blogs"}>
           Blogs
         </NavLink>
-        <NavLink className={"text-white"} to={"/about"}>
+        <NavLink className={"text-white"} to={"/about-us"}>
           About Us
         </NavLink>
       </nav>
@@ -105,20 +105,22 @@ export default function Header() {
   );
 }
 
-/*        {isHover && (
-            <div
-              className="bg-[#000618] absolute top-5 right-0 p-5 flex flex-col gap-3 min-w-[150px] rounded-lg "
-              onMouseEnter={() => setisHover(true)}
-              onMouseLeave={() => setisHover(false)}
-            >
-              <NavLink
-                className={"text-white border-b border-[#07EAD3] py-2"}
-                to={"/host/abudhabi"}
-              >
-                Abu Dhabi
-              </NavLink>
-              <NavLink className={"text-white"} to={"/host/abudhabi"}>
-                Ethiopia
-              </NavLink>
-            </div>
-          )} */
+// {
+//   isHover && (
+//     <div
+//       className="bg-[#000618] absolute top-5 right-0 p-5 flex flex-col gap-3 min-w-[150px] rounded-lg "
+//       onMouseEnter={() => setisHover(true)}
+//       onMouseLeave={() => setisHover(false)}
+//     >
+//       <NavLink
+//         className={"text-white border-b border-[#07EAD3] py-2"}
+//         to={"/host/abudhabi"}
+//       >
+//         Abu Dhabi
+//       </NavLink>
+//       <NavLink className={"text-white"} to={"/host/abudhabi"}>
+//         Ethiopia
+//       </NavLink>
+//     </div>
+//   );
+// }

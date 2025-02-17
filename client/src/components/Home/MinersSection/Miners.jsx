@@ -33,7 +33,7 @@ export default function Miners() {
           smarter today.
         </h2>
         <Link
-          to={"/buy"}
+          to={"/buy-bitcoin-miners-uae"}
           className="px-3 py-2 my-5 rounded-lg text-base text-white font-semibold border border-[#1ECBAF] nav-link hover:shadow-lg hover:shadow-[#1ECBAF]"
         >
           View all Products

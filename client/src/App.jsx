@@ -43,23 +43,23 @@ function App() {
           element: <HomePage />,
         },
         {
-          path: "buy",
+          path: "buy-bitcoin-miners-uae",
           element: <BuyMinersPage />,
         },
         {
-          path: "host",
+          path: "host-miners",
           element: <HostMiningPage />,
         },
         {
-          path: "host/abudhabi",
+          path: "host-miners/bitcoin-mining-hosting-abu-dhabi",
           element: <AbuDhabiHosting />,
         },
         {
-          path: "host/ethiopia",
+          path: "host-miners/bitcoin-mining-hosting-ethiopia",
           element: <EthiopiaHosting />,
         },
         {
-          path: "repair",
+          path: "asic-miner-repair-dubai",
           element: <MinerRepairPage />,
         },
         {
@@ -71,7 +71,7 @@ function App() {
           element: <SingleBlogPage />,
         },
         {
-          path: "about",
+          path: "about-us",
           element: <AboutUsPage />,
         },
       ],

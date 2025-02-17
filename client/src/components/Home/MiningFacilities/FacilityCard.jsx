@@ -35,7 +35,7 @@ export default function FacilityCard({ title, content, image }) {
       </div>
       <img
         src={image}
-        className="w-[200px] object-cover"
+        className="w-[200px] object-cover rounded-lg"
         alt="Cutting-edge-technology-in-crypto-mining-machines-in-abu-dhabi-UAE"
         title="Looking for reliable crypto mining solutions in UAE? Dahab Miners provides cutting-edge ASIC miners in Abu Dhabi, perfect for beginners and pros alike. Check out our CRYPTO MINING MACHINES IN UAE and start mining efficiently today!"
       ></img>

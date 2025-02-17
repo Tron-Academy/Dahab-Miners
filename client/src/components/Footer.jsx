@@ -55,10 +55,11 @@ export default function Footer() {
         </div>
         <div className="flex flex-col gap-3 text-sm font-medium text-white">
           <Link to={"/"}>Home</Link>
-          <Link to={"/buy"}>Buy Miners</Link>
-          <Link to={"/host"}>Host Mining</Link>
-          <Link to={"/repair"}>Miner Repair</Link>
+          <Link to={"/buy-bitcoin-miners-uae"}>Buy Miners</Link>
+          <Link to={"/host-miners"}>Host Mining</Link>
+          <Link to={"/asic-miner-repair-dubai"}>Miner Repair</Link>
           <Link to={"/blogs"}>Blogs</Link>
+          <Link to={"/about-us"}>About Us</Link>
           <Link to={"/terms_and_conditions"}>Terms & Conditions</Link>
           <Link to={"/privacy_policy"}>Privacy Policy</Link>
         </div>

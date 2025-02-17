@@ -49,7 +49,10 @@ export default function WhyAbudhabiSection() {
             }
           />
         </div>
-        <img src="/6.jpg" className="max-w-[500px] rounded-lg object-cover" />
+        <img
+          src="/abudhabi/img-1.jpg"
+          className="max-w-[500px] rounded-lg object-cover"
+        />
       </div>
     </motion.section>
   );

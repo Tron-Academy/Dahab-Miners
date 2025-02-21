@@ -9,6 +9,7 @@ export default function AddNewDataForm() {
   const [serialNumber, setSerialNumber] = useState("");
   const [macAddress, setMacAddress] = useState("");
   const [location, setLocation] = useState("");
+  const [temporary, setTemporary] = useState("");
   const { loading, addNewData } = useAddNewData();
   return (
     <div className="my-10">
@@ -52,6 +53,14 @@ export default function AddNewDataForm() {
         onchange={(e) => setLocation(e.target.value)}
         placeholder={"Enter location"}
       />
+      <FormInput
+        title={"Temporary Client"}
+        admin
+        type={"text"}
+        value={temporary}
+        onchange={(e) => setTemporary(e.target.value)}
+        placeholder={"Enter Client"}
+      />
       <div className="flex justify-end">
         <button
           onClick={() =>
@@ -61,6 +70,7 @@ export default function AddNewDataForm() {
               macAddress,
               serialNumber,
               modelNumber,
+              temporary,
             })
           }
           className="bg-homeBg p-2 px-4 rounded-lg text-white hover:bg-blue-500 nav-link"

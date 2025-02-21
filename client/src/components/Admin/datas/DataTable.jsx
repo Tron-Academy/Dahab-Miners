@@ -30,32 +30,37 @@ export default function DataTable({ client, model, serial }) {
         <TableHead>
           <TableRow sx={{ backgroundColor: "#F9FAFB" }}>
             <TableCell
-              sx={{ width: "16.6%", textAlign: "center", fontWeight: "bold" }}
+              sx={{ width: "14.2%", textAlign: "center", fontWeight: "bold" }}
             >
               Client Name
             </TableCell>
             <TableCell
-              sx={{ width: "16.6%", textAlign: "center", fontWeight: "bold" }}
+              sx={{ width: "14.2%", textAlign: "center", fontWeight: "bold" }}
             >
               Model Number
             </TableCell>
             <TableCell
-              sx={{ width: "16.6%", textAlign: "center", fontWeight: "bold" }}
+              sx={{ width: "14.2%", textAlign: "center", fontWeight: "bold" }}
             >
               Serial Number
             </TableCell>
             <TableCell
-              sx={{ width: "16.6%", textAlign: "center", fontWeight: "bold" }}
+              sx={{ width: "14.2%", textAlign: "center", fontWeight: "bold" }}
             >
               Mac Address
             </TableCell>
             <TableCell
-              sx={{ width: "16.6%", textAlign: "center", fontWeight: "bold" }}
+              sx={{ width: "14.2%", textAlign: "center", fontWeight: "bold" }}
             >
               Location
             </TableCell>
             <TableCell
-              sx={{ width: "16.6%", textAlign: "center", fontWeight: "bold" }}
+              sx={{ width: "14.2%", textAlign: "center", fontWeight: "bold" }}
+            >
+              Temporary user
+            </TableCell>
+            <TableCell
+              sx={{ width: "14.2%", textAlign: "center", fontWeight: "bold" }}
             >
               Action
             </TableCell>
@@ -70,39 +75,46 @@ export default function DataTable({ client, model, serial }) {
               <TableCell
                 component="th"
                 scope="row"
-                sx={{ width: "16.6%", textAlign: "center" }}
+                sx={{ width: "14.2%", textAlign: "center" }}
               >
                 {row.clientName}
               </TableCell>
               <TableCell
                 component="th"
                 scope="row"
-                sx={{ width: "16.6%", textAlign: "center" }}
+                sx={{ width: "14.2%", textAlign: "center" }}
               >
                 {row.modelNumber}
               </TableCell>
               <TableCell
                 component="th"
                 scope="row"
-                sx={{ width: "16.6%", textAlign: "center" }}
+                sx={{ width: "14.2%", textAlign: "center" }}
               >
                 {row.serialNumber}
               </TableCell>
               <TableCell
                 component="th"
                 scope="row"
-                sx={{ width: "16.6%", textAlign: "center" }}
+                sx={{ width: "14.2%", textAlign: "center" }}
               >
                 {row.macAddress}
               </TableCell>
               <TableCell
                 component="th"
                 scope="row"
-                sx={{ width: "16.6%", textAlign: "center" }}
+                sx={{ width: "14.2%", textAlign: "center" }}
               >
                 {row.location}
               </TableCell>
-              <TableCell sx={{ width: "16.6%", textAlign: "center" }}>
+              <TableCell
+                component="th"
+                scope="row"
+                sx={{ width: "14.2%", textAlign: "center" }}
+              >
+                {row.temporaryOwner}
+              </TableCell>
+              <TableCell sx={{ width: "14.2%", textAlign: "center" }}>
                 <div className="flex gap-5 justify-center text-xl text-[#ABABAB]">
                   <Link to={`/admin/data/${row._id}/edit`}>
                     <FaRegEdit />

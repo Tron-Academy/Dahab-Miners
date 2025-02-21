@@ -15,6 +15,7 @@ const useEditData = () => {
     serialNumber,
     modelNumber,
     location,
+    temporary,
   }) => {
     setLoading(true);
     try {
@@ -26,6 +27,7 @@ const useEditData = () => {
           serialNumber,
           modelNumber,
           location,
+          temporary,
         },
         { withCredentials: true }
       );

@@ -2,14 +2,21 @@ import { NotFoundError } from "../errors/customErrors.js";
 import Data from "../models/DataModel.js";
 
 export const addNewData = async (req, res) => {
-  const { location, macAddress, modelNumber, serialNumber, clientName } =
-    req.body;
+  const {
+    location,
+    macAddress,
+    modelNumber,
+    serialNumber,
+    clientName,
+    temporary,
+  } = req.body;
   const newData = new Data({
     location,
     modelNumber,
     serialNumber,
     macAddress,
     clientName,
+    temporaryOwner: temporary,
   });
   await newData.save();
   res.status(201).json({ msg: "success" });
@@ -41,8 +48,14 @@ export const getSingleData = async (req, res) => {
 
 export const updateSingleData = async (req, res) => {
   const { id } = req.params;
-  const { location, macAddress, modelNumber, serialNumber, clientName } =
-    req.body;
+  const {
+    location,
+    macAddress,
+    modelNumber,
+    serialNumber,
+    clientName,
+    temporary,
+  } = req.body;
   const data = await Data.findById(id);
   if (!data) throw new NotFoundError("No data found");
   data.location = location;
@@ -50,6 +63,7 @@ export const updateSingleData = async (req, res) => {
   data.modelNumber = modelNumber;
   data.serialNumber = serialNumber;
   data.clientName = clientName;
+  data.temporaryOwner = temporary;
   await data.save();
   res.status(200).json({ msg: "success" });
 };

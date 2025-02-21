@@ -14,6 +14,7 @@ const useAddNewData = () => {
     modelNumber,
     macAddress,
     location,
+    temporary,
   }) => {
     setLoading(true);
     try {
@@ -25,6 +26,7 @@ const useAddNewData = () => {
           modelNumber,
           macAddress,
           location,
+          temporary,
         },
         { withCredentials: true }
       );

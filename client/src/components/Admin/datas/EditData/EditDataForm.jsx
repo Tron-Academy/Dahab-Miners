@@ -13,6 +13,7 @@ export default function EditDataForm() {
   const [serialNumber, setSerialNumber] = useState("");
   const [macAddress, setMacAddress] = useState("");
   const [location, setLocation] = useState("");
+  const [temporary, setTemporary] = useState("");
   const { loading: editLoading, editData } = useEditData();
 
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function EditDataForm() {
       setSerialNumber(data.serialNumber);
       setMacAddress(data.macAddress);
       setLocation(data.location);
+      setTemporary(data.temporaryOwner ? data.temporaryOwner : "");
     }
   }, [loading, data]);
   return loading ? (
@@ -68,6 +70,14 @@ export default function EditDataForm() {
         onchange={(e) => setLocation(e.target.value)}
         placeholder={"Enter location"}
       />
+      <FormInput
+        title={"Temporary Client"}
+        admin
+        type={"text"}
+        value={temporary}
+        onchange={(e) => setTemporary(e.target.value)}
+        placeholder={"Enter Client"}
+      />
       <div className="flex justify-end">
         <button
           onClick={() =>
@@ -78,6 +88,7 @@ export default function EditDataForm() {
               serialNumber,
               macAddress,
               location,
+              temporary,
             })
           }
           className="bg-homeBg p-2 px-4 rounded-lg text-white hover:bg-blue-500 nav-link"

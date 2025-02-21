@@ -25,7 +25,7 @@ export default function AdminSingleBlogPage() {
       {showDelete && (
         <DeletePrompt function1={function1} function2={function2} />
       )}
-      <div className="flex flex-col gap-7 items-center">
+      <div className="flex flex-col gap-7 items-center z-0">
         <h3 className="md:text-4xl font-semibold">{blog?.title}</h3>
         <img
           src={blog?.blogImage}

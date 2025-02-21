@@ -25,6 +25,9 @@ const DataSchema = new Schema(
       type: String,
       required: true,
     },
+    temporaryOwner: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

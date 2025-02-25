@@ -6,7 +6,7 @@ export default function AboutUsDetailElt({ stat, content, style }) {
       className={`flex flex-col gap-3 items-center justify-center text-[#8EADB0] p-10 bg-[#08112C] ${style}`}
     >
       <h5 className="text-4xl font-semibold">{stat}</h5>
-      <p className="text-sm">{content}</p>
+      <p className="text-sm text-center">{content}</p>
     </div>
   );
 }

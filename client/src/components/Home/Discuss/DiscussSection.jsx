@@ -3,13 +3,13 @@ import { toast } from "react-toastify";
 import { handleEmailEnquiry } from "../../../utils/whatsapp";
 
 export default function DiscussSection() {
-  const [email, setEmail] = useState("");
+  const [query, setQuery] = useState("");
   function handleSend() {
-    if (email === "") {
-      toast.warn("Please Enter email");
+    if (query === "") {
+      toast.warn("Please Enter query");
     } else {
-      handleEmailEnquiry({ email });
-      setEmail("");
+      handleEmailEnquiry({ email: query });
+      setQuery("");
     }
   }
   return (
@@ -32,10 +32,10 @@ export default function DiscussSection() {
           </p>
           <div className="flex md:flex-row flex-col gap-3 relative">
             <input
-              type="email"
+              type="text"
               placeholder="Type your query here"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
               className="px-5 py-2 rounded-full outline-none bg-transparent border border-[#0194FE] min-w-full"
             />
             <button

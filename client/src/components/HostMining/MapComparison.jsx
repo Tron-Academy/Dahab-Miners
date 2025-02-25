@@ -65,19 +65,19 @@ export default function MapComparison() {
         <div className="flex justify-between items-center w-full z-[1]">
           <div>
             <p className="text-[#0194FE] text-4xl font-semibold">
-              {isHover1 ? "3K+" : "2K+"}
+              {isHover1 ? "2K+" : "3K+"}
             </p>
             <p className="text-sm">Miners Hosted</p>
           </div>
           <div>
             <p className="text-[#0194FE] text-4xl font-semibold">
-              {isHover1 ? "35+" : "10+"}
+              {isHover1 ? "250+" : "10+"}
             </p>
             <p className="text-sm">Active Clients</p>
           </div>
           <div>
             <p className="text-[#0194FE] text-4xl font-semibold">
-              {isHover1 ? "5+" : "10+"}
+              {isHover1 ? "5+" : "30+"}
             </p>
             <p className="text-sm">MW Capacity</p>
           </div>

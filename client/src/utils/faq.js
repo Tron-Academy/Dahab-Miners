@@ -39,11 +39,11 @@ export const faq = [
     q: "What are the system requirements for mining?",
     a: "To mine effectively, use an ASIC miner for optimal performance. Ensure a high-wattage, 80 PLUS certified power supply and proper cooling. You can operate on Windows, Linux, or a mining OS like Hive OS with suitable software. Also, maintain a stable internet connection.",
   },
-  {
-    id: 9,
-    q: "What is the process for buying a crypto miner from DAHAB Miners?",
-    a: "Buying a miner is simple and straightforward. Browse our range of mining machines, choose the one that suits your needs, and place your order online. Once the payment is processed, we can deliver your miner door-to-door if you prefer. We also offer free installation and setup if you want to host the miner yourself. Alternatively, we can host it in our secure facilities. Our team is always available to guide you through the process if needed.",
-  },
+  // {
+  //   id: 9,
+  //   q: "What is the process for buying a crypto miner from DAHAB Miners?",
+  //   a: "Buying a miner is simple and straightforward. Browse our range of mining machines, choose the one that suits your needs, and place your order online. Once the payment is processed, we can deliver your miner door-to-door if you prefer. We also offer free installation and setup if you want to host the miner yourself. Alternatively, we can host it in our secure facilities. Our team is always available to guide you through the process if needed.",
+  // },
   {
     id: 10,
     q: "What are the benefits of hosting my miners with DAHAB Miners compared to doing it myself?",

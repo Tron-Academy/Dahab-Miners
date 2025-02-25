@@ -22,7 +22,7 @@ export default function FAQSection({ full }) {
               />
             ))
           : faq
-              .slice(8)
+              .slice(6)
               .map((x) => (
                 <FAQCard
                   key={x.id}

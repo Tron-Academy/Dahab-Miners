@@ -66,7 +66,7 @@ export default function AboutLandingSection() {
           }}
         >
           <AboutUsDetailElt
-            stat={"3000+"}
+            stat={"5000+"}
             content={"ASIC Miners Hosted"}
             style={"rounded-tl-[35px] rounded-bl-[35px] rounded-br-[35px]"}
           />

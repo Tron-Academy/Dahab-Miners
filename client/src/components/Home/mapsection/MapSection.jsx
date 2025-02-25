@@ -69,7 +69,7 @@ function MapSection() {
           </div>
           <div>
             <p className="text-[#0194FE] text-4xl font-semibold">250+</p>
-            <p className="text-sm">Customers</p>
+            <p className="text-sm">Clients</p>
           </div>
           <div>
             <p className="text-[#0194FE] text-4xl font-semibold">10+</p>

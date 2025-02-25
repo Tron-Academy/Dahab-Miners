@@ -8,18 +8,19 @@ import PerformanceMetrics from "../../components/Home/performanceMetrics/Perform
 // import BlogSection from "../../components/Home/blog/BlogSection";
 import Testimonials from "../../components/Home/Testimonials/Testimonials";
 import CryptoCurrencySection from "../../components/Home/Cryptocurrency/CryptoCurrencySection";
-import ContactForm from "../../components/Home/contactform/ContactForm";
+// import ContactForm from "../../components/Home/contactform/ContactForm";
 import { Helmet } from "react-helmet";
 import SecondSection from "../../components/Home/secondsection/SecondSection";
 import ThirdSection from "../../components/Home/thirdsection/ThirdSection";
-import Calculator from "../../components/Home/calculator/Calculator";
-import MapSection from "../../components/Home/mapsection/MapSection";
+// import Calculator from "../../components/Home/calculator/Calculator";
+// import MapSection from "../../components/Home/mapsection/MapSection";
 import WhyChooseUs from "../../components/Home/WhyChooseUs/WhyChooseUs";
 import FAQSection from "../../components/Home/Faq/FAQSection";
 import DiscussSection from "../../components/Home/Discuss/DiscussSection";
 import useGetBitCoinData from "../../hooks/coins/useGetBitCoinData";
 import { useDispatch } from "react-redux";
 import { setBlockReward, setDifficulty } from "../../slices/userSlice";
+import MapComparison from "../../components/HostMining/MapComparison";
 
 export default function HomePage() {
   const { loading, btcData } = useGetBitCoinData();
@@ -54,7 +55,8 @@ cost-effective crypto mining and hosting solutions for your miners in UAE."
       <LandingSection />
       <Miners />
       {/* <ProfitSection /> */}
-      <MapSection />
+      {/* <MapSection /> */}
+      <MapComparison />
       <ThirdSection btcData={btcData} />
       {/* <Calculator /> */}
       <MiningFacilitiesSection />

@@ -1,4 +1,5 @@
 import { model, Schema } from "mongoose";
+import { type } from "os";
 
 const AdminSchema = new Schema(
   {
@@ -17,6 +18,10 @@ const AdminSchema = new Schema(
     },
     verificationCode: {
       type: String,
+    },
+    role: {
+      type: String,
+      enum: ["superAdmin", "admin", "seo"],
     },
   },
   {

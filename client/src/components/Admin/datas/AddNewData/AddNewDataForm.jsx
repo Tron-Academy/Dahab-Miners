@@ -5,10 +5,13 @@ import Loading from "../../../Loading";
 
 export default function AddNewDataForm() {
   const [clientName, setClientName] = useState("");
-  const [modelNumber, setModelNumber] = useState("");
+  const [modelName, setModelName] = useState("");
   const [serialNumber, setSerialNumber] = useState("");
   const [macAddress, setMacAddress] = useState("");
-  const [location, setLocation] = useState("");
+  const [actualLocation, setActualLocation] = useState("");
+  const [currentLocation, setCurrentLocation] = useState("");
+  const [brand, setBrand] = useState("");
+  const [workerId, setWorkerId] = useState("");
   const [temporary, setTemporary] = useState("");
   const { loading, addNewData } = useAddNewData();
   return (
@@ -22,12 +25,12 @@ export default function AddNewDataForm() {
         placeholder={"Enter client Name"}
       />
       <FormInput
-        title={"Model Number"}
+        title={"Model Name"}
         admin
         type={"text"}
-        value={modelNumber}
-        onchange={(e) => setModelNumber(e.target.value)}
-        placeholder={"Enter Model No"}
+        value={modelName}
+        onchange={(e) => setModelName(e.target.value)}
+        placeholder={"Enter Model Name"}
       />
       <FormInput
         title={"Serial Number"}
@@ -46,30 +49,57 @@ export default function AddNewDataForm() {
         placeholder={"Enter Mac Address"}
       />
       <FormInput
-        title={"Location"}
+        title={"Brand"}
         admin
         type={"text"}
-        value={location}
-        onchange={(e) => setLocation(e.target.value)}
-        placeholder={"Enter location"}
+        value={brand}
+        onchange={(e) => setBrand(e.target.value)}
+        placeholder={"Enter Brand"}
       />
       <FormInput
-        title={"Temporary Client"}
+        title={"Actual Location"}
+        admin
+        type={"text"}
+        value={actualLocation}
+        onchange={(e) => setActualLocation(e.target.value)}
+        placeholder={"Enter Actual location"}
+      />
+      <FormInput
+        title={"Current Location"}
+        admin
+        type={"text"}
+        value={currentLocation}
+        onchange={(e) => setCurrentLocation(e.target.value)}
+        placeholder={"Enter Current Location"}
+      />
+      <FormInput
+        title={"Worker ID"}
+        admin
+        type={"text"}
+        value={workerId}
+        onchange={(e) => setWorkerId(e.target.value)}
+        placeholder={"Enter Worker id"}
+      />
+      <FormInput
+        title={"Now Running"}
         admin
         type={"text"}
         value={temporary}
         onchange={(e) => setTemporary(e.target.value)}
-        placeholder={"Enter Client"}
+        placeholder={"Enter now running status"}
       />
       <div className="flex justify-end">
         <button
           onClick={() =>
             addNewData({
-              location,
               clientName,
               macAddress,
+              actualLocation,
+              currentLocation,
+              brand,
+              workerId,
               serialNumber,
-              modelNumber,
+              modelName,
               temporary,
             })
           }

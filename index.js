@@ -17,7 +17,7 @@ import adminBlogRouter from "./routes/adminBlogRouter.js";
 import adminDashboardRouter from "./routes/adminDashboardRouter.js";
 import userBlogRouter from "./routes/userBlogRouter.js";
 import dataRouter from "./routes/adminDataRouter.js";
-import { authenticateUser, superAdmin } from "./middleware/authMiddleware.js";
+import { authenticateUser, isAdmin } from "./middleware/authMiddleware.js";
 
 const app = express();
 
@@ -61,12 +61,12 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/admin/auth", authRouter);
-app.use("/api/admin/product", authenticateUser, superAdmin, adminProductRouter);
+app.use("/api/admin/product", authenticateUser, isAdmin, adminProductRouter);
 app.use("/api/admin/blogs", authenticateUser, adminBlogRouter);
 app.use("/api/admin/dashboard", authenticateUser, adminDashboardRouter);
 app.use("/api/users/product", userProductRouter);
 app.use("/api/users/blogs", userBlogRouter);
-app.use("/api/admin/data", authenticateUser, superAdmin, dataRouter);
+app.use("/api/admin/data", authenticateUser, isAdmin, dataRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });

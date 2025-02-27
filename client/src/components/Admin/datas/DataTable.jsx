@@ -30,37 +30,52 @@ export default function DataTable({ client, model, serial }) {
         <TableHead>
           <TableRow sx={{ backgroundColor: "#F9FAFB" }}>
             <TableCell
-              sx={{ width: "14.2%", textAlign: "center", fontWeight: "bold" }}
+              sx={{ width: "10%", textAlign: "center", fontWeight: "bold" }}
             >
-              Client Name
+              Brand
             </TableCell>
             <TableCell
-              sx={{ width: "14.2%", textAlign: "center", fontWeight: "bold" }}
+              sx={{ width: "10%", textAlign: "center", fontWeight: "bold" }}
             >
-              Model Number
+              Client
             </TableCell>
             <TableCell
-              sx={{ width: "14.2%", textAlign: "center", fontWeight: "bold" }}
+              sx={{ width: "10%", textAlign: "center", fontWeight: "bold" }}
             >
-              Serial Number
+              Model
             </TableCell>
             <TableCell
-              sx={{ width: "14.2%", textAlign: "center", fontWeight: "bold" }}
+              sx={{ width: "10%", textAlign: "center", fontWeight: "bold" }}
             >
-              Mac Address
+              Serial No
             </TableCell>
             <TableCell
-              sx={{ width: "14.2%", textAlign: "center", fontWeight: "bold" }}
+              sx={{ width: "10%", textAlign: "center", fontWeight: "bold" }}
             >
-              Location
+              Mac Id
             </TableCell>
             <TableCell
-              sx={{ width: "14.2%", textAlign: "center", fontWeight: "bold" }}
+              sx={{ width: "10%", textAlign: "center", fontWeight: "bold" }}
             >
-              Temporary user
+              Work Id
             </TableCell>
             <TableCell
-              sx={{ width: "14.2%", textAlign: "center", fontWeight: "bold" }}
+              sx={{ width: "10%", textAlign: "center", fontWeight: "bold" }}
+            >
+              Act. Location
+            </TableCell>
+            <TableCell
+              sx={{ width: "10%", textAlign: "center", fontWeight: "bold" }}
+            >
+              Cur. Location
+            </TableCell>
+            <TableCell
+              sx={{ width: "10%", textAlign: "center", fontWeight: "bold" }}
+            >
+              Now Running
+            </TableCell>
+            <TableCell
+              sx={{ width: "10%", textAlign: "center", fontWeight: "bold" }}
             >
               Action
             </TableCell>
@@ -77,6 +92,13 @@ export default function DataTable({ client, model, serial }) {
                 scope="row"
                 sx={{ width: "14.2%", textAlign: "center" }}
               >
+                {row.brand}
+              </TableCell>
+              <TableCell
+                component="th"
+                scope="row"
+                sx={{ width: "14.2%", textAlign: "center" }}
+              >
                 {row.clientName}
               </TableCell>
               <TableCell
@@ -84,7 +106,7 @@ export default function DataTable({ client, model, serial }) {
                 scope="row"
                 sx={{ width: "14.2%", textAlign: "center" }}
               >
-                {row.modelNumber}
+                {row.modelName}
               </TableCell>
               <TableCell
                 component="th"
@@ -105,7 +127,21 @@ export default function DataTable({ client, model, serial }) {
                 scope="row"
                 sx={{ width: "14.2%", textAlign: "center" }}
               >
-                {row.location}
+                {row.workerId}
+              </TableCell>
+              <TableCell
+                component="th"
+                scope="row"
+                sx={{ width: "14.2%", textAlign: "center" }}
+              >
+                {row.actualLocation}
+              </TableCell>
+              <TableCell
+                component="th"
+                scope="row"
+                sx={{ width: "14.2%", textAlign: "center" }}
+              >
+                {row.currentLocation}
               </TableCell>
               <TableCell
                 component="th"

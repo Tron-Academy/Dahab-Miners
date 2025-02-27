@@ -104,9 +104,15 @@ export const validateBlogInput = withValidationErrors([
 ]);
 
 export const validateDataInput = withValidationErrors([
-  body("location").notEmpty().withMessage("location is required"),
+  body("actualLocation").notEmpty().withMessage("Actual location is required"),
   body("macAddress").notEmpty().withMessage("mac address is required"),
   body("serialNumber").notEmpty().withMessage("serial number is required"),
-  body("modelNumber").notEmpty().withMessage("model number is required"),
+  body("modelName").notEmpty().withMessage("model name is required"),
   body("clientName").notEmpty().withMessage("client name is required"),
+  body("currentLocation")
+    .notEmpty()
+    .withMessage("Current Location is required"),
+  body("brand").notEmpty().withMessage("Brand is required"),
+  body("workerId").notEmpty().withMessage("worker Id is required"),
+  body("temporary").notEmpty().withMessage("Temporary is required"),
 ]);

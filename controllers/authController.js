@@ -15,6 +15,7 @@ export const registerAdmin = async (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: hashedPassword,
+    role: req.body.role,
   });
   await admin.save();
   res.status(201).json({ msg: "successfully registered" });
@@ -28,7 +29,11 @@ export const loginAdmin = async (req, res) => {
     admin.password
   );
   if (!isPasswordCorrect) throw new UnauthenticatedError("Invalid credentials");
-  const token = createJWT({ userId: admin._id, username: admin.username });
+  const token = createJWT({
+    userId: admin._id,
+    username: admin.username,
+    role: admin.role,
+  });
   const tenDay = 1000 * 60 * 60 * 24 * 10;
   res.cookie("token", token, {
     httpOnly: true,
@@ -51,6 +56,7 @@ export const getUserInfo = async (req, res) => {
   const userInfo = {
     email: user.email,
     username: user.username,
+    role: user.role,
   };
   if (!user) throw new NotFoundError("No user found");
   res.status(200).json({ msg: "success", userInfo });

@@ -2,23 +2,24 @@ import { model, Schema } from "mongoose";
 
 const DataSchema = new Schema(
   {
-    location: {
+    actualLocation: {
+      type: String,
+      required: true,
+    },
+    currentLocation: {
       type: String,
       required: true,
     },
     macAddress: {
       type: String,
-      unique: true,
       required: true,
     },
-    modelNumber: {
+    modelName: {
       type: String,
-      unique: true,
       required: true,
     },
     serialNumber: {
       type: String,
-      unique: true,
       required: true,
     },
     clientName: {
@@ -26,6 +27,12 @@ const DataSchema = new Schema(
       required: true,
     },
     temporaryOwner: {
+      type: String,
+    },
+    brand: {
+      type: String,
+    },
+    workerId: {
       type: String,
     },
   },

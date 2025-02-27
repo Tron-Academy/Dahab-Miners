@@ -49,6 +49,10 @@ select option:focus {
 ul {
   list-style-type: disc;
 }
+
+input:disabled {
+  background-color: gray;
+}
 .gradient-heading {
   background: linear-gradient(290.95deg, #2663bf 5.51%, #1ecbaf 96.94%);
   -webkit-background-clip: text;

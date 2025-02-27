@@ -5,8 +5,8 @@ export const authenticateUser = async (req, res, next) => {
   const { token } = req.cookies;
   if (!token) throw new UnauthenticatedError("unable to access");
   try {
-    const { userId, username } = verifyJWT(token);
-    req.user = { userId, username };
+    const { userId, username, role } = verifyJWT(token);
+    req.user = { userId, username, role };
     next();
   } catch (error) {
     console.log(error);
@@ -14,10 +14,10 @@ export const authenticateUser = async (req, res, next) => {
   }
 };
 
-export const superAdmin = async (req, res, next) => {
+export const isAdmin = async (req, res, next) => {
   try {
-    const { userId, username } = req.user;
-    if (username === "Admin") {
+    const { userId, username, role } = req.user;
+    if (role === "superAdmin" || role === "admin") {
       next();
     } else {
       throw new UnauthenticatedError("invalid authorization");
@@ -25,5 +25,33 @@ export const superAdmin = async (req, res, next) => {
   } catch (error) {
     console.log(error);
     throw new UnauthenticatedError("invalid authorization");
+  }
+};
+
+export const isSuperAdmin = async (req, res, next) => {
+  try {
+    const { role } = req.user;
+    if (role === "superAdmin") {
+      next();
+    } else {
+      throw new UnauthenticatedError("Not Authorised for this operation");
+    }
+  } catch (error) {
+    console.log(error);
+    throw new UnauthenticatedError("Not Authorised for this operation");
+  }
+};
+
+export const isEditor = async (req, res, next) => {
+  try {
+    const { role } = req.user;
+    if (role === "admin") {
+      next();
+    } else {
+      throw new UnauthenticatedError("Not Authorised for this operation");
+    }
+  } catch (error) {
+    console.log(error);
+    throw new UnauthenticatedError("Not Authorised for this operation");
   }
 };

@@ -1,0 +1,46 @@
+[
+  {
+    "clientName": "Shafi",
+    "brand": "Shafi",
+    "actualLocation": "Shafi",
+    "currentLocation": "Shafi",
+    "modelName": "Shafi",
+    "serialNumber": "Shafi",
+    "macAddress": "Shafi",
+    "workerId": "Shafi",
+    "temporaryOwner": "Shafi"
+  },
+  {
+    "clientName": "Paru",
+    "brand": "Paru",
+    "actualLocation": "Paru",
+    "currentLocation": "Paru",
+    "modelName": "Paru",
+    "serialNumber": "Paru",
+    "macAddress": "Paru",
+    "workerId": "Paru",
+    "temporaryOwner": "Paru"
+  },
+  {
+    "clientName": "Shiju",
+    "brand": "Shiju",
+    "actualLocation": "Shiju",
+    "currentLocation": "Shiju",
+    "modelName": "Shiju",
+    "serialNumber": "Shiju",
+    "macAddress": "Shiju",
+    "workerId": "Shiju",
+    "temporaryOwner": "Shiju"
+  },
+  {
+    "clientName": "Aswin",
+    "brand": "Aswin",
+    "actualLocation": "Aswin",
+    "currentLocation": "Aswin",
+    "modelName": "Aswin",
+    "serialNumber": "Aswin",
+    "macAddress": "Aswin",
+    "workerId": "Aswin",
+    "temporaryOwner": "Aswin"
+  }
+]

@@ -85,13 +85,13 @@ export default function Footer() {
             {/* <div className="text-4xl font-thin h-10 border-l sm:block hidden"></div> */}
             <a
               className="flex gap-3 items-start"
-              href="https://maps.app.goo.gl/k8iRT2e9ZLGvBmau5"
+              href="https://maps.app.goo.gl/nvicitwD6T9yF4Ei8"
               target="_blank"
             >
               <div>
                 <CiLocationOn />
               </div>
-              <p>Ethiopia, Oromia, Sheggar, Sebeta, Meta woreda</p>
+              <p>WM92+VCQ Alem Gena, Ethiopia</p>
             </a>
             {/* </div> */}
 

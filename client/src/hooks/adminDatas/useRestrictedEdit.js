@@ -1,22 +1,28 @@
 import axios from "axios";
 import React, { useState } from "react";
-
-import { BASE_URL } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../../utils/constants";
 
-const useDeleteData = () => {
+const useRestrictedEdit = () => {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const deleteData = async ({ id }) => {
+  const EditRestrictedData = async ({ id, currentLocation, temporary }) => {
     setLoading(true);
     try {
-      const res = await axios.delete(
-        `${BASE_URL}/admin/data/deleteData/${id}`,
+      const res = await axios.patch(
+        `${BASE_URL}/admin/data/updateRestricted/${id}`,
+        {
+          currentLocation,
+          temporary,
+        },
         { withCredentials: true }
       );
       const data = res.data;
       if (data.msg === "success") {
-        toast.success("deleted successfully");
+        toast.success("data updated successfully");
+        navigate("/admin/data");
       }
     } catch (err) {
       console.log(
@@ -30,7 +36,7 @@ const useDeleteData = () => {
     }
   };
 
-  return { loading, deleteData };
+  return { loading, EditRestrictedData };
 };
 
-export default useDeleteData;
+export default useRestrictedEdit;

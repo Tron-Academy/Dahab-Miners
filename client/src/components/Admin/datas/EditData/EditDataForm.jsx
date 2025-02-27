@@ -4,28 +4,58 @@ import { useParams } from "react-router-dom";
 import useGetSingleData from "../../../../hooks/adminDatas/useGetSingleData";
 import Loading from "../../../Loading";
 import useEditData from "../../../../hooks/adminDatas/useEditData";
+import { useSelector } from "react-redux";
+import useRestrictedEdit from "../../../../hooks/adminDatas/useRestrictedEdit";
 
 export default function EditDataForm() {
   const { id } = useParams();
   const { loading, data } = useGetSingleData({ id });
   const [clientName, setClientName] = useState("");
-  const [modelNumber, setModelNumber] = useState("");
+  const [modelName, setModelName] = useState("");
   const [serialNumber, setSerialNumber] = useState("");
   const [macAddress, setMacAddress] = useState("");
-  const [location, setLocation] = useState("");
+  const [actualLocation, setActualLocation] = useState("");
+  const [currentLocation, setCurrentLocation] = useState("");
+  const [brand, setBrand] = useState("");
+  const [workerId, setWorkerId] = useState("");
   const [temporary, setTemporary] = useState("");
+  const { user } = useSelector((state) => state.user);
   const { loading: editLoading, editData } = useEditData();
+  const { loading: restrictedLoading, EditRestrictedData } =
+    useRestrictedEdit();
 
   useEffect(() => {
     if (data) {
       setClientName(data.clientName);
-      setModelNumber(data.modelNumber);
+      setModelName(data.modelName);
       setSerialNumber(data.serialNumber);
       setMacAddress(data.macAddress);
-      setLocation(data.location);
       setTemporary(data.temporaryOwner ? data.temporaryOwner : "");
+      setActualLocation(data.actualLocation);
+      setCurrentLocation(data.currentLocation);
+      setBrand(data.brand);
+      setWorkerId(data.workerId);
     }
   }, [loading, data]);
+
+  const handleClick = async () => {
+    if (user?.role === "superAdmin") {
+      editData({
+        id,
+        clientName,
+        modelName,
+        actualLocation,
+        currentLocation,
+        brand,
+        workerId,
+        serialNumber,
+        macAddress,
+        temporary,
+      });
+    } else {
+      EditRestrictedData({ id, currentLocation, temporary });
+    }
+  };
   return loading ? (
     <Loading />
   ) : (
@@ -37,14 +67,16 @@ export default function EditDataForm() {
         onchange={(e) => setClientName(e.target.value)}
         type={"text"}
         placeholder={"Enter client Name"}
+        disabled={user?.role === "admin" ? true : false}
       />
       <FormInput
-        title={"Model Number"}
+        title={"Model Name"}
         admin
-        value={modelNumber}
-        onchange={(e) => setModelNumber(e.target.value)}
+        value={modelName}
+        onchange={(e) => setModelName(e.target.value)}
         type={"text"}
-        placeholder={"Enter Model No"}
+        placeholder={"Enter Model Name"}
+        disabled={user?.role === "admin" ? true : false}
       />
       <FormInput
         title={"Serial Number"}
@@ -53,6 +85,7 @@ export default function EditDataForm() {
         onchange={(e) => setSerialNumber(e.target.value)}
         type={"text"}
         placeholder={"Enter Serial No"}
+        disabled={user?.role === "admin" ? true : false}
       />
       <FormInput
         title={"Mac Address"}
@@ -61,42 +94,61 @@ export default function EditDataForm() {
         onchange={(e) => setMacAddress(e.target.value)}
         type={"text"}
         placeholder={"Enter Mac Address"}
+        disabled={user?.role === "admin" ? true : false}
       />
       <FormInput
-        title={"Location"}
+        title={"Brand"}
         admin
         type={"text"}
-        value={location}
-        onchange={(e) => setLocation(e.target.value)}
-        placeholder={"Enter location"}
+        value={brand}
+        onchange={(e) => setBrand(e.target.value)}
+        placeholder={"Enter Brand"}
+        disabled={user?.role === "admin" ? true : false}
       />
       <FormInput
-        title={"Temporary Client"}
+        title={"Actual Location"}
+        admin
+        value={actualLocation}
+        onchange={(e) => setActualLocation(e.target.value)}
+        type={"text"}
+        placeholder={"Enter Actual Location"}
+        disabled={user?.role === "admin" ? true : false}
+      />
+      <FormInput
+        title={"Current Location"}
+        admin
+        value={currentLocation}
+        onchange={(e) => setCurrentLocation(e.target.value)}
+        type={"text"}
+        placeholder={"Enter Current Location"}
+      />
+      <FormInput
+        title={"Worker ID"}
+        admin
+        value={workerId}
+        onchange={(e) => setWorkerId(e.target.value)}
+        type={"text"}
+        placeholder={"Enter worker id"}
+        disabled={user?.role === "admin" ? true : false}
+      />
+      <FormInput
+        title={"Now Running"}
         admin
         type={"text"}
         value={temporary}
         onchange={(e) => setTemporary(e.target.value)}
-        placeholder={"Enter Client"}
+        placeholder={"Enter now running"}
       />
       <div className="flex justify-end">
         <button
-          onClick={() =>
-            editData({
-              id,
-              clientName,
-              modelNumber,
-              serialNumber,
-              macAddress,
-              location,
-              temporary,
-            })
-          }
+          onClick={handleClick}
           className="bg-homeBg p-2 px-4 rounded-lg text-white hover:bg-blue-500 nav-link"
         >
           Save
         </button>
       </div>
       {editLoading && <Loading />}
+      {restrictedLoading && <Loading />}
     </div>
   );
 }

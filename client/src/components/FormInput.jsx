@@ -7,6 +7,7 @@ export default function FormInput({
   value,
   onchange,
   admin,
+  disabled,
 }) {
   return (
     <div className="form-row">
@@ -19,6 +20,7 @@ export default function FormInput({
           value={value}
           onChange={onchange}
           required
+          disabled={disabled ? true : false}
         />
       </div>
     </div>

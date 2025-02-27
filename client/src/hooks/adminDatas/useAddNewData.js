@@ -11,9 +11,12 @@ const useAddNewData = () => {
   const addNewData = async ({
     clientName,
     serialNumber,
-    modelNumber,
+    modelName,
     macAddress,
-    location,
+    actualLocation,
+    currentLocation,
+    brand,
+    workerId,
     temporary,
   }) => {
     setLoading(true);
@@ -23,9 +26,12 @@ const useAddNewData = () => {
         {
           clientName,
           serialNumber,
-          modelNumber,
+          modelName,
           macAddress,
-          location,
+          actualLocation,
+          currentLocation,
+          brand,
+          workerId,
           temporary,
         },
         { withCredentials: true }
@@ -39,7 +45,9 @@ const useAddNewData = () => {
       console.log(
         err?.response?.data?.msg || err?.error || "something went wrong"
       );
-      toast.error("something went wrong");
+      toast.error(
+        err?.response?.data?.msg || err?.error || "something went wrong"
+      );
     } finally {
       setLoading(false);
     }

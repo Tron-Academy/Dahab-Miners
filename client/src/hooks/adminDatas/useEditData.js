@@ -11,10 +11,13 @@ const useEditData = () => {
   const editData = async ({
     id,
     clientName,
-    macAddress,
     serialNumber,
-    modelNumber,
-    location,
+    modelName,
+    macAddress,
+    actualLocation,
+    currentLocation,
+    brand,
+    workerId,
     temporary,
   }) => {
     setLoading(true);
@@ -23,10 +26,13 @@ const useEditData = () => {
         `${BASE_URL}/admin/data/updateData/${id}`,
         {
           clientName,
-          macAddress,
           serialNumber,
-          modelNumber,
-          location,
+          modelName,
+          macAddress,
+          actualLocation,
+          currentLocation,
+          brand,
+          workerId,
           temporary,
         },
         { withCredentials: true }
@@ -40,7 +46,9 @@ const useEditData = () => {
       console.log(
         err?.response?.data?.msg || err?.error || "something went wrong"
       );
-      toast.error("something went wrong");
+      toast.error(
+        err?.response?.data?.msg || err?.error || "something went wrong"
+      );
     } finally {
       setLoading(false);
     }

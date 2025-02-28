@@ -11,14 +11,19 @@ import BitcoinConsulting from "../../components/HostMining/BitcoinConsulting";
 import FAQSection from "../../components/Home/Faq/FAQSection";
 import ContactButtonSection from "../../components/HostMining/ContactButtonSection";
 import MapComparison from "../../components/HostMining/MapComparison";
+import { useLocation } from "react-router-dom";
 
 export default function HostMiningPage() {
+  const location = useLocation();
+  const fullUrl = window.location.origin + location.pathname + location.search;
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (
     <div>
       <Helmet>
+        <link type="canonical" href={fullUrl} />
         <title>Secure Miner Hosting Services in the UAE | Dahab Miners</title>
         <meta
           name="description"

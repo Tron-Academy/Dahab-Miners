@@ -6,8 +6,12 @@ import EthiopiaSafetySection from "../../components/EthiopiaHosting/EthiopiaSafe
 import AbudhabiConsulting from "../../components/AbuDhabiHosting/abudhabiconsulting/AbudhabiConsulting";
 import AbudhabiContactUs from "../../components/AbuDhabiHosting/abudhabiContact/AbudhabiContactUs";
 import EthiopiaFeatures from "../../components/EthiopiaHosting/EthiopiaFeatures";
+import { useLocation } from "react-router-dom";
 
 export default function EthiopiaHosting() {
+  const location = useLocation();
+  const fullUrl = window.location.origin + location.pathname + location.search;
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

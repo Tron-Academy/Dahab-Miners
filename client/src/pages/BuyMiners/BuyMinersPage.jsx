@@ -1,14 +1,19 @@
 import React, { useEffect } from "react";
 import BuyMinersSection from "../../components/buyMiners/BuyMinersSection";
 import { Helmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
 
 export default function BuyMinersPage() {
+  const location = useLocation();
+  const fullUrl = window.location.origin + location.pathname + location.search;
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (
     <div>
       <Helmet>
+        <link type="canonical" href={fullUrl} />
         <title>Buy High-Performance Crypto Miners at Dahab Miners UAE</title>
         <meta
           name="description"

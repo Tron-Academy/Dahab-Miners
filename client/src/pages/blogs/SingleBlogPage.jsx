@@ -4,11 +4,14 @@ import BlogContent from "../../components/blogs/singleblog/BlogContent";
 import RelatedBlogs from "../../components/blogs/singleblog/RelatedBlogs";
 import useGetSingleUserBlog from "../../hooks/userBlogs/useGetSingleUserBlog";
 import Loading from "../../components/Loading";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import useGetRelatedBlogs from "../../hooks/userBlogs/useGetRelatedBlogs";
 import { Helmet } from "react-helmet";
 
 export default function SingleBlogPage() {
+  const location = useLocation();
+  const fullUrl = window.location.origin + location.pathname + location.search;
+
   const { id } = useParams();
   const { loading, blog, refetch } = useGetSingleUserBlog({ id });
   const {
@@ -30,6 +33,7 @@ export default function SingleBlogPage() {
   ) : (
     <div>
       <Helmet>
+        <link type="canonical" href={fullUrl} />
         <title>{blog?.metaTitle}</title>
         <meta name="description" content={blog?.metaDescription} />
         <meta name="keywords" content={blog?.metaKeywords} />

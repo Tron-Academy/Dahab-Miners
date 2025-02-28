@@ -1,14 +1,19 @@
 import React, { useEffect } from "react";
 import BlogList from "../../components/blogs/BlogList";
 import { Helmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
 
 export default function BlogPage() {
+  const location = useLocation();
+  const fullUrl = window.location.origin + location.pathname + location.search;
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (
     <div>
       <Helmet>
+        <link type="canonical" href={fullUrl} />
         <title>Crypto Mining Insights and Tips | Dahab Miners Blog</title>
         <meta
           name="description"

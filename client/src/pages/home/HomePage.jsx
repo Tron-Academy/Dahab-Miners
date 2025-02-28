@@ -21,10 +21,13 @@ import useGetBitCoinData from "../../hooks/coins/useGetBitCoinData";
 import { useDispatch } from "react-redux";
 import { setBlockReward, setDifficulty } from "../../slices/userSlice";
 import MapComparison from "../../components/HostMining/MapComparison";
+import { useLocation } from "react-router-dom";
 
 export default function HomePage() {
   const { loading, btcData } = useGetBitCoinData();
   const dispatch = useDispatch();
+  const location = useLocation();
+  const fullUrl = window.location.origin + location.pathname + location.search;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -39,6 +42,7 @@ export default function HomePage() {
   return (
     <div className="">
       <Helmet>
+        <link type="canonical" href={fullUrl} />
         <title>
           Crypto Mining in UAE-Bitcoin Machines Abu Dhabi-Dahab Miners
         </title>

@@ -6,8 +6,12 @@ import PriceSection from "../../components/MinerRepair/PriceSection";
 import RepairSolutions from "../../components/MinerRepair/RepairSolutions";
 import { Helmet } from "react-helmet";
 import FAQSection from "../../components/Home/Faq/FAQSection";
+import { useLocation } from "react-router-dom";
 
 export default function MinerRepairPage() {
+  const location = useLocation();
+  const fullUrl = window.location.origin + location.pathname + location.search;
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -19,6 +23,7 @@ export default function MinerRepairPage() {
   return (
     <div>
       <Helmet>
+        <link type="canonical" href={fullUrl} />
         <title>Expert Miner Repair Services in the UAE | Dahab Miners</title>
         <meta
           name="description"

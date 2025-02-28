@@ -15,7 +15,6 @@ export default function BuyMinersSection() {
   const [currentPage, setCurrentPage] = useState(1);
   const { loading: featuredLoading, products: featuredProducts } =
     useGetFeaturedProducts();
-  console.log(featuredProducts);
 
   const { loading, refetch, products, pages } = useGetAllProducts({
     keyWord,

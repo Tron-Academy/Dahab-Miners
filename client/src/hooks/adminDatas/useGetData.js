@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../../utils/constants";
 
-const useGetData = ({ model, client, serial }) => {
+const useGetData = ({ model, client, serial, currentPage }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const [pages, setPages] = useState(0);
 
   const getData = async () => {
     setLoading(true);
@@ -15,10 +16,12 @@ const useGetData = ({ model, client, serial }) => {
           model,
           client,
           serial,
+          currentPage,
         },
       });
       const data = res.data;
       setData(data.datas);
+      setPages(data.numOfPages);
     } catch (err) {
       console.log(
         err?.response?.data?.msg || err?.error || "something went wrong"
@@ -35,7 +38,7 @@ const useGetData = ({ model, client, serial }) => {
     getData();
   };
 
-  return { loading, data, refetch };
+  return { loading, data, refetch, pages };
 };
 
 export default useGetData;

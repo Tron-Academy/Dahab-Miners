@@ -42,5 +42,38 @@
     "macAddress": "Aswin",
     "workerId": "Aswin",
     "temporaryOwner": "Aswin"
+  },
+  {
+    "clientName": "Hanaan",
+    "brand": "Hanaan",
+    "actualLocation": "Hanaan",
+    "currentLocation": "Hanaan",
+    "modelName": "Hanaan",
+    "serialNumber": "Hanaan",
+    "macAddress": "Hanaan",
+    "workerId": "Hanaan",
+    "temporaryOwner": "Hanaan"
+  },
+  {
+    "clientName": "Risan",
+    "brand": "Risan",
+    "actualLocation": "Risan",
+    "currentLocation": "Risan",
+    "modelName": "Risan",
+    "serialNumber": "Risan",
+    "macAddress": "Risan",
+    "workerId": "Risan",
+    "temporaryOwner": "Risan"
+  },
+  {
+    "clientName": "Rizwan",
+    "brand": "Rizwan",
+    "actualLocation": "Rizwan",
+    "currentLocation": "Rizwan",
+    "modelName": "Rizwan",
+    "serialNumber": "Rizwan",
+    "macAddress": "Rizwan",
+    "workerId": "Rizwan",
+    "temporaryOwner": "Rizwan"
   }
 ]

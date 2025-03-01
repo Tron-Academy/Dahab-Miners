@@ -29,7 +29,7 @@ export const addNewData = async (req, res) => {
 };
 
 export const getAllDatas = async (req, res) => {
-  const { model, serial, client } = req.query;
+  const { model, serial, client, currentPage } = req.query;
   const queryObject = {};
   if (model && model !== "") {
     queryObject.modelName = { $regex: model, $options: "i" };
@@ -40,9 +40,14 @@ export const getAllDatas = async (req, res) => {
   if (client && client !== "") {
     queryObject.clientName = { $regex: client, $options: "i" };
   }
-  const datas = await Data.find(queryObject);
+  const page = currentPage || 1;
+  const limit = 20;
+  const skip = (page - 1) * limit;
+  const datas = await Data.find(queryObject).skip(skip).limit(limit);
   if (!datas) throw new NotFoundError("No datas found");
-  res.status(200).json({ msg: "success", datas });
+  const totalDatas = await Data.countDocuments(queryObject);
+  const numOfPages = Math.ceil(totalDatas / limit);
+  res.status(200).json({ msg: "success", datas, totalDatas, page, numOfPages });
 };
 
 export const getSingleData = async (req, res) => {

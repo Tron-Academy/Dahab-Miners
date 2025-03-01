@@ -71,15 +71,15 @@ export default function Footer() {
             {/* <div className="flex sm:flex-row flex-col gap-5 justify-between items-start"> */}
             <a
               className="flex gap-3 items-start"
-              href="https://maps.app.goo.gl/x1abqfaprP8Ag5Ps8"
+              href="https://maps.app.goo.gl/PCJcJS8TUPDGca6HA"
               target="_blank"
             >
               <div>
                 <CiLocationOn />
               </div>
               <p>
-                Plaza 30, Unit 2B-SF - شارع دلما - Abu Dhabi - United Arab
-                Emirates
+                Saif Thamer General Transport Establishment building, Al
+                Jubailah, Liwa, Abu Dhabi
               </p>
             </a>
             {/* <div className="text-4xl font-thin h-10 border-l sm:block hidden"></div> */}

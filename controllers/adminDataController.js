@@ -25,10 +25,10 @@ export const addNewData = async (req, res) => {
 };
 
 export const getAllDatas = async (req, res) => {
-  const { model, serial, client, currentPage } = req.query;
+  const { mac, serial, client, currentPage } = req.query;
   const queryObject = {};
-  if (model && model !== "") {
-    queryObject.modelName = { $regex: model, $options: "i" };
+  if (mac && mac !== "") {
+    queryObject.macAddress = { $regex: mac, $options: "i" };
   }
   if (serial && serial !== "") {
     queryObject.serialNumber = { $regex: serial, $options: "i" };

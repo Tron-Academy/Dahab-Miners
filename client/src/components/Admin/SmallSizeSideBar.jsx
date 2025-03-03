@@ -14,7 +14,7 @@ export default function SmallSizeSideBar({ setSmall }) {
   const [showLogout, setShowLogout] = useState(false);
   const { logout, loading } = useLogoutUser();
   return (
-    <div className="md:hidden w-full bg-homeBg px-5 py-10 absolute right-0 left-0 z-20 animate-slideInTop">
+    <div className="xl:hidden w-full bg-homeBg px-5 py-10 absolute right-0 left-0 z-20 animate-slideInTop">
       <div
         className="flex justify-end text-white text-2xl"
         onClick={() => setSmall(false)}
@@ -34,7 +34,7 @@ export default function SmallSizeSideBar({ setSmall }) {
       </div>
       <div className="relative text-white">
         <div
-          className="flex cursor-pointer gap-2 justify-between items-center border p-2 rounded-lg hover:shadow-md hover:shadow-white hover:bg-blue-500 nav-link"
+          className="flex cursor-pointer gap-2 justify-between items-center border p-2 rounded-lg hover:shadow-md hover:shadow-white hover:bg-blue-500 nav-link w-fit"
           onClick={() => setShowLogout(!showLogout)}
         >
           <div>

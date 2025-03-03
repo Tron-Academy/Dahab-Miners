@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../../utils/constants";
 
-const useGetData = ({ model, client, serial, currentPage }) => {
+const useGetData = ({ mac, client, serial, currentPage }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [pages, setPages] = useState(0);
@@ -13,7 +13,7 @@ const useGetData = ({ model, client, serial, currentPage }) => {
       const res = await axios.get(`${BASE_URL}/admin/data/getData`, {
         withCredentials: true,
         params: {
-          model,
+          mac,
           client,
           serial,
           currentPage,

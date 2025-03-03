@@ -14,19 +14,19 @@ export default function AdminHead({ toggle, toggleFunction, small, setSmall }) {
   return (
     <div className="p-3 h-20 bg-homeBg md:rounded-2xl w-full text-white flex justify-between items-center sticky top-0 z-10">
       <div
-        className="text-2xl hidden md:block"
+        className="text-2xl hidden xl:block"
         onClick={() => toggleFunction(!toggle)}
       >
         <RxHamburgerMenu />
       </div>
       <div className="text-lg md:text-2xl">DAHAB MINERS ADMIN</div>
       <div
-        className="text-2xl md:hidden block"
+        className="text-2xl xl:hidden block"
         onClick={() => setSmall(!small)}
       >
         <RxHamburgerMenu />
       </div>
-      <div className="relative hidden md:block">
+      <div className="relative hidden xl:block">
         <div
           className="flex cursor-pointer gap-2 items-center border p-2 rounded-lg hover:shadow-md hover:shadow-white hover:bg-blue-500 nav-link"
           onClick={() => setShowLogout(!showLogout)}

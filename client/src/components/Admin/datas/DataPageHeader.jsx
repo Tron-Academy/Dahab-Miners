@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import { setRefetchTrigger } from "../../../slices/adminSlice";
 
 export default function DataPageHeader({
-  model,
+  mac,
   client,
   serial,
-  setModel,
+  setMac,
   setClient,
   setSerial,
 }) {
@@ -25,13 +25,13 @@ export default function DataPageHeader({
       </div>
       <div className="grid md:grid-cols-2 grid-cols-1 gap-5 px-5 py-7 bg-white my-5 rounded-lg">
         <div className="flex flex-col gap-3">
-          <label>Model No:</label>
+          <label>Mac Id:</label>
           <input
             type="text"
             className="bg-neutral-300 p-2 rounded-md outline-none"
             placeholder="Enter Model No"
-            value={model}
-            onChange={(e) => setModel(e.target.value)}
+            value={mac}
+            onChange={(e) => setMac(e.target.value)}
           />
         </div>
         <div className="flex flex-col gap-3">
@@ -64,7 +64,7 @@ export default function DataPageHeader({
           <button
             onClick={() => {
               setClient("");
-              setModel("");
+              setMac("");
               setSerial("");
               dispatch(setRefetchTrigger());
             }}

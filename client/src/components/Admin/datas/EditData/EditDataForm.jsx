@@ -16,8 +16,7 @@ export default function EditDataForm() {
   const [macAddress, setMacAddress] = useState("");
   const [actualLocation, setActualLocation] = useState("");
   const [currentLocation, setCurrentLocation] = useState("");
-  const [brand, setBrand] = useState("");
-  const [workerId, setWorkerId] = useState("");
+
   const [temporary, setTemporary] = useState("");
   const { user } = useSelector((state) => state.user);
   const { loading: editLoading, editData } = useEditData();
@@ -33,8 +32,6 @@ export default function EditDataForm() {
       setTemporary(data.temporaryOwner ? data.temporaryOwner : "");
       setActualLocation(data.actualLocation);
       setCurrentLocation(data.currentLocation);
-      setBrand(data.brand);
-      setWorkerId(data.workerId);
     }
   }, [loading, data]);
 
@@ -46,8 +43,7 @@ export default function EditDataForm() {
         modelName,
         actualLocation,
         currentLocation,
-        brand,
-        workerId,
+
         serialNumber,
         macAddress,
         temporary,
@@ -96,15 +92,7 @@ export default function EditDataForm() {
         placeholder={"Enter Mac Address"}
         disabled={user?.role === "admin" ? true : false}
       />
-      <FormInput
-        title={"Brand"}
-        admin
-        type={"text"}
-        value={brand}
-        onchange={(e) => setBrand(e.target.value)}
-        placeholder={"Enter Brand"}
-        disabled={user?.role === "admin" ? true : false}
-      />
+
       <FormInput
         title={"Actual Location"}
         admin
@@ -122,15 +110,7 @@ export default function EditDataForm() {
         type={"text"}
         placeholder={"Enter Current Location"}
       />
-      <FormInput
-        title={"Worker ID"}
-        admin
-        value={workerId}
-        onchange={(e) => setWorkerId(e.target.value)}
-        type={"text"}
-        placeholder={"Enter worker id"}
-        disabled={user?.role === "admin" ? true : false}
-      />
+
       <FormInput
         title={"Now Running"}
         admin

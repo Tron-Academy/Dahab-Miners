@@ -10,8 +10,6 @@ export default function AddNewDataForm() {
   const [macAddress, setMacAddress] = useState("");
   const [actualLocation, setActualLocation] = useState("");
   const [currentLocation, setCurrentLocation] = useState("");
-  const [brand, setBrand] = useState("");
-  const [workerId, setWorkerId] = useState("");
   const [temporary, setTemporary] = useState("");
   const { loading, addNewData } = useAddNewData();
   return (
@@ -48,14 +46,7 @@ export default function AddNewDataForm() {
         onchange={(e) => setMacAddress(e.target.value)}
         placeholder={"Enter Mac Address"}
       />
-      <FormInput
-        title={"Brand"}
-        admin
-        type={"text"}
-        value={brand}
-        onchange={(e) => setBrand(e.target.value)}
-        placeholder={"Enter Brand"}
-      />
+
       <FormInput
         title={"Actual Location"}
         admin
@@ -72,14 +63,7 @@ export default function AddNewDataForm() {
         onchange={(e) => setCurrentLocation(e.target.value)}
         placeholder={"Enter Current Location"}
       />
-      <FormInput
-        title={"Worker ID"}
-        admin
-        type={"text"}
-        value={workerId}
-        onchange={(e) => setWorkerId(e.target.value)}
-        placeholder={"Enter Worker id"}
-      />
+
       <FormInput
         title={"Now Running"}
         admin
@@ -96,8 +80,7 @@ export default function AddNewDataForm() {
               macAddress,
               actualLocation,
               currentLocation,
-              brand,
-              workerId,
+
               serialNumber,
               modelName,
               temporary,

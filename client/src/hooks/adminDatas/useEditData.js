@@ -16,8 +16,7 @@ const useEditData = () => {
     macAddress,
     actualLocation,
     currentLocation,
-    brand,
-    workerId,
+
     temporary,
   }) => {
     setLoading(true);
@@ -31,8 +30,7 @@ const useEditData = () => {
           macAddress,
           actualLocation,
           currentLocation,
-          brand,
-          workerId,
+
           temporary,
         },
         { withCredentials: true }

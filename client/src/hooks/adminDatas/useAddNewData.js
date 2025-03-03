@@ -15,8 +15,7 @@ const useAddNewData = () => {
     macAddress,
     actualLocation,
     currentLocation,
-    brand,
-    workerId,
+
     temporary,
   }) => {
     setLoading(true);
@@ -30,8 +29,7 @@ const useAddNewData = () => {
           macAddress,
           actualLocation,
           currentLocation,
-          brand,
-          workerId,
+
           temporary,
         },
         { withCredentials: true }

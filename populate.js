@@ -10,7 +10,7 @@ try {
     await readFile(new URL("./utils/sampleData.json", import.meta.url))
   );
   const datas = newData.map((data) => data);
-  await Data.deleteMany();
+  // await Data.deleteMany();
   await Data.create(datas);
   console.log("success..");
   process.exit(0);

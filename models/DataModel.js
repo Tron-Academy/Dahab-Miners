@@ -29,6 +29,9 @@ const DataSchema = new Schema(
     temporaryOwner: {
       type: String,
     },
+    workerId: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

@@ -113,4 +113,5 @@ export const validateDataInput = withValidationErrors([
     .notEmpty()
     .withMessage("Current Location is required"),
   body("temporary").notEmpty().withMessage("Temporary is required"),
+  body("workerId").notEmpty().withMessage("Worker ID is not required"),
 ]);

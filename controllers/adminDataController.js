@@ -10,6 +10,7 @@ export const addNewData = async (req, res) => {
     serialNumber,
     clientName,
     temporary,
+    workerId,
   } = req.body;
   const newData = new Data({
     currentLocation,
@@ -19,6 +20,7 @@ export const addNewData = async (req, res) => {
     macAddress,
     clientName,
     temporaryOwner: temporary,
+    workerId,
   });
   await newData.save();
   res.status(201).json({ msg: "success" });
@@ -63,6 +65,7 @@ export const updateSingleData = async (req, res) => {
     serialNumber,
     clientName,
     temporary,
+    workerId,
   } = req.body;
   const data = await Data.findById(id);
   if (!data) throw new NotFoundError("No data found");
@@ -73,6 +76,7 @@ export const updateSingleData = async (req, res) => {
   data.serialNumber = serialNumber;
   data.clientName = clientName;
   data.temporaryOwner = temporary;
+  data.workerId = workerId;
 
   await data.save();
   res.status(200).json({ msg: "success" });

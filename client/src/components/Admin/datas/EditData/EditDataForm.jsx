@@ -16,7 +16,7 @@ export default function EditDataForm() {
   const [macAddress, setMacAddress] = useState("");
   const [actualLocation, setActualLocation] = useState("");
   const [currentLocation, setCurrentLocation] = useState("");
-
+  const [workerId, setWorkerId] = useState("");
   const [temporary, setTemporary] = useState("");
   const { user } = useSelector((state) => state.user);
   const { loading: editLoading, editData } = useEditData();
@@ -32,6 +32,7 @@ export default function EditDataForm() {
       setTemporary(data.temporaryOwner ? data.temporaryOwner : "");
       setActualLocation(data.actualLocation);
       setCurrentLocation(data.currentLocation);
+      setWorkerId(data.workerId);
     }
   }, [loading, data]);
 
@@ -43,7 +44,7 @@ export default function EditDataForm() {
         modelName,
         actualLocation,
         currentLocation,
-
+        workerId,
         serialNumber,
         macAddress,
         temporary,
@@ -82,6 +83,14 @@ export default function EditDataForm() {
         type={"text"}
         placeholder={"Enter Serial No"}
         disabled={user?.role === "admin" ? true : false}
+      />
+      <FormInput
+        title={"Worker ID"}
+        admin
+        type={"text"}
+        value={workerId}
+        onchange={(e) => setWorkerId(e.target.value)}
+        placeholder={"Enter Worker ID"}
       />
       <FormInput
         title={"Mac Address"}

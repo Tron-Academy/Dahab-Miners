@@ -19,7 +19,7 @@ export default function AdminLayout() {
     <div className="bg-neutral-300 md:pt-2 md:px-2 text-black">
       <div className="flex gap-2">
         {showSideBar && <AdminSidebar />}
-        <div className="w-full">
+        <div className="w-full overflow-x-scroll">
           <AdminHead
             toggle={showSideBar}
             toggleFunction={setShowSideBar}

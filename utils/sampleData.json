@@ -1,0 +1,172 @@
+[
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19J PRO 104 TH",
+    "serialNumber": "YDFTDXABBJEJG08G7",
+    "macAddress": "02:40:43:1C:7D:7B",
+    "actualLocation": "-",
+    "currentLocation": "LIWA OFFICE (RTC)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000006WAPC0A14WN2402",
+    "macAddress": "-",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA OFFICE (RTC)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WhatsMiner M30S+",
+    "serialNumber": "ZDM1EP403421091709850123943A00114",
+    "macAddress": "C8:06:22:00:45:69",
+    "actualLocation": "-",
+    "currentLocation": "LIWA OFFICE (NR)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WhatsMiner M30S+",
+    "serialNumber": "ZDM1EP403421100809850123943A00141",
+    "macAddress": "C8:08:18:00:2F:9D",
+    "actualLocation": "-",
+    "currentLocation": "LIWA OFFICE (RTC)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WhatsMiner M30S+",
+    "serialNumber": "ZDM1EP403421082710050123943A00025",
+    "macAddress": "C8:06:22:00:49:B9",
+    "actualLocation": "-",
+    "currentLocation": "LIWA OFFICE (RTC)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WhatsMiner M30S+",
+    "serialNumber": "ZDM1EP403421092009650123943A00008",
+    "macAddress": "C8:06:22:00:1E:AF",
+    "actualLocation": "-",
+    "currentLocation": "LIWA OFFICE (RTC)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WhatsMiner M30S+",
+    "serialNumber": "HTM1EK503122062510868123723A11229",
+    "macAddress": "C8:11:16:00:27:A7",
+    "actualLocation": "-",
+    "currentLocation": "LIWA OFFICE (RTC)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WhatsMiner M30S+",
+    "serialNumber": "ZDM1EP403421082610050123943A00158",
+    "macAddress": "C8:06:22:00:02:8A",
+    "actualLocation": "-",
+    "currentLocation": "LIWA OFFICE (RTC)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WhatsMiner M30S+",
+    "serialNumber": "ZDM1EP403421091909650123943A00145",
+    "macAddress": "C8:06:22:00:0D:9C",
+    "actualLocation": "-",
+    "currentLocation": "LIWA OFFICE (RTC)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WhatsMiner M30S+",
+    "serialNumber": "ZDM1EP403421091809850123943A00007",
+    "macAddress": "C8:06:22:00:1E:89",
+    "actualLocation": "-",
+    "currentLocation": "LIWA OFFICE (RTC)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "YDFT67ABAJEJF00NB",
+    "macAddress": "8C:76:C9:30:BD:E4",
+    "actualLocation": "-",
+    "currentLocation": "LIWA OFFICE (RTC)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "YDFT67ABAJEJF01Z3",
+    "macAddress": "56:55:89:7B:02:6D",
+    "actualLocation": "-",
+    "currentLocation": "LIWA OFFICE (RTC)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19j Pro 96TH",
+    "serialNumber": "NGSBD4ABAJHAG9004",
+    "macAddress": "90:DA:3C:03:F3:15",
+    "actualLocation": "-",
+    "currentLocation": "LIWA OFFICE (RTC)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDAD04DS",
+    "macAddress": "2E:9A:36:5C:E0:9F",
+    "actualLocation": "-",
+    "currentLocation": "LIWA OFFICE (RTC)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "YDFT67ABAJEJF01KP",
+    "macAddress": "CC:F9:C5:8C:FD:33",
+    "actualLocation": "-",
+    "currentLocation": "LIWA OFFICE (RTC)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19j Pro 104TH",
+    "serialNumber": "NGSBD4CBAJHAG7464",
+    "macAddress": "DC:FD:7D:C4:B2:46",
+    "actualLocation": "-",
+    "currentLocation": "LIWA OFFICE (RTC)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "YDFT67ABAJEJF01K5",
+    "macAddress": "40:F8:47:73:7A:85",
+    "actualLocation": "-",
+    "currentLocation": "LIWA OFFICE (RTC)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  }
+]

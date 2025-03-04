@@ -48,43 +48,84 @@ export default function DataTable({ client, mac, serial }) {
           <TableHead>
             <TableRow sx={{ backgroundColor: "#F9FAFB" }}>
               <TableCell
-                sx={{ width: "12.5%", textAlign: "center", fontWeight: "bold" }}
+                sx={{
+                  width: "11.11%",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
               >
                 Client
               </TableCell>
               <TableCell
-                sx={{ width: "12.5%", textAlign: "center", fontWeight: "bold" }}
+                sx={{
+                  width: "11.11%",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
               >
                 Model
               </TableCell>
               <TableCell
-                sx={{ width: "12.5%", textAlign: "center", fontWeight: "bold" }}
+                sx={{
+                  width: "11.11%",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
               >
                 Serial No
               </TableCell>
               <TableCell
-                sx={{ width: "12.5%", textAlign: "center", fontWeight: "bold" }}
+                sx={{
+                  width: "11.11%",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                Worker ID
+              </TableCell>
+              <TableCell
+                sx={{
+                  width: "11.11%",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
               >
                 Mac Id
               </TableCell>
 
               <TableCell
-                sx={{ width: "12.5%", textAlign: "center", fontWeight: "bold" }}
+                sx={{
+                  width: "11.11%",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
               >
                 Act. Location
               </TableCell>
               <TableCell
-                sx={{ width: "12.5%", textAlign: "center", fontWeight: "bold" }}
+                sx={{
+                  width: "11.11%",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
               >
                 Cur. Location
               </TableCell>
               <TableCell
-                sx={{ width: "12.5%", textAlign: "center", fontWeight: "bold" }}
+                sx={{
+                  width: "11.11%",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
               >
                 Now Running
               </TableCell>
               <TableCell
-                sx={{ width: "12.5%", textAlign: "center", fontWeight: "bold" }}
+                sx={{
+                  width: "11.11%",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
               >
                 Action
               </TableCell>
@@ -99,28 +140,47 @@ export default function DataTable({ client, mac, serial }) {
                 <TableCell
                   component="th"
                   scope="row"
-                  sx={{ width: "12.5%", textAlign: "center" }}
+                  sx={{ width: "11.11%", textAlign: "center" }}
                 >
                   {row.clientName}
                 </TableCell>
                 <TableCell
                   component="th"
                   scope="row"
-                  sx={{ width: "12.5%", textAlign: "center" }}
+                  sx={{
+                    width: "11.11%",
+                    textAlign: "center",
+                    maxWidth: "100px",
+                  }}
                 >
                   {row.modelName}
                 </TableCell>
                 <TableCell
                   component="th"
                   scope="row"
-                  sx={{ width: "12.5%", textAlign: "center" }}
+                  sx={{
+                    width: "11.11%",
+                    textAlign: "center",
+                    textWrap: "wrap",
+                  }}
                 >
                   {row.serialNumber}
                 </TableCell>
                 <TableCell
                   component="th"
                   scope="row"
-                  sx={{ width: "12.5%", textAlign: "center" }}
+                  sx={{
+                    width: "11.11%",
+                    textAlign: "center",
+                    textWrap: "wrap",
+                  }}
+                >
+                  {row.workerId}
+                </TableCell>
+                <TableCell
+                  component="th"
+                  scope="row"
+                  sx={{ width: "11.11%", textAlign: "center" }}
                 >
                   {row.macAddress}
                 </TableCell>
@@ -128,25 +188,25 @@ export default function DataTable({ client, mac, serial }) {
                 <TableCell
                   component="th"
                   scope="row"
-                  sx={{ width: "12.5%", textAlign: "center" }}
+                  sx={{ width: "11.11%", textAlign: "center" }}
                 >
                   {row.actualLocation}
                 </TableCell>
                 <TableCell
                   component="th"
                   scope="row"
-                  sx={{ width: "12.5%", textAlign: "center" }}
+                  sx={{ width: "11.11%", textAlign: "center" }}
                 >
                   {row.currentLocation}
                 </TableCell>
                 <TableCell
                   component="th"
                   scope="row"
-                  sx={{ width: "12.5%", textAlign: "center" }}
+                  sx={{ width: "11.11%", textAlign: "center" }}
                 >
                   {row.temporaryOwner}
                 </TableCell>
-                <TableCell sx={{ width: "12.5%", textAlign: "center" }}>
+                <TableCell sx={{ width: "11.11%", textAlign: "center" }}>
                   <div className="flex gap-5 justify-center text-xl text-[#ABABAB]">
                     <Link to={`/admin/data/${row._id}/edit`}>
                       <FaRegEdit />

@@ -11,6 +11,7 @@ export default function AddNewDataForm() {
   const [actualLocation, setActualLocation] = useState("");
   const [currentLocation, setCurrentLocation] = useState("");
   const [temporary, setTemporary] = useState("");
+  const [workerId, setWorkerId] = useState("");
   const { loading, addNewData } = useAddNewData();
   return (
     <div className="my-10">
@@ -37,6 +38,14 @@ export default function AddNewDataForm() {
         value={serialNumber}
         onchange={(e) => setSerialNumber(e.target.value)}
         placeholder={"Enter Serial No"}
+      />
+      <FormInput
+        title={"Worker ID"}
+        admin
+        type={"text"}
+        value={workerId}
+        onchange={(e) => setWorkerId(e.target.value)}
+        placeholder={"Enter Worker ID"}
       />
       <FormInput
         title={"Mac Address"}
@@ -80,7 +89,7 @@ export default function AddNewDataForm() {
               macAddress,
               actualLocation,
               currentLocation,
-
+              workerId,
               serialNumber,
               modelName,
               temporary,

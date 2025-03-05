@@ -51,15 +51,6 @@ export const getAllDatas = async (req, res) => {
   if (conditions.length > 0) {
     queryObject = { $and: conditions };
   }
-  // if (mac && mac !== "") {
-  //   queryObject.macAddress = { $regex: mac, $options: "i" };
-  // }
-  // if (serial && serial !== "") {
-  //   queryObject.serialNumber = { $regex: serial, $options: "i" };
-  // }
-  // if (client && client !== "") {
-  //   queryObject.clientName = { $regex: client, $options: "i" };
-  // }
   const page = currentPage || 1;
   const limit = 20;
   const skip = (page - 1) * limit;

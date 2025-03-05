@@ -15,13 +15,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { setDataId, setShowPopupTrue } from "../../../slices/adminSlice";
 import Pagination from "../../buyMiners/Pagination";
 
-export default function DataTable({ client, mac, serial }) {
+export default function DataTable({ search, farm }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
   const { loading, data, refetch, pages } = useGetData({
-    client,
-    mac,
-    serial,
+    search,
+    farm,
     currentPage,
   });
 

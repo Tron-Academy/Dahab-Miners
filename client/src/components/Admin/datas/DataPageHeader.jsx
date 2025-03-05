@@ -3,14 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { setRefetchTrigger } from "../../../slices/adminSlice";
 
-export default function DataPageHeader({
-  mac,
-  client,
-  serial,
-  setMac,
-  setClient,
-  setSerial,
-}) {
+export default function DataPageHeader({ search, setSearch, farm, setFarm }) {
   const dispatch = useDispatch();
   return (
     <div>
@@ -25,36 +18,42 @@ export default function DataPageHeader({
       </div>
       <div className="grid md:grid-cols-2 grid-cols-1 gap-5 px-5 py-7 bg-white my-5 rounded-lg">
         <div className="flex flex-col gap-3">
-          <label>Mac Id:</label>
+          <label>Search Keyword:</label>
           <input
             type="text"
             className="bg-neutral-300 p-2 rounded-md outline-none"
-            placeholder="Enter Model No"
-            value={mac}
-            onChange={(e) => setMac(e.target.value)}
+            placeholder="Enter Search Keyword"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </div>
+
         <div className="flex flex-col gap-3">
-          <label>Serial No:</label>
-          <input
-            type="text"
-            value={serial}
-            onChange={(e) => setSerial(e.target.value)}
-            className="bg-neutral-300 p-2 rounded-md outline-none"
-            placeholder="Enter Serial No"
-          />
+          <label>Farm Location:</label>
+          <select
+            value={farm}
+            onChange={(e) => setFarm(e.target.value)}
+            className={`bg-neutral-300 p-2 rounded-md outline-none`}
+          >
+            {[
+              "ALL",
+              "SHAKABOUT",
+              "AL FALAH",
+              "MBZ",
+              "BAHYA",
+              "ADLA",
+              "SWEIHAN",
+              "LIWA 3",
+              "LIWA 4",
+              "BADA ZAYED",
+              "BAHYA STORAGE",
+              "LIWA OFFICE",
+            ].map((x, i) => (
+              <option key={i}>{x}</option>
+            ))}
+          </select>
         </div>
-        <div className="flex flex-col gap-3">
-          <label>Client Name:</label>
-          <input
-            type="text"
-            value={client}
-            onChange={(e) => setClient(e.target.value)}
-            className="bg-neutral-300 p-2 rounded-md outline-none"
-            placeholder="Enter Client Name"
-          />
-        </div>
-        <div className="flex gap-3 items-end justify-end">
+        <div className="flex gap-3 items-end justify-start">
           <button
             onClick={() => dispatch(setRefetchTrigger())}
             className="bg-homeBg text-white px-5 py-2 rounded-lg hover:bg-homeBgGradient nav-link"
@@ -63,9 +62,8 @@ export default function DataPageHeader({
           </button>
           <button
             onClick={() => {
-              setClient("");
-              setMac("");
-              setSerial("");
+              setFarm("ALL");
+              setSearch("");
               dispatch(setRefetchTrigger());
             }}
             className="bg-homeBg text-white px-5 py-2 rounded-lg hover:bg-homeBgGradient nav-link"

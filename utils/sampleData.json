@@ -1,5 +1,5545 @@
 [
   {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA08AR",
+    "macAddress": "10:1F:21:73:01:B0",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.001",
+    "temporaryOwner": "RobertFerma1337Btc.001"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0P80",
+    "macAddress": "10:21:06:04:14:FD",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.002",
+    "temporaryOwner": "RobertFerma1337Btc.002"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJCJG026X",
+    "macAddress": "10:D3:A7:2A:73:A3",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.003",
+    "temporaryOwner": "RobertFerma1337Btc.003"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA08GE",
+    "macAddress": "16:8f:22:db:88:69",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.004",
+    "temporaryOwner": "RobertFerma1337Btc.004"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE00B5",
+    "macAddress": "16:C7:9B:3F:7F:E4",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.005",
+    "temporaryOwner": "RobertFerma1337Btc.005"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA04SZ",
+    "macAddress": "1c:2b:61:89:44:fc",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.006",
+    "temporaryOwner": "RobertFerma1337Btc.006"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0AD9",
+    "macAddress": "1E:77:A2:63:82:71",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.007",
+    "temporaryOwner": "RobertFerma1337Btc.007"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE025F",
+    "macAddress": "1E:BD:AD:EA:8B:2F",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.008",
+    "temporaryOwner": "RobertFerma1337Btc.008"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0PKA",
+    "macAddress": "2A:80:27:CA:2C:8C",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.009",
+    "temporaryOwner": "RobertFerma1337Btc.009"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0N60",
+    "macAddress": "2E:20:9D:4F:C2:97",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.010",
+    "temporaryOwner": "RobertFerma1337Btc.010"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA08GM",
+    "macAddress": "2E:37:81:C2:02:BF",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.011",
+    "temporaryOwner": "RobertFerma1337Btc.011"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0P7S",
+    "macAddress": "2E:A1:D1:6D:4F:61",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.012",
+    "temporaryOwner": "RobertFerma1337Btc.012"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA08GP",
+    "macAddress": "30:EC:36:0B:88:05",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.013",
+    "temporaryOwner": "RobertFerma1337Btc.013"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE0089",
+    "macAddress": "3C:01:1B:2A:76:B2",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.014",
+    "temporaryOwner": "RobertFerma1337Btc.014"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJCJG08ZW",
+    "macAddress": "3C:55:63:B0:8B:D1",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.015",
+    "temporaryOwner": "RobertFerma1337Btc.015"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA08BF",
+    "macAddress": "44:75:00:66:A5:0E",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.016",
+    "temporaryOwner": "RobertFerma1337Btc.016"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE00B6",
+    "macAddress": "46:92:3E:C2:BB:8B",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.017",
+    "temporaryOwner": "RobertFerma1337Btc.017"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0MPW",
+    "macAddress": "48:44:F7:04:BD:07",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.018",
+    "temporaryOwner": "RobertFerma1337Btc.018"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA08AM",
+    "macAddress": "52:4a:97:74:87:01",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.019",
+    "temporaryOwner": "RobertFerma1337Btc.019"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0MRL",
+    "macAddress": "52:78:32:E3:35:08",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.020",
+    "temporaryOwner": "RobertFerma1337Btc.020"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE008C",
+    "macAddress": "54:57:A8:71:27:CB",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.021",
+    "temporaryOwner": "RobertFerma1337Btc.021"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJCJG027L",
+    "macAddress": "54:6C:9C:57:23:B6",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.022",
+    "temporaryOwner": "RobertFerma1337Btc.022"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA08BK",
+    "macAddress": "54:75:65:00:27:03",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.023",
+    "temporaryOwner": "RobertFerma1337Btc.023"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0MR8",
+    "macAddress": "54:b8:eb:63:82:28",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.024",
+    "temporaryOwner": "RobertFerma1337Btc.024"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA08GH",
+    "macAddress": "56:5A:95:88:1B:52",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.025",
+    "temporaryOwner": "RobertFerma1337Btc.025"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJCJG07T1",
+    "macAddress": "56:7A:81:D5:1B:40",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.026",
+    "temporaryOwner": "RobertFerma1337Btc.026"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA08GY",
+    "macAddress": "66:AF:5C:96:7B:0D",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.027",
+    "temporaryOwner": "RobertFerma1337Btc.027"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE008S",
+    "macAddress": "84:6B:A0:75:41:50",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.028",
+    "temporaryOwner": "RobertFerma1337Btc.028"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0P7W",
+    "macAddress": "86:D3:42:36:81:94",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.029",
+    "temporaryOwner": "RobertFerma1337Btc.029"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0P8C",
+    "macAddress": "8A:3B:0C:2A:FB:55",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.030",
+    "temporaryOwner": "RobertFerma1337Btc.030"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE008P",
+    "macAddress": "90:35:36:B4:A2:CF",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.031",
+    "temporaryOwner": "RobertFerma1337Btc.031"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJCJG08ZV",
+    "macAddress": "92:29:AE:98:45:35",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.032",
+    "temporaryOwner": "RobertFerma1337Btc.032"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA08GK",
+    "macAddress": "96:C4:BC:59:AC:E2",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.033",
+    "temporaryOwner": "RobertFerma1337Btc.033"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE0075",
+    "macAddress": "98:80:07:35:8D:39",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.034",
+    "temporaryOwner": "RobertFerma1337Btc.034"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE008N",
+    "macAddress": "9C:27:77:5E:98:1D",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.035",
+    "temporaryOwner": "RobertFerma1337Btc.035"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0MPS",
+    "macAddress": "A2:E0:95:28:69:27",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.036",
+    "temporaryOwner": "RobertFerma1337Btc.036"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA08BB",
+    "macAddress": "A4:85:05:6B:7C:5E",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.037",
+    "temporaryOwner": "RobertFerma1337Btc.037"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJCJG0900",
+    "macAddress": "A6:34:E3:0A:0C:16",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.038",
+    "temporaryOwner": "RobertFerma1337Btc.038"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE00B4",
+    "macAddress": "A6:C0:F4:31:9B:9E",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.039",
+    "temporaryOwner": "RobertFerma1337Btc.039"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE008K",
+    "macAddress": "AA:29:FB:EB:49:4E",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.040",
+    "temporaryOwner": "RobertFerma1337Btc.040"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJCJG01K6",
+    "macAddress": "AC:2C:46:93:87:57",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.041",
+    "temporaryOwner": "RobertFerma1337Btc.041"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE008D",
+    "macAddress": "ac:e4:a7:76:4a:c0",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.042",
+    "temporaryOwner": "RobertFerma1337Btc.042"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0MRR",
+    "macAddress": "B2:A0:89:CA:82:21",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.043",
+    "temporaryOwner": "RobertFerma1337Btc.043"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0NN3",
+    "macAddress": "B4:21:90:B6:1D:17",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.044",
+    "temporaryOwner": "RobertFerma1337Btc.044"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE008R",
+    "macAddress": "B4:E7:7E:6B:3E:B1",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.045",
+    "temporaryOwner": "RobertFerma1337Btc.045"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJCJG05DL",
+    "macAddress": "B8:12:E6:91:1A:6A",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.046",
+    "temporaryOwner": "RobertFerma1337Btc.046"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0AE6",
+    "macAddress": "BA:A3:DD:C0:5B:2E",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.047",
+    "temporaryOwner": "RobertFerma1337Btc.047"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA07PA",
+    "macAddress": "BA:BB:12:B0:5A:F9",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.048",
+    "temporaryOwner": "RobertFerma1337Btc.048"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0P87",
+    "macAddress": "C0:11:94:76:1A:9B",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.049",
+    "temporaryOwner": "RobertFerma1337Btc.049"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJCJG02XG",
+    "macAddress": "C0:1F:EB:EA:50:96",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.050",
+    "temporaryOwner": "RobertFerma1337Btc.050"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0MPM",
+    "macAddress": "C2:FE:4C:57:A0:73",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.051",
+    "temporaryOwner": "RobertFerma1337Btc.051"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0MRA",
+    "macAddress": "C8:B3:24:6C:33:D0",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.052",
+    "temporaryOwner": "RobertFerma1337Btc.052"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA08BA",
+    "macAddress": "CC:4B:E6:8B:A0:B3",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.053",
+    "temporaryOwner": "RobertFerma1337Btc.053"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0MR6",
+    "macAddress": "d6:0e:42:4a:cb:20",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.054",
+    "temporaryOwner": "RobertFerma1337Btc.054"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0P3E",
+    "macAddress": "DC:5C:57:FA:97:FB",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.055",
+    "temporaryOwner": "RobertFerma1337Btc.055"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0MRN",
+    "macAddress": "E4:E5:6A:CD:96:F2",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.056",
+    "temporaryOwner": "RobertFerma1337Btc.056"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA08AY",
+    "macAddress": "EA:0F:F1:5D:6C:BA",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.057",
+    "temporaryOwner": "RobertFerma1337Btc.057"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0MNM",
+    "macAddress": "F0:70:E2:D4:A2:14",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.058",
+    "temporaryOwner": "RobertFerma1337Btc.058"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE0876",
+    "macAddress": "F0:DA:FD:36:25:AC",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.059",
+    "temporaryOwner": "RobertFerma1337Btc.059"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0P2W",
+    "macAddress": "F2:5E:79:26:64:F4",
+    "actualLocation": "SHAKABOUT",
+    "currentLocation": "SHAKABOUT",
+    "workerId": "RobertFerma1337Btc.060",
+    "temporaryOwner": "RobertFerma1337Btc.060"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0M27",
+    "macAddress": "3e:fb:76:85:5b:08",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.075",
+    "temporaryOwner": "RobertFerma1337Btc.075"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZAEABCAAJF00KH",
+    "macAddress": "02:ec:c8:f5:8b:e4",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.063",
+    "temporaryOwner": "RobertFerma1337Btc.063"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA09CB",
+    "macAddress": "A6:F2:2E:D5:14:F6",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.065",
+    "temporaryOwner": "RobertFerma1337Btc.065"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0NTR",
+    "macAddress": "d2:96:0b:9c:fc:b7",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.080",
+    "temporaryOwner": "RobertFerma1337Btc.080"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0R5J",
+    "macAddress": "7a:0f:e9:8a:80:c9",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.073",
+    "temporaryOwner": "RobertFerma1337Btc.073"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0WBZ",
+    "macAddress": "84:ab:a0:6f:e2:94",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.064",
+    "temporaryOwner": "RobertFerma1337Btc.064"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0P7H",
+    "macAddress": "60:90:2f:29:df:59",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.079",
+    "temporaryOwner": "RobertFerma1337Btc.079"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE009E",
+    "macAddress": "f2:b5:d0:70:0f:33",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.062",
+    "temporaryOwner": "RobertFerma1337Btc.062"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0X5J",
+    "macAddress": "52:66:91:13:e5:97",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.074",
+    "temporaryOwner": "RobertFerma1337Btc.074"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0P7M",
+    "macAddress": "88:38:d5:28:85:67",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.077",
+    "temporaryOwner": "RobertFerma1337Btc.077"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0P3W",
+    "macAddress": "3a:82:fd:5c:41:98",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.066",
+    "temporaryOwner": "RobertFerma1337Btc.066"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0R30",
+    "macAddress": "94:6f:3c:cd:5c:8d",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.076",
+    "temporaryOwner": "RobertFerma1337Btc.076"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE009A",
+    "macAddress": "6a:0b:bb:e0:ab:d1",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.067",
+    "temporaryOwner": "RobertFerma1337Btc.067"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJBBE00BC",
+    "macAddress": "68:d0:e2:72:52:10",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.072",
+    "temporaryOwner": "RobertFerma1337Btc.072"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0H18",
+    "macAddress": "f6:09:18:3e:a9:f7",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.069",
+    "temporaryOwner": "RobertFerma1337Btc.069"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0MRC",
+    "macAddress": "b2:36:81:ff:c7:15",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.071",
+    "temporaryOwner": "RobertFerma1337Btc.071"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0JME",
+    "macAddress": "d0:d5:19:c6:7a:e1",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.061",
+    "temporaryOwner": "RobertFerma1337Btc.061"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA0MFJ",
+    "macAddress": "3e:80:9d:b5:11:0c",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.068",
+    "temporaryOwner": "RobertFerma1337Btc.068"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZAEABCAABC0W5D",
+    "macAddress": "02:6c:a8:fa:c2:e7",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.070",
+    "temporaryOwner": "RobertFerma1337Btc.070"
+  },
+  {
+    "clientName": "ROBERT",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA08AJ",
+    "macAddress": "50:2e:7f:86:82:b6",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "RobertFerma1337Btc.078",
+    "temporaryOwner": "RobertFerma1337Btc.078"
+  },
+  {
+    "clientName": "ANAS M ALI",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJBAG069E",
+    "macAddress": "F8:CF:76:B7:74:46",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "anasmali676.005",
+    "temporaryOwner": "anasmali676.005"
+  },
+  {
+    "clientName": "ANAS M ALI",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJABB0KDB",
+    "macAddress": "70:ED:A4:D4:25:0D",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "anasmali676.004",
+    "temporaryOwner": "anasmali676.004"
+  },
+  {
+    "clientName": "ANAS M ALI",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJCJF09BX",
+    "macAddress": "B0:8B:BA:B6:51:E8",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "anasmali676.001",
+    "temporaryOwner": "anasmali676.001"
+  },
+  {
+    "clientName": "ANAS M ALI",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJBAG03ET",
+    "macAddress": "E0:AE:35:DB:FF:6C",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "anasmali676.002",
+    "temporaryOwner": "anasmali676.002"
+  },
+  {
+    "clientName": "ANAS M ALI",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJABB0KYF",
+    "macAddress": "26:90:38:70:99:47",
+    "actualLocation": "al falah",
+    "currentLocation": "al falah",
+    "workerId": "anasmali676.003",
+    "temporaryOwner": "anasmali676.003"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS2",
+    "serialNumber": "IRKS20109811132D100273",
+    "macAddress": "00:0A:37:00:0D:E3",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "karlstegmueller.worker002",
+    "temporaryOwner": "karlstegmueller.worker002"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS3M 6T",
+    "serialNumber": "IRKS3M0107912132C100177",
+    "macAddress": "00:0A:39:00:32:ED",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "karlstegmueller.worker001",
+    "temporaryOwner": "karlstegmueller.worker001"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS3M 6T",
+    "serialNumber": "IRKS3M0203023042D100229",
+    "macAddress": "00:0A:39:00:3F:DA",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "alexandermeier888.worker",
+    "temporaryOwner": "alexandermeier888.worker"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "irKS5L0101024042A05F0100076",
+    "macAddress": "00:0A:52:00:02:5E",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "leonhardlimburg27.worker",
+    "temporaryOwner": "leonhardlimburg27.worker"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S1irKS5L0102227042F06A07000203",
+    "macAddress": "00:0A:52:10:1A:D4",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "stephewinck.worker.01",
+    "temporaryOwner": "stephewinck.worker.01"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101707042F03A05007129",
+    "macAddress": "00:0A:52:30:09:CE",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "winckelmatthieu.worker01",
+    "temporaryOwner": "winckelmatthieu.worker01"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101507042F07A05005464",
+    "macAddress": "00:0A:52:30:0A:14",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "ttsassmann.worker.001",
+    "temporaryOwner": "ttsassmann.worker.001"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101807042F06A08007770",
+    "macAddress": "00:0A:52:30:0A:6E",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "yuriybeck.KS5L.001",
+    "temporaryOwner": "yuriybeck.KS5L.001"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101607042F06A08006299",
+    "macAddress": "00:0A:52:30:0F:BA",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "ttsassmann.worker.002",
+    "temporaryOwner": "ttsassmann.worker.002"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101707042F07A04006908",
+    "macAddress": "00:0A:52:30:13:80",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "noahhiemer.KS5L.001",
+    "temporaryOwner": "noahhiemer.KS5L.001"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101707042F07A04006907",
+    "macAddress": "00:0a:52:30:13:81",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "markusmameier.KS5L.001",
+    "temporaryOwner": "markusmameier.KS5L.001"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101707042F06A04007063",
+    "macAddress": "00:0A:52:30:14:21",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "danilord1982.workerkaspa3",
+    "temporaryOwner": "danilord1982.workerkaspa3"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101607042F07A04006195",
+    "macAddress": "00:0A:52:30:14:39",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "lueckrebekka.KS5L.001",
+    "temporaryOwner": "lueckrebekka.KS5L.001"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101707042F06A05006695",
+    "macAddress": "00:0a:52:30:16:0c",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "rensi1988.001",
+    "temporaryOwner": "rensi1988.001"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101707042F07A04006988",
+    "macAddress": "00:0A:52:30:1B:AE",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "kaspa:qzr2ywrfpra4fkxnsgdnw8mt8twp3w78g72vym4lajkrsgld78elgd698lk6d.KS5L.Wilkens.001",
+    "temporaryOwner": "kaspa:qzr2ywrfpra4fkxnsgdnw8mt8twp3w78g72vym4lajkrsgld78elgd698lk6d.KS5L.Wilkens.001"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101507042F01A08005625",
+    "macAddress": "00:0a:52:30:1b:fa",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "jnmanagement1000.",
+    "temporaryOwner": "jnmanagement1000."
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101707042F06A04007111",
+    "macAddress": "00:0A:52:30:1E:5F",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "danilord1982.workerkaspa2",
+    "temporaryOwner": "danilord1982.workerkaspa2"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101807042F06A05007736",
+    "macAddress": "00:0A:52:30:1F:BF",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "kaspa:qzr2ywrfpra4fkxnsgdnw8mt8twp3w78g72vym4lajkrsgld78elgd698lk6d",
+    "temporaryOwner": "kaspa:qzr2ywrfpra4fkxnsgdnw8mt8twp3w78g72vym4lajkrsgld78elgd698lk6d"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101626042F07A04003450",
+    "macAddress": "00:0A:52:30:26:79",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "NHbbwBqQBYDSjBxET4JCLiCCFoLJomTbbHXm.KS5L.Sancacin.001",
+    "temporaryOwner": "NHbbwBqQBYDSjBxET4JCLiCCFoLJomTbbHXm.KS5L.Sancacin.001"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101807042F06A05007739",
+    "macAddress": "00:0A:52:30:27:C8",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "danilord1982.workerkaspa4",
+    "temporaryOwner": "danilord1982.workerkaspa4"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101707042F07A04007010",
+    "macAddress": "00:0A:52:30:28:65",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "winckelmatthieu.worker",
+    "temporaryOwner": "winckelmatthieu.worker"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101707042F06A06006743",
+    "macAddress": "00:0A:52:30:2A:CD",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "florianostenried.worker",
+    "temporaryOwner": "florianostenried.worker"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5M 15T",
+    "serialNumber": "S3KS5M0101207042F06A06001376",
+    "macAddress": "00:0A:55:30:06:44",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "danilord1982.workerkaspa1",
+    "temporaryOwner": "danilord1982.workerkaspa1"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5M 15T",
+    "serialNumber": "S3KS5M0101036042F06A06000897",
+    "macAddress": "00:0A:55:30:0c:8f",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "alexandermeier888.worker002",
+    "temporaryOwner": "alexandermeier888.worker002"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS3M 6T",
+    "serialNumber": "M01irKS3M0101513042E0100139",
+    "macAddress": "00:0a:59:00:2a:23",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "karlstegmueller.worker03",
+    "temporaryOwner": "karlstegmueller.worker03"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "IceRiver AL3 15T",
+    "serialNumber": "S1AL30102122142F01A07000148",
+    "macAddress": "00:0A:71:10:07:BF",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL008",
+    "temporaryOwner": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL008"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "IceRiver AL3 15T",
+    "serialNumber": "S1AL30102812142F01A07000094",
+    "macAddress": "00:0A:71:10:07:D8",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL006",
+    "temporaryOwner": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL006"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "IceRiver AL3 15T",
+    "serialNumber": "S1AL30102122142F01A07000155",
+    "macAddress": "00:0A:71:10:08:C2",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL004",
+    "temporaryOwner": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL004"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "IceRiver AL3 15T",
+    "serialNumber": "S1AL30102912142F01A07000147",
+    "macAddress": "00:0A:71:10:0A:69",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL005",
+    "temporaryOwner": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL005"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "IceRiver AL3 15T",
+    "serialNumber": "S1AL30102912142F01A07000146",
+    "macAddress": "00:0A:71:10:0A:6D",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL0010",
+    "temporaryOwner": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL0010"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "IceRiver AL3 15T",
+    "serialNumber": "S1AL30102912142F01A07000106",
+    "macAddress": "00:0A:71:10:0A:9A",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "solo:1B7DLThhYLUMY7aCG2G9C5rKHipofw7s5VbeHfeGo8QCn.CryptoCorp004",
+    "temporaryOwner": "solo:1B7DLThhYLUMY7aCG2G9C5rKHipofw7s5VbeHfeGo8QCn.CryptoCorp004"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "IceRiver AL3 15T",
+    "serialNumber": "S1AL30102912142F01A07000107",
+    "macAddress": "00:0A:71:10:0A:9E",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "solo:1B7DLThhYLUMY7aCG2G9C5rKHipofw7s5VbeHfeGo8QCn.CryptoCorp002",
+    "temporaryOwner": "solo:1B7DLThhYLUMY7aCG2G9C5rKHipofw7s5VbeHfeGo8QCn.CryptoCorp002"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "IceRiver AL3 15T",
+    "serialNumber": "S1AL30102912142F01A07000109",
+    "macAddress": "00:0A:71:10:0A:A6",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL001",
+    "temporaryOwner": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL001"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "IceRiver AL3 15T",
+    "serialNumber": "S1AL30102912142F01A07000111",
+    "macAddress": "00:0A:71:10:0A:AB",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL007",
+    "temporaryOwner": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL007"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "IceRiver AL3 15T",
+    "serialNumber": "S1AL30102912142F01A07000122",
+    "macAddress": "00:0A:71:10:0A:AF",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "solo:1B7DLThhYLUMY7aCG2G9C5rKHipofw7s5VbeHfeGo8QCn.CryptoCorp003",
+    "temporaryOwner": "solo:1B7DLThhYLUMY7aCG2G9C5rKHipofw7s5VbeHfeGo8QCn.CryptoCorp003"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "IceRiver AL3 15T",
+    "serialNumber": "S1AL30102912142F01A07000112",
+    "macAddress": "00:0A:71:10:0A:B0",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL002",
+    "temporaryOwner": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL002"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "IceRiver AL3 15T",
+    "serialNumber": "S1AL30102912142F01A07000120",
+    "macAddress": "00:0A:71:10:0A:B6",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL003",
+    "temporaryOwner": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL003"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "IceRiver AL3 15T",
+    "serialNumber": "S1AL30102912142F01A07000124",
+    "macAddress": "00:0A:71:10:0A:B7",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "solo:1B7DLThhYLUMY7aCG2G9C5rKHipofw7s5VbeHfeGo8QCn.CryptoCorp001",
+    "temporaryOwner": "solo:1B7DLThhYLUMY7aCG2G9C5rKHipofw7s5VbeHfeGo8QCn.CryptoCorp001"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "IceRiver AL3 15T",
+    "serialNumber": "S1AL30102712142F01A07000073",
+    "macAddress": "00:0A:71:10:0A:F4",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL009",
+    "temporaryOwner": "KrJwZ33SKzXDuS15sgqYozispQPMR3Hqttj.ChristinAL009"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE012M",
+    "macAddress": "18:36:D8:66:52:65",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "cryptocorp.341182",
+    "temporaryOwner": "cryptocorp.341182"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE02LG",
+    "macAddress": "1E:76:C3:67:AD:6F",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "christin.worker04",
+    "temporaryOwner": "christin.worker04"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE00DP",
+    "macAddress": "20:28:68:7D:BD:36",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "christin.worker015",
+    "temporaryOwner": "christin.worker015"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHAJ02KM",
+    "macAddress": "3A:05:98:3C:1F:BC",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "yuriybeck.KS5_PRO_21T.001",
+    "temporaryOwner": "yuriybeck.KS5_PRO_21T.001"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE02R3",
+    "macAddress": "3A:97:9A:C0:18:D0",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "christin.worker017",
+    "temporaryOwner": "christin.worker017"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE00VZ",
+    "macAddress": "54:4C:56:4C:D4:D4",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "christin.worker021",
+    "temporaryOwner": "christin.worker021"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE0272",
+    "macAddress": "5C:89:A0:E7:F6:46",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "christin.worker014",
+    "temporaryOwner": "christin.worker014"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE01BC",
+    "macAddress": "6E:F4:88:06:9C:E0",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "christin.worker026",
+    "temporaryOwner": "christin.worker026"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHAJ046A",
+    "macAddress": "7A:40:61:51:58:9D",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "stephanrestle.worker02",
+    "temporaryOwner": "stephanrestle.worker02"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE01EB",
+    "macAddress": "7C:15:6F:9B:BB:25",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "christin.worker016",
+    "temporaryOwner": "christin.worker016"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDAAJH00X7",
+    "macAddress": "80:FC:22:FF:D9:78",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "christin.worker012",
+    "temporaryOwner": "christin.worker012"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHAJ0454",
+    "macAddress": "9C:5B:CD:71:64:49",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "sarahleu.worker.000",
+    "temporaryOwner": "sarahleu.worker.000"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE00HZ",
+    "macAddress": "9C:E1:2F:50:A7:9F",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "christin.worker09",
+    "temporaryOwner": "christin.worker09"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE00FA",
+    "macAddress": "9E:CE:59:7A:17:DA",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "christin.worker020",
+    "temporaryOwner": "christin.worker020"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDAAJH00S7",
+    "macAddress": "B4:E4:16:01:6C:D9",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "christin.worker019",
+    "temporaryOwner": "christin.worker019"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDAAJH00S8",
+    "macAddress": "C2:91:55:E9:FA:6F",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "christin.worker07",
+    "temporaryOwner": "christin.worker07"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDAAJH00YC",
+    "macAddress": "D0:BE:C8:C0:BE:02",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "christin.worker023",
+    "temporaryOwner": "christin.worker023"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDAAJH00WZ",
+    "macAddress": "EA:21:E1:C6:6B:BA",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "christin.worker025",
+    "temporaryOwner": "christin.worker025"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE02T5",
+    "macAddress": "F0:D2:3C:03:C8:73",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "christin.worker08",
+    "temporaryOwner": "christin.worker08"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE00NZ",
+    "macAddress": "F8:24:25:E5:22:9E",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "christin.worker013",
+    "temporaryOwner": "christin.worker013"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101726042F06A05003944",
+    "macAddress": "00:0A:52:30:0E:DC",
+    "actualLocation": "MBZ",
+    "currentLocation": "MBZ",
+    "workerId": "danilord1982.workerkaspa5",
+    "temporaryOwner": "danilord1982.workerkaspa5"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer S21 Pro 234T",
+    "serialNumber": "HQDZFKABDJFBB02LX",
+    "macAddress": "02:0B:F5:05:48:0E",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "karlstegmueller.worker",
+    "temporaryOwner": "karlstegmueller.worker"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHAJ009C",
+    "macAddress": "06:DF:E8:DC:57:23",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "christin.worker34",
+    "temporaryOwner": "christin.worker34"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer L7 9500",
+    "serialNumber": "DGAHDCFBDJFAH03RA",
+    "macAddress": "0C:9C:03:A4:D5:A9",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "meissnermeirau.001",
+    "temporaryOwner": "meissnermeirau.001"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer L9 16G",
+    "serialNumber": "DGAHFFABDAAAD03CW",
+    "macAddress": "12:19:9C:A0:9F:9F",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "noahreimann.worker",
+    "temporaryOwner": "noahreimann.worker"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE00RN",
+    "macAddress": "16:CB:38:90:EF:9E",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "christin.worker06",
+    "temporaryOwner": "christin.worker06"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHAJ046E",
+    "macAddress": "20:76:D5:2F:0F:DA",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "kaspa:qyps8x6v286zrneq743q6yx80x7uz5lc5zpjf4pj9kp0v4kwav9femgjyy292kd.FalkKS5Pro",
+    "temporaryOwner": "kaspa:qyps8x6v286zrneq743q6yx80x7uz5lc5zpjf4pj9kp0v4kwav9femgjyy292kd.FalkKS5Pro"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE00T8",
+    "macAddress": "26:C4:90:02:B2:B4",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "cryptocorp.341181",
+    "temporaryOwner": "cryptocorp.341181"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer L9 16G",
+    "serialNumber": "DGAHFFABDAABH05NL",
+    "macAddress": "38:35:3F:70:5D:BD",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "meissnermeirau.002",
+    "temporaryOwner": "meissnermeirau.002"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHAJ04G1",
+    "macAddress": "3E:B6:BD:D9:9A:E8",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "akuttruff.worker.000",
+    "temporaryOwner": "akuttruff.worker.000"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE00WF",
+    "macAddress": "3E:DD:78:31:B4:8D",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "christin.worker03",
+    "temporaryOwner": "christin.worker03"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer L9 16G",
+    "serialNumber": "DGAHFFABDAABH00L0",
+    "macAddress": "50:FF:54:0F:B0:7B",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "niujjo.worker002",
+    "temporaryOwner": "niujjo.worker002"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE029P",
+    "macAddress": "6A:1E:69:38:39:B6",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "christin.worker027",
+    "temporaryOwner": "christin.worker027"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE00DH",
+    "macAddress": "74:43:9E:97:59:AE",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "christin.worker02",
+    "temporaryOwner": "christin.worker02"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE00SG",
+    "macAddress": "7A:BF:16:6F:EB:97",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "cryptocorp.341182",
+    "temporaryOwner": "cryptocorp.341182"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE029S",
+    "macAddress": "84:1E:D4:51:06:49",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "christin.worker05",
+    "temporaryOwner": "christin.worker05"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer L9 16G",
+    "serialNumber": "DGAHFFABDAABH00JK",
+    "macAddress": "84:97:9D:8A:A3:78",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "danilord1982.worker",
+    "temporaryOwner": "danilord1982.worker"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHAJ046S",
+    "macAddress": "8A:29:27:02:CB:91",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "stephanrestle.worker001",
+    "temporaryOwner": "stephanrestle.worker001"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHAJ00AR",
+    "macAddress": "8E:CB:A2:C2:77:F2",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "christin.worker37",
+    "temporaryOwner": "christin.worker37"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHAJ0487",
+    "macAddress": "8E:F6:AD:50:4B:3C",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "NHbbwBqQBYDSjBxET4JCLiCCFoLJomTbbHXm.KS5pro.Sancacin.002",
+    "temporaryOwner": "NHbbwBqQBYDSjBxET4JCLiCCFoLJomTbbHXm.KS5pro.Sancacin.002"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHAJ008P",
+    "macAddress": "96:2F:7B:18:62:15",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "christin.worker30",
+    "temporaryOwner": "christin.worker30"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDAAJH00KP",
+    "macAddress": "96:7B:D9:1A:D0:51",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "christin.worker018",
+    "temporaryOwner": "christin.worker018"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJCBG0481",
+    "macAddress": "C2:0B:4F:CC:74:5A",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "christin.worker022",
+    "temporaryOwner": "christin.worker022"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE016R",
+    "macAddress": "C2:ED:7A:1C:D1:F2",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "christin.worker029",
+    "temporaryOwner": "christin.worker029"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE02KR",
+    "macAddress": "D0:2B:26:49:F6:36",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "cryptocorp.341181",
+    "temporaryOwner": "cryptocorp.341181"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE02PF",
+    "macAddress": "D0:71:26:18:37:E0",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "christin.worker024",
+    "temporaryOwner": "christin.worker024"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHAJ00AE",
+    "macAddress": "D2:FD:6B:87:ED:20",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "christin.worker33",
+    "temporaryOwner": "christin.worker33"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHAJ009E",
+    "macAddress": "D8:0A:15:36:40:F4",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "christin.worker38",
+    "temporaryOwner": "christin.worker38"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDAAJH00R2",
+    "macAddress": "F4:D6:9E:B7:2E:7B",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "christin.worker010",
+    "temporaryOwner": "christin.worker010"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer L7 9050",
+    "serialNumber": "JYZZDCBBCABAF005D",
+    "macAddress": "F6:BE:B1:59:8A:92",
+    "actualLocation": "bahya",
+    "currentLocation": "bahya",
+    "workerId": "stephewinck.worker",
+    "temporaryOwner": "stephewinck.worker"
+  },
+  {
+    "clientName": "ADNAN",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJCBG000W",
+    "macAddress": "50:D6:A7:6A:47:69",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "ngahasoony1.001",
+    "temporaryOwner": "ngahasoony1.001"
+  },
+  {
+    "clientName": "ASLAM",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJBAG04FD",
+    "macAddress": "BA:63:49:19:54:09",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "sajadalikolloly.002",
+    "temporaryOwner": "sajadalikolloly.002"
+  },
+  {
+    "clientName": "ASLAM",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJABB030H",
+    "macAddress": "E2:BB:2F:2E:8C:39",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "sajadalikolloly.001",
+    "temporaryOwner": "sajadalikolloly.001"
+  },
+  {
+    "clientName": "BENJ",
+    "modelName": "ANTMINER S19J PRO+ 120T",
+    "serialNumber": "PIEMADABCJDAB0B2Y",
+    "macAddress": "d6:ed:5a:1d:9f:8c",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "bosstradesdaily.01",
+    "temporaryOwner": "bosstradesdaily.01"
+  },
+  {
+    "clientName": "BRUNO",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJBAG06A2",
+    "macAddress": "A6:47:7E:9D:99:A2",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "brunojissa2.001",
+    "temporaryOwner": "brunojissa2.001"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE018A",
+    "macAddress": "12:28:5E:2C:E5:A7",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "cryptocorp.340983",
+    "temporaryOwner": "cryptocorp.340983"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer L7 9050",
+    "serialNumber": "HXXYDCBBBJCAH03LR",
+    "macAddress": "36:88:17:16:96:28",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "stefan20002.worker",
+    "temporaryOwner": "stefan20002.worker"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDAABF00PM",
+    "macAddress": "46:7A:DC:EC:40:1C",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "christin.worker31",
+    "temporaryOwner": "christin.worker31"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDAAJH01YT",
+    "macAddress": "46:F5:DD:C8:B9:81",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "christin.worker39",
+    "temporaryOwner": "christin.worker39"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDAABF00S2",
+    "macAddress": "6E:51:8E:DB:82:DA",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "christin.worker32",
+    "temporaryOwner": "christin.worker32"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDAAJH00KR",
+    "macAddress": "72:F8:84:0A:F3:FF",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "stephanrestle.worker",
+    "temporaryOwner": "stephanrestle.worker"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHAJ04FT",
+    "macAddress": "84:86:B2:67:6A:1A",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "karlstegmueller.worker003",
+    "temporaryOwner": "karlstegmueller.worker003"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDAAJH00VF",
+    "macAddress": "9E:05:C2:A7:E1:C2",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "christin.worker28",
+    "temporaryOwner": "christin.worker28"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDAABF00PP",
+    "macAddress": "9E:2C:16:09:99:C7",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "christin.worker36",
+    "temporaryOwner": "christin.worker36"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJCBG00X4",
+    "macAddress": "E0:5B:AB:F3:D5:83",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "christin.worker01",
+    "temporaryOwner": "christin.worker01"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDAAJH01Y0",
+    "macAddress": "EE:EC:A5:86:E3:3E",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "christin.worker35",
+    "temporaryOwner": "christin.worker35"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDAABF00PN",
+    "macAddress": "F0:93:78:37:2E:23",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "christin.worker40",
+    "temporaryOwner": "christin.worker40"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer L9 15G",
+    "serialNumber": "DGAHFFCBDAAAD054P",
+    "macAddress": "F8:33:53:62:BF:FA",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "andreasportalo.worker",
+    "temporaryOwner": "andreasportalo.worker"
+  },
+  {
+    "clientName": "INTERMINE",
+    "modelName": "Antminer KS5 Pro",
+    "serialNumber": "JYZZF1ABDJHJE028Z",
+    "macAddress": "62:8A:DB:E5:88:FC",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "christin.worker011",
+    "temporaryOwner": "christin.worker011"
+  },
+  {
+    "clientName": "JAYAKRISHNAN",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJABB0D8P",
+    "macAddress": "06:7B:51:6C:49:80",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "jayankrv.001",
+    "temporaryOwner": "jayankrv.001"
+  },
+  {
+    "clientName": "JAYAKRISHNAN",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJBAG0675",
+    "macAddress": "2E:B4:0C:EE:55:72",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "jayankrv.003",
+    "temporaryOwner": "jayankrv.003"
+  },
+  {
+    "clientName": "JAYAKRISHNAN",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJBAG03G5",
+    "macAddress": "C0:E9:0C:77:19:C3",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "jayankrv.002",
+    "temporaryOwner": "jayankrv.002"
+  },
+  {
+    "clientName": "REGGIE",
+    "modelName": "ANTMINER S19J PRO+ 120T",
+    "serialNumber": "YNAHADABCJCBJ088D",
+    "macAddress": "02:e4:a2:a7:1F:79",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "regieeg.btc02",
+    "temporaryOwner": "dahabminers.adla01btc02"
+  },
+  {
+    "clientName": "REGGIE",
+    "modelName": "ANTMINER S19J PRO+ 120T",
+    "serialNumber": "PIEMADABCJCBD070M",
+    "macAddress": "e6:a9:b8:20:f6:61",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "regieeg.btc01",
+    "temporaryOwner": "regieeg.btc01"
+  },
+  {
+    "clientName": "RIAZ",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJABB0JZP",
+    "macAddress": "02:13:03:72:8C:9A",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "zidanriyas123.003",
+    "temporaryOwner": "zidanriyas123.003"
+  },
+  {
+    "clientName": "RIAZ",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJBAG03CY",
+    "macAddress": "02:57:1D:D7:F6:D3",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "zidanriyas123.001",
+    "temporaryOwner": "zidanriyas123.001"
+  },
+  {
+    "clientName": "RIAZ",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJBAG03CK",
+    "macAddress": "BE:31:01:E7:05:0F",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "zidanriyas123.002",
+    "temporaryOwner": "zidanriyas123.002"
+  },
+  {
+    "clientName": "SAJAD ALI",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "YNAHAEUBCJIBI06HW",
+    "macAddress": "8E:E7:BB:89:2A:65",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "sajadalikolloly.004",
+    "temporaryOwner": "sajadalikolloly.004"
+  },
+  {
+    "clientName": "SAJAD ALI",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJBAG03F5",
+    "macAddress": "D0:B4:BC:7E:F1:2E",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "sajadalikolloly.003",
+    "temporaryOwner": "sajadalikolloly.003"
+  },
+  {
+    "clientName": "SAJID ALI",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZAEABCAJAD0BH7",
+    "macAddress": "02:46:24:CB:2D:7C",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "sajid7887.004",
+    "temporaryOwner": "sajid7887.004"
+  },
+  {
+    "clientName": "SAJID ALI",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0ABDJAAA00ES",
+    "macAddress": "36:C9:76:46:9E:7F",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "sajid7887.002",
+    "temporaryOwner": "sajid7887.002"
+  },
+  {
+    "clientName": "SAJID ALI",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJABB0A14",
+    "macAddress": "A6:A2:88:4E:28:A8",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "sajid7887.003",
+    "temporaryOwner": "sajid7887.003"
+  },
+  {
+    "clientName": "SAJID ALI",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0UBDJAAA0A3X",
+    "macAddress": "CE:04:A5:6D:28:8F",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "sajid7887.001",
+    "temporaryOwner": "sajid7887.001"
+  },
+  {
+    "clientName": "SALEEM",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0BBDJAAA0SKK",
+    "macAddress": "5C:3C:93:36:EC:56",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "salimumr1986.005",
+    "temporaryOwner": "salimumr1986.005"
+  },
+  {
+    "clientName": "SALEEM",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0BBDJAAA0TJ1",
+    "macAddress": "B4:99:F4:39:AA:A0",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "salimumr1986.001",
+    "temporaryOwner": "salimumr1986.001"
+  },
+  {
+    "clientName": "SHIHABUDHEEN",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJABB08SL",
+    "macAddress": "CC:08:3D:D4:A2:CF",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "Shihabuddeen.001",
+    "temporaryOwner": "Shihabuddeen.001"
+  },
+  {
+    "clientName": "SHIHABUDHEEN",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJBAG061N",
+    "macAddress": "F4:CB:E2:A8:7D:AB",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "Shihabuddeen.003",
+    "temporaryOwner": "Shihabuddeen.003"
+  },
+  {
+    "clientName": "SHIHABUDHEEN",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "DGAHB0ABDJBAG03ZB",
+    "macAddress": "04:55:15:BB:5B:4F",
+    "actualLocation": "adla",
+    "currentLocation": "adla",
+    "workerId": "Shihabuddeen.002",
+    "temporaryOwner": "Shihabuddeen.002"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T",
+    "serialNumber": "ynahadabcjcbg0mgb",
+    "macAddress": "40:BF:24:B8:31:AB",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan001",
+    "temporaryOwner": "dahabminers.sweihan001"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T",
+    "serialNumber": "PIEMADABCJCBG00NF",
+    "macAddress": "02:7e:0a:b0:f4:6b",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan002",
+    "temporaryOwner": "dahabminers.sweihan002"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T BOS",
+    "serialNumber": "PIEMADABCJCBD06XW",
+    "macAddress": "02:62:51:09:71:74",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan003",
+    "temporaryOwner": "dahabminers.sweihan003"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T",
+    "serialNumber": "piemadabcjcbd073n",
+    "macAddress": "02:44:6A:8B:80:EC",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan004",
+    "temporaryOwner": "regieeg.btc02"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T",
+    "serialNumber": "PIEMADABCJCBD07C6",
+    "macAddress": "02:56:72:81:86:D5",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan005",
+    "temporaryOwner": "dahabminers.sweihan005"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T BOS",
+    "serialNumber": "PIEMADABCJCBD06Y1",
+    "macAddress": "02:46:3a:84:55:60",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan006",
+    "temporaryOwner": "dahabminers.sweihan006"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19 PRO 110",
+    "serialNumber": "YDFT67ABAJEJF0328",
+    "macAddress": "E0:FC:17:2F:12:AE",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan007",
+    "temporaryOwner": "dahabminers.sweihan007"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19 J PRO 100TH",
+    "serialNumber": "FXDZD4BBAJHBA04JN",
+    "macAddress": "3C:A3:08:69:B4:C0",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan008",
+    "temporaryOwner": "dahabminers.sweihan008"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19 J PRO 104TH",
+    "serialNumber": "thqgdxabbjejg0ft5",
+    "macAddress": "02:0F:B3:A0:EA:FB",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan009",
+    "temporaryOwner": "dahabminers.sweihan009"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T",
+    "serialNumber": "piemadabcjcbd07aw",
+    "macAddress": "02:EE:FA:F6:38:7E",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan010",
+    "temporaryOwner": "dahabminers.sweihan010"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T BOS",
+    "serialNumber": "PIEMADABCJCBG00V7",
+    "macAddress": "02:D2:8b:0a:e8:ee",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan011",
+    "temporaryOwner": "dahabminers.sweihan011"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T BOS",
+    "serialNumber": "PIEMADUBCJCBD0710",
+    "macAddress": "02:E4:8E:EA:AF:E4",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan012",
+    "temporaryOwner": "dahabminers.sweihan012"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T",
+    "serialNumber": "PIEMADABCJCBD0711",
+    "macAddress": "02:46:54:cd:01:e5",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan013",
+    "temporaryOwner": "dahabminers.sweihan013"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T",
+    "serialNumber": "piemadabcjcbd05ys",
+    "macAddress": "02:44:5C:D6:AF:EB",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan014",
+    "temporaryOwner": "dahabminers.sweihan014"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T",
+    "serialNumber": "ynahadabcjcbg07af",
+    "macAddress": "02:CE:A6:86:D9:D6",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan015",
+    "temporaryOwner": "dahabminers.sweihan015"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T",
+    "serialNumber": "piemadabcjcbd07f5",
+    "macAddress": "02:BC:0A:S3:77:49",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan016",
+    "temporaryOwner": "dahabminers.sweihan016"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T BOS",
+    "serialNumber": "PIEMADABCJCBD07BY",
+    "macAddress": "02:D6:76:C5:26:D3",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan017",
+    "temporaryOwner": "dahabminers.sweihan017"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T",
+    "serialNumber": "ynahadabcjcbe0ly6",
+    "macAddress": "02:6C:02:EC:FC:C0",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan018",
+    "temporaryOwner": "dahabminers.sweihan018"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T BOS",
+    "serialNumber": "PIEMADABCJCBG031A",
+    "macAddress": "02:FE:76:F6:05:EE",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan019",
+    "temporaryOwner": "dahabminers.sweihan019"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T",
+    "serialNumber": "piemadabcjcbg04ev",
+    "macAddress": "02:91:03:B5:30:48",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan020",
+    "temporaryOwner": "dahabminers.sweihan020"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "ANTMINER S19J PRO+ 120T",
+    "serialNumber": "PIEMADABCJCBG04GK",
+    "macAddress": "02:81:25:CE:E7:EC",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan021",
+    "temporaryOwner": "vishnubabu.002"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "S19 PRO 100",
+    "serialNumber": "YDFT67ABAJEJF03AG",
+    "macAddress": "CA:83:09:72:01:73",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "dahabminers.sweihan022",
+    "temporaryOwner": "Ahmedbtc.01"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "S19K PRO",
+    "serialNumber": "DGAHB0ABDJABB0JYZ",
+    "macAddress": "02:2D:E7:86:99:69",
+    "actualLocation": "sweihan",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.sweihan023",
+    "temporaryOwner": "vishnubabu.001"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "S19 PRO+ 120T",
+    "serialNumber": "PIEMADABCJCB07AV",
+    "macAddress": "BC:23:F9:CA:44:63",
+    "actualLocation": "sweihan",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.sweihan024",
+    "temporaryOwner": "dahabminers.sweihan024"
+  },
+  {
+    "clientName": "REGGIE",
+    "modelName": "ANTMINER S19J PRO+ 120T",
+    "serialNumber": "piemadabcjcbg01cz",
+    "macAddress": "02:68:E9:7A:56:C4",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "regieeg.btc03",
+    "temporaryOwner": "regieeg.btc03"
+  },
+  {
+    "clientName": "SALEEM",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0BBDJAAA0VH1",
+    "macAddress": "A0:13:0F:4C:8B:DF",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "salimumr1986.002",
+    "temporaryOwner": "salimumr1986.002"
+  },
+  {
+    "clientName": "SALEEM",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0BBDJAAA0R6B",
+    "macAddress": "66:3C:A3:0D:3E:D6",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "salimumr1986.003",
+    "temporaryOwner": "salimumr1986.003"
+  },
+  {
+    "clientName": "SALEEM",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0BBDJAAA0V66",
+    "macAddress": "32:82:F1:0B:22:0D",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "salimumr1986.004",
+    "temporaryOwner": "salimumr1986.004"
+  },
+  {
+    "clientName": "SALEEM",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0BBDJAAA0VH7",
+    "macAddress": "74.17.d7.91.3B.F8",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "salimumr1986.006",
+    "temporaryOwner": "salimumr1986.006"
+  },
+  {
+    "clientName": "SALEEM",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "JYZZB0BBDJAAA0VHK",
+    "macAddress": "BE:9C:87:AF:8B:4C",
+    "actualLocation": "SWEIHAN",
+    "currentLocation": "SWEIHAN",
+    "workerId": "salimumr1986.007",
+    "temporaryOwner": "salimumr1986.007"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "YDFT67ABAJEJF01LL",
+    "macAddress": "00:DC:DE:04:24:06",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.69",
+    "temporaryOwner": "yln001.69"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 104TH",
+    "serialNumber": "FXDZDXABBJDJA02JE",
+    "macAddress": "02:01:D5:B5:7B:5B",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.105",
+    "temporaryOwner": "yln001.105"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 104TH",
+    "serialNumber": "FXDZDXABBJDJA02DZ",
+    "macAddress": "02:09:AD:EA:74:D4",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.33",
+    "temporaryOwner": "yln001.33"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 104TH",
+    "serialNumber": "YNAHD4CBBJABE00XZ",
+    "macAddress": "02:11:0B:A8:2F:50",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.80",
+    "temporaryOwner": "yln001.80"
+  },
+  {
+    "clientName": "JEAN",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "HQDZAEABCAABI0DJP",
+    "macAddress": "02:64:46:DA:02:D5",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "jeanvzyl.02",
+    "temporaryOwner": "jeanvzyl.02"
+  },
+  {
+    "clientName": "JEAN",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "HQDZAEABCAABI0DAN",
+    "macAddress": "02:7E:6C:C6:88:C6",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "jeanvzyl.01",
+    "temporaryOwner": "jeanvzyl.01"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19J PRO_104T",
+    "serialNumber": "YNAHD4CBBJABE0101",
+    "macAddress": "02:8f:ef:8b:0b:d0",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.03",
+    "temporaryOwner": "yln001.03"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 104TH",
+    "serialNumber": "YNAHD4CBBJABE00ZX",
+    "macAddress": "02:9F:63:DA:25:C4",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.76",
+    "temporaryOwner": "yln001.76"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 104TH",
+    "serialNumber": "FXDZDXABBJDJA02GJ",
+    "macAddress": "02:A1:21:B2:37:5D",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.68",
+    "temporaryOwner": "yln001.68"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 104TH",
+    "serialNumber": "YDFTDXABBJEJG096F",
+    "macAddress": "02:B3:CF:B7:9E:4F",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.78",
+    "temporaryOwner": "yln001.78"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19J PRO_104T",
+    "serialNumber": "YNAHD4CBBJABE03P1",
+    "macAddress": "02:BF:8D:F5:48:64",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.288",
+    "temporaryOwner": "yln001.288"
+  },
+  {
+    "clientName": "JEAN",
+    "modelName": "ANTMINER KS5 PRO",
+    "serialNumber": "JYZZF1ABDJHJE004E",
+    "macAddress": "06:7D:C9:30:2E:32",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "jeanvzyl.worker001",
+    "temporaryOwner": "jeanvzyl.worker001"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 104TH",
+    "serialNumber": "NGSBD4CBAJHAG6094",
+    "macAddress": "0C:29:A4:6A:9F:41",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.17",
+    "temporaryOwner": "yln001.17"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 100TH",
+    "serialNumber": "YNAHD4BBBJAJI0BTA",
+    "macAddress": "0c:ae:7d:10:52:D1",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.27",
+    "temporaryOwner": "yln001.27"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 100TH",
+    "serialNumber": "YNAHD4BBBJAJI0DEZ",
+    "macAddress": "0C:AE:7D:11:2C:E7",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.28",
+    "temporaryOwner": "yln001.28"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDJF001A",
+    "macAddress": "10:04:B7:FF:5D:D3",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.91",
+    "temporaryOwner": "yln001.91"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 96TH",
+    "serialNumber": "NGSBD4ABAJHAG5624",
+    "macAddress": "18:A8:A5:A9:51:23",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.53",
+    "temporaryOwner": "yln001.53"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDJF000T",
+    "macAddress": "1C:47:74:85:DB:3B",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.106",
+    "temporaryOwner": "yln001.106"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 96TH",
+    "serialNumber": "NGSBD4ABAJHAG8807",
+    "macAddress": "1c:8d:be:e6:e2:57",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.41",
+    "temporaryOwner": "yln001.41"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 104TH",
+    "serialNumber": "NGSBD4CBAJHAG8922",
+    "macAddress": "1E:C2:DF:C3:5B:88",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.55",
+    "temporaryOwner": "yln001.55"
+  },
+  {
+    "clientName": "andrey",
+    "modelName": "Antminer S19j Pro (104T)",
+    "serialNumber": "-",
+    "macAddress": "22:a0:ca:12:25:56",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.94",
+    "temporaryOwner": "yln001.94"
+  },
+  {
+    "clientName": "JEAN",
+    "modelName": "ANTMINER L7",
+    "serialNumber": "JYZZDCABCABBH03GK",
+    "macAddress": "28:B7:08:22:42:35",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "jeanvzyl.L7.002",
+    "temporaryOwner": "jeanvzyl.L7.002"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDJF000K",
+    "macAddress": "30:98:9D:A9:3A:A5",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.07",
+    "temporaryOwner": "yln001.07"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDBD000M",
+    "macAddress": "32:DB:49:00:82:C8",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.75",
+    "temporaryOwner": "yln001.75"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 100TH",
+    "serialNumber": "YNAHD4BBBJAJI0CKH",
+    "macAddress": "40:BD:32:26:98:0D",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.20",
+    "temporaryOwner": "yln001.20"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDJF0024",
+    "macAddress": "44:3A:37:F9:03:A2",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.38",
+    "temporaryOwner": "yln001.38"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDJF0013",
+    "macAddress": "4A:AF:4A:1A:81:B3",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.83",
+    "temporaryOwner": "yln001.83"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDAD055C",
+    "macAddress": "4C:0B:D8:8E:84:48",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.87",
+    "temporaryOwner": "yln001.87"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 104TH",
+    "serialNumber": "NGSBD4CBAJHAG6126",
+    "macAddress": "52:2F:B8:75:33:12",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.77",
+    "temporaryOwner": "yln001.77"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDAD04CJ",
+    "macAddress": "56:5A:7B:B6:B3:29",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.79",
+    "temporaryOwner": "yln001.79"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDAD04CH",
+    "macAddress": "5A:00:4A:FA:FA:34",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.90",
+    "temporaryOwner": "yln001.90"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19 Pro 110TH",
+    "serialNumber": "YDFT67ABAJEJF01JA",
+    "macAddress": "5A:64:B9:F2:96:51",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.08",
+    "temporaryOwner": "yln001.08"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 96TH",
+    "serialNumber": "NGSBD4ABAJHAG9018",
+    "macAddress": "5E:89:6D:29:A3:CF",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.71",
+    "temporaryOwner": "yln001.71"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDAD04CF",
+    "macAddress": "62:A5:62:4F:EF:21",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.84",
+    "temporaryOwner": "yln001.84"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HYDT67ABAJEJG00LX",
+    "macAddress": "64:BC:32:98:63:B9",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.35",
+    "temporaryOwner": "yln001.35"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDAJ001B",
+    "macAddress": "66:82:BA:B6:03:46",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.59",
+    "temporaryOwner": "yln001.59"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDBD001H",
+    "macAddress": "6A:36:09:66:CE:03",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.73",
+    "temporaryOwner": "yln001.73"
+  },
+  {
+    "clientName": "JEAN",
+    "modelName": "ANTMINER KS5 PRO",
+    "serialNumber": "JYZZF1ABDAAJH0217",
+    "macAddress": "6E:E7:34:05:F0:DB",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "jeanvzyl.worker002",
+    "temporaryOwner": "jeanvzyl.worker002"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 100TH",
+    "serialNumber": "YNAHD4BBBJAJI0EVD",
+    "macAddress": "74:e1:82:8b:39:d6",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.31",
+    "temporaryOwner": "yln001.31"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDAD05G2",
+    "macAddress": "7C:7E:06:42:B5:93",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.52",
+    "temporaryOwner": "yln001.52"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19j Pro 96TH",
+    "serialNumber": "NGSBD4ABAJHAG8918",
+    "macAddress": "82:BB:DF:B9:8B:0B",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.26",
+    "temporaryOwner": "yln001.26"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 104TH",
+    "serialNumber": "NGSBD4CBAJHAG8886",
+    "macAddress": "9E:80:E2:C6:88:6F",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.54",
+    "temporaryOwner": "yln001.54"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDJF000S",
+    "macAddress": "A2.AB.45.16.6B.3F",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.98",
+    "temporaryOwner": "yln001.98"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19 Pro 110TH",
+    "serialNumber": "YDFT67ABAJEJF01M4",
+    "macAddress": "A6:D0:24:46:63:A9",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.97",
+    "temporaryOwner": "yln001.97"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 104TH",
+    "serialNumber": "NGSBD4CBAJHAG5995",
+    "macAddress": "AE:16:7B:F4:23:F3",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.32",
+    "temporaryOwner": "yln001.32"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "YDFT67ABAJEJF01JJ",
+    "macAddress": "B6:83:DE:E3:A1:72",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.57",
+    "temporaryOwner": "yln001.57"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "YDFT67ABAJEJF01LV",
+    "macAddress": "BE:D7:11:82:C5:C6",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.36",
+    "temporaryOwner": "yln001.36"
+  },
+  {
+    "clientName": "JEAN",
+    "modelName": "ANTMINER L7",
+    "serialNumber": "DGAHDCABDJFAH009D",
+    "macAddress": "C0:CD:4D:24:8F:97",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "jeanvzyl.L7.001",
+    "temporaryOwner": "jeanvzyl.L7.001"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDJF000N",
+    "macAddress": "C8:8E:22:FC:62:B6",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.37",
+    "temporaryOwner": "yln001.37"
+  },
+  {
+    "clientName": "JEAN",
+    "modelName": "KS5 PRO",
+    "serialNumber": "JYZZF1ABDAAJH020C",
+    "macAddress": "CA:A1:FE:5B:8C:11",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "jeanvzyl.worker003",
+    "temporaryOwner": "jeanvzyl.worker003"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "YDFT67ABAJEJF01M5",
+    "macAddress": "CE:0A:83:27:A5:20",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.60",
+    "temporaryOwner": "yln001.60"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 96TH",
+    "serialNumber": "NGSBD4ABAJHAG2655",
+    "macAddress": "CE:0F:27:7A:10:C9",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.298",
+    "temporaryOwner": "yln001.298"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 104TH",
+    "serialNumber": "NGSBD4CBAJHAG7639",
+    "macAddress": "D6:F7:B5:BB:42:B9",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.30",
+    "temporaryOwner": "yln001.30"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "YDFT67ABAJEJF01K7",
+    "macAddress": "D8:60:8D:07:53:DE",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.72",
+    "temporaryOwner": "yln001.72"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 104TH",
+    "serialNumber": "NGSBD4CBAJHAG5979",
+    "macAddress": "D8:7E:43:3B:19:99",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.58",
+    "temporaryOwner": "yln001.58"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 104TH",
+    "serialNumber": "NGSBD4CBAJHAG8805",
+    "macAddress": "DE:1D:6C:CF:37:33",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.81",
+    "temporaryOwner": "yln001.81"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDAJ0024",
+    "macAddress": "DE:22:1B:34:56:11",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.02",
+    "temporaryOwner": "yln001.02"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "YDFT67ABAJEJF01JF",
+    "macAddress": "E0:1E:A3:CB:11:FE",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.70",
+    "temporaryOwner": "yln001.70"
+  },
+  {
+    "clientName": "andrey",
+    "modelName": "Antminer S19 Pro (110T)",
+    "serialNumber": "-",
+    "macAddress": "e4:bb:6e:a8:83:19",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.99",
+    "temporaryOwner": "yln001.99"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 96TH",
+    "serialNumber": "NGSBD4ABAJHAG8803",
+    "macAddress": "F0:C5:C3:ED:9F:FC",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.34",
+    "temporaryOwner": "yln001.34"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 104TH",
+    "serialNumber": "YNAHD4BBBJAJI0ETR",
+    "macAddress": "F4:84:4C:1D:EE:13",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.49",
+    "temporaryOwner": "yln001.49"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "ANTMINER S19j Pro 100TH",
+    "serialNumber": "YNAHD4BBBJAJI0DGZ",
+    "macAddress": "F4:84:4C:35:9A:E7",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.19",
+    "temporaryOwner": "yln001.19"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "YDFT67ABAJEJF01J3",
+    "macAddress": "F6:47:D7:83:61:8F",
+    "actualLocation": "LIWA 3",
+    "currentLocation": "LIWA 3",
+    "workerId": "yln001.74",
+    "temporaryOwner": "yln001.74"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "ANTMINER S19 95TH",
+    "serialNumber": "E02068ABJABJA05HB",
+    "macAddress": "0E:E4:B2:B9:68:87",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.55",
+    "temporaryOwner": "freedomone.55"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "ANTMINER S19 95TH",
+    "serialNumber": "E02068ABAJAAJ030C",
+    "macAddress": "1E:6C:33:81:F3:70",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.17",
+    "temporaryOwner": "freedomone.17"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "ANTMINER S19J PRO 100TH",
+    "serialNumber": "FXDZD4BBAJHAB00F0",
+    "macAddress": "34:15:13:08:60:64",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedom71.001",
+    "temporaryOwner": "freedom71.001"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "ANTMINER S19J PRO 100TH",
+    "serialNumber": "HQDZD4BBAJHBJ09GG",
+    "macAddress": "34:15:13:0a:34:16",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.9",
+    "temporaryOwner": "freedomone.9"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "ANTMINER S19J PRO 100TH",
+    "serialNumber": "FXDZD4BBAJHAB00E4",
+    "macAddress": "3c:a3:08:5b:4f:1a",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.3",
+    "temporaryOwner": "freedomone.3"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "ANTMINER S19J PRO 100TH",
+    "serialNumber": "FXDZD4BBAJHAB00AM",
+    "macAddress": "3C:A3:08:59:D6:F1",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.52",
+    "temporaryOwner": "freedomone.52"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "ANTMINER S19J PRO 100TH",
+    "serialNumber": "FXDZD4BBAJHAB00D2",
+    "macAddress": "3C:A3:08:67:E1:B5",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.5",
+    "temporaryOwner": "freedomone.5"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "ANTMINER S19 110TH",
+    "serialNumber": "E01567ABJABBC00R0",
+    "macAddress": "44:2a:68:e7:fe:26",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.12",
+    "temporaryOwner": "freedomone.12"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "ANTMINER S19J PRO 100TH",
+    "serialNumber": "FXDZD4BBAJHAB00C9",
+    "macAddress": "50:33:8b:50:98:2d",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedom71.002",
+    "temporaryOwner": "freedom71.002"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "ANTMINER S19J PRO 100TH",
+    "serialNumber": "FXDZD4BBAJHAB00AJ",
+    "macAddress": "94:e3:6d:C8:C3:34",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.4",
+    "temporaryOwner": "freedomone.4"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "ANTMINER S19J PRO 100TH",
+    "serialNumber": "FXDZD4BBAJHAB00ED",
+    "macAddress": "A4:c7:25:5c:E7:94",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.6",
+    "temporaryOwner": "freedomone.6"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000006WMEC0A14WN2402",
+    "macAddress": "b4:a2:eb:34:d3:70",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.25",
+    "temporaryOwner": "freedomone.25"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000006WJYC0A14WN2402",
+    "macAddress": "b4:a2:eb:35:2d:dc",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.22",
+    "temporaryOwner": "freedomone.22"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000007F80C0A14WQ1101",
+    "macAddress": "b4:a2:eb:35:32:13",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.20",
+    "temporaryOwner": "freedomone.20"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000007GR0C0A14WQ1301",
+    "macAddress": "b4:a2:eb:35:64:8f",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.21",
+    "temporaryOwner": "freedomone.21"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005JFCC0A14WL1602",
+    "macAddress": "b4:a2:eb:35:77:c3",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.36",
+    "temporaryOwner": "freedomone.36"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005V3XC0A14WL2201",
+    "macAddress": "B4:A2:EB:35:8C:EF",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.23",
+    "temporaryOwner": "freedomone.23"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005N0RC0A14WL1807",
+    "macAddress": "b4:a2:eb:35:8e:17",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.41",
+    "temporaryOwner": "freedomone.41"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005MGFC0A14WL1801",
+    "macAddress": "b4:a2:eb:35:8f:f3",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.32",
+    "temporaryOwner": "freedomone.32"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005JQDC0A14WL1702",
+    "macAddress": "b4:a2:eb:35:95:8c",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.38",
+    "temporaryOwner": "freedomone.38"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005MY4C0A14WL1807",
+    "macAddress": "b4:a2:eb:35:9c:b9",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.13",
+    "temporaryOwner": "freedomone.13"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005J8RC0A14WL1602",
+    "macAddress": "b4:a2:eb:35:9c:dd",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.31",
+    "temporaryOwner": "freedomone.31"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005VT6C0A14WL2207",
+    "macAddress": "b4:a2:eb:35:aa:b2",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.18",
+    "temporaryOwner": "freedomone.18"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005VQFC0A14WL2207",
+    "macAddress": "b4:a2:eb:35:ab:10",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.14",
+    "temporaryOwner": "freedomone.14"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000006YLSC0A14WN2701",
+    "macAddress": "b4:a2:eb:36:6b:68",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.30",
+    "temporaryOwner": "freedomone.30"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000006YMXC0A14WN2701",
+    "macAddress": "b4:a2:eb:36:6b:bb",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.39",
+    "temporaryOwner": "freedomone.39"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000006YLDC0A14WN2701",
+    "macAddress": "b4:a2:eb:36:6b:ef",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.15",
+    "temporaryOwner": "freedomone.15"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000006YM4C0A14WN2701",
+    "macAddress": "b4:a2:eb:36:6c:27",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.19",
+    "temporaryOwner": "freedomone.19"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000006YZ9C0A14WN2701",
+    "macAddress": "b4:a2:eb:36:6f:a9",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.37",
+    "temporaryOwner": "freedomone.37"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000006YT9C0A14WN2701",
+    "macAddress": "b4:a2:eb:36:72:0e",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.27",
+    "temporaryOwner": "freedomone.27"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000006YSBC0A14WN2701",
+    "macAddress": "B4:A2:EB:36:75:78",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.26",
+    "temporaryOwner": "freedomone.26"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC110000079SAC0A14WQ0701",
+    "macAddress": "b4:a2:eb:36:75:d6",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.28",
+    "temporaryOwner": "freedomone.28"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000006YUMC0A14WN2701",
+    "macAddress": "b4:a2:eb:36:76:19",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.16",
+    "temporaryOwner": "freedomone.16"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMCC110000079QDC0A14WQD701",
+    "macAddress": "B4:a2:eb:36:7f:c7",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.40",
+    "temporaryOwner": "freedomone.40"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC1100000741EC0A14WQ0202",
+    "macAddress": "b4:a2:eb:36:84:f4",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.33",
+    "temporaryOwner": "freedomone.33"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC1100000744YC0A14WQ0202",
+    "macAddress": "B4:A2:EB:36:86:FB",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.35",
+    "temporaryOwner": "freedomone.35"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000006YKRC0A14WN2701",
+    "macAddress": "b4:a2:eb:34:ba:e5",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.24",
+    "temporaryOwner": "freedomone.24"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005J4SC0A14WL1603",
+    "macAddress": "b4:a2:eb:35:7f:77",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.34",
+    "temporaryOwner": "freedomone.34"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "ANTMINER S19J PRO 100TH",
+    "serialNumber": "HQDZD4BBAJGJF0LWW",
+    "macAddress": "C4:F3:12:00:8F:F7",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedom71.003",
+    "temporaryOwner": "freedom71.003"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "S19J PRO 120T",
+    "serialNumber": "YNAHADABCJCBG0KDP",
+    "macAddress": "02:4a:6d:42:df:f4",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.11",
+    "temporaryOwner": "freedomone.11"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "S19J PRO 120T",
+    "serialNumber": "PIEMADABCJCBD0709",
+    "macAddress": "02:c6:2c:af:93:db",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "freedomone.10",
+    "temporaryOwner": "freedomone.10"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDBD000E",
+    "macAddress": "5C:7B:1A:2D:01:C8",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "yln001.89",
+    "temporaryOwner": "yln001.89"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDJC013L",
+    "macAddress": "68:69:EA:8F:04:2C",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "yln001.293",
+    "temporaryOwner": "yln001.293"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDBD0003",
+    "macAddress": "6A:F8:96:11:E1:7E",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "yln001.107",
+    "temporaryOwner": "yln001.107"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HYDT67ABAJEJG00M2",
+    "macAddress": "A0:7C:08:70:09:04",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "yln001.292",
+    "temporaryOwner": "yln001.292"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "YDFT67ABAJEJF01LM",
+    "macAddress": "A6:57:22:CB:A6:B2",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "yln001.103",
+    "temporaryOwner": "yln001.103"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19j Pro 96TH",
+    "serialNumber": "NGSBD4ABAJHAG8699",
+    "macAddress": "AC:32:D0:5E:46:AC",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "yln001.56",
+    "temporaryOwner": "yln001.56"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDBD0019",
+    "macAddress": "C0:91:2B:13:F7:C3",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "yln001.92",
+    "temporaryOwner": "yln001.92"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDBD000X",
+    "macAddress": "CE:20:74:F7:96:0B",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "yln001.101",
+    "temporaryOwner": "yln001.101"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "YDFT67ABAJEJF01HA",
+    "macAddress": "E0:21:49:2C:19:92",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "yln001.86",
+    "temporaryOwner": "yln001.86"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HYDT67ABAJEJG000V",
+    "macAddress": "E2:B5:FA:88:F6:BF",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "yln001.281",
+    "temporaryOwner": "yln001.281"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDAD05E4",
+    "macAddress": "E6:7A:45:3C:22:12",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "yln001.291",
+    "temporaryOwner": "yln001.291"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJDAJ001E",
+    "macAddress": "26:AA:8D:D5:6D:05",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "yln001.102",
+    "temporaryOwner": "yln001.102"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "YDFT67ABAJEJF01LH",
+    "macAddress": "0e:60:4d:cb:f4:02",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "yln001.100",
+    "temporaryOwner": "yln001.100"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 Pro 110TH",
+    "serialNumber": "HQDZ67ABAJCJH06CY",
+    "macAddress": "36:3b:06:63:41:d0",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "LIWA 4",
+    "workerId": "yln001.95",
+    "temporaryOwner": "yln001.95"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421080409650123943A00008",
+    "macAddress": "C6:12:07:00:85:7A",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.125",
+    "temporaryOwner": "yln001.125"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421080409650123943A00018",
+    "macAddress": "C6:12:07:00:85:82",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.147",
+    "temporaryOwner": "yln001.147"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421072209650123943A00077",
+    "macAddress": "C6:12:07:00:85:C6",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.130",
+    "temporaryOwner": "yln001.130"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421072009650123943A00084",
+    "macAddress": "C6:12:07:00:86:AB",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.39",
+    "temporaryOwner": "yln001.39"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421072009650123943A00008",
+    "macAddress": "C6:12:07:00:86:BB",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.167",
+    "temporaryOwner": "yln001.167"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421091909850123943A00035",
+    "macAddress": "C8:04:08:00:11:BE",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.133",
+    "temporaryOwner": "yln001.133"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421071909650123943A00104",
+    "macAddress": "C8:04:08:00:43:45",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.287",
+    "temporaryOwner": "yln001.287"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 100TH",
+    "serialNumber": "ZDM1EP403421070710050123943A00159",
+    "macAddress": "C8:04:08:00:4D:C6",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.134",
+    "temporaryOwner": "yln001.134"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421091909650123943A00030",
+    "macAddress": "C8:04:08:00:4D:D9",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.15",
+    "temporaryOwner": "yln001.15"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 100TH",
+    "serialNumber": "ZDM1EP403421062910050123943A00044",
+    "macAddress": "C8:04:08:00:66:F4",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.135",
+    "temporaryOwner": "yln001.135"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421071909650123943A00098",
+    "macAddress": "C8:04:16:00:43:A5",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.141",
+    "temporaryOwner": "yln001.141"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421071909650123943A00082",
+    "macAddress": "C8:04:16:00:46:14",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.163",
+    "temporaryOwner": "yln001.163"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421072109650123943A00139",
+    "macAddress": "C8:04:16:00:53:53",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.273",
+    "temporaryOwner": "yln001.273"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421070709650123943A00063",
+    "macAddress": "C8:04:16:00:69:A9",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.162",
+    "temporaryOwner": "yln001.162"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 100TH",
+    "serialNumber": "ZDM1EP403421070710050123943A00107",
+    "macAddress": "C8:04:16:00:6B:A6",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.146",
+    "temporaryOwner": "yln001.146"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 100TH",
+    "serialNumber": "ZDM1EP403421070710050123943A00147",
+    "macAddress": "C8:04:16:00:6C:30",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.160",
+    "temporaryOwner": "yln001.160"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421072909650123943A00084",
+    "macAddress": "C8:04:16:00:6D:D8",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.122",
+    "temporaryOwner": "yln001.122"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 100TH",
+    "serialNumber": "ZDM1EP403421072310050123943A00046",
+    "macAddress": "C8:04:16:00:6E:C8",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.168",
+    "temporaryOwner": "yln001.168"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421081809650123943A00091",
+    "macAddress": "C8:04:16:00:70:DE",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.63",
+    "temporaryOwner": "yln001.63"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421091809850123943A00034",
+    "macAddress": "C8:06:22:00:02:1E",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.153",
+    "temporaryOwner": "yln001.153"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421092009850123943A00145",
+    "macAddress": "C8:06:22:00:02:DA",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.143",
+    "temporaryOwner": "yln001.143"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421092209850123943A00034",
+    "macAddress": "C8:06:22:00:05:DD",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.169",
+    "temporaryOwner": "yln001.169"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421091909850123943A00191",
+    "macAddress": "C8:06:22:00:09:95",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.137",
+    "temporaryOwner": "yln001.137"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421093009650123943A00166",
+    "macAddress": "C8:06:22:00:0A:23",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.61",
+    "temporaryOwner": "yln001.61"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421092009850123943A00027",
+    "macAddress": "C8:06:22:00:0C:2E",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.131",
+    "temporaryOwner": "yln001.131"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421081809650123943A00120",
+    "macAddress": "C8:06:22:00:0E:89",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.82",
+    "temporaryOwner": "yln001.82"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421092809850123943A00052",
+    "macAddress": "C8:06:22:00:11:FB",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.138",
+    "temporaryOwner": "yln001.138"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421091809850123943A00025",
+    "macAddress": "C8:06:22:00:12:CE",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.142",
+    "temporaryOwner": "yln001.142"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421092009650123943A00030",
+    "macAddress": "C8:06:22:00:13:8E",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.123",
+    "temporaryOwner": "yln001.123"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421092009650123943A00115",
+    "macAddress": "C8:06:22:00:16:17",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.64",
+    "temporaryOwner": "yln001.64"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421093009850123943A00157",
+    "macAddress": "C8:06:22:00:18:49",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.156",
+    "temporaryOwner": "yln001.156"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421091809650123943A00019",
+    "macAddress": "C8:06:22:00:18:A7",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.132",
+    "temporaryOwner": "yln001.132"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421093009850123943A00141",
+    "macAddress": "C8:06:22:00:18:A8",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.45",
+    "temporaryOwner": "yln001.45"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421093009850123943A00212",
+    "macAddress": "C8:06:22:00:19:93",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.129",
+    "temporaryOwner": "yln001.129"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421093009850123943A00110",
+    "macAddress": "C8:06:22:00:1A:0F",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.159",
+    "temporaryOwner": "yln001.159"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421092009850123943A00069",
+    "macAddress": "C8:06:22:00:1B:34",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.154",
+    "temporaryOwner": "yln001.154"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421091909850123943A00038",
+    "macAddress": "C8:06:22:00:1D:40",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.161",
+    "temporaryOwner": "yln001.161"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421091809850123943A00027",
+    "macAddress": "C8:06:22:00:20:0E",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.139",
+    "temporaryOwner": "yln001.139"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421091909850123943A00107",
+    "macAddress": "C8:06:22:00:20:15",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.164",
+    "temporaryOwner": "yln001.164"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421091809850123943A00010",
+    "macAddress": "C8:06:22:00:20:23",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.136",
+    "temporaryOwner": "yln001.136"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421092909650123943A00020",
+    "macAddress": "C8:06:22:00:2A:2D",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.43",
+    "temporaryOwner": "yln001.43"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421081909650123943A00088",
+    "macAddress": "C8:06:22:00:2E:25",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.268",
+    "temporaryOwner": "yln001.268"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421091909850123943A00125",
+    "macAddress": "C8:06:22:00:2F:63",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.165",
+    "temporaryOwner": "yln001.165"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421091909850123943A00015",
+    "macAddress": "C8:06:22:00:2F:B1",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.140",
+    "temporaryOwner": "yln001.140"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421091909850123943A00128",
+    "macAddress": "C8:06:22:00:31:F7",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.128",
+    "temporaryOwner": "yln001.128"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421082009650123943A00011",
+    "macAddress": "C8:06:22:00:34:9A",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.44",
+    "temporaryOwner": "yln001.44"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421092209650123943A00016",
+    "macAddress": "C8:06:22:00:3F:6C",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.157",
+    "temporaryOwner": "yln001.157"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421091709850123943A00116",
+    "macAddress": "C8:06:22:00:45:76",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.149",
+    "temporaryOwner": "yln001.149"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421100809850123943A00149",
+    "macAddress": "C8:08:18:00:25:81",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.121",
+    "temporaryOwner": "yln001.121"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421100809850123943A00021",
+    "macAddress": "C8:08:18:00:27:76",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.148",
+    "temporaryOwner": "yln001.148"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421100809850123943A00089",
+    "macAddress": "C8:08:18:00:28:AB",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.152",
+    "temporaryOwner": "yln001.152"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421100809850123943A00084",
+    "macAddress": "C8:08:18:00:2B:BD",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.166",
+    "temporaryOwner": "yln001.166"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421100809850123943A00082",
+    "macAddress": "C8:08:18:00:2F:54",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.46",
+    "temporaryOwner": "yln001.46"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421100809850123943A00081",
+    "macAddress": "C8:08:18:00:2F:55",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.150",
+    "temporaryOwner": "yln001.150"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421100809650123943A00103",
+    "macAddress": "C8:08:18:00:30:03",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.151",
+    "temporaryOwner": "yln001.151"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421101109850123943A00036",
+    "macAddress": "C8:08:18:00:31:31",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.66",
+    "temporaryOwner": "yln001.66"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421100809850123943A00045",
+    "macAddress": "C8:08:18:00:34:13",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.155",
+    "temporaryOwner": "yln001.155"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421100809850123943A00029",
+    "macAddress": "C8:08:18:00:34:16",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.158",
+    "temporaryOwner": "yln001.158"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S++ 108TH",
+    "serialNumber": "HTM1EK503122062510868123723A11250",
+    "macAddress": "C8:11:16:00:37:BF",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.145",
+    "temporaryOwner": "yln001.145"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S++ 108TH",
+    "serialNumber": "HTM1EK503122062510868123723A11230",
+    "macAddress": "C8:11:16:00:38:D4",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.118",
+    "temporaryOwner": "yln001.118"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S++ 108TH",
+    "serialNumber": "HTM1EK503122062510868123723A11236",
+    "macAddress": "C8:11:16:00:39:8E",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.269",
+    "temporaryOwner": "yln001.269"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S++ 108TH",
+    "serialNumber": "HTM1EK503122062510868123723A11244",
+    "macAddress": "C8:11:16:00:39:9E",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.119",
+    "temporaryOwner": "yln001.119"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S++ 108TH",
+    "serialNumber": "HTM1EK503122062510868123723A11243",
+    "macAddress": "C8:11:16:00:39:A0",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.275",
+    "temporaryOwner": "yln001.275"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S++ 108TH",
+    "serialNumber": "HTM1EK503122062510868123723A11246",
+    "macAddress": "C8:11:16:00:3A:77",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.51",
+    "temporaryOwner": "yln001.51"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S++ 108TH",
+    "serialNumber": "ZDM1EK403122032210460123933A41733",
+    "macAddress": "CA:01:14:00:1C:5B",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.283",
+    "temporaryOwner": "yln001.283"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S++ 108TH",
+    "serialNumber": "ZDM1EK403122032210460123933A41671",
+    "macAddress": "CA:01:14:00:6F:8E",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.282",
+    "temporaryOwner": "yln001.282"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "WHATSMINER M30S++ 108TH",
+    "serialNumber": "HTM1EK503122070410868123723A16722",
+    "macAddress": "CA:05:17:00:50:9C",
+    "actualLocation": "BADA ZAYED",
+    "currentLocation": "BADA ZAYED",
+    "workerId": "yln001.120",
+    "temporaryOwner": "yln001.120"
+  },
+  {
+    "clientName": "IVAN",
+    "modelName": "ANTMINER S19K PRO 120TH",
+    "serialNumber": "dgahb0abdjabb0jzm",
+    "macAddress": "62:55:54:f1:3d:cc",
+    "actualLocation": "LIWA 1",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "IVAN",
+    "modelName": "S19 JPRO 104T",
+    "serialNumber": "YNAHDWABBJEAA05B1",
+    "macAddress": "02:EA:5B:46:45:51",
+    "actualLocation": "LIWA 1",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "IVAN",
+    "modelName": "S19K PRO",
+    "serialNumber": "DGAHB0ABDJBAG03EZ",
+    "macAddress": "-",
+    "actualLocation": "LIWA 1",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "VLAD",
+    "modelName": "S19K PRO 120T",
+    "serialNumber": "DGAHB0ABDJBAG03CH",
+    "macAddress": "-",
+    "actualLocation": "LIWA 1",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "VLAD",
+    "modelName": "S19K PRO",
+    "serialNumber": "DGAHB0ABDJABB0JYS",
+    "macAddress": "-",
+    "actualLocation": "LIWA 1",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "VLAD",
+    "modelName": "S19K PRO",
+    "serialNumber": "DGAHB0ABDJBAG0676",
+    "macAddress": "-",
+    "actualLocation": "LIWA 1",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "VLAD",
+    "modelName": "S19K Pro",
+    "serialNumber": "DGAHB0ABDJBAG03EW",
+    "macAddress": "-",
+    "actualLocation": "LIWA 1",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "S19j Pro 100T",
+    "serialNumber": "FXDZD4BBAJHAB00DA",
+    "macAddress": "-",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "Avalon Miner 1166 Pro",
+    "serialNumber": "AMC11000005VRWC0A14WL2207",
+    "macAddress": "-",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON",
+    "serialNumber": "AMC11000006WMRC0A14WN2402",
+    "macAddress": "-",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "S19J PRO",
+    "serialNumber": "FXDZD4BBAJHAB00AS",
+    "macAddress": "-",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON",
+    "serialNumber": "AMC11000006WKDC0A14WN2402",
+    "macAddress": "-",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "S19J PRO",
+    "serialNumber": "HQDZD4BBAJHBJ060L",
+    "macAddress": "-",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "Antminer S19Pro 110T",
+    "serialNumber": "HQDZ67ABAJDJF0012",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19JPRO +",
+    "serialNumber": "NGSBD4ABAJHAG8719",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 PRO 110T",
+    "serialNumber": "HYDT67ABAJEJG00LW",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "S19 J PRO +",
+    "serialNumber": "PIEMADABCJCBD02PD",
+    "macAddress": "-",
+    "actualLocation": "sweihan",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.sweihan025",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "S19 PRO 110T",
+    "serialNumber": "NGSB67ABBJFJC3178",
+    "macAddress": "-",
+    "actualLocation": "sweihan",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.sweihan026",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "S19 PRO+ 120T",
+    "serialNumber": "PIEMADABCJCBD06ZS",
+    "macAddress": "-",
+    "actualLocation": "sweihan",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.sweihan027",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "S19 PRO+ 120T",
+    "serialNumber": "PIEMADABCJCB006MM",
+    "macAddress": "-",
+    "actualLocation": "sweihan",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.sweihan028",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "M30S++",
+    "serialNumber": "ZDM1EK853123052910468123723A78159",
+    "macAddress": "CC:03:09:00:70:B5",
+    "actualLocation": "sweihan",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.sweihan029",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "S19j Pro +",
+    "serialNumber": "YNAHADABCJCBG0G2P",
+    "macAddress": "-",
+    "actualLocation": "sweihan",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.sweihan030",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "AHMEDBTC",
+    "modelName": "S19 PRO 104T",
+    "serialNumber": "KMID4CBAJIJC5161",
+    "macAddress": "-",
+    "actualLocation": "ADLA",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "SHAFNAA",
+    "modelName": "Antminer KA3",
+    "serialNumber": "JYZZECABCJBJG0037",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "bara",
+    "modelName": "ICERIVER KS3M 6T",
+    "serialNumber": "M01irKS3M0101513042B0100257",
+    "macAddress": "00:0a:59:00:2d:70",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S++",
+    "serialNumber": "ZDM1EK403122032210460123933A41658",
+    "macAddress": "CA:01:14:00:6F:A2",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S++",
+    "serialNumber": "ZDM1EK403122032210460123933A41752",
+    "macAddress": "CA:01:14:00:17:A0",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S++",
+    "serialNumber": "ZDM1EK403122032210460123933A41750",
+    "macAddress": "CA:01:14:00:1C:6E",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S++",
+    "serialNumber": "ZDM1EK403122032210460123933A41736",
+    "macAddress": "C8:11:29:00:10:9C",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S++",
+    "serialNumber": "ZDM1EK403122032210460123933A41777",
+    "macAddress": "CA:01:14:00:24:AA",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S++",
+    "serialNumber": "ZDM1EK403122032210460123933A41740",
+    "macAddress": "CA:01:14:00:1C:46",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S++",
+    "serialNumber": "ZDM1EK403122032210460123933A41680",
+    "macAddress": "CA:01:14:00:6B:0D",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S++",
+    "serialNumber": "ZDM1EK403122032210460123933A41781",
+    "macAddress": "CA:01:14:00:17:94",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421072109650123943A00114",
+    "macAddress": "C8:04:16:00:70:9C",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421092209850123943A00008",
+    "macAddress": "C8:06:22:00:1B:52",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421081809650123943A00116",
+    "macAddress": "C8:06:22:00:03:E4",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421091909850123943A00176",
+    "macAddress": "C8:06:22:00:1E:80",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421092009650123943A00084",
+    "macAddress": "C8:06:22:00:2E:AE",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421100809850123943A00094",
+    "macAddress": "C8:08:18:00:27:2E",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421081909650123943A00090",
+    "macAddress": "C8:06:22:00:4C:DB",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S++ 108TH",
+    "serialNumber": "HTM1EK503122063010868123723A14312",
+    "macAddress": "CA:05:17:00:55:60",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421082009650123943A00027",
+    "macAddress": "C8:06:22:00:0E:59",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421100609850123943A00041",
+    "macAddress": "C8:06:22:00:07:60",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421100809650123943A00044",
+    "macAddress": "C8:08:18:00:2B:C9",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421091709850123943A00141",
+    "macAddress": "C8:06:22:00:18:11",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421092809650123943A00042",
+    "macAddress": "C8:06:22:00:28:EA",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421091609650123943A00090",
+    "macAddress": "C8:06:22:00:00:7B",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421081909650123943A00013",
+    "macAddress": "C8:06:22:00:00:26",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421091809850123943A00006",
+    "macAddress": "C8:06:22:00:13:A5",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421072109650123943A00074",
+    "macAddress": "C8:04:16:00:53:54",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S++",
+    "serialNumber": "ZDM1EK403122032210460123933A41659",
+    "macAddress": "CA:01:14:00:75:CB",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421092209850123943A00025",
+    "macAddress": "C8:06:22:00:3F:62",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 100TH",
+    "serialNumber": "ZDM1EP403421070710050123943A00154",
+    "macAddress": "C8:04:08:00:4C:90",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "m30S+",
+    "serialNumber": "zdm1ep403421091909650123943a00169",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "m30S +",
+    "serialNumber": "zdm1ep403421091809850123943a00023",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "m30S +",
+    "serialNumber": "zdm1ep403421092809850123943a00054",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421072109650123943A00121",
+    "macAddress": "C8:04:16:00:71:26",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S++",
+    "serialNumber": "ZDM1EK403122032210460123933A41695",
+    "macAddress": "CA:01:14:00:75:DF",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421092009850123943A00150",
+    "macAddress": "C8:06:22:00:2D:13",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "SAEED",
+    "modelName": "S19j Pro 104T",
+    "serialNumber": "KPMID4CBAAJJF7579",
+    "macAddress": "-",
+    "actualLocation": "SAEED HOUSE",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "VLAD",
+    "modelName": "S19K Pro 120T",
+    "serialNumber": "vHQDZB0ABDJAAG02VJ",
+    "macAddress": "-",
+    "actualLocation": "LIWA 1",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "alexis",
+    "modelName": "L7 8800M",
+    "serialNumber": "FXDZDCCBBJABA00C8",
+    "macAddress": "aa:c0:89:fd:99:8e",
+    "actualLocation": "LIWA 2",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "miningl7ms.101",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "S19 PRO",
+    "serialNumber": "HQDZ67ABAJDJC015D",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ivan",
+    "modelName": "S19K Pro 120T",
+    "serialNumber": "DGAHB0ABDJABB0D3D",
+    "macAddress": "A8:78:AE:14:21:83",
+    "actualLocation": "LIWA 1",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "shafna",
+    "modelName": "KA3166T",
+    "serialNumber": "JYZZECABCJBJG002F",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "vlad",
+    "modelName": "KS5L",
+    "serialNumber": "S3KS5L0101707042F07A04006909",
+    "macAddress": "-",
+    "actualLocation": "LIWA 1",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ramseen",
+    "modelName": "KS5L",
+    "serialNumber": "S3KS5L0101507042F06A05006017",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ivan",
+    "modelName": "KS5L",
+    "serialNumber": "S3KS5L0101507042F07A04005619",
+    "macAddress": "-",
+    "actualLocation": "LIWA 1",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ALI KHATRI",
+    "modelName": "irKS3m",
+    "serialNumber": "irKS3M0104808032B100684",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "UMAIR",
+    "modelName": "ks5l",
+    "serialNumber": "S1irKS5L0101407042F07A04000062",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "VISHNU BABU",
+    "modelName": "S19K PRO 120TH",
+    "serialNumber": "HQDZAEABCAABI05SZ",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005J81C0A14WL1602",
+    "macAddress": "-",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000006YVYC0A14WN2701",
+    "macAddress": "-",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005VQJC0A14WL2207",
+    "macAddress": "-",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005J70C0A14WL1602",
+    "macAddress": "-",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005JUCC0A14WL1702",
+    "macAddress": "-",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005MYVC0A14WL1807",
+    "macAddress": "-",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005URYC0A14WL2201",
+    "macAddress": "-",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "PETER",
+    "modelName": "AVALON 1166 PRO 78TH",
+    "serialNumber": "AMC11000005MMRC0A14WL1802",
+    "macAddress": "-",
+    "actualLocation": "LIWA 4",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ALI KHATRI",
+    "modelName": "ICERIVER KS3M 6T",
+    "serialNumber": "irKS3M0104808032E100004",
+    "macAddress": "00:0a:39:00:0a:6a",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (SCRAP)"
+  },
+  {
+    "clientName": "ABDULLAH KHATRI",
+    "modelName": "ICERIVER KS3M 6T",
+    "serialNumber": "irKS3M0108013042A100645",
+    "macAddress": "00:0A:39:00:3D:C9",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (SCRAP)"
+  },
+  {
+    "clientName": "BARA",
+    "modelName": "ICERIVER KS3M 6T",
+    "serialNumber": "M01irKS3M0101513042B0100257",
+    "macAddress": "00:0a:59:00:2d:70",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (SCRAP)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "M30S++",
+    "serialNumber": "BTM1EK503123032810460144133A43412",
+    "macAddress": "CC:01:1F:00:7E:97",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation01",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "M30S ++",
+    "serialNumber": "BTM1EK313123052710460123733A79621",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation02",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "m30S+",
+    "serialNumber": "gb1355a2129601664rt0006",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation03",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "M30S++",
+    "serialNumber": "BTM1EK953123052710468143923A79924",
+    "macAddress": "CC:03:09:00:8F:C6",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation04",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "S19J PRO",
+    "serialNumber": "KPMID4CBAAJJF7585",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation05",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "S19J PRO",
+    "serialNumber": "KPMID4CBAJIJC4842",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation06",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "Ks3M",
+    "serialNumber": "M01irKS3M0101212132A0100001",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation07",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "J PRO + 120TH",
+    "serialNumber": "piemadabcjcbd070p",
+    "macAddress": "EC:94:65:B0:2A:55",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation08",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "s19k pro 120th",
+    "serialNumber": "jyzzaeabcajad046n",
+    "macAddress": "02:6e:9a:d8:f6:fe",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation09",
+    "temporaryOwner": "BAHYA (SCRAP)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "s19k pro 120th",
+    "serialNumber": "jyzzaeabcajad0bla",
+    "macAddress": "02:46:5e:e5:4a:55",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation10",
+    "temporaryOwner": "BAHYA (SCRAP)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "s19k pro 120th",
+    "serialNumber": "jyzzaeabcajad046s",
+    "macAddress": "02:66:60:eb:8c:fc",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation11",
+    "temporaryOwner": "BAHYA (SCRAP)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "s19k pro 120th",
+    "serialNumber": "dgahb0abdjabb0ka0",
+    "macAddress": "ce:3a:58:4a:cf:c4",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation12",
+    "temporaryOwner": "BAHYA (SCRAP)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "s19k pro 120th",
+    "serialNumber": "jyzzaeabcajad05bj",
+    "macAddress": "02:c6:74:a5:50:79",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation13",
+    "temporaryOwner": "BAHYA (SCRAP)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "S19 J PRO +",
+    "serialNumber": "piemadabcjcbd070n",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation14",
+    "temporaryOwner": "BAHYA (SCRAP)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "J PRO + 120TH",
+    "serialNumber": "piemadabcjcbg092r",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation15",
+    "temporaryOwner": "BAHYA (SCRAP)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "J PRO + 120TH",
+    "serialNumber": "ynahadabcjcbg07al",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation16",
+    "temporaryOwner": "BAHYA (SCRAP)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "J PRO + 120TH",
+    "serialNumber": "piemadabcjdab02k8",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation17",
+    "temporaryOwner": "BAHYA (SCRAP)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "S19J PRO + 120T",
+    "serialNumber": "THQGDXABBJEJG0JEF",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation18",
+    "temporaryOwner": "BAHYA (SCRAP)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "S19 PRO 106T",
+    "serialNumber": "YDFTDABBAAJJF00VV",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation19",
+    "temporaryOwner": "BAHYA (SCRAP)"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "S19K Pro 120T",
+    "serialNumber": "KPMID4CBAAJJF7672",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "dahabminers.rotation20",
+    "temporaryOwner": "BAHYA (SCRAP)"
+  },
+  {
+    "clientName": "VLAD",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101507042F07A04005639",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "Iceriver Repair centre",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "VLAD",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101507042F03A05005581",
+    "macAddress": "00:0A:52:30:1B:5F",
+    "actualLocation": "-",
+    "currentLocation": "Iceriver Repair centre",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "VLAD",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101507042F07A04005542",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "Iceriver Repair centre",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "VLAD",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101507042F06A05006016",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "Iceriver Repair centre",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "VLAD",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101507042F07A04005995",
+    "macAddress": "00:0A:52:30:1C:AA",
+    "actualLocation": "-",
+    "currentLocation": "Iceriver Repair centre",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "VLAD",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101507042F07A04005603",
+    "macAddress": "-",
+    "actualLocation": "-",
+    "currentLocation": "Iceriver Repair centre",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "VLAD",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101507042F07A04005626",
+    "macAddress": "00:A0:52:30:1B:BF",
+    "actualLocation": "-",
+    "currentLocation": "Iceriver Repair centre",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "VLAD",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101507042F06A05006014",
+    "macAddress": "00:0A:52:30:14:2F",
+    "actualLocation": "-",
+    "currentLocation": "Iceriver Repair centre",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "VLAD",
+    "modelName": "ICE RIVER KS5L 12T",
+    "serialNumber": "S3KS5L0101507042F01A08005643",
+    "macAddress": "00:0A:52:30:08:03",
+    "actualLocation": "-",
+    "currentLocation": "Iceriver Repair centre",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "RAHEEL",
+    "modelName": "ICERIVER KS3M 6T",
+    "serialNumber": "M01irKS3M0101413042D0100276",
+    "macAddress": "00:0a:59:00:29:F7",
+    "actualLocation": "-",
+    "currentLocation": "Iceriver Repair centre",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "M30S++",
+    "serialNumber": "BTM1EK503123032810460144133A43412",
+    "macAddress": "CC:01:1F:00:7E:97",
+    "actualLocation": "-",
+    "currentLocation": "al ain Repair centre (Collin)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "DAHAB",
+    "modelName": "M30S++",
+    "serialNumber": "ZDM1EK853123052910468123723A78159",
+    "macAddress": "CC:03:09:00:70:B5",
+    "actualLocation": "-",
+    "currentLocation": "al ain Repair centre (Collin)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S++",
+    "serialNumber": "ZDM1EK403122032210460123933A41658",
+    "macAddress": "CA:01:14:00:6F:A2",
+    "actualLocation": "-",
+    "currentLocation": "al ain Repair centre (Collin)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S++",
+    "serialNumber": "ZDM1EK403122032210460123933A41752",
+    "macAddress": "CA:01:14:00:17:A0",
+    "actualLocation": "-",
+    "currentLocation": "al ain Repair centre (Collin)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S++",
+    "serialNumber": "ZDM1EK403122032210460123933A41750",
+    "macAddress": "CA:01:14:00:1C:6E",
+    "actualLocation": "-",
+    "currentLocation": "al ain Repair centre (Collin)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421092009850123943A00150",
+    "macAddress": "C8:06:22:00:2D:13",
+    "actualLocation": "-",
+    "currentLocation": "al ain Repair centre (Collin)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANTMINER L9",
+    "modelName": "JYZZFFABDAABC00E2",
+    "serialNumber": "F6:1E:94:6D:2F:68",
+    "macAddress": "alexis",
+    "actualLocation": "-",
+    "currentLocation": "Repair centre (Dubai)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "S19 JPRO 104T",
+    "modelName": "YNAHD4CBBJBBC0A49",
+    "serialNumber": "02:A5:13:83:D7:46",
+    "macAddress": "IVAN",
+    "actualLocation": "-",
+    "currentLocation": "Repair centre (Dubai)",
+    "workerId": "-",
+    "temporaryOwner": "-"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 98TH",
+    "serialNumber": "ZDM1EP403421093009850123943A00231",
+    "macAddress": "C8:06:22:00:07:20",
+    "actualLocation": "ANDREY",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421080409650123943A00019",
+    "macAddress": "C6:12:07:00:85:96",
+    "actualLocation": "ANDREY",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 100TH",
+    "serialNumber": "ZDM1EP403421070710050123943A00133",
+    "macAddress": "C8:04:16:00:3B:22",
+    "actualLocation": "ANDREY",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421092209650123943A00009",
+    "macAddress": "C8:06:22:00:31:CD",
+    "actualLocation": "ANDREY",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 96TH",
+    "serialNumber": "ZDM1EP403421080509650123943A00111",
+    "macAddress": "C6:12:07:00:85:B9",
+    "actualLocation": "ANDREY",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (RTC)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S++",
+    "serialNumber": "ZDM1EK403122032210460123933A41746",
+    "macAddress": "CA:01:14:00:17:82",
+    "actualLocation": "ANDREY",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
+    "clientName": "ANDREY",
+    "modelName": "M30S+ 100TH",
+    "serialNumber": "ZDM1EP403421070710050123943A00140",
+    "macAddress": "C8:04:16:00:6B:DC",
+    "actualLocation": "ANDREY",
+    "currentLocation": "BAHYA STORAGE",
+    "workerId": "-",
+    "temporaryOwner": "BAHYA (NR)"
+  },
+  {
     "clientName": "ANDREY",
     "modelName": "S19J PRO 104 TH",
     "serialNumber": "YDFTDXABBJEJG08G7",

@@ -27,17 +27,30 @@ export const addNewData = async (req, res) => {
 };
 
 export const getAllDatas = async (req, res) => {
-  const { mac, serial, client, currentPage } = req.query;
+  const { search, farm, currentPage } = req.query;
   const queryObject = {};
-  if (mac && mac !== "") {
-    queryObject.macAddress = { $regex: mac, $options: "i" };
+  if (search && search !== "") {
+    queryObject.$or = [
+      { macAddress: { $regex: search, $options: "i" } },
+      { serialNumber: { $regex: search, $options: "i" } },
+      { clientName: { $regex: search, $options: "i" } },
+    ];
   }
-  if (serial && serial !== "") {
-    queryObject.serialNumber = { $regex: serial, $options: "i" };
+  if (farm && farm !== "ALL") {
+    queryObject.$or = [
+      { actualLocation: { $regex: farm, $options: "i" } },
+      { currentLocation: { $regex: farm, $options: "i" } },
+    ];
   }
-  if (client && client !== "") {
-    queryObject.clientName = { $regex: client, $options: "i" };
-  }
+  // if (mac && mac !== "") {
+  //   queryObject.macAddress = { $regex: mac, $options: "i" };
+  // }
+  // if (serial && serial !== "") {
+  //   queryObject.serialNumber = { $regex: serial, $options: "i" };
+  // }
+  // if (client && client !== "") {
+  //   queryObject.clientName = { $regex: client, $options: "i" };
+  // }
   const page = currentPage || 1;
   const limit = 20;
   const skip = (page - 1) * limit;

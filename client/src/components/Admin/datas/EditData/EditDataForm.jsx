@@ -91,6 +91,7 @@ export default function EditDataForm() {
         value={workerId}
         onchange={(e) => setWorkerId(e.target.value)}
         placeholder={"Enter Worker ID"}
+        disabled={user?.role === "admin" ? true : false}
       />
       <FormInput
         title={"Mac Address"}

@@ -42,7 +42,7 @@ export const getAllDatas = async (req, res) => {
   if (farm && farm !== "ALL") {
     conditions.push({
       $or: [
-        { actualLocation: { $regex: farm.trim(), $options: "i" } },
+        { actualLocation: { $regex: farm.trim(), $options: "i" } }, //trimmed the space
         { currentLocation: { $regex: farm.trim(), $options: "i" } },
       ],
     });

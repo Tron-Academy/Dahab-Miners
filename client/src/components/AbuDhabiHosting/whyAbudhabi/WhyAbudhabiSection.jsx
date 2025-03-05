@@ -49,7 +49,11 @@ export default function WhyAbudhabiSection() {
             }
           />
         </div>
-        <img src="/7.jpg" className="max-w-[500px] rounded-lg object-cover" />
+        <img
+          src="/7.jpg"
+          alt="Bitcoin mining hosting Abu Dhabi"
+          className="max-w-[500px] rounded-lg object-cover"
+        />
       </div>
     </motion.section>
   );

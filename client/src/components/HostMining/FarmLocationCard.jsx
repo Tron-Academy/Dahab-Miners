@@ -37,6 +37,7 @@ export default function FarmLocationCard({
         <img
           src={image}
           className="w-[300px] h-[200px] rounded-lg object-cover"
+          alt="Crypto mining hosting UAE"
         />
         <div className="flex gap-2 items-center">
           <button className="px-4 py-2 bg-[#0194FE] rounded-lg">{power}</button>

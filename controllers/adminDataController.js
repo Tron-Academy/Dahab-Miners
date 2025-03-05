@@ -28,19 +28,28 @@ export const addNewData = async (req, res) => {
 
 export const getAllDatas = async (req, res) => {
   const { search, farm, currentPage } = req.query;
-  const queryObject = {};
+  let queryObject = {};
+  let conditions = [];
   if (search && search !== "") {
-    queryObject.$or = [
-      { macAddress: { $regex: search, $options: "i" } },
-      { serialNumber: { $regex: search, $options: "i" } },
-      { clientName: { $regex: search, $options: "i" } },
-    ];
+    conditions.push({
+      $or: [
+        { macAddress: { $regex: search, $options: "i" } },
+        { serialNumber: { $regex: search, $options: "i" } },
+        { clientName: { $regex: search, $options: "i" } },
+      ],
+    });
   }
   if (farm && farm !== "ALL") {
-    queryObject.$or = [
-      { actualLocation: { $regex: farm, $options: "i" } },
-      { currentLocation: { $regex: farm, $options: "i" } },
-    ];
+    conditions.push({
+      $or: [
+        { actualLocation: { $regex: farm, $options: "i" } },
+        { currentLocation: { $regex: farm, $options: "i" } },
+      ],
+    });
+  }
+
+  if (conditions.length > 0) {
+    queryObject = { $and: conditions };
   }
   // if (mac && mac !== "") {
   //   queryObject.macAddress = { $regex: mac, $options: "i" };

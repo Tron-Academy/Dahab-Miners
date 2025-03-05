@@ -5,6 +5,7 @@ import MapSection from "../../components/Home/mapsection/MapSection";
 import AboutPageContactSection from "../../components/about/contactUs/AboutPageContactSection";
 import SolutionsSection from "../../components/about/SolutionsSection";
 import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 export default function AboutUsPage() {
   const location = useLocation();
@@ -15,6 +16,9 @@ export default function AboutUsPage() {
   }, []);
   return (
     <div>
+      <Helmet>
+        <link rel="canonical" href={fullUrl} />
+      </Helmet>
       <AboutLandingSection />
       <WhyChooseUs />
       <MapSection />

@@ -31,6 +31,7 @@ export default function MinerRepairHeadSection({ scrollfunction }) {
         </button>
         <img
           src="/repair/bg.png"
+          alt="ASIC miner repair Dubai"
           className="absolute md:-top-56 md:right-10 md:w-fit w-screen right-5 bottom-52"
         />
       </div>

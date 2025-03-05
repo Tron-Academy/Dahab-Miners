@@ -43,7 +43,11 @@ export default function EthiopiaAdvantagesSection() {
             }
           />
         </div>
-        <img src="/3.jpg" className="max-w-[400px] object-cover rounded-md" />
+        <img
+          src="/3.jpg"
+          alt="Bitcoin mining hosting Ethiopia"
+          className="max-w-[400px] object-cover rounded-md"
+        />
       </div>
     </motion.div>
   );

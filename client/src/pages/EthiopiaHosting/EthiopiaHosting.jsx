@@ -7,6 +7,7 @@ import AbudhabiConsulting from "../../components/AbuDhabiHosting/abudhabiconsult
 import AbudhabiContactUs from "../../components/AbuDhabiHosting/abudhabiContact/AbudhabiContactUs";
 import EthiopiaFeatures from "../../components/EthiopiaHosting/EthiopiaFeatures";
 import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 export default function EthiopiaHosting() {
   const location = useLocation();
@@ -17,6 +18,15 @@ export default function EthiopiaHosting() {
   }, []);
   return (
     <div>
+      <Helmet>
+        <link
+          rel="canonical"
+          href={
+            fullUrl ||
+            "https://dahabminers.com/host-miners/bitcoin-mining-hosting-ethiopia"
+          }
+        />
+      </Helmet>
       <EthiopiaLanding />
       <EthiopiaFeatures />
       <EthiopiaAdvantagesSection />

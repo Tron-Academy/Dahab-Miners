@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import BuyMinersSection from "../../components/buyMiners/BuyMinersSection";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 
 export default function BuyMinersPage() {
@@ -13,7 +13,10 @@ export default function BuyMinersPage() {
   return (
     <div>
       <Helmet>
-        <link type="canonical" href={fullUrl} />
+        <link
+          rel="canonical"
+          href={fullUrl || "https://dahabminers.com/buy-bitcoin-miners-uae"}
+        />
         <title>Buy High-Performance Crypto Miners at Dahab Miners UAE</title>
         <meta
           name="description"

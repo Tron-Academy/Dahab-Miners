@@ -6,7 +6,7 @@ import useGetSingleUserBlog from "../../hooks/userBlogs/useGetSingleUserBlog";
 import Loading from "../../components/Loading";
 import { Link, useLocation, useParams } from "react-router-dom";
 import useGetRelatedBlogs from "../../hooks/userBlogs/useGetRelatedBlogs";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function SingleBlogPage() {
   const location = useLocation();
@@ -33,7 +33,10 @@ export default function SingleBlogPage() {
   ) : (
     <div>
       <Helmet>
-        <link type="canonical" href={fullUrl} />
+        <link
+          rel="canonical"
+          href={fullUrl || "https://dahabminers.com/blogs"}
+        />
         <title>{blog?.metaTitle}</title>
         <meta name="description" content={blog?.metaDescription} />
         <meta name="keywords" content={blog?.metaKeywords} />

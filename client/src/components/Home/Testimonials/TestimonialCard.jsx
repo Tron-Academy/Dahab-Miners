@@ -34,7 +34,7 @@ export default function TestimonialCard({ name, content, image }) {
           <TiTick />
         </span>
       </h4>
-      <img src={image} className="w-[50px]" />
+      <img src={image} className="w-[50px]" alt="Bitcoin Mining in Dubai" />
       {/* <div className="flex gap-2 text-xl text-[#FDB022]">
         <MdOutlineStar />
         <MdOutlineStar />

@@ -23,9 +23,10 @@ export default function AbudhabiLanding() {
         </button>
       </div>
       <div className="relative animate-slideInRight">
-        <img src="/host/map.png" />
+        <img src="/host/map.png" alt="Bitcoin mining hosting Abu Dhabi" />
         <img
           src="/host/location.png"
+          alt="Bitcoin mining hosting Abu Dhabi"
           className="absolute w-3 right-[36%] top-[49%] cursor-pointer"
           onMouseEnter={() => setIsHover2(true)}
           onMouseLeave={() => setIsHover2(false)}

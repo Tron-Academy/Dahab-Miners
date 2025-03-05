@@ -35,7 +35,7 @@ export default function TrendCard({ icon, name, short, value, percent, id }) {
     >
       <div className="flex items-center justify-between ">
         <div className="flex items-center gap-3">
-          <img src={icon} className="w-10" />
+          <img src={icon} alt="Bitcoin Mining in Dubai" className="w-10" />
           <p className="text-sm">{short}</p>
           <p className="text-[10px] bg-[#B6B6B6] p-1 rounded-md text-black">
             {name}

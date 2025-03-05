@@ -4,7 +4,7 @@ import HostMiningHead from "../../components/HostMining/HostMiningHead";
 import GraphSection from "../../components/HostMining/GraphSection";
 // import BuyBox from "../../components/HostMining/BuyBox";
 // import RequestHostingSection from "../../components/HostMining/RequestHostingSection";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import FarmingLocations from "../../components/HostMining/FarmingLocations";
 import MapSection from "../../components/Home/mapsection/MapSection";
 import BitcoinConsulting from "../../components/HostMining/BitcoinConsulting";
@@ -23,7 +23,10 @@ export default function HostMiningPage() {
   return (
     <div>
       <Helmet>
-        <link type="canonical" href={fullUrl} />
+        <link
+          rel="canonical"
+          href={fullUrl || "https://dahabminers.com/host-miners"}
+        />
         <title>Secure Miner Hosting Services in the UAE | Dahab Miners</title>
         <meta
           name="description"

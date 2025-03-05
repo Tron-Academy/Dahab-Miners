@@ -14,7 +14,11 @@ export default function BitcoinConsulting() {
       <div className=" p-10 customborder flex md:flex-row flex-col gap-7 items-center justify-between w-full">
         <div className="text-white flex flex-col items-start gap-5">
           <div className="flex gap-5 items-center">
-            <img src="/host/icon-1.png" className="w-5" />
+            <img
+              src="/host/icon-1.png"
+              alt="Crypto mining hosting UAE"
+              className="w-5"
+            />
             <p>
               Purchasing advice -{" "}
               <span className="font-extralight">
@@ -23,7 +27,11 @@ export default function BitcoinConsulting() {
             </p>
           </div>
           <div className="flex gap-5 items-center">
-            <img src="/host/icon-2.png" className="w-5" />
+            <img
+              src="/host/icon-2.png"
+              alt="Crypto mining hosting UAE"
+              className="w-5"
+            />
             <p>
               Free Miner Configuration -{" "}
               <span className="font-extralight">
@@ -32,7 +40,11 @@ export default function BitcoinConsulting() {
             </p>
           </div>
           <div className="flex gap-5 items-center">
-            <img src="/host/icon-3.png" className="w-5" />
+            <img
+              src="/host/icon-3.png"
+              alt="Crypto mining hosting UAE"
+              className="w-5"
+            />
             <p>
               Investment Strategy Planning -{" "}
               <span className="font-extralight">
@@ -41,7 +53,11 @@ export default function BitcoinConsulting() {
             </p>
           </div>
           <div className="flex gap-5 items-center">
-            <img src="/host/icon-4.png" className="w-5" />
+            <img
+              src="/host/icon-4.png"
+              alt="Crypto mining hosting UAE"
+              className="w-5"
+            />
             <p>
               Hassle-Free Setup -{" "}
               <span className="font-extralight">
@@ -58,6 +74,7 @@ export default function BitcoinConsulting() {
         </div>
         <img
           src="/5.jpg"
+          alt="Crypto mining hosting UAE"
           className="md:max-w-[400px] max-w-[350px] rounded-lg overflow-hidden object-cover"
         />
       </div>

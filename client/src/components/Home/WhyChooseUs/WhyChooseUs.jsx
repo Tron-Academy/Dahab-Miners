@@ -51,10 +51,12 @@ export default function WhyChooseUs() {
       <div className="bg-[#001030] w-[650px] h-[650px] absolute xl:left-0 lg:-left-[10%] -left-[30%] rounded-e-full md:block hidden"></div>
       <img
         src="/home/arrow-1.png"
+        alt="Bitcoin Mining in Dubai"
         className="absolute bottom-[10%] left-[20%] md:block hidden"
       />
       <img
         src="/home/arrow-2.png"
+        alt="Bitcoin Mining in Dubai"
         className="absolute top-[10%] right-[50%] md:block hidden"
       />
       <div className="flex flex-col md:items-start items-center gap-5 max-w-[350px]">

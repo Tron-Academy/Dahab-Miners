@@ -56,7 +56,11 @@ export default function SecurityMeasuresSection() {
             </li>
           </ul>
         </div>
-        <img src="/abudhabi/img-2.jpg" className="object-cover" />
+        <img
+          src="/abudhabi/img-2.jpg"
+          alt="Bitcoin mining hosting Abu Dhabi"
+          className="object-cover"
+        />
       </div>
     </motion.section>
   );

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import BlogList from "../../components/blogs/BlogList";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 
 export default function BlogPage() {
@@ -13,7 +13,10 @@ export default function BlogPage() {
   return (
     <div>
       <Helmet>
-        <link type="canonical" href={fullUrl} />
+        <link
+          rel="canonical"
+          href={fullUrl || "https://dahabminers.com/blogs"}
+        />
         <title>Crypto Mining Insights and Tips | Dahab Miners Blog</title>
         <meta
           name="description"

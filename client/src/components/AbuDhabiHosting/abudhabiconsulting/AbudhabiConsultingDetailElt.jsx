@@ -7,7 +7,7 @@ export default function AbudhabiConsultingDetailElt({
 }) {
   return (
     <div className="flex gap-3 items-center">
-      <img src={image} />
+      <img src={image} alt="bitcoin-mining-hosting-abu-dhabi" />
       <p>
         {content}: <span className="font-light">{subContent}</span>
       </p>

@@ -97,6 +97,7 @@ export default function AboutPageContactSection() {
         <div className="flex flex-col justify-center item-center gap-5 lg:w-1/2 w-full">
           <img
             src="/about/contact.jpg"
+            alt="mining companies in uae"
             className="lg:max-w-[400px] max-w-[300px] rounded-lg mx-auto"
           />
           <div className="flex justify-center lg:ms-auto mx-auto items-center gap-5 max-w-[500px]">

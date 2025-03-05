@@ -23,7 +23,7 @@ export default function HostMiningDescription() {
           </p>
         </div>
         <div className="w-[311px] h-[204px] md:w-[504px] md:h-[330px] rounded-lg overflow-hidden">
-          <img src="/hostminingdesc.jpg"></img>
+          <img src="/hostminingdesc.jpg" alt="Crypto mining hosting UAE"></img>
         </div>
       </div>
     </div>

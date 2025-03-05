@@ -39,7 +39,11 @@ export default function EthiopiaSafetySection() {
             repairs and a steady supply of spare parts for seamless operations.
           </p>
         </div>
-        <img src="/2.jpg" className="max-w-[400px] rounded-md object-cover" />
+        <img
+          src="/2.jpg"
+          alt="Bitcoin mining hosting Ethiopia"
+          className="max-w-[400px] rounded-md object-cover"
+        />
       </div>
     </motion.div>
   );

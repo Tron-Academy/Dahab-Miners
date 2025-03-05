@@ -4,7 +4,7 @@ import RepairFeatures from "../../components/MinerRepair/RepairFeatures";
 // import BuyBox from "../../components/HostMining/BuyBox";
 import PriceSection from "../../components/MinerRepair/PriceSection";
 import RepairSolutions from "../../components/MinerRepair/RepairSolutions";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import FAQSection from "../../components/Home/Faq/FAQSection";
 import { useLocation } from "react-router-dom";
 
@@ -23,7 +23,10 @@ export default function MinerRepairPage() {
   return (
     <div>
       <Helmet>
-        <link type="canonical" href={fullUrl} />
+        <link
+          rel="canonical"
+          href={fullUrl || "https://dahabminers.com/asic-miner-repair-dubai"}
+        />
         <title>Expert Miner Repair Services in the UAE | Dahab Miners</title>
         <meta
           name="description"

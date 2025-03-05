@@ -11,7 +11,7 @@ export default function ProductCard({ bgwhite, img, name, price }) {
         <img
           className="w-[200px] h-[200px] overflow-hidden"
           src={img}
-          alt={name}
+          alt={"Buy Bitcoin Miners UAE"}
         ></img>
       </div>
       <h1 className="text-xl text-center font-medium">{name}</h1>

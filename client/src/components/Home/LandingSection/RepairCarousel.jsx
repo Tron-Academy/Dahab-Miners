@@ -9,11 +9,15 @@ export default function RepairCarousel({ setItem, item }) {
         <div className="flex flex-col lg:items-start items-center lg:text-left text-center md:gap-10 gap-5 max-w-[678px] animate-slideInLeft">
           <div>
             <div className="flex gap-5 items-center">
-              <img src="/home/thunder.png" className="w-[20px]" />
+              <img
+                src="/home/thunder.png"
+                alt="Bitcoin Mining in Dubai"
+                className="w-[20px]"
+              />
               <div className="text-[#00C4F4] flex gap-3 items-center">
-                <img src="/home/short-line.png" />
+                <img src="/home/short-line.png" alt="Bitcoin Mining in Dubai" />
                 <p>Repair</p>
-                <img src="/home/long-line.png" />
+                <img src="/home/long-line.png" alt="Bitcoin Mining in Dubai" />
               </div>
             </div>
             <h4 className="md:text-5xl text-3xl my-3 font-semibold  gradient-heading">
@@ -21,7 +25,11 @@ export default function RepairCarousel({ setItem, item }) {
             </h4>
             <h4 className="md:text-5xl text-3xl font-semibold text-btnGreen">
               <span className="relative gradient-heading">
-                <img className="absolute -bottom-2" src="/home/underline.png" />
+                <img
+                  className="absolute -bottom-2"
+                  src="/home/underline.png"
+                  alt="Bitcoin Mining in Dubai"
+                />
               </span>{" "}
               with Expert ASIC Miner Repairs
             </h4>

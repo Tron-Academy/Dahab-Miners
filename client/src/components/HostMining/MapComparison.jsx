@@ -84,16 +84,18 @@ export default function MapComparison() {
         </div>
       </div>
       <div className="relative">
-        <img src="/home/map.png" />
+        <img src="/home/map.png" alt="Crypto mining hosting UAE" />
         <img
           className="absolute right-[42%] bottom-[45%] z-10 w-3 cursor-pointer"
           src="/home/location-1.png"
+          alt="Crypto mining hosting UAE"
           // onMouseEnter={() => setIsHover2(true)}
           // onMouseLeave={() => setIsHover2(false)}
         />
         <img
           className="absolute right-[38%] top-[33%] w-3 cursor-pointer"
           src="/home/location-2.png"
+          alt="Crypto mining hosting UAE"
           // onMouseEnter={() => setIsHover1(true)}
           // onMouseLeave={() => setIsHover1(false)}
         />

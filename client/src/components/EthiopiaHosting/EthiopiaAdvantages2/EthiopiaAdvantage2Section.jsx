@@ -23,7 +23,11 @@ export default function EthiopiaAdvantage2Section() {
         Ethiopia: A Prime Destination for Bitcoin Mining
       </h4>
       <div className="lg:p-10 p-5 flex justify-between lg:flex-row flex-col items-center gap-5 customborder">
-        <img src="/abudhabi/img-2.jpg" className="max-w-[400px]" />
+        <img
+          src="/abudhabi/img-2.jpg"
+          alt="Bitcoin mining hosting Ethiopia"
+          className="max-w-[400px]"
+        />
         <div className="flex flex-col gap-5">
           {/* <p>
             By harnessing hydropower, Ethiopia offers a sustainable and

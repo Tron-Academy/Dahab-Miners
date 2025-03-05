@@ -30,7 +30,11 @@ export default function AbudhabiConsulting() {
         </p>
       </div>
       <div className="flex p-10 customborder gap-5 md:flex-row flex-col justify-between items-center mt-10">
-        <img src="/5.jpg" className="max-w-[350px] rounded-lg object-cover " />
+        <img
+          src="/5.jpg"
+          alt="bitcoin-mining-hosting-abu-dhabi"
+          className="max-w-[350px] rounded-lg object-cover "
+        />
         <div className="flex flex-col gap-5 items-start">
           <AbudhabiConsultingDetailElt
             image={"/abudhabi/icon-4.png"}

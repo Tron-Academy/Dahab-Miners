@@ -7,6 +7,7 @@ import AbudhabiTechnologySection from "../../components/AbuDhabiHosting/technolo
 import AbudhabiConsulting from "../../components/AbuDhabiHosting/abudhabiconsulting/AbudhabiConsulting";
 import AbudhabiContactUs from "../../components/AbuDhabiHosting/abudhabiContact/AbudhabiContactUs";
 import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 export default function AbuDhabiHosting() {
   const location = useLocation();
@@ -17,6 +18,15 @@ export default function AbuDhabiHosting() {
   }, []);
   return (
     <div>
+      <Helmet>
+        <link
+          rel="canonical"
+          href={
+            fullUrl ||
+            "https://dahabminers.com/host-miners/bitcoin-mining-hosting-abu-dhabi"
+          }
+        />
+      </Helmet>
       <AbudhabiLanding />
       <AbuDgabiFeatureSection />
       <WhyAbudhabiSection />

@@ -16,7 +16,7 @@ const WhatsApp = () => {
         className="w-14 h-14  rounded-xl overflow-hidden cursor-pointer"
         onClick={handleChatClick}
       >
-        <img src="/whatsapp_logo.webp" alt="" />
+        <img src="/whatsapp_logo.webp" alt="Bitcoin Mining in Dubai" />
       </motion.button>
     </div>
   );

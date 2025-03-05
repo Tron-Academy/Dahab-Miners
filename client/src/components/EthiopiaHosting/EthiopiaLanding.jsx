@@ -25,9 +25,10 @@ export default function EthiopiaLanding() {
         </button>
       </div>
       <div className="relative animate-slideInRight">
-        <img src="/host/map.png" />
+        <img src="/host/map.png" alt="Bitcoin mining hosting Ethiopia" />
         <img
           src="/host/location.png"
+          alt="Bitcoin mining hosting Ethiopia"
           className="absolute w-3 right-[39%] bottom-[38%] cursor-pointer"
           onMouseEnter={() => setIsHover1(true)}
           onMouseLeave={() => setIsHover1(false)}

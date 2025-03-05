@@ -42,6 +42,7 @@ function SampleNextArrow(props) {
   return (
     <img
       src="/home/right-arrow.png"
+      alt="Bitcoin Mining in Dubai"
       className={className}
       style={{
         ...style,
@@ -66,6 +67,7 @@ function SamplePrevArrow(props) {
   return (
     <img
       src="/home/left-arrow.png"
+      alt="Bitcoin Mining in Dubai"
       className={className}
       style={{
         ...style,

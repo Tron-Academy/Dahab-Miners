@@ -24,15 +24,17 @@ export default function HostMiningHead() {
         </button>
       </div>
       <div className="relative animate-slideInRight">
-        <img src="/host/map.png" className="" />
+        <img src="/host/map.png" alt="Crypto mining hosting UAE" className="" />
         <img
           src="/host/location.png"
+          alt="Crypto mining hosting UAE"
           className="absolute w-3 right-[39%] bottom-[38%] cursor-pointer"
           onMouseEnter={() => setIsHover1(true)}
           onMouseLeave={() => setIsHover1(false)}
         />
         <img
           src="/host/location.png"
+          alt="Crypto mining hosting UAE"
           className="absolute w-3 right-[36%] top-[49%] cursor-pointer"
           onMouseEnter={() => setIsHover2(true)}
           onMouseLeave={() => setIsHover2(false)}

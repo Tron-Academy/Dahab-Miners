@@ -12,11 +12,15 @@ export default function BuyingCarousel({ setItem, item }) {
         <div className="flex flex-col lg:items-start items-center lg:text-left text-center max-w-[660px] md:gap-10 gap-5 animate-slideInLeft -mt-20 z-20">
           <div>
             <div className="flex gap-5 items-center">
-              <img src="/home/thunder.png" className="w-[20px]" />
+              <img
+                src="/home/thunder.png"
+                alt="Bitcoin Mining in Dubai"
+                className="w-[20px]"
+              />
               <div className="text-[#00C4F4] flex gap-3 items-center">
-                <img src="/home/short-line.png" />
+                <img src="/home/short-line.png" alt="Bitcoin Mining in Dubai" />
                 <p>Buy</p>
-                <img src="/home/long-line.png" />
+                <img src="/home/long-line.png" alt="Bitcoin Mining in Dubai" />
               </div>
             </div>
             <h4 className="md:text-5xl text-3xl md:leading-[60px] leading-10 inline-block font-semibold gradient-heading pt-5">
@@ -26,6 +30,7 @@ export default function BuyingCarousel({ setItem, item }) {
                 <img
                   className="absolute w-48 left-0 -bottom-1"
                   src="/home/underline.png"
+                  alt="Bitcoin Mining in Dubai"
                 />
               </span>{" "}
               – Own a Crypto Mining Machine Today

@@ -9,7 +9,7 @@ import PerformanceMetrics from "../../components/Home/performanceMetrics/Perform
 import Testimonials from "../../components/Home/Testimonials/Testimonials";
 import CryptoCurrencySection from "../../components/Home/Cryptocurrency/CryptoCurrencySection";
 // import ContactForm from "../../components/Home/contactform/ContactForm";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import SecondSection from "../../components/Home/secondsection/SecondSection";
 import ThirdSection from "../../components/Home/thirdsection/ThirdSection";
 // import Calculator from "../../components/Home/calculator/Calculator";
@@ -42,7 +42,7 @@ export default function HomePage() {
   return (
     <div className="">
       <Helmet>
-        <link type="canonical" href={fullUrl} />
+        <link rel="canonical" href={fullUrl || "https://dahabminers.com/"} />
         <title>
           Crypto Mining in UAE-Bitcoin Machines Abu Dhabi-Dahab Miners
         </title>

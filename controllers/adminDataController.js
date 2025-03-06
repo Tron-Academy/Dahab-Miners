@@ -36,6 +36,7 @@ export const getAllDatas = async (req, res) => {
         { macAddress: { $regex: search, $options: "i" } },
         { serialNumber: { $regex: search, $options: "i" } },
         { clientName: { $regex: search, $options: "i" } },
+        { temporaryOwner: { $regex: search, $options: "i" } },
       ],
     });
   }

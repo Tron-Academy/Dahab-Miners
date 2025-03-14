@@ -37,6 +37,7 @@ export const getAllDatas = async (req, res) => {
         { serialNumber: { $regex: search, $options: "i" } },
         { clientName: { $regex: search, $options: "i" } },
         { temporaryOwner: { $regex: search, $options: "i" } },
+        { workerId: { $regex: search, $options: "i" } },
       ],
     });
   }

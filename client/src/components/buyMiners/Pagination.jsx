@@ -1,24 +1,23 @@
 import React, { useState } from "react";
 import { GrFormPreviousLink } from "react-icons/gr";
 import { GrFormNextLink } from "react-icons/gr";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentPage } from "../../slices/adminSlice";
 
-export default function Pagination({
-  totalPage,
-  setTotalPage,
-  currentPage,
-  setCurrentPage,
-}) {
+export default function Pagination({ totalPage, setTotalPage }) {
+  const { currentPage } = useSelector((state) => state.admin);
+  const dispatch = useDispatch();
   function next() {
-    setCurrentPage(currentPage + 1);
+    dispatch(setCurrentPage(currentPage + 1));
   }
   function prev() {
-    setCurrentPage(currentPage - 1);
+    dispatch(setCurrentPage(currentPage - 1));
   }
 
   function addPageButton({ pageNumber, activeClass }) {
     return (
       <button
-        onClick={() => setCurrentPage(pageNumber)}
+        onClick={() => dispatch(setCurrentPage(pageNumber))}
         className={`px-1 lg:px-3 border-l-2 hover:bg-[#6FC6B8] ${
           activeClass && "bg-[#6FC6B8]"
         }`}

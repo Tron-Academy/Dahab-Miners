@@ -1,9 +1,15 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { setRefetchTrigger } from "../../../slices/adminSlice";
+import {
+  setCurrentPage,
+  setFarm,
+  setRefetchTrigger,
+  setSearch,
+} from "../../../slices/adminSlice";
 
-export default function DataPageHeader({ search, setSearch, farm, setFarm }) {
+export default function DataPageHeader() {
+  const { search, farm } = useSelector((state) => state.admin);
   const dispatch = useDispatch();
   return (
     <div>
@@ -24,7 +30,7 @@ export default function DataPageHeader({ search, setSearch, farm, setFarm }) {
             className="bg-neutral-300 p-2 rounded-md outline-none"
             placeholder="Enter Search Keyword"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => dispatch(setSearch(e.target.value))}
           />
         </div>
 
@@ -32,7 +38,7 @@ export default function DataPageHeader({ search, setSearch, farm, setFarm }) {
           <label>Farm Location:</label>
           <select
             value={farm}
-            onChange={(e) => setFarm(e.target.value)}
+            onChange={(e) => dispatch(setFarm(e.target.value))}
             className={`bg-neutral-300 p-2 rounded-md outline-none`}
           >
             {[
@@ -55,15 +61,19 @@ export default function DataPageHeader({ search, setSearch, farm, setFarm }) {
         </div>
         <div className="flex gap-3 items-end justify-start">
           <button
-            onClick={() => dispatch(setRefetchTrigger())}
+            onClick={() => {
+              dispatch(setCurrentPage(1));
+              dispatch(setRefetchTrigger());
+            }}
             className="bg-homeBg text-white px-5 py-2 rounded-lg hover:bg-homeBgGradient nav-link"
           >
             Search
           </button>
           <button
             onClick={() => {
-              setFarm("ALL");
-              setSearch("");
+              dispatch(setFarm("ALL"));
+              dispatch(setSearch(""));
+              dispatch(setCurrentPage(1));
               dispatch(setRefetchTrigger());
             }}
             className="bg-homeBg text-white px-5 py-2 rounded-lg hover:bg-homeBgGradient nav-link"

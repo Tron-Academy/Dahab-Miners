@@ -4,6 +4,9 @@ const initialState = {
   showPopup: false,
   dataId: "",
   refetchTrigger: false,
+  search: "",
+  farm: "",
+  currentPage: 1,
 };
 
 const adminSlice = createSlice({
@@ -22,6 +25,15 @@ const adminSlice = createSlice({
     setRefetchTrigger: (state) => {
       state.refetchTrigger = !state.refetchTrigger;
     },
+    setSearch: (state, { payload }) => {
+      state.search = payload;
+    },
+    setFarm: (state, { payload }) => {
+      state.farm = payload;
+    },
+    setCurrentPage: (state, { payload }) => {
+      state.currentPage = payload;
+    },
   },
 });
 
@@ -31,4 +43,7 @@ export const {
   setShowPopupFalse,
   setShowPopupTrue,
   setRefetchTrigger,
+  setFarm,
+  setSearch,
+  setCurrentPage,
 } = adminSlice.actions;

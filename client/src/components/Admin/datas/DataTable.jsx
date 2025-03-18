@@ -12,19 +12,24 @@ import useGetData from "../../../hooks/adminDatas/useGetData";
 import Loading from "../../Loading";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setDataId, setShowPopupTrue } from "../../../slices/adminSlice";
+import {
+  setDataId,
+  setLimit,
+  setShowPopupTrue,
+} from "../../../slices/adminSlice";
 import Pagination from "../../buyMiners/Pagination";
 
 export default function DataTable() {
-  const { refetchTrigger, search, farm, currentPage } = useSelector(
+  const { refetchTrigger, search, farm, currentPage, limit } = useSelector(
     (state) => state.admin
   );
 
   const [totalPage, setTotalPage] = useState(1);
-  const { loading, data, refetch, pages } = useGetData({
+  const { loading, data, refetch, pages, count } = useGetData({
     search,
     farm,
     currentPage,
+    limit,
   });
 
   const dispatch = useDispatch();
@@ -35,7 +40,7 @@ export default function DataTable() {
 
   useEffect(() => {
     refetch();
-  }, [currentPage]);
+  }, [currentPage, limit]);
 
   useEffect(() => {
     refetch();
@@ -227,6 +232,19 @@ export default function DataTable() {
           </TableBody>
         </Table>
       </TableContainer>
+      <p className="my-5 font-semibold text-lg">{`Total ${count} items found`}</p>
+      <div className=" bg-white w-fit rounded-md">
+        <select
+          className="rounded-md p-2"
+          value={limit}
+          onChange={(e) => dispatch(setLimit(e.target.value))}
+        >
+          <option value={20}>20</option>
+          <option value={40}>40</option>
+          <option value={60}>60</option>
+          <option value={80}>80</option>
+        </select>
+      </div>
       {totalPage > 1 && (
         <div className="my-3 flex justify-end">
           <Pagination totalPage={totalPage} setTotalPage={setTotalPage} />

@@ -27,7 +27,7 @@ export const addNewData = async (req, res) => {
 };
 
 export const getAllDatas = async (req, res) => {
-  const { search, farm, currentPage } = req.query;
+  const { search, farm, currentPage, limit } = req.query;
   let queryObject = {};
   let conditions = [];
   if (search && search !== "") {
@@ -54,9 +54,9 @@ export const getAllDatas = async (req, res) => {
     queryObject = { $and: conditions };
   }
   const page = currentPage || 1;
-  const limit = 20;
-  const skip = (page - 1) * limit;
-  const datas = await Data.find(queryObject).skip(skip).limit(limit);
+  const totalLimit = limit || 20;
+  const skip = (page - 1) * totalLimit;
+  const datas = await Data.find(queryObject).skip(skip).limit(totalLimit);
   if (!datas) throw new NotFoundError("No datas found");
   const totalDatas = await Data.countDocuments(queryObject);
   const numOfPages = Math.ceil(totalDatas / limit);

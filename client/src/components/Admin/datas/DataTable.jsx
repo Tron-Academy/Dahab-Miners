@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaRegEdit } from "react-icons/fa";
+import { TiArrowUnsorted } from "react-icons/ti";
 import useGetData from "../../../hooks/adminDatas/useGetData";
 import Loading from "../../Loading";
 import { Link } from "react-router-dom";
@@ -16,13 +17,13 @@ import {
   setDataId,
   setLimit,
   setShowPopupTrue,
+  setSortData,
 } from "../../../slices/adminSlice";
 import Pagination from "../../buyMiners/Pagination";
 
 export default function DataTable() {
-  const { refetchTrigger, search, farm, currentPage, limit } = useSelector(
-    (state) => state.admin
-  );
+  const { refetchTrigger, search, farm, currentPage, limit, sortData } =
+    useSelector((state) => state.admin);
 
   const [totalPage, setTotalPage] = useState(1);
   const { loading, data, refetch, pages, count } = useGetData({
@@ -54,6 +55,11 @@ export default function DataTable() {
           <TableHead>
             <TableRow sx={{ backgroundColor: "#F9FAFB" }}>
               <TableCell
+                onClick={() =>
+                  sortData === "clientAZ"
+                    ? dispatch(setSortData("clientZA"))
+                    : dispatch(setSortData("clientAZ"))
+                }
                 sx={{
                   width: "11.11%",
                   textAlign: "center",
@@ -61,8 +67,16 @@ export default function DataTable() {
                 }}
               >
                 Client
+                <span className="flex justify-center">
+                  <TiArrowUnsorted />
+                </span>
               </TableCell>
               <TableCell
+                onClick={() =>
+                  sortData === "modelAZ"
+                    ? dispatch(setSortData("modelZA"))
+                    : dispatch(setSortData("modelAZ"))
+                }
                 sx={{
                   width: "11.11%",
                   textAlign: "center",
@@ -70,8 +84,16 @@ export default function DataTable() {
                 }}
               >
                 Model
+                <span className="flex justify-center">
+                  <TiArrowUnsorted />
+                </span>
               </TableCell>
               <TableCell
+                onClick={() =>
+                  sortData === "serialAZ"
+                    ? dispatch(setSortData("serialZA"))
+                    : dispatch(setSortData("serialAZ"))
+                }
                 sx={{
                   width: "11.11%",
                   textAlign: "center",
@@ -79,8 +101,16 @@ export default function DataTable() {
                 }}
               >
                 Serial No
+                <span className="flex justify-center">
+                  <TiArrowUnsorted />
+                </span>
               </TableCell>
               <TableCell
+                onClick={() =>
+                  sortData === "workerAZ"
+                    ? dispatch(setSortData("workerZA"))
+                    : dispatch(setSortData("workerAZ"))
+                }
                 sx={{
                   width: "11.11%",
                   textAlign: "center",
@@ -88,8 +118,16 @@ export default function DataTable() {
                 }}
               >
                 Worker ID
+                <span className="flex justify-center">
+                  <TiArrowUnsorted />
+                </span>
               </TableCell>
               <TableCell
+                onClick={() =>
+                  sortData === "macAZ"
+                    ? dispatch(setSortData("macZA"))
+                    : dispatch(setSortData("macAZ"))
+                }
                 sx={{
                   width: "11.11%",
                   textAlign: "center",
@@ -97,6 +135,9 @@ export default function DataTable() {
                 }}
               >
                 Mac Id
+                <span className="flex justify-center">
+                  <TiArrowUnsorted />
+                </span>
               </TableCell>
 
               <TableCell
@@ -107,6 +148,9 @@ export default function DataTable() {
                 }}
               >
                 Act. Location
+                <span className="flex justify-center">
+                  <TiArrowUnsorted />
+                </span>
               </TableCell>
               <TableCell
                 sx={{
@@ -116,6 +160,9 @@ export default function DataTable() {
                 }}
               >
                 Cur. Location
+                <span className="flex justify-center">
+                  <TiArrowUnsorted />
+                </span>
               </TableCell>
               <TableCell
                 sx={{
@@ -125,6 +172,9 @@ export default function DataTable() {
                 }}
               >
                 Now Running
+                <span className="flex justify-center">
+                  <TiArrowUnsorted />
+                </span>
               </TableCell>
               <TableCell
                 sx={{

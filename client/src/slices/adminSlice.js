@@ -8,6 +8,7 @@ const initialState = {
   farm: "",
   currentPage: 1,
   limit: 20,
+  sortData: "new",
 };
 
 const adminSlice = createSlice({
@@ -38,6 +39,9 @@ const adminSlice = createSlice({
     setLimit: (state, { payload }) => {
       state.limit = payload;
     },
+    setSortData: (state, { payload }) => {
+      state.sortData = payload;
+    },
   },
 });
 
@@ -51,4 +55,5 @@ export const {
   setSearch,
   setCurrentPage,
   setLimit,
+  setSortData,
 } = adminSlice.actions;

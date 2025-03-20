@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../../utils/constants";
 
-const useGetData = ({ search, farm, currentPage, limit }) => {
+const useGetData = ({ search, farm, currentPage, limit, sortData }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [pages, setPages] = useState(0);
@@ -18,6 +18,7 @@ const useGetData = ({ search, farm, currentPage, limit }) => {
           farm,
           currentPage,
           limit,
+          sortby: sortData,
         },
       });
       const data = res.data;

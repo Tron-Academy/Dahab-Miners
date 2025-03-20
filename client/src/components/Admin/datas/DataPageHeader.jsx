@@ -6,6 +6,7 @@ import {
   setFarm,
   setRefetchTrigger,
   setSearch,
+  setSortData,
 } from "../../../slices/adminSlice";
 
 export default function DataPageHeader() {
@@ -51,6 +52,7 @@ export default function DataPageHeader() {
               "SWEIHAN",
               "LIWA 3",
               "LIWA 4",
+              "LIWA 1",
               "BADA ZAYED",
               "BAHYA STORAGE",
               "LIWA OFFICE",
@@ -74,6 +76,7 @@ export default function DataPageHeader() {
               dispatch(setFarm("ALL"));
               dispatch(setSearch(""));
               dispatch(setCurrentPage(1));
+              dispatch(setSortData("new"));
               dispatch(setRefetchTrigger());
             }}
             className="bg-homeBg text-white px-5 py-2 rounded-lg hover:bg-homeBgGradient nav-link"

@@ -31,6 +31,7 @@ export default function DataTable() {
     farm,
     currentPage,
     limit,
+    sortData,
   });
 
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ export default function DataTable() {
 
   useEffect(() => {
     refetch();
-  }, [currentPage, limit]);
+  }, [currentPage, limit, sortData]);
 
   useEffect(() => {
     refetch();
@@ -64,10 +65,15 @@ export default function DataTable() {
                   width: "11.11%",
                   textAlign: "center",
                   fontWeight: "bold",
+                  backgroundColor: sortData.includes("client") && "#F0F0F0",
                 }}
               >
                 Client
-                <span className="flex justify-center">
+                <span
+                  className={`flex justify-center ${
+                    sortData.includes("client") && "text-lg"
+                  } `}
+                >
                   <TiArrowUnsorted />
                 </span>
               </TableCell>
@@ -81,10 +87,15 @@ export default function DataTable() {
                   width: "11.11%",
                   textAlign: "center",
                   fontWeight: "bold",
+                  backgroundColor: sortData.includes("model") && "#F0F0F0",
                 }}
               >
                 Model
-                <span className="flex justify-center">
+                <span
+                  className={`flex justify-center ${
+                    sortData.includes("model") && "text-lg"
+                  } `}
+                >
                   <TiArrowUnsorted />
                 </span>
               </TableCell>
@@ -98,10 +109,15 @@ export default function DataTable() {
                   width: "11.11%",
                   textAlign: "center",
                   fontWeight: "bold",
+                  backgroundColor: sortData.includes("serial") && "#F0F0F0",
                 }}
               >
                 Serial No
-                <span className="flex justify-center">
+                <span
+                  className={`flex justify-center ${
+                    sortData.includes("serial") && "text-lg"
+                  } `}
+                >
                   <TiArrowUnsorted />
                 </span>
               </TableCell>
@@ -115,10 +131,15 @@ export default function DataTable() {
                   width: "11.11%",
                   textAlign: "center",
                   fontWeight: "bold",
+                  backgroundColor: sortData.includes("worker") && "#F0F0F0",
                 }}
               >
                 Worker ID
-                <span className="flex justify-center">
+                <span
+                  className={`flex justify-center ${
+                    sortData.includes("worker") && "text-lg"
+                  } `}
+                >
                   <TiArrowUnsorted />
                 </span>
               </TableCell>
@@ -132,47 +153,82 @@ export default function DataTable() {
                   width: "11.11%",
                   textAlign: "center",
                   fontWeight: "bold",
+                  backgroundColor: sortData.includes("mac") && "#F0F0F0",
                 }}
               >
                 Mac Id
-                <span className="flex justify-center">
+                <span
+                  className={`flex justify-center ${
+                    sortData.includes("mac") && "text-lg"
+                  } `}
+                >
                   <TiArrowUnsorted />
                 </span>
               </TableCell>
 
               <TableCell
+                onClick={() =>
+                  sortData === "actLocAZ"
+                    ? dispatch(setSortData("actLocZA"))
+                    : dispatch(setSortData("actLocAZ"))
+                }
                 sx={{
                   width: "11.11%",
                   textAlign: "center",
                   fontWeight: "bold",
+                  backgroundColor: sortData.includes("actLoc") && "#F0F0F0",
                 }}
               >
                 Act. Location
-                <span className="flex justify-center">
+                <span
+                  className={`flex justify-center ${
+                    sortData.includes("actLoc") && "text-lg"
+                  } `}
+                >
                   <TiArrowUnsorted />
                 </span>
               </TableCell>
               <TableCell
+                onClick={() =>
+                  sortData === "currLocAZ"
+                    ? dispatch(setSortData("currLocZA"))
+                    : dispatch(setSortData("currLocAZ"))
+                }
                 sx={{
                   width: "11.11%",
                   textAlign: "center",
                   fontWeight: "bold",
+                  backgroundColor: sortData.includes("currLoc") && "#F0F0F0",
                 }}
               >
                 Cur. Location
-                <span className="flex justify-center">
+                <span
+                  className={`flex justify-center ${
+                    sortData.includes("currLoc") && "text-lg"
+                  } `}
+                >
                   <TiArrowUnsorted />
                 </span>
               </TableCell>
               <TableCell
+                onClick={() =>
+                  sortData === "nowRunAZ"
+                    ? dispatch(setSortData("nowRunZA"))
+                    : dispatch(setSortData("nowRunAZ"))
+                }
                 sx={{
                   width: "11.11%",
                   textAlign: "center",
                   fontWeight: "bold",
+                  backgroundColor: sortData.includes("nowRun") && "#F0F0F0",
                 }}
               >
                 Now Running
-                <span className="flex justify-center">
+                <span
+                  className={`flex justify-center ${
+                    sortData.includes("nowRun") && "text-lg"
+                  } `}
+                >
                   <TiArrowUnsorted />
                 </span>
               </TableCell>

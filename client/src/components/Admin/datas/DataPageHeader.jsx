@@ -53,6 +53,7 @@ export default function DataPageHeader() {
               "LIWA 3",
               "LIWA 4",
               "LIWA 1",
+              "LIWA 2",
               "BADA ZAYED",
               "BAHYA STORAGE",
               "LIWA OFFICE",

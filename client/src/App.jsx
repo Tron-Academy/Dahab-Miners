@@ -30,6 +30,10 @@ import AddNewDataPage from "./pages/admin/datas/AddNewDataPage";
 import EditDataPage from "./pages/admin/datas/EditDataPage";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import AdminRepairPage from "./pages/admin/repair/AdminRepairPage";
+import AdminInventoryPage from "./pages/admin/inventory/AdminInventoryPage";
+import AddRepairMiner from "./pages/admin/repair/AddRepairMiner";
+import RepairSectionsPage from "./pages/admin/repair/RepairSectionsPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -140,6 +144,22 @@ function App() {
         {
           path: "data/:id/edit",
           element: <EditDataPage />,
+        },
+        {
+          path: "repair",
+          element: <AdminRepairPage />,
+        },
+        {
+          path: "repair/new",
+          element: <AddRepairMiner />,
+        },
+        {
+          path: "repair/status/:id",
+          element: <RepairSectionsPage />,
+        },
+        {
+          path: "inventory",
+          element: <AdminInventoryPage />,
         },
       ],
     },

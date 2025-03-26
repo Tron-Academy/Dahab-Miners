@@ -1,6 +1,6 @@
 import React from "react";
 
-function FormSelect({ title, value, onchange, list, multi }) {
+function FormSelect({ title, value, onchange, list, multi, issue }) {
   return (
     <div className="form-row">
       <label htmlFor="status" className="form-label">
@@ -12,9 +12,9 @@ function FormSelect({ title, value, onchange, list, multi }) {
           value={value}
           multiple={multi ? true : false}
           onChange={onchange}
-          className={`w-full py-1 px-3 rounded-lg bg-transparent border border-[#0B578E] text-[#CCF2FF] outline-none ${
+          className={`w-full py-1 px-3 rounded-lg bg-transparent border border-[#0B578E] outline-none ${
             multi ? "h-40" : "h-11"
-          }`}
+          } ${issue ? "text-black" : "text-[#CCF2FF]"}`}
         >
           {list?.map((item) => (
             <option

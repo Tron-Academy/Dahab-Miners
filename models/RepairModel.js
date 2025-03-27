@@ -1,5 +1,22 @@
 import { model, Schema } from "mongoose";
 
+const ProblemsSchema = new Schema(
+  {
+    problem: {
+      type: String,
+    },
+    component: {
+      type: String,
+    },
+    issueStatus: {
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
 const RepairSchema = new Schema(
   {
     serialNumber: {
@@ -21,6 +38,27 @@ const RepairSchema = new Schema(
       type: String,
     },
     status: {
+      type: String,
+    },
+    problems: {
+      type: [ProblemsSchema],
+    },
+    report: {
+      type: String,
+    },
+    successImgUrl: {
+      type: String,
+    },
+    successImgPublicId: {
+      type: String,
+    },
+    failImgUrl: {
+      type: String,
+    },
+    failImgPublicId: {
+      type: String,
+    },
+    remarks: {
       type: String,
     },
   },

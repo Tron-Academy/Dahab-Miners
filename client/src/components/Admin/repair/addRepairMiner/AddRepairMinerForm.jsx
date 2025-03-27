@@ -1,12 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FormInput from "../../../FormInput";
+import useAddRepairMiner from "../../../../hooks/adminRepair/useAddRepairMiner";
+import useGetRelatedMiner from "../../../../hooks/adminRepair/useGetRelatedMiner";
+import Loading from "../../../Loading";
 
 export default function AddRepairMinerForm() {
+  const [debounced, setDebounced] = useState("");
+  const { miner, refetch } = useGetRelatedMiner({ serialNumber: debounced });
   const [serialNumber, setSerialNumber] = useState("");
   const [macAddress, setMacAddress] = useState("");
   const [workerId, setWorkerId] = useState("");
   const [owner, setOwner] = useState("");
   const [nowRunning, setNowRunning] = useState("");
+  const { loading, addMiner } = useAddRepairMiner();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebounced(serialNumber);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [serialNumber]);
+
+  useEffect(() => {
+    refetch();
+  }, [debounced]);
+
+  useEffect(() => {
+    if (miner) {
+      setMacAddress(miner.macAddress);
+      setWorkerId(miner.workerId);
+      setOwner(miner.clientName);
+      setNowRunning(miner.temporaryOwner);
+    }
+  }, [miner]);
   return (
     <div className="my-10">
       <FormInput
@@ -50,9 +79,15 @@ export default function AddRepairMinerForm() {
         onchange={(e) => setNowRunning(e.target.value)}
       />
       <div className="flex justify-end">
-        <button className="px-4 py-2 rounded-md bg-homeBg hover:bg-homeBgGradient text-white">
+        <button
+          className="px-4 py-2 rounded-md bg-homeBg hover:bg-homeBgGradient text-white"
+          onClick={() =>
+            addMiner({ serialNumber, macAddress, workerId, owner, nowRunning })
+          }
+        >
           Save
         </button>
+        {loading && <Loading />}
       </div>
     </div>
   );

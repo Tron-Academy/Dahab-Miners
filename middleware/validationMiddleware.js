@@ -115,3 +115,11 @@ export const validateDataInput = withValidationErrors([
   body("temporary").notEmpty().withMessage("Temporary is required"),
   body("workerId").notEmpty().withMessage("Worker ID is not required"),
 ]);
+
+export const validateRepairInput = withValidationErrors([
+  body("serialNumber").notEmpty().withMessage("Serial Number is required"),
+  body("macAddress").notEmpty().withMessage("Mac Address is required"),
+  body("workerId").notEmpty().withMessage("Worker Id is required"),
+  body("owner").notEmpty().withMessage("Owner is required"),
+  body("nowRunning").notEmpty().withMessage("now Running is required"),
+]);

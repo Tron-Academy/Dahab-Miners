@@ -7,41 +7,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Link } from "react-router-dom";
+import useTimeElapsed from "../../../hooks/useTimeElapsed";
+import { formatTimeElapsed, getTimeElapsed } from "../../../utils/timeFunction";
 
-const data = [
-  {
-    id: 1,
-    serial: "125dsfdgdf",
-    mac: "scxcscdv",
-    worker: "12454",
-    owner: "HANAAN",
-    now: "efdfsd",
-    time: "23",
-    status: "active",
-  },
-  {
-    id: 2,
-    serial: "125dsfdgdf",
-    mac: "scxcscdv",
-    worker: "12454",
-    owner: "HANAAN",
-    now: "efdfsd",
-    time: "23",
-    status: "active",
-  },
-  {
-    id: 3,
-    serial: "125dsfdgdf",
-    mac: "scxcscdv",
-    worker: "12454",
-    owner: "HANAAN",
-    now: "efdfsd",
-    time: "23",
-    status: "active",
-  },
-];
-
-export default function AdminRepairTable() {
+export default function AdminRepairTable({ miners }) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -122,9 +91,9 @@ export default function AdminRepairTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((x) => (
+          {miners.map((x) => (
             <TableRow
-              key={x.id}
+              key={x._id}
               sx={{
                 "&:last-child td, &:last-child th": { border: 0 },
               }}
@@ -134,21 +103,21 @@ export default function AdminRepairTable() {
                 scope="row"
                 sx={{ width: "12.5%", textAlign: "center" }}
               >
-                {x.serial}
+                {x.serialNumber}
               </TableCell>
               <TableCell
                 component="th"
                 scope="row"
                 sx={{ width: "12.5%", textAlign: "center" }}
               >
-                {x.mac}
+                {x.macAddress}
               </TableCell>
               <TableCell
                 component="th"
                 scope="row"
                 sx={{ width: "12.5%", textAlign: "center" }}
               >
-                {x.worker}
+                {x.workerId}
               </TableCell>
               <TableCell
                 component="th"
@@ -162,14 +131,14 @@ export default function AdminRepairTable() {
                 scope="row"
                 sx={{ width: "12.5%", textAlign: "center" }}
               >
-                {x.now}
+                {x.nowRunning}
               </TableCell>
               <TableCell
                 component="th"
                 scope="row"
                 sx={{ width: "12.5%", textAlign: "center" }}
               >
-                {x.time}
+                {formatTimeElapsed(getTimeElapsed(x.createdAt))}
               </TableCell>
               <TableCell
                 component="th"

@@ -123,3 +123,7 @@ export const validateRepairInput = withValidationErrors([
   body("owner").notEmpty().withMessage("Owner is required"),
   body("nowRunning").notEmpty().withMessage("now Running is required"),
 ]);
+
+export const validateRepairIssueInput = withValidationErrors([
+  body("issues").notEmpty().withMessage("issues is required"),
+]);

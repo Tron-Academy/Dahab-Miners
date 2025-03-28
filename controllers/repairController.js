@@ -28,3 +28,21 @@ export const getRelatedMiner = async (req, res) => {
   if (!relatedMiner) throw new NotFoundError("No related miner found");
   res.status(200).json(relatedMiner);
 };
+
+export const getSingleMiner = async (req, res) => {
+  const { id } = req.params;
+  const miner = await Repair.findById(id);
+  if (!miner) throw new NotFoundError("No miner found");
+  res.status(200).json(miner);
+};
+
+export const addIssues = async (req, res) => {
+  const { id } = req.params;
+  const { issues } = req.body;
+  const miner = await Repair.findById(id);
+  if (!miner) throw new NotFoundError("No miner found");
+  miner.problems = issues;
+  miner.status = "Need Repair";
+  await miner.save();
+  res.status(200).json({ msg: "success" });
+};

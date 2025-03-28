@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import DetailElt from "../../Products/SingleProduct/DetailElt";
 import IssueIdentificationElt from "./IssueIdentificationElt";
+import Loading from "../../../Loading";
+import useAddIssue from "../../../../hooks/adminRepair/useAddIssue";
+import { useParams } from "react-router-dom";
 
-export default function Section1Content() {
+export default function Section1Content({ miner, loading }) {
+  const { id } = useParams();
+  const { loading: addLoading, addIssue } = useAddIssue();
   const [issueDetail, setIssueDetail] = useState([
     {
       problem: "Problem-1",
@@ -22,7 +27,7 @@ export default function Section1Content() {
   function addNewForm() {
     setIssueDetail([
       ...issueDetail,
-      { problem: "Problem-1", component: "Component-1" },
+      { problem: "Problem-1", component: "Component 1" },
     ]);
   }
 
@@ -32,13 +37,18 @@ export default function Section1Content() {
   }
   return (
     <div className="p-5 bg-white rounded-md">
-      <div className="flex flex-col gap-5">
-        <DetailElt title={"Serial No"} value={"454657886655"} />
-        <DetailElt title={"Mac Address"} value={"454657886655"} />
-        <DetailElt title={"Worker ID"} value={"454657886655"} />
-        <DetailElt title={"Owner"} value={"454657886655"} />
-        <DetailElt title={"Now Running"} value={"454657886655"} />
-      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="flex flex-col gap-5">
+          <DetailElt title={"Serial No"} value={miner?.serialNumber} />
+          <DetailElt title={"Mac Address"} value={miner?.macAddress} />
+          <DetailElt title={"Worker ID"} value={miner?.workerId} />
+          <DetailElt title={"Owner"} value={miner?.owner} />
+          <DetailElt title={"Now Running"} value={miner?.nowRunning} />
+        </div>
+      )}
+
       {issueDetail.map((x, index) => (
         <IssueIdentificationElt
           key={index}
@@ -57,6 +67,15 @@ export default function Section1Content() {
           Add New Issue
         </button>
       </div>
+      <div className="my-5 flex justify-end">
+        <button
+          className="px-4 py-2 bg-homeBg hover:bg-homeBgGradient rounded-md text-white"
+          onClick={() => addIssue({ id, issues: issueDetail })}
+        >
+          Update
+        </button>
+      </div>
+      {addLoading && <Loading />}
     </div>
   );
 }

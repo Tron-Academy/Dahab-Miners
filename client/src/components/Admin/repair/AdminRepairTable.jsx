@@ -153,7 +153,7 @@ export default function AdminRepairTable({ miners }) {
                 sx={{ width: "12.5%", textAlign: "center" }}
               >
                 <Link
-                  to={`/admin/repair/status/${x.id}`}
+                  to={`/admin/repair/status/${x._id}`}
                   className="px-4 py-2 rounded-md bg-homeBg hover:bg-homeBgGradient text-white"
                 >
                   Action

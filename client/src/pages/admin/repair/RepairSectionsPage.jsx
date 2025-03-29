@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SectionHeadings from "../../../components/Admin/repair/repairSections/SectionHeadings";
 import Section1Content from "../../../components/Admin/repair/repairSections/Section1Content";
 import { Link, useParams } from "react-router-dom";
 import useGetSingleMiner from "../../../hooks/adminRepair/useGetSingleMiner";
+import Section2Content from "../../../components/Admin/repair/repairSections/Section2Content";
+import { useSelector } from "react-redux";
+import Section3Content from "../../../components/Admin/repair/repairSections/Section3Content";
 
 export default function RepairSectionsPage() {
-  const [active1, setActive1] = useState(false);
-  const [active2, setActive2] = useState(false);
-  const [active3, setActive3] = useState(false);
+  const [active1, setActive1] = useState(true);
+  const [active2, setActive2] = useState(true);
+  const [active3, setActive3] = useState(true);
   const { id } = useParams();
-  const { loading, miner } = useGetSingleMiner({ id });
+  const { loading, miner, refetch } = useGetSingleMiner({ id });
+  const { refetchTrigger } = useSelector((state) => state.admin);
+
+  useEffect(() => {
+    refetch();
+  }, [refetchTrigger]);
   return (
     <div>
       <div className="my-5 flex justify-end">
@@ -26,18 +34,22 @@ export default function RepairSectionsPage() {
           active={active1}
           setActive={setActive1}
         />
-        {active1 && <Section1Content miner={miner} loading={loading} />}
+        <Section1Content miner={miner} loading={loading} />
         <SectionHeadings
           name={"Section 2"}
           active={active2}
           setActive={setActive2}
         />
-
+        {(miner?.status === "Need Repair" ||
+          miner?.status === "Need Testing") && (
+          <Section2Content miner={miner} />
+        )}
         <SectionHeadings
           name={"Section 3"}
           active={active3}
           setActive={setActive3}
         />
+        <Section3Content miner={miner} />
       </div>
     </div>
   );

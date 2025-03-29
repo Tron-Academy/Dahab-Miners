@@ -1,13 +1,16 @@
 import React from "react";
 import FormSelect from "../../../FormSelect";
 import { IoTrashBinOutline } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 export default function IssueIdentificationElt({
   issueDetail,
   index,
   handleChange,
   handleRemove,
+  miner,
 }) {
+  const { user } = useSelector((state) => state.user);
   const components = [
     { component: "Component 1", stock: 0 },
     { component: "Component 2", stock: 2 },
@@ -23,6 +26,11 @@ export default function IssueIdentificationElt({
         title={"Problem Identified"}
         list={["Problem-1", "Problem-2", "Problem-3", "Problem-4", "Problem-5"]}
         value={issueDetail?.problem}
+        disabled={
+          (miner?.status === "Need Repair" ||
+            miner?.status === "Need Testing") &&
+          user.role === "admin"
+        }
         onchange={(e) => handleChange(index, "problem", e.target.value)}
         issue
       />
@@ -42,13 +50,24 @@ export default function IssueIdentificationElt({
             id="status"
             value={issueDetail?.component}
             onChange={(e) => handleChange(index, "component", e.target.value)}
+            disabled={
+              (miner?.status === "Need Repair" ||
+                miner?.status === "Need Testing") &&
+              user.role === "admin"
+            }
             className={`w-full py-1 px-3 rounded-lg bg-transparent border border-[#0B578E] outline-none  text-black`}
           >
+            <option
+              className="border-b py-1 border-gray-300 bg-[#CCF2FF] text-black"
+              value={"No Components needed"}
+            >
+              No Components needed
+            </option>
             {components?.map((item, index) => (
               <option
                 className="border-b py-1 border-gray-300 bg-[#CCF2FF] text-black"
                 key={index}
-                value={`${item.component}`}
+                value={`${item.component} | ${item.stock} nos`}
               >
                 {`${item.component} | ${item.stock} nos`}
               </option>
@@ -58,8 +77,13 @@ export default function IssueIdentificationElt({
       </div>
       {index > 0 && (
         <button
-          className="text-red-800 text-2xl"
+          className="text-red-800 text-2xl disabled:cursor-not-allowed"
           onClick={() => handleRemove(index)}
+          disabled={
+            (miner?.status === "Need Repair" ||
+              miner?.status === "Need Testing") &&
+            user.role === "admin"
+          }
         >
           <IoTrashBinOutline />
         </button>

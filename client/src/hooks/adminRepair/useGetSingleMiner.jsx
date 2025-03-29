@@ -28,7 +28,11 @@ const useGetSingleMiner = ({ id }) => {
     getSingleMiner();
   }, []);
 
-  return { loading, miner };
+  const refetch = () => {
+    getSingleMiner();
+  };
+
+  return { loading, miner, refetch };
 };
 
 export default useGetSingleMiner;

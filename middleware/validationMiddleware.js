@@ -127,3 +127,31 @@ export const validateRepairInput = withValidationErrors([
 export const validateRepairIssueInput = withValidationErrors([
   body("issues").notEmpty().withMessage("issues is required"),
 ]);
+
+export const validateUpdateRepairStatusInput = withValidationErrors([
+  body("problemId")
+    .notEmpty()
+    .withMessage("Problem id is required")
+    .isMongoId()
+    .withMessage("Invalid ID"),
+  body("repairStatus").notEmpty().withMessage("Repair status is required"),
+]);
+
+export const validateUpdateRepairProcessInput = withValidationErrors([
+  body("id")
+    .notEmpty()
+    .withMessage("id is required")
+    .isMongoId()
+    .withMessage("Invalid ID"),
+]);
+
+export const validateTestPassInput = withValidationErrors([
+  body("logImageUrl").notEmpty().withMessage("image url missing"),
+  body("logImagePublicId").notEmpty().withMessage("image id is missing"),
+  body("remarks").notEmpty().withMessage("remarks is required"),
+  param("id")
+    .notEmpty()
+    .withMessage("id is required")
+    .isMongoId()
+    .withMessage("invalid Id"),
+]);

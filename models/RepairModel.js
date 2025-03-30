@@ -10,6 +10,7 @@ const ProblemsSchema = new Schema(
     },
     issueStatus: {
       type: String,
+      default: "Pending",
     },
   },
   {
@@ -43,8 +44,9 @@ const RepairSchema = new Schema(
     problems: {
       type: [ProblemsSchema],
     },
-    report: {
+    testStatus: {
       type: String,
+      default: "To Be Tested",
     },
     successImgUrl: {
       type: String,
@@ -59,6 +61,9 @@ const RepairSchema = new Schema(
       type: String,
     },
     remarks: {
+      type: [String],
+    },
+    report: {
       type: String,
     },
   },

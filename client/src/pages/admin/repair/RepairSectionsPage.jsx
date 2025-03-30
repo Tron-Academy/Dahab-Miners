@@ -41,7 +41,8 @@ export default function RepairSectionsPage() {
           setActive={setActive2}
         />
         {(miner?.status === "Need Repair" ||
-          miner?.status === "Need Testing") && (
+          miner?.status === "Need Testing" ||
+          miner?.status === "Ready To Connect") && (
           <Section2Content miner={miner} />
         )}
         <SectionHeadings

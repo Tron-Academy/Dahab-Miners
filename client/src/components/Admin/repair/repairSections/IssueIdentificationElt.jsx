@@ -28,7 +28,8 @@ export default function IssueIdentificationElt({
         value={issueDetail?.problem}
         disabled={
           (miner?.status === "Need Repair" ||
-            miner?.status === "Need Testing") &&
+            miner?.status === "Need Testing" ||
+            miner?.status === "Ready To Connect") &&
           user.role === "admin"
         }
         onchange={(e) => handleChange(index, "problem", e.target.value)}
@@ -52,7 +53,8 @@ export default function IssueIdentificationElt({
             onChange={(e) => handleChange(index, "component", e.target.value)}
             disabled={
               (miner?.status === "Need Repair" ||
-                miner?.status === "Need Testing") &&
+                miner?.status === "Need Testing" ||
+                miner?.status === "Ready To Connect") &&
               user.role === "admin"
             }
             className={`w-full py-1 px-3 rounded-lg bg-transparent border border-[#0B578E] outline-none  text-black`}
@@ -81,7 +83,8 @@ export default function IssueIdentificationElt({
           onClick={() => handleRemove(index)}
           disabled={
             (miner?.status === "Need Repair" ||
-              miner?.status === "Need Testing") &&
+              miner?.status === "Need Testing" ||
+              miner?.status === "Ready To Connect") &&
             user.role === "admin"
           }
         >

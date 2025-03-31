@@ -3,6 +3,7 @@ import { formatImage } from "../middleware/multerMiddleware.js";
 import Data from "../models/DataModel.js";
 import Repair from "../models/RepairModel.js";
 import { v2 as cloudinary } from "cloudinary";
+import PDFDocument from "pdfkit";
 
 export const addNewRepairMiner = async (req, res) => {
   const { serialNumber, macAddress, workerId, owner, nowRunning } = req.body;
@@ -19,8 +20,31 @@ export const addNewRepairMiner = async (req, res) => {
 };
 
 export const getAllRepairMiner = async (req, res) => {
-  const miners = await Repair.find();
+  const { search } = req.query;
+  let queryObject = {};
+  let conditions = [];
+  if (search && search !== "") {
+    conditions.push({
+      $or: [
+        { macAddress: { $regex: search, $options: "i" } },
+        { serialNumber: { $regex: search, $options: "i" } },
+        { owner: { $regex: search, $options: "i" } },
+        { nowRunning: { $regex: search, $options: "i" } },
+        { workerId: { $regex: search, $options: "i" } },
+      ],
+    });
+  }
+  if (conditions.length > 0) {
+    queryObject = { $and: conditions };
+  }
+  const miners = await Repair.find(queryObject);
   if (!miners) throw new NotFoundError("No miners has been found");
+  res.status(200).json(miners);
+};
+
+export const getReadyToConnectMiners = async (req, res) => {
+  const miners = await Repair.find({ status: "Ready To Connect" });
+  if (!miners) throw new NotFoundError("No miners found");
   res.status(200).json(miners);
 };
 
@@ -91,9 +115,40 @@ export const passTesting = async (req, res) => {
   if (!miner) throw new NotFoundError("No miner found");
   miner.successImgUrl = req.body.logImageUrl;
   miner.successImgPublicId = req.body.logImagePublicId;
-  miner.remarks.push(req.body.remarks);
+  miner.remarks = req.body.remarks;
   miner.testStatus = "Test Passed";
   miner.status = "Ready To Connect";
+  const report = {
+    problemList: miner.problems,
+    successImage: miner.successImgUrl,
+    failureImage: miner.failImgUrl,
+    remarks: miner.remarks,
+  };
+  miner.report.push(report);
+  await miner.save();
+  res.status(200).json({ msg: "success" });
+};
+
+export const failTesting = async (req, res) => {
+  const { id } = req.params;
+  const miner = await Repair.findById(id);
+  if (!miner) throw new NotFoundError("No miner found");
+  miner.failImgUrl = req.body.logImageUrl;
+  miner.failImgPublicId = req.body.logImagePublicId;
+  miner.remarks = req.body.remarks;
+  miner.testStatus = "Test Failed";
+  miner.status = "Restart Repair";
+  const report = {
+    problemList: miner.problems,
+    successImage: miner.successImgUrl,
+    failureImage: miner.failImgUrl,
+    remarks: miner.remarks,
+  };
+  miner.report.push(report);
+  miner.problems = [];
+  miner.successImgUrl = "";
+  miner.failImgUrl = "";
+  miner.remarks = "";
   await miner.save();
   res.status(200).json({ msg: "success" });
 };
@@ -109,5 +164,55 @@ export const testingImageUpload = async (req, res) => {
     });
   } else {
     throw new BadRequestError("No files found");
+  }
+};
+
+export const generateReport = async (req, res) => {
+  const { id } = req.params;
+  const miner = await Repair.findById(id);
+  if (!miner) throw new NotFoundError("No miner found");
+  miner.reportDownloaded = true;
+  await miner.save();
+  res.setHeader("Content-Type", "application/pdf");
+  res.setHeader("Content-Disposition", `attachment; filename=repair-${id}.pdf`);
+  const doc = new PDFDocument();
+  doc.pipe(res);
+  doc.fontSize(20).text("Repair Report", { align: "center" }).moveDown();
+  doc.fontSize(12).text(`Serial Number: ${miner.serialNumber}`);
+  doc.text(`MAC Address: ${miner.macAddress}`);
+  doc.text(`Worker ID: ${miner.workerId}`);
+  doc.text(`Owner: ${miner.owner}`);
+  doc.text(`Status: ${miner.status}`);
+  doc.text(`Test Status: ${miner.testStatus}`);
+  doc.text(`Now Running for: ${miner.nowRunning}`);
+  doc
+    .text(`Repair Started on: ${miner.createdAt.toString().slice(0, 10)}`)
+    .moveDown();
+  doc.fontSize(14).text("Problems:");
+  miner.report.forEach((item, index) => {
+    item.problemList.forEach((problem, i) => {
+      doc
+        .fontSize(12)
+        .text(
+          `${index + 1}. ${problem.problem} (${problem.component}) - Status: ${
+            problem.issueStatus
+          } on ${problem.updatedAt.toString().slice(0, 10)}`
+        );
+    });
+    doc.fontSize(12).text(`failureLog : ${item.failureImage}`);
+    doc.fontSize(12).text(`SuccessLog : ${item.successImage}`);
+    doc.fontSize(12).text(`Remarks : ${item.remarks}`);
+  });
+  doc.end();
+};
+
+export const removeMiner = async (req, res) => {
+  const miner = await Repair.findById(req.params.id);
+  if (!miner) throw new NotFoundError("No miner found");
+  if (miner.reportDownloaded) {
+    await Repair.findByIdAndDelete(req.params.id);
+    res.status(200).json({ msg: "success" });
+  } else {
+    throw new BadRequestError("Please Download Report first");
   }
 };

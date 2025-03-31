@@ -2,10 +2,14 @@ import { Router } from "express";
 import {
   addIssues,
   addNewRepairMiner,
+  failTesting,
+  generateReport,
   getAllRepairMiner,
+  getReadyToConnectMiners,
   getRelatedMiner,
   getSingleMiner,
   passTesting,
+  removeMiner,
   testingImageUpload,
   updateRepairProcess,
   updateRepairStatus,
@@ -23,6 +27,7 @@ const router = Router();
 
 router.post("/add", validateRepairInput, addNewRepairMiner);
 router.get("/", getAllRepairMiner);
+router.get("/ready", getReadyToConnectMiners);
 router.get("/related", getRelatedMiner);
 router.get("/:id", getSingleMiner);
 router.patch("/issues/:id", validateRepairIssueInput, addIssues);
@@ -38,5 +43,8 @@ router.patch(
 );
 router.post("/image-upload", upload.single("log"), testingImageUpload);
 router.patch("/test-pass/:id", validateTestPassInput, passTesting);
+router.patch("/test-fail/:id", validateTestPassInput, failTesting);
+router.patch("/generateReport/:id", generateReport);
+router.delete("/:id", removeMiner);
 
 export default router;

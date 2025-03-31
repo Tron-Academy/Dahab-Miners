@@ -6,6 +6,7 @@ import useGetSingleMiner from "../../../hooks/adminRepair/useGetSingleMiner";
 import Section2Content from "../../../components/Admin/repair/repairSections/Section2Content";
 import { useSelector } from "react-redux";
 import Section3Content from "../../../components/Admin/repair/repairSections/Section3Content";
+import HistoryElement from "../../../components/Admin/repair/repairSections/HistoryElement";
 
 export default function RepairSectionsPage() {
   const [active1, setActive1] = useState(true);
@@ -29,6 +30,12 @@ export default function RepairSectionsPage() {
         </Link>
       </div>
       <div className="flex flex-col gap-3">
+        {miner?.failHistory && (
+          <h2 className="text-2xl font-semibold">History</h2>
+        )}
+        {miner?.failHistory &&
+          miner?.report.map((x) => <HistoryElement key={x._id} report={x} />)}
+
         <SectionHeadings
           name={"Section 1"}
           active={active1}
@@ -50,7 +57,10 @@ export default function RepairSectionsPage() {
           active={active3}
           setActive={setActive3}
         />
-        <Section3Content miner={miner} />
+        {(miner?.status === "Need Testing" ||
+          miner?.status === "Ready To Connect") && (
+          <Section3Content miner={miner} />
+        )}
       </div>
     </div>
   );

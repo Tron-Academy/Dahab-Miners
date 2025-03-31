@@ -13,7 +13,7 @@ export default function Section1Content({ miner, loading }) {
   const [issueDetail, setIssueDetail] = useState([
     {
       problem: "Problem-1",
-      component: "Component-1 | 0 nos",
+      component: "No Components needed",
     },
   ]);
 
@@ -29,7 +29,7 @@ export default function Section1Content({ miner, loading }) {
   function addNewForm() {
     setIssueDetail([
       ...issueDetail,
-      { problem: "Problem-1", component: "Component 1 | 0 nos" },
+      { problem: "Problem-1", component: "No Components needed" },
     ]);
   }
 
@@ -41,7 +41,9 @@ export default function Section1Content({ miner, loading }) {
   useEffect(() => {
     if (
       miner &&
-      (miner.status === "Need Repair" || miner.status === "Need Testing")
+      (miner.status === "Need Repair" ||
+        miner.status === "Need Testing" ||
+        miner.status === "Ready To Connect")
     ) {
       setIssueDetail(miner.problems);
     }
@@ -77,7 +79,8 @@ export default function Section1Content({ miner, loading }) {
           className="px-4 py-2 bg-homeBg hover:bg-homeBgGradient rounded-md text-white disabled:bg-gray-400 disabled:cursor-not-allowed"
           disabled={
             (miner?.status === "Need Repair" ||
-              miner?.status === "Need Testing") &&
+              miner?.status === "Need Testing" ||
+              miner?.status === "Ready To Connect") &&
             user.role === "admin"
           }
           onClick={() => addNewForm()}
@@ -91,7 +94,8 @@ export default function Section1Content({ miner, loading }) {
           onClick={() => addIssue({ id, issues: issueDetail })}
           disabled={
             (miner?.status === "Need Repair" ||
-              miner?.status === "Need Testing") &&
+              miner?.status === "Need Testing" ||
+              miner?.status === "Ready To Connect") &&
             user.role === "admin"
           }
         >

@@ -34,6 +34,7 @@ import AdminRepairPage from "./pages/admin/repair/AdminRepairPage";
 import AdminInventoryPage from "./pages/admin/inventory/AdminInventoryPage";
 import AddRepairMiner from "./pages/admin/repair/AddRepairMiner";
 import RepairSectionsPage from "./pages/admin/repair/RepairSectionsPage";
+import RemoveMiners from "./pages/admin/repair/RemoveMiners";
 
 function App() {
   const router = createBrowserRouter([
@@ -152,6 +153,10 @@ function App() {
         {
           path: "repair/new",
           element: <AddRepairMiner />,
+        },
+        {
+          path: "repair/remove",
+          element: <RemoveMiners />,
         },
         {
           path: "repair/status/:id",

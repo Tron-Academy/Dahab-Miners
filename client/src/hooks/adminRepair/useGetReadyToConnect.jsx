@@ -2,17 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../../utils/constants";
 
-const useGetRepairMiners = ({ search }) => {
+const useGetReadyToConnect = () => {
   const [loading, setLoading] = useState(false);
   const [miners, setMiners] = useState([]);
 
   const getMiners = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${BASE_URL}/admin/repair`, {
-        params: {
-          search,
-        },
+      const response = await axios.get(`${BASE_URL}/admin/repair/ready`, {
         withCredentials: true,
       });
       const data = response.data;
@@ -25,15 +22,12 @@ const useGetRepairMiners = ({ search }) => {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     getMiners();
   }, []);
 
-  const refetch = () => {
-    getMiners();
-  };
-
-  return { loading, miners, refetch };
+  return { loading, miners };
 };
 
-export default useGetRepairMiners;
+export default useGetReadyToConnect;

@@ -18,6 +18,21 @@ const ProblemsSchema = new Schema(
   }
 );
 
+const ReportSchema = new Schema({
+  problemList: {
+    type: [ProblemsSchema],
+  },
+  successImage: {
+    type: String,
+  },
+  failureImage: {
+    type: String,
+  },
+  remarks: {
+    type: String,
+  },
+});
+
 const RepairSchema = new Schema(
   {
     serialNumber: {
@@ -61,10 +76,18 @@ const RepairSchema = new Schema(
       type: String,
     },
     remarks: {
-      type: [String],
+      type: String,
     },
     report: {
-      type: String,
+      type: [ReportSchema],
+    },
+    failHistory: {
+      type: Boolean,
+      default: false,
+    },
+    reportDownloaded: {
+      type: Boolean,
+      default: false,
     },
   },
   {

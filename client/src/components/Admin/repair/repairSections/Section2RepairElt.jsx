@@ -18,7 +18,7 @@ export default function Section2RepairElt({ item, minerId, minerStatus }) {
     }
   }, [item]);
   return (
-    <div className="flex justify-between gap-3 items-center bg-gray-200 p-5 rounded-lg my-5">
+    <div className="flex sm:flex-row flex-col justify-between gap-5 sm:items-center bg-gray-200 p-5 rounded-lg my-5">
       <div className="flex flex-col gap-5">
         <div>
           <p className="text-xl">Problem</p>
@@ -34,7 +34,11 @@ export default function Section2RepairElt({ item, minerId, minerStatus }) {
         <select
           value={repairStatus}
           onChange={(e) => setRepairStatus(e.target.value)}
-          disabled={minerStatus === "Need Testing" && user?.role === "admin"}
+          disabled={
+            (minerStatus === "Need Testing" ||
+              minerStatus === "Ready To Connect") &&
+            user?.role === "admin"
+          }
           className="py-1 px-3 rounded-lg bg-transparent border border-[#0B578E] outline-none  text-black"
         >
           {options.map((item, index) => (
@@ -56,7 +60,11 @@ export default function Section2RepairElt({ item, minerId, minerStatus }) {
             });
             dispatch(setRefetchTrigger());
           }}
-          disabled={minerStatus === "Need Testing" && user?.role === "admin"}
+          disabled={
+            (minerStatus === "Need Testing" ||
+              minerStatus === "Ready To Connect") &&
+            user?.role === "admin"
+          }
         >
           Save
         </button>

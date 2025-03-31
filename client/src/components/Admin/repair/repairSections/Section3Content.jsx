@@ -5,6 +5,8 @@ import useUploadLogImage from "../../../../hooks/adminRepair/useUploadLogImage";
 import usePassTesting from "../../../../hooks/adminRepair/usePassTesting";
 import Loading from "../../../Loading";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import useFailTesting from "../../../../hooks/adminRepair/useFailTesting";
 
 const options = ["To Be Tested", "Test Passed", "Test Failed"];
 
@@ -13,9 +15,11 @@ export default function Section3Content({ miner }) {
   const [logImageUrl, setLogImageUrl] = useState("");
   const [logImagePublicId, setLogImagePublicId] = useState("");
   const [remarks, setRemarks] = useState("");
+  const { user } = useSelector((state) => state.user);
 
   const { loading, uploadImage, imageDetails } = useUploadLogImage();
   const { loading: passLoading, passTesting } = usePassTesting();
+  const { loading: failLoading, failTesting } = useFailTesting();
 
   function handleUpdate() {
     if (testStatus === "To Be Tested") {
@@ -28,7 +32,7 @@ export default function Section3Content({ miner }) {
         remarks,
       });
     } else {
-      toast.warn("Test Failed");
+      failTesting({ id: miner?._id, logImagePublicId, logImageUrl, remarks });
     }
   }
 
@@ -40,7 +44,7 @@ export default function Section3Content({ miner }) {
       setLogImageUrl(miner.successImgUrl);
     }
     if (miner && miner.remarks) {
-      setRemarks(miner.remarks[miner.remarks.length - 1]);
+      setRemarks(miner.remarks);
     }
   }, [miner]);
 
@@ -58,6 +62,9 @@ export default function Section3Content({ miner }) {
         <select
           value={testStatus}
           onChange={(e) => setTestStatus(e.target.value)}
+          disabled={
+            miner?.status === "Ready To Connect" && user?.role === "admin"
+          }
           className="py-1 px-3 rounded-lg bg-transparent border border-[#0B578E] outline-none  text-black"
         >
           {options.map((item, index) => (
@@ -73,6 +80,9 @@ export default function Section3Content({ miner }) {
           <ProductImageUpload
             title={"Add Log"}
             changeFunction={(e) => uploadImage({ e })}
+            disabled={
+              miner?.status === "Ready To Connect" && user?.role === "admin"
+            }
           />
           {logImageUrl !== "" &&
             (loading ? (
@@ -81,6 +91,7 @@ export default function Section3Content({ miner }) {
               <img src={logImageUrl} className="w-40 object-cover" />
             ))}
         </div>
+        {loading && <Loading />}
 
         <FormInput
           type={"text"}
@@ -88,10 +99,16 @@ export default function Section3Content({ miner }) {
           admin
           value={remarks}
           onchange={(e) => setRemarks(e.target.value)}
+          disabled={
+            miner?.status === "Ready To Connect" && user?.role === "admin"
+          }
         />
         <button
           className="px-4 py-2 rounded-md bg-homeBg hover:bg-homeBgGradient text-white disabled:cursor-not-allowed disabled:bg-gray-400"
-          disabled={loading}
+          disabled={
+            loading ||
+            (miner?.status === "Ready To Connect" && user?.role === "admin")
+          }
           onClick={handleUpdate}
         >
           Update

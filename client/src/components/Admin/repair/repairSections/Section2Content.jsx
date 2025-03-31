@@ -34,7 +34,11 @@ export default function Section2Content({ miner }) {
         <button
           className="px-4 py-2 rounded-md text-white bg-homeBg hover:bg-homeBgGradient disabled:bg-gray-400 disabled:cursor-not-allowed"
           onClick={handleUpdate}
-          disabled={miner?.status === "Need Testing" && user?.role === "admin"}
+          disabled={
+            (miner?.status === "Need Testing" ||
+              miner?.status === "Ready To Connect") &&
+            user?.role === "admin"
+          }
         >
           Update
         </button>

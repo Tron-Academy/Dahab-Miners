@@ -34,7 +34,7 @@ export default function RemoveMiners() {
             <TableRow sx={{ backgroundColor: "#F9FAFB" }}>
               <TableCell
                 sx={{
-                  width: "12.5%",
+                  width: "14.2%",
                   textAlign: "center",
                   fontWeight: "bold",
                 }}
@@ -43,7 +43,7 @@ export default function RemoveMiners() {
               </TableCell>
               <TableCell
                 sx={{
-                  width: "12.5%",
+                  width: "14.2%",
                   textAlign: "center",
                   fontWeight: "bold",
                 }}
@@ -52,7 +52,7 @@ export default function RemoveMiners() {
               </TableCell>
               <TableCell
                 sx={{
-                  width: "12.5%",
+                  width: "14.2%",
                   textAlign: "center",
                   fontWeight: "bold",
                 }}
@@ -61,7 +61,7 @@ export default function RemoveMiners() {
               </TableCell>
               <TableCell
                 sx={{
-                  width: "12.5%",
+                  width: "14.2%",
                   textAlign: "center",
                   fontWeight: "bold",
                 }}
@@ -70,7 +70,7 @@ export default function RemoveMiners() {
               </TableCell>
               <TableCell
                 sx={{
-                  width: "12.5%",
+                  width: "14.2%",
                   textAlign: "center",
                   fontWeight: "bold",
                 }}
@@ -80,7 +80,7 @@ export default function RemoveMiners() {
 
               <TableCell
                 sx={{
-                  width: "12.5%",
+                  width: "14.2%",
                   textAlign: "center",
                   fontWeight: "bold",
                 }}
@@ -89,7 +89,7 @@ export default function RemoveMiners() {
               </TableCell>
               <TableCell
                 sx={{
-                  width: "12.5%",
+                  width: "14.2%",
                   textAlign: "center",
                   fontWeight: "bold",
                 }}
@@ -109,35 +109,35 @@ export default function RemoveMiners() {
                 <TableCell
                   component="th"
                   scope="row"
-                  sx={{ width: "12.5%", textAlign: "center" }}
+                  sx={{ width: "14.2%", textAlign: "center" }}
                 >
                   {x.serialNumber}
                 </TableCell>
                 <TableCell
                   component="th"
                   scope="row"
-                  sx={{ width: "12.5%", textAlign: "center" }}
+                  sx={{ width: "14.2%", textAlign: "center" }}
                 >
                   {x.macAddress}
                 </TableCell>
                 <TableCell
                   component="th"
                   scope="row"
-                  sx={{ width: "12.5%", textAlign: "center" }}
+                  sx={{ width: "14.2%", textAlign: "center" }}
                 >
                   {x.workerId}
                 </TableCell>
                 <TableCell
                   component="th"
                   scope="row"
-                  sx={{ width: "12.5%", textAlign: "center" }}
+                  sx={{ width: "14.2%", textAlign: "center" }}
                 >
                   {x.owner}
                 </TableCell>
                 <TableCell
                   component="th"
                   scope="row"
-                  sx={{ width: "12.5%", textAlign: "center" }}
+                  sx={{ width: "14.2%", textAlign: "center" }}
                 >
                   {x.nowRunning}
                 </TableCell>
@@ -145,7 +145,7 @@ export default function RemoveMiners() {
                 <TableCell
                   component="th"
                   scope="row"
-                  sx={{ width: "12.5%", textAlign: "center" }}
+                  sx={{ width: "14.2%", textAlign: "center" }}
                 >
                   <button
                     className="px-4 py-2 rounded-md bg-homeBg hover:bg-homeBgGradient text-white"
@@ -158,7 +158,7 @@ export default function RemoveMiners() {
                 <TableCell
                   component="th"
                   scope="row"
-                  sx={{ width: "12.5%", textAlign: "center" }}
+                  sx={{ width: "14.2%", textAlign: "center" }}
                 >
                   <button
                     className="px-4 py-2 rounded-md bg-homeBg hover:bg-homeBgGradient text-white"

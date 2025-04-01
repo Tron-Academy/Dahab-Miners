@@ -15,7 +15,7 @@ function FormSelect({ title, value, onchange, list, multi, issue, disabled }) {
           disabled={disabled ? true : false}
           className={`w-full py-1 px-3 rounded-lg bg-transparent border border-[#0B578E] outline-none ${
             multi ? "h-40" : "h-11"
-          } ${issue ? "text-black" : "text-[#CCF2FF]"}`}
+          } ${issue ? "text-black bg-white" : "text-[#CCF2FF]"}`}
         >
           {list?.map((item) => (
             <option

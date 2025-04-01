@@ -155,3 +155,11 @@ export const validateTestPassInput = withValidationErrors([
     .isMongoId()
     .withMessage("invalid Id"),
 ]);
+
+export const validateAddInventoryInput = withValidationErrors([
+  body("itemName").notEmpty().withMessage("Item Name is required"),
+  body("category").notEmpty().withMessage("category is required"),
+  body("quantity").notEmpty().withMessage("Quantity is required"),
+  body("threshold").notEmpty().withMessage("threshold is required"),
+  body("location").notEmpty().withMessage("location is required"),
+]);

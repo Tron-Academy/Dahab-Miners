@@ -35,6 +35,9 @@ import AdminInventoryPage from "./pages/admin/inventory/AdminInventoryPage";
 import AddRepairMiner from "./pages/admin/repair/AddRepairMiner";
 import RepairSectionsPage from "./pages/admin/repair/RepairSectionsPage";
 import RemoveMiners from "./pages/admin/repair/RemoveMiners";
+import AddInventoryItem from "./pages/admin/inventory/AddInventoryItem";
+import SingleInventoryItem from "./pages/admin/inventory/SingleInventoryItem";
+import AlertPage from "./pages/admin/inventory/AlertPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -165,6 +168,18 @@ function App() {
         {
           path: "inventory",
           element: <AdminInventoryPage />,
+        },
+        {
+          path: "inventory/new",
+          element: <AddInventoryItem />,
+        },
+        {
+          path: "inventory/alert",
+          element: <AlertPage />,
+        },
+        {
+          path: "inventory/:id",
+          element: <SingleInventoryItem />,
         },
       ],
     },

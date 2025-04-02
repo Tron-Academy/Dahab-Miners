@@ -9,6 +9,7 @@ export default function AdminInventoryPage() {
   const [search, setSearch] = useState("");
   const [type, setType] = useState("All");
   const { loading, items, refetch } = useGetAllInventory({ search, type });
+
   const { refetchTrigger } = useSelector((state) => state.admin);
 
   useEffect(() => {

@@ -2,6 +2,8 @@ import React from "react";
 import FormSelect from "../../../FormSelect";
 import { IoTrashBinOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
+import useGetAvailableParts from "../../../../hooks/adminRepair/useGetAvailableParts";
+import Loading from "../../../Loading";
 
 export default function IssueIdentificationElt({
   issueDetail,
@@ -11,16 +13,11 @@ export default function IssueIdentificationElt({
   miner,
 }) {
   const { user } = useSelector((state) => state.user);
-  const components = [
-    { component: "Component 1", stock: 0 },
-    { component: "Component 2", stock: 2 },
-    { component: "Component 3", stock: 3 },
-    { component: "Component 4", stock: 4 },
-    { component: "Component 5", stock: 5 },
-    { component: "Component 6", stock: 6 },
-    { component: "Component 7", stock: 7 },
-  ];
-  return (
+  const { loading, components } = useGetAvailableParts();
+
+  return loading ? (
+    <Loading />
+  ) : (
     <div className="bg-gray-200 p-5 rounded-lg my-5">
       <FormSelect
         title={"Problem Identified"}

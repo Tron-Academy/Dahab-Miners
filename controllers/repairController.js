@@ -4,6 +4,8 @@ import Data from "../models/DataModel.js";
 import Repair from "../models/RepairModel.js";
 import { v2 as cloudinary } from "cloudinary";
 import PDFDocument from "pdfkit";
+import Inventory from "../models/InventoryModel.js";
+import Alert from "../models/AlertModel.js";
 
 export const addNewRepairMiner = async (req, res) => {
   const { serialNumber, macAddress, workerId, owner, nowRunning } = req.body;
@@ -70,6 +72,26 @@ export const addIssues = async (req, res) => {
   miner.problems = issues;
   miner.status = "Need Repair";
   await miner.save();
+  for (const issue of issues) {
+    if (issue.component !== "No Components needed") {
+      const issueName = issue.component.split(" | ")[0]; // Extract actual item name
+      const item = await Inventory.findOne({ itemName: issueName });
+
+      if (item) {
+        item.quantity = Math.max(0, item.quantity - 1); // Prevent negative quantity
+        await item.save();
+      }
+      if (item.quantity === 0) {
+        const alert = new Alert({
+          alertItem: issue.component.split(" | ")[0],
+          currentStock: "0",
+          message: "Stock level critical. Need urgent Restock",
+          status: "Pending",
+        });
+        await alert.save();
+      }
+    }
+  }
   res.status(200).json({ msg: "success" });
 };
 
@@ -91,6 +113,15 @@ export const updateRepairStatus = async (req, res) => {
   problemsArray[selectedIndex] = selectedProblem;
   miner.problems = problemsArray;
   await miner.save();
+  if (repairStatus === "Component Needed") {
+    const alert = new Alert({
+      alertItem: selectedProblem.component.split(" | ")[0],
+      currentStock: selectedProblem.component.split(" | ")[1],
+      message: "Need for repair process. Repair Pending",
+      status: "Pending",
+    });
+    await alert.save();
+  }
   res.status(200).json({ msg: "success" });
 };
 
@@ -149,6 +180,7 @@ export const failTesting = async (req, res) => {
   miner.successImgUrl = "";
   miner.failImgUrl = "";
   miner.remarks = "";
+  miner.failHistory = true;
   await miner.save();
   res.status(200).json({ msg: "success" });
 };
@@ -215,4 +247,16 @@ export const removeMiner = async (req, res) => {
   } else {
     throw new BadRequestError("Please Download Report first");
   }
+};
+
+export const getAvailableParts = async (req, res) => {
+  const parts = await Inventory.find({ category: "Repair Components" });
+  if (!parts) throw new NotFoundError("No parts found");
+  const components = parts.map((part) => {
+    return {
+      component: part.itemName,
+      stock: part.quantity,
+    };
+  });
+  res.status(200).json(components);
 };

@@ -19,6 +19,7 @@ import userBlogRouter from "./routes/userBlogRouter.js";
 import dataRouter from "./routes/adminDataRouter.js";
 import repairRouter from "./routes/repairRouter.js";
 import inventoryRouter from "./routes/inventoryRouter.js";
+import alertRouter from "./routes/alertRouter.js";
 import { authenticateUser, isAdmin } from "./middleware/authMiddleware.js";
 
 const app = express();
@@ -71,6 +72,7 @@ app.use("/api/users/blogs", userBlogRouter);
 app.use("/api/admin/data", authenticateUser, isAdmin, dataRouter);
 app.use("/api/admin/repair", authenticateUser, isAdmin, repairRouter);
 app.use("/api/admin/inventory", authenticateUser, isAdmin, inventoryRouter);
+app.use("/api/admin/alerts", authenticateUser, isAdmin, alertRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });

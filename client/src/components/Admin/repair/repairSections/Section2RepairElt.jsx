@@ -26,7 +26,7 @@ export default function Section2RepairElt({ item, minerId, minerStatus }) {
         </div>
         <div>
           <p className="text-xl">Component</p>
-          <p>{item?.component.split("|")[0]}</p>
+          <p>{item?.component.split(" | ")[0]}</p>
         </div>
       </div>
       <div className="flex flex-col gap-2">

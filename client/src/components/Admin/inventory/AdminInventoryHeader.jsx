@@ -3,6 +3,8 @@ import { CiSearch } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { setRefetchTrigger } from "../../../slices/adminSlice";
+import useTotalAlerts from "../../../hooks/adminInventory/useTotalAlerts";
+import Loading from "../../Loading";
 
 const options = ["All", "Repair Components", "Mining Facility Items"];
 export default function AdminInventoryHeader({
@@ -12,6 +14,7 @@ export default function AdminInventoryHeader({
   setType,
 }) {
   const { user } = useSelector((state) => state.user);
+  const { loading, total } = useTotalAlerts();
   const dispatch = useDispatch();
   return (
     <div>
@@ -25,14 +28,21 @@ export default function AdminInventoryHeader({
             Add New Item
           </button>
         </Link>
-        <Link to={"/admin/inventory/alert"}>
-          <button
-            disabled={user?.role === "admin"}
-            className="px-4 py-2 w-fit rounded-md bg-homeBg text-white hover:bg-homeBgGradient disabled:bg-gray-200 disabled:cursor-not-allowed"
-          >
-            Alerts Panel
-          </button>
-        </Link>
+        {loading ? (
+          <Loading />
+        ) : (
+          <Link to={"/admin/inventory/alert"} className="relative">
+            <button
+              disabled={user?.role === "admin"}
+              className="px-4 py-2 w-fit rounded-md bg-homeBg text-white hover:bg-homeBgGradient disabled:bg-gray-200 disabled:cursor-not-allowed"
+            >
+              Alerts Panel
+            </button>
+            <p className="absolute -top-2 -left-3 w-8 h-8 text-white flex justify-center items-center rounded-full bg-red-600">
+              {total}
+            </p>
+          </Link>
+        )}
       </div>
       <div className="flex gap-3 my-3">
         <input

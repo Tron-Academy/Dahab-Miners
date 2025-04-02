@@ -5,6 +5,7 @@ import {
   failTesting,
   generateReport,
   getAllRepairMiner,
+  getAvailableParts,
   getReadyToConnectMiners,
   getRelatedMiner,
   getSingleMiner,
@@ -29,6 +30,7 @@ router.post("/add", validateRepairInput, addNewRepairMiner);
 router.get("/", getAllRepairMiner);
 router.get("/ready", getReadyToConnectMiners);
 router.get("/related", getRelatedMiner);
+router.get("/parts", getAvailableParts);
 router.get("/:id", getSingleMiner);
 router.patch("/issues/:id", validateRepairIssueInput, addIssues);
 router.patch(

@@ -23,6 +23,9 @@ const InventorySchema = new Schema(
     notes: {
       type: String,
     },
+    restockStatus: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

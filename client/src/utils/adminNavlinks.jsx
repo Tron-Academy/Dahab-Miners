@@ -1,5 +1,6 @@
 import { AiFillProduct } from "react-icons/ai";
-import { FaUsers } from "react-icons/fa";
+import { RiToolsFill } from "react-icons/ri";
+import { MdOutlineInventory } from "react-icons/md";
 import { MdCategory } from "react-icons/md";
 import { ImBlog } from "react-icons/im";
 import { MdDashboardCustomize } from "react-icons/md";
@@ -27,6 +28,20 @@ export const adminNavLinks = [
   },
   {
     id: 4,
+    name: "Repair",
+    path: "/admin/repair",
+    urlword: "repair",
+    icon: <RiToolsFill />,
+  },
+  {
+    id: 5,
+    name: "Inventory",
+    path: "/admin/inventory",
+    urlword: "inventory",
+    icon: <MdOutlineInventory />,
+  },
+  {
+    id: 6,
     name: "Blogs",
     path: "/admin/blogs",
     urlword: "blogs",

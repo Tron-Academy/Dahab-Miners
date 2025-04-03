@@ -115,3 +115,51 @@ export const validateDataInput = withValidationErrors([
   body("temporary").notEmpty().withMessage("Temporary is required"),
   body("workerId").notEmpty().withMessage("Worker ID is not required"),
 ]);
+
+export const validateRepairInput = withValidationErrors([
+  body("serialNumber").notEmpty().withMessage("Serial Number is required"),
+  body("macAddress").notEmpty().withMessage("Mac Address is required"),
+  body("workerId").notEmpty().withMessage("Worker Id is required"),
+  body("owner").notEmpty().withMessage("Owner is required"),
+  body("nowRunning").notEmpty().withMessage("now Running is required"),
+]);
+
+export const validateRepairIssueInput = withValidationErrors([
+  body("issues").notEmpty().withMessage("issues is required"),
+]);
+
+export const validateUpdateRepairStatusInput = withValidationErrors([
+  body("problemId")
+    .notEmpty()
+    .withMessage("Problem id is required")
+    .isMongoId()
+    .withMessage("Invalid ID"),
+  body("repairStatus").notEmpty().withMessage("Repair status is required"),
+]);
+
+export const validateUpdateRepairProcessInput = withValidationErrors([
+  body("id")
+    .notEmpty()
+    .withMessage("id is required")
+    .isMongoId()
+    .withMessage("Invalid ID"),
+]);
+
+export const validateTestPassInput = withValidationErrors([
+  body("logImageUrl").notEmpty().withMessage("image url missing"),
+  body("logImagePublicId").notEmpty().withMessage("image id is missing"),
+  body("remarks").notEmpty().withMessage("remarks is required"),
+  param("id")
+    .notEmpty()
+    .withMessage("id is required")
+    .isMongoId()
+    .withMessage("invalid Id"),
+]);
+
+export const validateAddInventoryInput = withValidationErrors([
+  body("itemName").notEmpty().withMessage("Item Name is required"),
+  body("category").notEmpty().withMessage("category is required"),
+  body("quantity").notEmpty().withMessage("Quantity is required"),
+  body("threshold").notEmpty().withMessage("threshold is required"),
+  body("location").notEmpty().withMessage("location is required"),
+]);

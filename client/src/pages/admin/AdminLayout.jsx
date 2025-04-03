@@ -30,7 +30,7 @@ export default function AdminLayout() {
             <SmallSizeSideBar setSmall={setShowSmallSizeBar} />
           )}
           {showPopup && <DeletePopup />}
-          <div className="p-3 px-5 min-h-screen">
+          <div className="py-3  min-h-screen">
             <Outlet />
           </div>
         </div>

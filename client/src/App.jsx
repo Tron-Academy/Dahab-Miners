@@ -30,6 +30,14 @@ import AddNewDataPage from "./pages/admin/datas/AddNewDataPage";
 import EditDataPage from "./pages/admin/datas/EditDataPage";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import AdminRepairPage from "./pages/admin/repair/AdminRepairPage";
+import AdminInventoryPage from "./pages/admin/inventory/AdminInventoryPage";
+import AddRepairMiner from "./pages/admin/repair/AddRepairMiner";
+import RepairSectionsPage from "./pages/admin/repair/RepairSectionsPage";
+import RemoveMiners from "./pages/admin/repair/RemoveMiners";
+import AddInventoryItem from "./pages/admin/inventory/AddInventoryItem";
+import SingleInventoryItem from "./pages/admin/inventory/SingleInventoryItem";
+import AlertPage from "./pages/admin/inventory/AlertPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -140,6 +148,38 @@ function App() {
         {
           path: "data/:id/edit",
           element: <EditDataPage />,
+        },
+        {
+          path: "repair",
+          element: <AdminRepairPage />,
+        },
+        {
+          path: "repair/new",
+          element: <AddRepairMiner />,
+        },
+        {
+          path: "repair/remove",
+          element: <RemoveMiners />,
+        },
+        {
+          path: "repair/status/:id",
+          element: <RepairSectionsPage />,
+        },
+        {
+          path: "inventory",
+          element: <AdminInventoryPage />,
+        },
+        {
+          path: "inventory/new",
+          element: <AddInventoryItem />,
+        },
+        {
+          path: "inventory/alert",
+          element: <AlertPage />,
+        },
+        {
+          path: "inventory/:id",
+          element: <SingleInventoryItem />,
         },
       ],
     },

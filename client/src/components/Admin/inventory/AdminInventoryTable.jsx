@@ -139,11 +139,19 @@ export default function AdminInventoryTable({ items }) {
                 scope="row"
                 sx={{ width: "12.5%", textAlign: "center" }}
               >
-                {x.quantity === 0
-                  ? "Out Of Stock"
-                  : x.quantity >= x.threshold
-                  ? "In Stock"
-                  : "Low Stock"}
+                {x.quantity === 0 ? (
+                  <p>Out Of Stock</p>
+                ) : x.quantity >= x.threshold ? (
+                  <p>In Stock</p>
+                ) : (
+                  <p>Low Stock</p>
+                )}
+                {x.restockStatus === "Approve" && (
+                  <p className="text-red-500">Pending Restock</p>
+                )}
+                {x.restockStatus === "Ignore" && (
+                  <p className="text-red-500">Restock Cancelled</p>
+                )}
               </TableCell>
               <TableCell
                 component="th"

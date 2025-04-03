@@ -26,7 +26,11 @@ const useGetAllAlerts = () => {
     getAlerts();
   }, []);
 
-  return { loading, alerts };
+  const refetch = () => {
+    getAlerts();
+  };
+
+  return { loading, alerts, refetch };
 };
 
 export default useGetAllAlerts;

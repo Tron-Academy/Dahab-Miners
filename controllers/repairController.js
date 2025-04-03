@@ -114,9 +114,12 @@ export const updateRepairStatus = async (req, res) => {
   miner.problems = problemsArray;
   await miner.save();
   if (repairStatus === "Component Needed") {
+    const item = await Inventory.findOne({
+      itemName: selectedProblem.component.split(" | ")[0],
+    });
     const alert = new Alert({
-      alertItem: selectedProblem.component.split(" | ")[0],
-      currentStock: selectedProblem.component.split(" | ")[1],
+      alertItem: item.itemName || selectedProblem.component.split(" | ")[0],
+      currentStock: item.quantity,
       message: "Need for repair process. Repair Pending",
       status: "Pending",
     });
@@ -254,8 +257,7 @@ export const getAvailableParts = async (req, res) => {
   if (!parts) throw new NotFoundError("No parts found");
   const components = parts.map((part) => {
     return {
-      component: part.itemName,
-      stock: part.quantity,
+      component: `${part.itemName} | ${part.quantity} nos`,
     };
   });
   res.status(200).json(components);

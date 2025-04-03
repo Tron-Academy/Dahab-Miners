@@ -66,9 +66,9 @@ export default function IssueIdentificationElt({
               <option
                 className="border-b py-1 border-gray-300 bg-[#CCF2FF] text-black"
                 key={index}
-                value={`${item.component} | ${item.stock} nos`}
+                value={item.component}
               >
-                {`${item.component} | ${item.stock} nos`}
+                {item.component}
               </option>
             ))}
           </select>

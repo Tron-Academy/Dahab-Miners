@@ -17,7 +17,7 @@ export default function AddRepairMinerForm() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebounced(serialNumber);
-    }, 2000);
+    }, 1500);
 
     return () => {
       clearTimeout(timer);

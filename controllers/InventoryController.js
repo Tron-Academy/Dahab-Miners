@@ -42,6 +42,9 @@ export const updateItem = async (req, res) => {
   item.quantity = req.body.quantity;
   item.threshold = req.body.threshold;
   item.location = req.body.location;
+  if (item.quantity >= item.threshold) {
+    item.restockStatus = "";
+  }
   await item.save();
   res.status(200).json({ msg: "success" });
 };

@@ -24,11 +24,11 @@ export default function Miners() {
         <p className="text-base font-semibold text-btnGreen py-5 z-[5]">
           Miners
         </p>
-        <p className="text-[40px] font-semibold gradient-heading z-[5]">
+        <h1 className="text-[40px] font-semibold gradient-heading z-[5]">
           Affordable Crypto Miners for Maximum Profits
-        </p>
+        </h1>
         <h2 className="mt-5 mb-7 max-w-[500px] mx-auto">
-          <a href="https://dahabminers.com/">Buy Bitcoin Machines in Dubai.</a>{" "}
+          <a href="https://www.dahabminers.com/buy-bitcoin-miners-uae">Buy Bitcoin Machines in Dubai.</a>{" "}
           Get powerful, reliable miners to grow your earnings. Start mining
           smarter today.
         </h2>

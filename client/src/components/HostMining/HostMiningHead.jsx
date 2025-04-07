@@ -11,7 +11,7 @@ export default function HostMiningHead() {
           Secure and Affordable Mining Hosting with DAHAB Miners
         </h1>
         <p className="text-base font-light text-white">
-          Host your ASIC miners at UAE or Ethiopia, in our state-of-the-art
+          Host your <a href="https://dahabminers.com/asic-miner-repair-dubai"> ASIC miners at UAE</a> or Ethiopia, in our state-of-the-art
           facilities designed for optimal performance. With affordable rates,
           reliable infrastructure, and near-zero downtime, we ensure your mining
           operations run smoothly and profitably.

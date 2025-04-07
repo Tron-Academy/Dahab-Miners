@@ -7,9 +7,9 @@ export default function EthiopiaLanding() {
   return (
     <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 min-h-[640px] flex md:flex-row flex-col gap-5 justify-between items-center">
       <div className="flex flex-col md:items-start items-center gap-5 max-w-[620px] animate-slideInLeft">
-        <h4 className="text-[40px] gradient-heading font-semibold md:text-left text-center">
+        <h1 className="text-[40px] gradient-heading font-semibold md:text-left text-center">
           Bitcoin Mining in Ethiopia
-        </h4>
+        </h1>
         <p className="md:text-left text-center">
           Crypto Mining in Ethiopia<br></br> Take advantage of Ethiopia’s
           low-cost electricity and secure mining infrastructure. Buy a crypto

@@ -27,10 +27,11 @@ export default function MinerRepairPage() {
           rel="canonical"
           href={fullUrl || "https://dahabminers.com/asic-miner-repair-dubai"}
         />
-        <title>Expert Miner Repair Services in the UAE | Dahab Miners</title>
+        <title> ASIC miner repair Dubai | Cryptocurrency | UAE
+        </title>
         <meta
           name="description"
-          content="Get fast and efficient repair services for your mining equipment with Dahab Miners. We specialize in fixing crypto miners for optimal performance."
+          content=" Get expert Bitcoin mining hardware repair services in the UAE. We specialize in professional miner repair services, ensuring optimal performance for your ASIC miners."
         />
         <meta
           name="keywords"

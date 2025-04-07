@@ -16,9 +16,16 @@ export default function EthiopiaHosting() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <div>
       <Helmet>
+        <title>Crypto | Bitcoin mining in Ethiopia </title>
+        <meta
+          name="description"
+          content="Explore Ethereum and Bitcoin mining opportunities in Ethiopia. Learn about crypto mining profitability, investment potential, and the latest cryptocurrency regulations in Ethiopia.
+"
+        />
         <link
           rel="canonical"
           href={
@@ -27,6 +34,7 @@ export default function EthiopiaHosting() {
           }
         />
       </Helmet>
+
       <EthiopiaLanding />
       <EthiopiaFeatures />
       <EthiopiaAdvantagesSection />

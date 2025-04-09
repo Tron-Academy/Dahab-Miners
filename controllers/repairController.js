@@ -78,7 +78,7 @@ export const addIssues = async (req, res) => {
       const item = await Inventory.findOne({ itemName: issueName });
 
       if (item) {
-        item.quantity = Math.max(0, item.quantity - 1); // Prevent negative quantity
+        item.quantity = Math.max(0, item.quantity - issue.qty); // Prevent negative quantity
         await item.save();
       }
       if (item.quantity === 0) {

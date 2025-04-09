@@ -1,4 +1,5 @@
 import { model, Schema } from "mongoose";
+import { type } from "os";
 
 const ProblemsSchema = new Schema(
   {
@@ -11,6 +12,18 @@ const ProblemsSchema = new Schema(
     issueStatus: {
       type: String,
       default: "Pending",
+    },
+    qty: {
+      type: Number,
+    },
+    technician: {
+      type: String,
+    },
+    issueRemark: {
+      type: String,
+    },
+    repairRemark: {
+      type: String,
     },
   },
   {
@@ -81,6 +94,7 @@ const RepairSchema = new Schema(
     report: {
       type: [ReportSchema],
     },
+
     failHistory: {
       type: Boolean,
       default: false,

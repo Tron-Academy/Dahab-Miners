@@ -4,6 +4,7 @@ import { IoTrashBinOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import useGetAvailableParts from "../../../../hooks/adminRepair/useGetAvailableParts";
 import Loading from "../../../Loading";
+import FormInput from "../../../FormInput";
 
 export default function IssueIdentificationElt({
   issueDetail,
@@ -54,7 +55,7 @@ export default function IssueIdentificationElt({
                 miner?.status === "Ready To Connect") &&
               user.role === "admin"
             }
-            className={`w-full py-1 px-3 rounded-lg bg-transparent border border-[#0B578E] outline-none  text-black`}
+            className={`w-full py-1 px-3 h-11 rounded-lg bg-white border border-[#0B578E] outline-none  text-black`}
           >
             <option
               className="border-b py-1 border-gray-300 bg-[#CCF2FF] text-black"
@@ -74,6 +75,45 @@ export default function IssueIdentificationElt({
           </select>
         </div>
       </div>
+      <FormSelect
+        title={"Quantity required"}
+        list={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+        value={issueDetail?.qty}
+        disabled={
+          (miner?.status === "Need Repair" ||
+            miner?.status === "Need Testing" ||
+            miner?.status === "Ready To Connect") &&
+          user.role === "admin"
+        }
+        issue
+        onchange={(e) => handleChange(index, "qty", e.target.value)}
+      />
+      <FormSelect
+        title={"Technician"}
+        list={["Technician-1", "Technician-2", "Technician-3"]}
+        disabled={
+          (miner?.status === "Need Repair" ||
+            miner?.status === "Need Testing" ||
+            miner?.status === "Ready To Connect") &&
+          user.role === "admin"
+        }
+        value={issueDetail?.technician}
+        onchange={(e) => handleChange(index, "technician", e.target.value)}
+        issue
+      />
+      <FormInput
+        title={"Remarks"}
+        type={"text"}
+        admin
+        disabled={
+          (miner?.status === "Need Repair" ||
+            miner?.status === "Need Testing" ||
+            miner?.status === "Ready To Connect") &&
+          user.role === "admin"
+        }
+        value={issueDetail?.issueRemark}
+        onchange={(e) => handleChange(index, "issueRemark", e.target.value)}
+      />
       {index > 0 && (
         <button
           className="text-red-800 text-2xl disabled:cursor-not-allowed"

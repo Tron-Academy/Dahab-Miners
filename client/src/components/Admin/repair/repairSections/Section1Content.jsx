@@ -14,6 +14,9 @@ export default function Section1Content({ miner, loading }) {
     {
       problem: "Problem-1",
       component: "No Components needed",
+      qty: 0,
+      technician: "Technician-1",
+      issueRemark: "",
     },
   ]);
 
@@ -29,7 +32,13 @@ export default function Section1Content({ miner, loading }) {
   function addNewForm() {
     setIssueDetail([
       ...issueDetail,
-      { problem: "Problem-1", component: "No Components needed" },
+      {
+        problem: "Problem-1",
+        component: "No Components needed",
+        qty: 0,
+        technician: "Technician-1",
+        issueRemark: "",
+      },
     ]);
   }
 

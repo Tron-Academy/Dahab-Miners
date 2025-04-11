@@ -74,7 +74,7 @@ export const addIssues = async (req, res) => {
   await miner.save();
   for (const issue of issues) {
     if (issue.component !== "No Components needed") {
-      const issueName = issue.component.split(" | ")[0]; // Extract actual item name
+      const issueName = issue.component; // Extract actual item name
       const item = await Inventory.findOne({ itemName: issueName });
 
       if (item) {
@@ -83,7 +83,7 @@ export const addIssues = async (req, res) => {
       }
       if (item.quantity === 0) {
         const alert = new Alert({
-          alertItem: issue.component.split(" | ")[0],
+          alertItem: issue.component,
           currentStock: "0",
           message: "Stock level critical. Need urgent Restock",
           status: "Pending",
@@ -255,10 +255,11 @@ export const removeMiner = async (req, res) => {
 export const getAvailableParts = async (req, res) => {
   const parts = await Inventory.find({ category: "Repair Components" });
   if (!parts) throw new NotFoundError("No parts found");
-  const components = parts.map((part) => {
-    return {
-      component: `${part.itemName} | ${part.quantity} nos`,
-    };
-  });
-  res.status(200).json(components);
+  res.status(200).json(parts);
+};
+
+export const getAvailableQuantity = async (req, res) => {
+  const qty = await Inventory.findOne({ itemName: req.query.component });
+  if (!qty) throw new NotFoundError("No Item found");
+  res.status(200).json(qty.quantity);
 };

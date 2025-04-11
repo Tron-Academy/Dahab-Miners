@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import useGetAvailableParts from "../../../../hooks/adminRepair/useGetAvailableParts";
 import Loading from "../../../Loading";
 import FormInput from "../../../FormInput";
+import useGetAvailableQuantity from "../../../../hooks/adminRepair/useGetAvailableQuantity";
 
 export default function IssueIdentificationElt({
   issueDetail,
@@ -15,6 +16,8 @@ export default function IssueIdentificationElt({
 }) {
   const { user } = useSelector((state) => state.user);
   const { loading, components } = useGetAvailableParts();
+  const { refetch, qty } = useGetAvailableQuantity();
+  console.log(issueDetail);
 
   return loading ? (
     <Loading />
@@ -48,7 +51,10 @@ export default function IssueIdentificationElt({
           <select
             id="status"
             value={issueDetail?.component}
-            onChange={(e) => handleChange(index, "component", e.target.value)}
+            onChange={(e) => {
+              handleChange(index, "component", e.target.value);
+              refetch(e.target.value);
+            }}
             disabled={
               (miner?.status === "Need Repair" ||
                 miner?.status === "Need Testing" ||
@@ -67,17 +73,55 @@ export default function IssueIdentificationElt({
               <option
                 className="border-b py-1 border-gray-300 bg-[#CCF2FF] text-black"
                 key={index}
-                value={item.component}
+                value={item.itemName}
               >
-                {item.component}
+                {item.itemName}
               </option>
             ))}
           </select>
         </div>
       </div>
-      <FormSelect
+      <div className="form-row">
+        <label htmlFor="status" className="form-label">
+          Quantity
+        </label>
+
+        <div className="flex items-center">
+          <select
+            id="status"
+            value={issueDetail?.qty}
+            onChange={(e) => {
+              handleChange(index, "qty", e.target.value);
+            }}
+            disabled={
+              (miner?.status === "Need Repair" ||
+                miner?.status === "Need Testing" ||
+                miner?.status === "Ready To Connect") &&
+              user.role === "admin"
+            }
+            className={`w-full py-1 px-3 h-11 rounded-lg bg-white border border-[#0B578E] outline-none  text-black`}
+          >
+            <option
+              className="border-b py-1 border-gray-300 bg-[#CCF2FF] text-black"
+              value={0}
+            >
+              0
+            </option>
+            {Array.from({ length: qty }, (_, i) => i + 1).map((item, index) => (
+              <option
+                className="border-b py-1 border-gray-300 bg-[#CCF2FF] text-black"
+                key={index}
+                value={item}
+              >
+                {item}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+      {/* <FormSelect
         title={"Quantity required"}
-        list={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+        list={Array.from({ length: qty }, (_, i) => i + 1)}
         value={issueDetail?.qty}
         disabled={
           (miner?.status === "Need Repair" ||
@@ -87,7 +131,7 @@ export default function IssueIdentificationElt({
         }
         issue
         onchange={(e) => handleChange(index, "qty", e.target.value)}
-      />
+      /> */}
       <FormSelect
         title={"Technician"}
         list={["Technician-1", "Technician-2", "Technician-3"]}

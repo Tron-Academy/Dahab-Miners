@@ -6,6 +6,7 @@ import {
   generateReport,
   getAllRepairMiner,
   getAvailableParts,
+  getAvailableQuantity,
   getReadyToConnectMiners,
   getRelatedMiner,
   getSingleMiner,
@@ -31,6 +32,7 @@ router.get("/", getAllRepairMiner);
 router.get("/ready", getReadyToConnectMiners);
 router.get("/related", getRelatedMiner);
 router.get("/parts", getAvailableParts);
+router.get("/qty", getAvailableQuantity);
 router.get("/:id", getSingleMiner);
 router.patch("/issues/:id", validateRepairIssueInput, addIssues);
 router.patch(

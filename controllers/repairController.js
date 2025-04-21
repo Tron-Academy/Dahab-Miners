@@ -67,12 +67,17 @@ export const getSingleMiner = async (req, res) => {
 export const addIssues = async (req, res) => {
   const { id } = req.params;
   const { issues } = req.body;
+  const updatedIssues = issues.map((issue) => ({
+    ...issue,
+    issueUpdatedOn: new Date(),
+  }));
+
   const miner = await Repair.findById(id);
   if (!miner) throw new NotFoundError("No miner found");
-  miner.problems = issues;
+  miner.problems = updatedIssues;
   miner.status = "Need Repair";
   await miner.save();
-  for (const issue of issues) {
+  for (const issue of updatedIssues) {
     if (issue.component !== "No Components needed") {
       const issueName = issue.component; // Extract actual item name
       const item = await Inventory.findOne({ itemName: issueName });

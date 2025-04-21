@@ -76,8 +76,16 @@ export const getAllDatas = async (req, res) => {
   const totalLimit = limit || 20;
   const skip = (page - 1) * totalLimit;
   const sortKey = sortOptions[sortby] || sortOptions.new;
+  let sortObj = {};
+
+  if (sortKey.startsWith("-")) {
+    sortObj[sortKey.slice(1)] = -1;
+  } else {
+    sortObj[sortKey] = 1;
+  }
+  sortObj["_id"] = 1; // tie-breaker to keep pagination stable
   const datas = await Data.find(queryObject)
-    .sort(sortKey)
+    .sort(sortObj)
     .skip(skip)
     .limit(totalLimit);
   if (!datas) throw new NotFoundError("No datas found");

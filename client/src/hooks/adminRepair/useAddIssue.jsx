@@ -10,6 +10,7 @@ const useAddIssue = () => {
 
   const addIssue = async ({ id, issues }) => {
     setLoading(true);
+
     try {
       const response = await axios.patch(
         `${BASE_URL}/admin/repair/issues/${id}`,

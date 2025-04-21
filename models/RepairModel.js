@@ -8,6 +8,12 @@ const ProblemsSchema = new Schema(
     component: {
       type: String,
     },
+    additionalComponent: {
+      type: String,
+    },
+    additionalQty: {
+      type: String,
+    },
     issueStatus: {
       type: String,
       default: "Pending",
@@ -15,7 +21,10 @@ const ProblemsSchema = new Schema(
     qty: {
       type: Number,
     },
-    technician: {
+    identifyTechnician: {
+      type: String,
+    },
+    repairTechnician: {
       type: String,
     },
     issueRemark: {
@@ -23,6 +32,12 @@ const ProblemsSchema = new Schema(
     },
     repairRemark: {
       type: String,
+    },
+    issueUpdatedOn: {
+      type: Date,
+    },
+    repairUpdatedOn: {
+      type: Date,
     },
   },
   {
@@ -75,6 +90,9 @@ const RepairSchema = new Schema(
       type: String,
       default: "To Be Tested",
     },
+    testTechnician: {
+      type: String,
+    },
     successImgUrl: {
       type: String,
     },
@@ -86,6 +104,9 @@ const RepairSchema = new Schema(
     },
     failImgPublicId: {
       type: String,
+    },
+    testUpdatedOn: {
+      type: Date,
     },
     remarks: {
       type: String,

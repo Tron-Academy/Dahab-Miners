@@ -17,7 +17,6 @@ export default function IssueIdentificationElt({
   const { user } = useSelector((state) => state.user);
   const { loading, components } = useGetAvailableParts();
   const { refetch, qty } = useGetAvailableQuantity();
-  console.log(issueDetail);
 
   return loading ? (
     <Loading />
@@ -107,7 +106,17 @@ export default function IssueIdentificationElt({
             >
               0
             </option>
-            {Array.from({ length: qty }, (_, i) => i + 1).map((item, index) => (
+            {Array.from(
+              {
+                length:
+                  miner?.status === "Need Repair" ||
+                  miner?.status === "Need Testing" ||
+                  miner?.status === "Ready To Connect"
+                    ? issueDetail?.qty
+                    : qty,
+              },
+              (_, i) => i + 1
+            ).map((item, index) => (
               <option
                 className="border-b py-1 border-gray-300 bg-[#CCF2FF] text-black"
                 key={index}
@@ -141,8 +150,10 @@ export default function IssueIdentificationElt({
             miner?.status === "Ready To Connect") &&
           user.role === "admin"
         }
-        value={issueDetail?.technician}
-        onchange={(e) => handleChange(index, "technician", e.target.value)}
+        value={issueDetail?.identifyTechnician}
+        onchange={(e) =>
+          handleChange(index, "identifyTechnician", e.target.value)
+        }
         issue
       />
       <FormInput
@@ -158,6 +169,15 @@ export default function IssueIdentificationElt({
         value={issueDetail?.issueRemark}
         onchange={(e) => handleChange(index, "issueRemark", e.target.value)}
       />
+      {(miner?.status === "Need Repair" ||
+        miner?.status === "Need Testing" ||
+        miner?.status === "Ready To Connect") && (
+        <p className="mb-2">{`last updated : ${issueDetail?.issueUpdatedOn
+          .toString()
+          .slice(0, 10)} at ${issueDetail?.issueUpdatedOn
+          .toString()
+          .slice(14, 19)}`}</p>
+      )}
       {index > 0 && (
         <button
           className="text-red-800 text-2xl disabled:cursor-not-allowed"

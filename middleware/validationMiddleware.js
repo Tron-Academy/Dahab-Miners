@@ -79,6 +79,11 @@ export const validateAddProductInput = withValidationErrors([
   body("featuredImagePublicId")
     .notEmpty()
     .withMessage("Error in featured image upload. upload again"),
+  body("slug").notEmpty().withMessage("Slug is required"),
+  body("metaTitle").notEmpty().withMessage("Meta title is required"),
+  body("metaDescription")
+    .notEmpty()
+    .withMessage("Meta Description is required"),
 ]);
 
 export const validateSingleAdminProductId = withValidationErrors([

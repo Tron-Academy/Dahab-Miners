@@ -10,7 +10,7 @@ export default function HistoryElement({ report }) {
             key={x._id}
           >
             <h4>{x.problem}</h4>
-            <p>{x.component.split("|")[0]}</p>
+            <p>{x.component}</p>
             <p>{`${x.issueStatus} on ${x.updatedAt.slice(0, 10)}`}</p>
           </div>
         ))}

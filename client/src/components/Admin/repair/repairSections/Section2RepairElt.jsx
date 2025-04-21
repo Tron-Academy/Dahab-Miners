@@ -26,8 +26,15 @@ export default function Section2RepairElt({ item, minerId, minerStatus }) {
         </div>
         <div>
           <p className="text-xl">Component</p>
-          <p>{item?.component.split(" | ")[0]}</p>
+          <p>{item?.component}</p>
         </div>
+        <div>
+          <p className="text-xl">Quantity</p>
+          <p>{item?.qty}</p>
+        </div>
+        {item?.issueStatus !== "Pending" && (
+          <p>{`Last Updated : ${item?.repairUpdatedOn.toString()}`}</p>
+        )}
       </div>
       <div className="flex flex-col gap-2">
         <label className="text-sm">Repair Status</label>

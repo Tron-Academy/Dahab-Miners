@@ -67,23 +67,28 @@ export const getSingleMiner = async (req, res) => {
 export const addIssues = async (req, res) => {
   const { id } = req.params;
   const { issues } = req.body;
+  const updatedIssues = issues.map((issue) => ({
+    ...issue,
+    issueUpdatedOn: new Date(),
+  }));
+
   const miner = await Repair.findById(id);
   if (!miner) throw new NotFoundError("No miner found");
-  miner.problems = issues;
+  miner.problems = updatedIssues;
   miner.status = "Need Repair";
   await miner.save();
-  for (const issue of issues) {
+  for (const issue of updatedIssues) {
     if (issue.component !== "No Components needed") {
-      const issueName = issue.component.split(" | ")[0]; // Extract actual item name
+      const issueName = issue.component; // Extract actual item name
       const item = await Inventory.findOne({ itemName: issueName });
 
       if (item) {
-        item.quantity = Math.max(0, item.quantity - 1); // Prevent negative quantity
+        item.quantity = Math.max(0, item.quantity - issue.qty); // Prevent negative quantity
         await item.save();
       }
       if (item.quantity === 0) {
         const alert = new Alert({
-          alertItem: issue.component.split(" | ")[0],
+          alertItem: issue.component,
           currentStock: "0",
           message: "Stock level critical. Need urgent Restock",
           status: "Pending",
@@ -255,10 +260,11 @@ export const removeMiner = async (req, res) => {
 export const getAvailableParts = async (req, res) => {
   const parts = await Inventory.find({ category: "Repair Components" });
   if (!parts) throw new NotFoundError("No parts found");
-  const components = parts.map((part) => {
-    return {
-      component: `${part.itemName} | ${part.quantity} nos`,
-    };
-  });
-  res.status(200).json(components);
+  res.status(200).json(parts);
+};
+
+export const getAvailableQuantity = async (req, res) => {
+  const qty = await Inventory.findOne({ itemName: req.query.component });
+  if (!qty) throw new NotFoundError("No Item found");
+  res.status(200).json(qty.quantity);
 };

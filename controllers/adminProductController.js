@@ -17,6 +17,10 @@ export const addNewProduct = async (req, res) => {
     price: req.body.price,
     manufacturer: req.body.manufacturerItem,
     cryptoCurrency: req.body.cryptoCurrencyItem,
+    slug: req.body.slug,
+    metaDescription: req.body.metaDescription,
+    metaKeywords: req.body.metaKeywords,
+    metaTitle: req.body.metaTitle,
   });
   await newProduct.save();
   res.status(201).json({ msg: "success" });
@@ -111,6 +115,10 @@ export const editProduct = async (req, res) => {
   product.featuredImage = req.body.featuredImage;
   product.featuredImagePublicId = req.body.featuredImagePublicId;
   product.description = req.body.description;
+  product.slug = req.body.slug;
+  product.metaDescription = req.body.metaDescription;
+  product.metaKeywords = req.body.metaKeywords;
+  product.metaTitle = req.body.metaTitle;
   await product.save();
   res.status(200).json({ msg: "success" });
 };

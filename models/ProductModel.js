@@ -8,6 +8,9 @@ const ProductSchema = new Schema(
     productImage: {
       type: String,
     },
+    productCategory: {
+      type: String,
+    },
     productImagePublicId: {
       type: String,
     },
@@ -41,6 +44,18 @@ const ProductSchema = new Schema(
     isFeatured: {
       type: Boolean,
       default: false,
+    },
+    slug: {
+      type: String,
+    },
+    metaTitle: {
+      type: String,
+    },
+    metaDescription: {
+      type: String,
+    },
+    metaKeywords: {
+      type: String,
     },
   },
   {

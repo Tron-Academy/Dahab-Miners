@@ -102,7 +102,14 @@ export const addIssues = async (req, res) => {
 
 export const updateRepairStatus = async (req, res) => {
   const { id } = req.params;
-  const { problemId, repairStatus } = req.body;
+  const {
+    problemId,
+    repairStatus,
+    extraComponent,
+    extraQty,
+    repairTechnician,
+    repairRemark,
+  } = req.body;
   const miner = await Repair.findById(id);
   if (!miner) throw new NotFoundError("No miner found");
   const problemsArray = miner.problems;
@@ -112,18 +119,39 @@ export const updateRepairStatus = async (req, res) => {
   if (!selectedProblem)
     throw new NotFoundError("Unable to find the selected problem");
   selectedProblem.issueStatus = repairStatus;
+  selectedProblem.additionalComponent = extraComponent;
+  selectedProblem.additionalQty = extraQty;
+  selectedProblem.repairTechnician = repairTechnician;
+  selectedProblem.repairRemark = repairRemark;
+  selectedProblem.repairUpdatedOn = new Date();
   const selectedIndex = problemsArray.findIndex(
     (item) => item._id.toString() === problemId.toString()
   );
   problemsArray[selectedIndex] = selectedProblem;
   miner.problems = problemsArray;
   await miner.save();
+  if (extraComponent !== "No Components needed") {
+    const item = await Inventory.findOne({ itemName: extraComponent });
+    if (item) {
+      item.quantity = Math.max(0, item.quantity - extraQty); // Prevent negative quantity
+      await item.save();
+    }
+    if (item.quantity === 0) {
+      const alert = new Alert({
+        alertItem: extraComponent,
+        currentStock: "0",
+        message: "Stock level critical. Need urgent Restock",
+        status: "Pending",
+      });
+      await alert.save();
+    }
+  }
   if (repairStatus === "Component Needed") {
     const item = await Inventory.findOne({
-      itemName: selectedProblem.component.split(" | ")[0],
+      itemName: selectedProblem.component,
     });
     const alert = new Alert({
-      alertItem: item.itemName || selectedProblem.component.split(" | ")[0],
+      alertItem: item.itemName || selectedProblem.component,
       currentStock: item.quantity,
       message: "Need for repair process. Repair Pending",
       status: "Pending",
@@ -157,11 +185,15 @@ export const passTesting = async (req, res) => {
   miner.remarks = req.body.remarks;
   miner.testStatus = "Test Passed";
   miner.status = "Ready To Connect";
+  miner.testTechnician = req.body.testTechnician;
+  miner.testUpdatedOn = new Date();
   const report = {
     problemList: miner.problems,
     successImage: miner.successImgUrl,
     failureImage: miner.failImgUrl,
     remarks: miner.remarks,
+    testTechnician: miner.testTechnician,
+    testUpdatedOn: miner.testUpdatedOn,
   };
   miner.report.push(report);
   await miner.save();
@@ -175,6 +207,8 @@ export const failTesting = async (req, res) => {
   miner.failImgUrl = req.body.logImageUrl;
   miner.failImgPublicId = req.body.logImagePublicId;
   miner.remarks = req.body.remarks;
+  miner.testTechnician = req.body.testTechnician;
+  miner.testUpdatedOn = new Date();
   miner.testStatus = "Test Failed";
   miner.status = "Restart Repair";
   const report = {
@@ -182,6 +216,8 @@ export const failTesting = async (req, res) => {
     successImage: miner.successImgUrl,
     failureImage: miner.failImgUrl,
     remarks: miner.remarks,
+    testTechnician: miner.testTechnician,
+    testUpdatedOn: miner.testUpdatedOn,
   };
   miner.report.push(report);
   miner.problems = [];
@@ -234,7 +270,15 @@ export const generateReport = async (req, res) => {
       doc
         .fontSize(12)
         .text(
-          `${index + 1}. ${problem.problem} (${problem.component}) - Status: ${
+          `${index + 1}. ${problem.problem} - Component: ${
+            problem.component
+          } - Qty: ${problem.qty} - Additional Component: ${
+            problem.additionalComponent
+          } - Additional Qty: ${problem.additionalQty} - Issue Identified by: ${
+            problem.identifyTechnician
+          } - Issue Identified On: ${problem.issueUpdatedOn
+            .toString()
+            .slice(0, 10)} - Status: ${
             problem.issueStatus
           } on ${problem.updatedAt.toString().slice(0, 10)}`
         );

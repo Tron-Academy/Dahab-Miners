@@ -140,6 +140,13 @@ export const validateUpdateRepairStatusInput = withValidationErrors([
     .isMongoId()
     .withMessage("Invalid ID"),
   body("repairStatus").notEmpty().withMessage("Repair status is required"),
+  body("repairTechnician").notEmpty().withMessage("Technician is required"),
+  body("extraComponent")
+    .notEmpty()
+    .withMessage("Extra component field is required"),
+  body("extraQty")
+    .notEmpty()
+    .withMessage("Extra quantity component is required"),
 ]);
 
 export const validateUpdateRepairProcessInput = withValidationErrors([
@@ -154,6 +161,7 @@ export const validateTestPassInput = withValidationErrors([
   body("logImageUrl").notEmpty().withMessage("image url missing"),
   body("logImagePublicId").notEmpty().withMessage("image id is missing"),
   body("remarks").notEmpty().withMessage("remarks is required"),
+  body("testTechnician").notEmpty().withMessage("Test technician is required"),
   param("id")
     .notEmpty()
     .withMessage("id is required")

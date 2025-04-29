@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   addNewData,
   deleteData,
+  DownloadCSV,
   getAllDatas,
   getSingleData,
   restrictedUpdate,
@@ -14,6 +15,7 @@ const router = Router();
 
 router.post("/addData", validateDataInput, isSuperAdmin, addNewData);
 router.get("/getData", getAllDatas);
+router.get("/download-csv", DownloadCSV);
 router.get("/getData/:id", getSingleData);
 router.patch("/updateData/:id", validateDataInput, updateSingleData);
 router.patch("/updateRestricted/:id", isEditor, restrictedUpdate);

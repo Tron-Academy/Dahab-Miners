@@ -8,7 +8,7 @@ import Inventory from "../models/InventoryModel.js";
 import Alert from "../models/AlertModel.js";
 
 export const addNewRepairMiner = async (req, res) => {
-  const { serialNumber, macAddress, workerId, owner, nowRunning } = req.body;
+  const { serialNumber, owner, macAddress, workerId, nowRunning } = req.body;
   const newMiner = new Repair({
     serialNumber,
     macAddress,
@@ -28,18 +28,18 @@ export const getAllRepairMiner = async (req, res) => {
   if (search && search !== "") {
     conditions.push({
       $or: [
-        { macAddress: { $regex: search, $options: "i" } },
+        // { macAddress: { $regex: search, $options: "i" } },
         { serialNumber: { $regex: search, $options: "i" } },
         { owner: { $regex: search, $options: "i" } },
-        { nowRunning: { $regex: search, $options: "i" } },
-        { workerId: { $regex: search, $options: "i" } },
+        // { nowRunning: { $regex: search, $options: "i" } },
+        // { workerId: { $regex: search, $options: "i" } },
       ],
     });
   }
   if (conditions.length > 0) {
     queryObject = { $and: conditions };
   }
-  const miners = await Repair.find(queryObject);
+  const miners = await Repair.find(queryObject).sort("priority");
   if (!miners) throw new NotFoundError("No miners has been found");
   res.status(200).json(miners);
 };
@@ -261,31 +261,57 @@ export const generateReport = async (req, res) => {
   doc.text(`Status: ${miner.status}`);
   doc.text(`Test Status: ${miner.testStatus}`);
   doc.text(`Now Running for: ${miner.nowRunning}`);
-  doc
-    .text(`Repair Started on: ${miner.createdAt.toString().slice(0, 10)}`)
-    .moveDown();
-  doc.fontSize(14).text("Problems:");
+  doc.text(`Repair Started on: ${miner.createdAt.toString()}`).moveDown();
+  doc.fontSize(14).text("Problems:").moveDown();
   miner.report.forEach((item, index) => {
     item.problemList.forEach((problem, i) => {
       doc
+        .fontSize(13)
+        .text(`ProblemList ${index + 1}`)
+        .moveDown();
+      doc.fontSize(12).text(`Problem: ${problem.problem}`);
+      doc.fontSize(12).text(`Component: ${problem.component}`);
+      doc.fontSize(12).text(`Qty: ${problem.qty}`);
+      doc
+        .fontSize(12)
+        .text(`Additional Component: ${problem.additionalComponent}`);
+
+      doc.fontSize(12).text(`Additional Qty: ${problem.additionalQty}`);
+
+      doc
+        .fontSize(12)
+        .text(`Issue Identified by: ${problem.identifyTechnician}`);
+
+      doc
+        .fontSize(12)
+        .text(`Issue Identified On: ${problem.issueUpdatedOn.toString()}`);
+
+      doc.fontSize(12).text(`Repair Updated by: ${problem.repairTechnician}`);
+      doc
+        .fontSize(12)
+        .text(`Repair Updated on: ${problem.repairUpdatedOn.toString()}`);
+      doc
+        .fontSize(12)
+        .text(`Remarks during Identification: ${problem.issueRemark}`);
+      doc.fontSize(12).text(`Remarks during Repair: ${problem.repairRemark}`);
+      doc
         .fontSize(12)
         .text(
-          `${index + 1}. ${problem.problem} - Component: ${
-            problem.component
-          } - Qty: ${problem.qty} - Additional Component: ${
-            problem.additionalComponent
-          } - Additional Qty: ${problem.additionalQty} - Issue Identified by: ${
-            problem.identifyTechnician
-          } - Issue Identified On: ${problem.issueUpdatedOn
-            .toString()
-            .slice(0, 10)} - Status: ${
-            problem.issueStatus
-          } on ${problem.updatedAt.toString().slice(0, 10)}`
-        );
+          `Status: ${problem.issueStatus} on ${problem.updatedAt.toString()}`
+        )
+        .moveDown();
     });
-    doc.fontSize(12).text(`failureLog : ${item.failureImage}`);
-    doc.fontSize(12).text(`SuccessLog : ${item.successImage}`);
-    doc.fontSize(12).text(`Remarks : ${item.remarks}`);
+    doc.fontSize(12).text(`failureLog : ${item.failureImage}`).moveDown();
+    doc.fontSize(12).text(`SuccessLog : ${item.successImage}`).moveDown();
+    doc
+      .fontSize(12)
+      .text(`Test Performed by : ${item.testTechnician}`)
+      .moveDown();
+    doc
+      .fontSize(12)
+      .text(`Test Performed On : ${item.testUpdatedOn.toString()}`)
+      .moveDown();
+    doc.fontSize(12).text(`Remarks : ${item.remarks}`).moveDown();
   });
   doc.end();
 };
@@ -311,4 +337,12 @@ export const getAvailableQuantity = async (req, res) => {
   const qty = await Inventory.findOne({ itemName: req.query.component });
   if (!qty) throw new NotFoundError("No Item found");
   res.status(200).json(qty.quantity);
+};
+
+export const setPriority = async (req, res) => {
+  const item = await Repair.findById(req.params.id);
+  if (!item) throw new NotFoundError("No Miner found");
+  item.priority = req.body.priority;
+  await item.save();
+  res.status(200).json({ msg: "success" });
 };

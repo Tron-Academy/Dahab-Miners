@@ -1,3 +1,4 @@
+import { Parser } from "json2csv";
 import { NotFoundError } from "../errors/customErrors.js";
 import Data from "../models/DataModel.js";
 
@@ -143,4 +144,16 @@ export const deleteData = async (req, res) => {
   const data = await Data.findByIdAndDelete(id);
   if (!data) throw new NotFoundError("No data found");
   res.status(200).json({ msg: "success" });
+};
+
+export const DownloadCSV = async (req, res) => {
+  const data = await Data.find().lean();
+
+  if (!data.length) throw new NotFoundError("No data to export");
+  const fields = Object.keys(data[0]);
+  const json2csvParser = new Parser({ fields });
+  const csv = json2csvParser.parse(data);
+  res.header("Content-Type", "text/csv");
+  res.attachment("inventory.csv");
+  res.send(csv);
 };

@@ -74,6 +74,9 @@ const RepairSchema = new Schema(
     macAddress: {
       type: String,
     },
+    priority: {
+      type: Number,
+    },
     workerId: {
       type: String,
     },

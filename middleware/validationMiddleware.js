@@ -2,6 +2,7 @@ import { body, param, validationResult } from "express-validator";
 import { BadRequestError } from "../errors/customErrors.js";
 import Admin from "../models/AdminModel.js";
 import mongoose from "mongoose";
+import Repair from "../models/RepairModel.js";
 
 const withValidationErrors = (validateValues) => {
   return [
@@ -175,4 +176,15 @@ export const validateAddInventoryInput = withValidationErrors([
   body("quantity").notEmpty().withMessage("Quantity is required"),
   body("threshold").notEmpty().withMessage("threshold is required"),
   body("location").notEmpty().withMessage("location is required"),
+]);
+
+export const validateSetPriorityInput = withValidationErrors([
+  body("priority")
+    .notEmpty()
+    .withMessage("Priority is required")
+    .custom(async (priority, { req }) => {
+      const miner = await Repair.findOne({ priority: priority });
+      if (miner)
+        throw new BadRequestError("Other Miner with same priority exists");
+    }),
 ]);

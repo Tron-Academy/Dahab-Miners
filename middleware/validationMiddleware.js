@@ -2,6 +2,7 @@ import { body, param, validationResult } from "express-validator";
 import { BadRequestError } from "../errors/customErrors.js";
 import Admin from "../models/AdminModel.js";
 import mongoose from "mongoose";
+import Repair from "../models/RepairModel.js";
 
 const withValidationErrors = (validateValues) => {
   return [
@@ -140,6 +141,13 @@ export const validateUpdateRepairStatusInput = withValidationErrors([
     .isMongoId()
     .withMessage("Invalid ID"),
   body("repairStatus").notEmpty().withMessage("Repair status is required"),
+  body("repairTechnician").notEmpty().withMessage("Technician is required"),
+  body("extraComponent")
+    .notEmpty()
+    .withMessage("Extra component field is required"),
+  body("extraQty")
+    .notEmpty()
+    .withMessage("Extra quantity component is required"),
 ]);
 
 export const validateUpdateRepairProcessInput = withValidationErrors([
@@ -154,6 +162,7 @@ export const validateTestPassInput = withValidationErrors([
   body("logImageUrl").notEmpty().withMessage("image url missing"),
   body("logImagePublicId").notEmpty().withMessage("image id is missing"),
   body("remarks").notEmpty().withMessage("remarks is required"),
+  body("testTechnician").notEmpty().withMessage("Test technician is required"),
   param("id")
     .notEmpty()
     .withMessage("id is required")
@@ -167,4 +176,15 @@ export const validateAddInventoryInput = withValidationErrors([
   body("quantity").notEmpty().withMessage("Quantity is required"),
   body("threshold").notEmpty().withMessage("threshold is required"),
   body("location").notEmpty().withMessage("location is required"),
+]);
+
+export const validateSetPriorityInput = withValidationErrors([
+  body("priority")
+    .notEmpty()
+    .withMessage("Priority is required")
+    .custom(async (priority, { req }) => {
+      const miner = await Repair.findOne({ priority: priority });
+      if (miner)
+        throw new BadRequestError("Other Miner with same priority exists");
+    }),
 ]);

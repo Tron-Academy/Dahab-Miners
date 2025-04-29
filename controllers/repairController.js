@@ -8,7 +8,7 @@ import Inventory from "../models/InventoryModel.js";
 import Alert from "../models/AlertModel.js";
 
 export const addNewRepairMiner = async (req, res) => {
-  const { serialNumber, macAddress, workerId, owner, nowRunning } = req.body;
+  const { serialNumber, owner, macAddress, workerId, nowRunning } = req.body;
   const newMiner = new Repair({
     serialNumber,
     macAddress,
@@ -28,18 +28,18 @@ export const getAllRepairMiner = async (req, res) => {
   if (search && search !== "") {
     conditions.push({
       $or: [
-        { macAddress: { $regex: search, $options: "i" } },
+        // { macAddress: { $regex: search, $options: "i" } },
         { serialNumber: { $regex: search, $options: "i" } },
         { owner: { $regex: search, $options: "i" } },
-        { nowRunning: { $regex: search, $options: "i" } },
-        { workerId: { $regex: search, $options: "i" } },
+        // { nowRunning: { $regex: search, $options: "i" } },
+        // { workerId: { $regex: search, $options: "i" } },
       ],
     });
   }
   if (conditions.length > 0) {
     queryObject = { $and: conditions };
   }
-  const miners = await Repair.find(queryObject);
+  const miners = await Repair.find(queryObject).sort("priority");
   if (!miners) throw new NotFoundError("No miners has been found");
   res.status(200).json(miners);
 };
@@ -102,7 +102,14 @@ export const addIssues = async (req, res) => {
 
 export const updateRepairStatus = async (req, res) => {
   const { id } = req.params;
-  const { problemId, repairStatus } = req.body;
+  const {
+    problemId,
+    repairStatus,
+    extraComponent,
+    extraQty,
+    repairTechnician,
+    repairRemark,
+  } = req.body;
   const miner = await Repair.findById(id);
   if (!miner) throw new NotFoundError("No miner found");
   const problemsArray = miner.problems;
@@ -112,18 +119,39 @@ export const updateRepairStatus = async (req, res) => {
   if (!selectedProblem)
     throw new NotFoundError("Unable to find the selected problem");
   selectedProblem.issueStatus = repairStatus;
+  selectedProblem.additionalComponent = extraComponent;
+  selectedProblem.additionalQty = extraQty;
+  selectedProblem.repairTechnician = repairTechnician;
+  selectedProblem.repairRemark = repairRemark;
+  selectedProblem.repairUpdatedOn = new Date();
   const selectedIndex = problemsArray.findIndex(
     (item) => item._id.toString() === problemId.toString()
   );
   problemsArray[selectedIndex] = selectedProblem;
   miner.problems = problemsArray;
   await miner.save();
+  if (extraComponent !== "No Components needed") {
+    const item = await Inventory.findOne({ itemName: extraComponent });
+    if (item) {
+      item.quantity = Math.max(0, item.quantity - extraQty); // Prevent negative quantity
+      await item.save();
+    }
+    if (item.quantity === 0) {
+      const alert = new Alert({
+        alertItem: extraComponent,
+        currentStock: "0",
+        message: "Stock level critical. Need urgent Restock",
+        status: "Pending",
+      });
+      await alert.save();
+    }
+  }
   if (repairStatus === "Component Needed") {
     const item = await Inventory.findOne({
-      itemName: selectedProblem.component.split(" | ")[0],
+      itemName: selectedProblem.component,
     });
     const alert = new Alert({
-      alertItem: item.itemName || selectedProblem.component.split(" | ")[0],
+      alertItem: item.itemName || selectedProblem.component,
       currentStock: item.quantity,
       message: "Need for repair process. Repair Pending",
       status: "Pending",
@@ -157,11 +185,15 @@ export const passTesting = async (req, res) => {
   miner.remarks = req.body.remarks;
   miner.testStatus = "Test Passed";
   miner.status = "Ready To Connect";
+  miner.testTechnician = req.body.testTechnician;
+  miner.testUpdatedOn = new Date();
   const report = {
     problemList: miner.problems,
     successImage: miner.successImgUrl,
     failureImage: miner.failImgUrl,
     remarks: miner.remarks,
+    testTechnician: miner.testTechnician,
+    testUpdatedOn: miner.testUpdatedOn,
   };
   miner.report.push(report);
   await miner.save();
@@ -175,6 +207,8 @@ export const failTesting = async (req, res) => {
   miner.failImgUrl = req.body.logImageUrl;
   miner.failImgPublicId = req.body.logImagePublicId;
   miner.remarks = req.body.remarks;
+  miner.testTechnician = req.body.testTechnician;
+  miner.testUpdatedOn = new Date();
   miner.testStatus = "Test Failed";
   miner.status = "Restart Repair";
   const report = {
@@ -182,6 +216,8 @@ export const failTesting = async (req, res) => {
     successImage: miner.successImgUrl,
     failureImage: miner.failImgUrl,
     remarks: miner.remarks,
+    testTechnician: miner.testTechnician,
+    testUpdatedOn: miner.testUpdatedOn,
   };
   miner.report.push(report);
   miner.problems = [];
@@ -225,23 +261,57 @@ export const generateReport = async (req, res) => {
   doc.text(`Status: ${miner.status}`);
   doc.text(`Test Status: ${miner.testStatus}`);
   doc.text(`Now Running for: ${miner.nowRunning}`);
-  doc
-    .text(`Repair Started on: ${miner.createdAt.toString().slice(0, 10)}`)
-    .moveDown();
-  doc.fontSize(14).text("Problems:");
+  doc.text(`Repair Started on: ${miner.createdAt.toString()}`).moveDown();
+  doc.fontSize(14).text("Problems:").moveDown();
   miner.report.forEach((item, index) => {
     item.problemList.forEach((problem, i) => {
       doc
+        .fontSize(13)
+        .text(`ProblemList ${index + 1}`)
+        .moveDown();
+      doc.fontSize(12).text(`Problem: ${problem.problem}`);
+      doc.fontSize(12).text(`Component: ${problem.component}`);
+      doc.fontSize(12).text(`Qty: ${problem.qty}`);
+      doc
+        .fontSize(12)
+        .text(`Additional Component: ${problem.additionalComponent}`);
+
+      doc.fontSize(12).text(`Additional Qty: ${problem.additionalQty}`);
+
+      doc
+        .fontSize(12)
+        .text(`Issue Identified by: ${problem.identifyTechnician}`);
+
+      doc
+        .fontSize(12)
+        .text(`Issue Identified On: ${problem.issueUpdatedOn.toString()}`);
+
+      doc.fontSize(12).text(`Repair Updated by: ${problem.repairTechnician}`);
+      doc
+        .fontSize(12)
+        .text(`Repair Updated on: ${problem.repairUpdatedOn.toString()}`);
+      doc
+        .fontSize(12)
+        .text(`Remarks during Identification: ${problem.issueRemark}`);
+      doc.fontSize(12).text(`Remarks during Repair: ${problem.repairRemark}`);
+      doc
         .fontSize(12)
         .text(
-          `${index + 1}. ${problem.problem} (${problem.component}) - Status: ${
-            problem.issueStatus
-          } on ${problem.updatedAt.toString().slice(0, 10)}`
-        );
+          `Status: ${problem.issueStatus} on ${problem.updatedAt.toString()}`
+        )
+        .moveDown();
     });
-    doc.fontSize(12).text(`failureLog : ${item.failureImage}`);
-    doc.fontSize(12).text(`SuccessLog : ${item.successImage}`);
-    doc.fontSize(12).text(`Remarks : ${item.remarks}`);
+    doc.fontSize(12).text(`failureLog : ${item.failureImage}`).moveDown();
+    doc.fontSize(12).text(`SuccessLog : ${item.successImage}`).moveDown();
+    doc
+      .fontSize(12)
+      .text(`Test Performed by : ${item.testTechnician}`)
+      .moveDown();
+    doc
+      .fontSize(12)
+      .text(`Test Performed On : ${item.testUpdatedOn.toString()}`)
+      .moveDown();
+    doc.fontSize(12).text(`Remarks : ${item.remarks}`).moveDown();
   });
   doc.end();
 };
@@ -267,4 +337,12 @@ export const getAvailableQuantity = async (req, res) => {
   const qty = await Inventory.findOne({ itemName: req.query.component });
   if (!qty) throw new NotFoundError("No Item found");
   res.status(200).json(qty.quantity);
+};
+
+export const setPriority = async (req, res) => {
+  const item = await Repair.findById(req.params.id);
+  if (!item) throw new NotFoundError("No Miner found");
+  item.priority = req.body.priority;
+  await item.save();
+  res.status(200).json({ msg: "success" });
 };

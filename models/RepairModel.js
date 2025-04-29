@@ -12,7 +12,7 @@ const ProblemsSchema = new Schema(
       type: String,
     },
     additionalQty: {
-      type: String,
+      type: Number,
     },
     issueStatus: {
       type: String,
@@ -58,6 +58,12 @@ const ReportSchema = new Schema({
   remarks: {
     type: String,
   },
+  testTechnician: {
+    type: String,
+  },
+  testUpdatedOn: {
+    type: Date,
+  },
 });
 
 const RepairSchema = new Schema(
@@ -67,6 +73,9 @@ const RepairSchema = new Schema(
     },
     macAddress: {
       type: String,
+    },
+    priority: {
+      type: Number,
     },
     workerId: {
       type: String,

@@ -12,6 +12,7 @@ import {
   getSingleMiner,
   passTesting,
   removeMiner,
+  setPriority,
   testingImageUpload,
   updateRepairProcess,
   updateRepairStatus,
@@ -19,6 +20,7 @@ import {
 import {
   validateRepairInput,
   validateRepairIssueInput,
+  validateSetPriorityInput,
   validateTestPassInput,
   validateUpdateRepairProcessInput,
   validateUpdateRepairStatusInput,
@@ -49,6 +51,7 @@ router.post("/image-upload", upload.single("log"), testingImageUpload);
 router.patch("/test-pass/:id", validateTestPassInput, passTesting);
 router.patch("/test-fail/:id", validateTestPassInput, failTesting);
 router.patch("/generateReport/:id", generateReport);
+router.patch("/set-priority/:id", validateSetPriorityInput, setPriority);
 router.delete("/:id", removeMiner);
 
 export default router;

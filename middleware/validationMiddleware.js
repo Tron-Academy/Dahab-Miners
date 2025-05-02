@@ -175,7 +175,7 @@ export const validateAddInventoryInput = withValidationErrors([
   body("category").notEmpty().withMessage("category is required"),
   body("quantity").notEmpty().withMessage("Quantity is required"),
   body("threshold").notEmpty().withMessage("threshold is required"),
-  body("location").notEmpty().withMessage("location is required"),
+  // body("location").notEmpty().withMessage("location is required"),
 ]);
 
 export const validateSetPriorityInput = withValidationErrors([

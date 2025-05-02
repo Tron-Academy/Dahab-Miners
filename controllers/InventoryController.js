@@ -2,13 +2,15 @@ import { NotFoundError } from "../errors/customErrors.js";
 import Inventory from "../models/InventoryModel.js";
 
 export const addInventoryItem = async (req, res) => {
-  const { itemName, category, quantity, threshold, location } = req.body;
+  const { itemName, category, quantity, threshold, location, remark } =
+    req.body;
   const newItem = new Inventory({
     itemName,
     category,
     quantity,
     threshold,
     location,
+    remark,
   });
   await newItem.save();
   res.status(201).json({ msg: "success" });
@@ -42,6 +44,7 @@ export const updateItem = async (req, res) => {
   item.quantity = req.body.quantity;
   item.threshold = req.body.threshold;
   item.location = req.body.location;
+  item.remark = req.body.remark;
   if (item.quantity >= item.threshold) {
     item.restockStatus = "";
   }

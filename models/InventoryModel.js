@@ -26,6 +26,9 @@ const InventorySchema = new Schema(
     restockStatus: {
       type: String,
     },
+    remark: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

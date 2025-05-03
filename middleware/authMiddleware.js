@@ -17,7 +17,7 @@ export const authenticateUser = async (req, res, next) => {
 export const isAdmin = async (req, res, next) => {
   try {
     const { userId, username, role } = req.user;
-    if (role === "superAdmin" || role === "admin") {
+    if (role === "superAdmin" || role === "admin" || role === "repairAdmin") {
       next();
     } else {
       throw new UnauthenticatedError("invalid authorization");
@@ -46,6 +46,20 @@ export const isEditor = async (req, res, next) => {
   try {
     const { role } = req.user;
     if (role === "admin") {
+      next();
+    } else {
+      throw new UnauthenticatedError("Not Authorised for this operation");
+    }
+  } catch (error) {
+    console.log(error);
+    throw new UnauthenticatedError("Not Authorised for this operation");
+  }
+};
+
+export const isRepairAdmin = async (req, res, next) => {
+  try {
+    const { role } = req.user;
+    if (role === "repairAdmin") {
       next();
     } else {
       throw new UnauthenticatedError("Not Authorised for this operation");

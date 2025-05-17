@@ -39,7 +39,7 @@ export const getAllDatas = async (req, res) => {
         { clientName: { $regex: search, $options: "i" } },
         { temporaryOwner: { $regex: search, $options: "i" } },
         { workerId: { $regex: search, $options: "i" } },
-        //will need to add search for model"
+        { modelName: { $regex: search, $options: "i" } },
       ],
     });
   }

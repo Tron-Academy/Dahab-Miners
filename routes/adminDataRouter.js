@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   addNewData,
+  bulkUpload,
   deleteData,
   DownloadCSV,
   getAllDatas,
@@ -14,6 +15,7 @@ import { isEditor, isSuperAdmin } from "../middleware/authMiddleware.js";
 const router = Router();
 
 router.post("/addData", validateDataInput, isSuperAdmin, addNewData);
+router.post("/bulkData", isSuperAdmin, bulkUpload);
 router.get("/getData", getAllDatas);
 router.get("/download-csv", DownloadCSV);
 router.get("/getData/:id", getSingleData);

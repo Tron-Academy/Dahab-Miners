@@ -1,6 +1,8 @@
 import { Parser } from "json2csv";
 import { NotFoundError } from "../errors/customErrors.js";
 import Data from "../models/DataModel.js";
+import mongoose from "mongoose";
+import { isStrictValidObject } from "../middleware/bulkUploadValidation.js";
 
 export const addNewData = async (req, res) => {
   const {
@@ -157,4 +159,38 @@ export const DownloadCSV = async (req, res) => {
   res.header("Content-Type", "text/csv");
   res.attachment("inventory.csv");
   res.send(csv);
+};
+
+export const bulkUpload = async (req, res) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+
+  try {
+    const items = req.body;
+
+    if (!Array.isArray(items)) {
+      throw new Error("Payload must be an array of objects");
+    }
+
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      if (!isStrictValidObject(item)) {
+        throw new Error(
+          `Invalid data at index ${
+            i + 1
+          }: All required fields must exist, match exactly ("actualLocation", "currentLocation", "macAddress", "modelName", "serialNumber", "clientName", "temporaryOwner", "workerId",), and contain non-empty strings.`
+        );
+      }
+    }
+
+    await Data.insertMany(items, { session });
+    await session.commitTransaction();
+    session.endSession();
+
+    res.status(200).json({ msg: "Bulk upload successful" });
+  } catch (err) {
+    await session.abortTransaction();
+    session.endSession();
+    res.status(400).json({ msg: err.message });
+  }
 };

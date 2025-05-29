@@ -6,6 +6,7 @@ import { v2 as cloudinary } from "cloudinary";
 import PDFDocument from "pdfkit";
 import Inventory from "../models/InventoryModel.js";
 import Alert from "../models/AlertModel.js";
+import mongoose from "mongoose";
 
 export const addNewRepairMiner = async (req, res) => {
   const { serialNumber, owner, macAddress, workerId, nowRunning } = req.body;
@@ -340,9 +341,32 @@ export const getAvailableQuantity = async (req, res) => {
 };
 
 export const setPriority = async (req, res) => {
-  const item = await Repair.findById(req.params.id);
-  if (!item) throw new NotFoundError("No Miner found");
-  item.priority = req.body.priority;
-  await item.save();
-  res.status(200).json({ msg: "success" });
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
+    await Repair.updateMany(
+      {
+        _id: { $ne: req.params.id },
+        priority: { $gte: req.body.priority },
+      },
+      { $inc: { priority: 1 } },
+      { session }
+    );
+    const updatedData = await Repair.findByIdAndUpdate(
+      req.params.id,
+      {
+        priority: req.body.priority,
+      },
+      { new: true, session }
+    );
+    if (!updatedData) throw new NotFoundError("No Repair Data Found");
+    await session.commitTransaction();
+    res.status(200).json({ msg: "success" });
+  } catch (error) {
+    await session.abortTransaction();
+    console.log(error);
+    res.status(500).json({ msg: error.message });
+  } finally {
+    session.endSession();
+  }
 };

@@ -179,12 +179,10 @@ export const validateAddInventoryInput = withValidationErrors([
 ]);
 
 export const validateSetPriorityInput = withValidationErrors([
-  body("priority")
-    .notEmpty()
-    .withMessage("Priority is required")
-    .custom(async (priority, { req }) => {
-      const miner = await Repair.findOne({ priority: priority });
-      if (miner)
-        throw new BadRequestError("Other Miner with same priority exists");
-    }),
+  body("priority").notEmpty().withMessage("Priority is required"),
+  // .custom(async (priority, { req }) => {
+  //   const miner = await Repair.findOne({ priority: priority });
+  //   if (miner)
+  //     throw new BadRequestError("Other Miner with same priority exists");
+  // }),
 ]);

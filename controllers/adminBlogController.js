@@ -96,3 +96,4 @@ export const deleteBlog = async (req, res) => {
   await Blog.findByIdAndDelete(req.params.id);
   res.status(200).json({ msg: "success" });
 };
+//this is a comment

@@ -39,6 +39,7 @@ const allowedOrigins = [
   "http://dahabminers.com",
   "https://dahabminers.com",
   "https://mining.dahabminers.com",
+  "http://localhost:5173",
 ];
 
 app.use(

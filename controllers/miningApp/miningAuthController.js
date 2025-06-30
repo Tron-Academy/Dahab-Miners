@@ -1,4 +1,7 @@
-import { NotFoundError, UnauthenticatedError } from "../../errors/customErrors";
+import {
+  NotFoundError,
+  UnauthenticatedError,
+} from "../../errors/customErrors.js";
 import MiningUser from "../../models/miningApp/MiningUser.js";
 import { comparePassword, hashPassword } from "../../utils/bcrypt.js";
 import { createJWT } from "../../utils/jwtUtils.js";

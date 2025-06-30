@@ -5,12 +5,11 @@ import {
   miningRegister,
 } from "../../controllers/miningApp/miningAuthController.js";
 import { authenticateUser } from "../../middleware/authMiddleware.js";
+import { Router } from "express";
 import {
   validateMiningUserLogin,
   validateMiningUserRegister,
 } from "../../middleware/validationMiddleware.js";
-
-const { Router } = require("express");
 
 const router = Router();
 

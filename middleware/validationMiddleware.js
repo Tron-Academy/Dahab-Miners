@@ -3,6 +3,7 @@ import { BadRequestError } from "../errors/customErrors.js";
 import Admin from "../models/AdminModel.js";
 import mongoose from "mongoose";
 import Repair from "../models/RepairModel.js";
+import MiningUser from "../models/miningApp/MiningUser.js";
 
 const withValidationErrors = (validateValues) => {
   return [
@@ -185,4 +186,26 @@ export const validateSetPriorityInput = withValidationErrors([
   //   if (miner)
   //     throw new BadRequestError("Other Miner with same priority exists");
   // }),
+]);
+
+export const validateMiningUserRegister = withValidationErrors([
+  body("email")
+    .notEmpty()
+    .withMessage("Email is required")
+    .isEmail()
+    .withMessage("Invalid Email format")
+    .custom(async (email, { req }) => {
+      const user = await MiningUser.findOne({ email: email });
+      if (user) throw new BadRequestError("email already exists");
+    }),
+  body("password").notEmpty().withMessage("Password is required"),
+]);
+
+export const validateMiningUserLogin = withValidationErrors([
+  body("email")
+    .notEmpty()
+    .withMessage("Email is required")
+    .isEmail()
+    .withMessage("Invalid Email format"),
+  body("password").notEmpty().withMessage("Password is required"),
 ]);

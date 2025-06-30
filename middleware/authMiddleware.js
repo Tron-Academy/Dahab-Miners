@@ -2,7 +2,7 @@ import { UnauthenticatedError } from "../errors/customErrors.js";
 import { verifyJWT } from "../utils/jwtUtils.js";
 
 export const authenticateUser = async (req, res, next) => {
-  const { token } = req.cookies;
+  const token = req.headers.authorization?.split(" ")[1] || req.cookies.token; //for flutter
   if (!token) throw new UnauthenticatedError("unable to access");
   try {
     const { userId, username, role } = verifyJWT(token);

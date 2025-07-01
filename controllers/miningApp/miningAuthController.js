@@ -1,10 +1,12 @@
 import {
+  BadRequestError,
   NotFoundError,
   UnauthenticatedError,
 } from "../../errors/customErrors.js";
 import MiningUser from "../../models/miningApp/MiningUser.js";
 import { comparePassword, hashPassword } from "../../utils/bcrypt.js";
 import { createJWT } from "../../utils/jwtUtils.js";
+import jwt from "jsonwebtoken";
 
 export const miningRegister = async (req, res) => {
   const { email, password } = req.body;
@@ -72,4 +74,61 @@ export const getMiningUserInfo = async (req, res) => {
   const user = await MiningUser.findById(userId).select("-password");
   if (!user) throw new NotFoundError("No user found");
   res.status(200).json(user);
+};
+
+//temporary controllers
+export const addToCart = async (req, res) => {
+  const { itemId } = req.body;
+  const user = await MiningUser.findById(req.user.userId);
+  if (!user) throw new NotFoundError("No user has been found");
+  const alreadyExist = user.cartItems.find(
+    (item) => parseInt(item.id) === parseInt(itemId)
+  );
+  if (alreadyExist) throw new BadRequestError("Item Already on Cart");
+  user.cartItems.push({ id: itemId, qty: 1 });
+  await user.save();
+  res.status(200).json({ msg: "Added to cart successfully" });
+};
+
+export const removeFromCart = async (req, res) => {
+  const { itemId } = req.body;
+  const user = await MiningUser.findById(req.user.userId);
+  if (!user) throw new NotFoundError("No user has been found");
+  const filtered = user.cartItems.filter(
+    (item) => parseInt(item.id) !== parseInt(itemId)
+  );
+  user.cartItems = filtered;
+  await user.save();
+  res.status(200).json({ msg: "successfully removed from cart" });
+};
+
+export const updateCartItem = async (req, res) => {
+  const { itemId, qty } = req.body;
+  const user = await MiningUser.findById(req.user.userId);
+  if (!user) throw new NotFoundError("No user has been found");
+  const alreadyExist = user.cartItems.find(
+    (item) => parseInt(item.id) === parseInt(itemId)
+  );
+  if (!alreadyExist) throw new BadRequestError("Item Not found on Cart");
+  user.cartItems = user.cartItems.map((item) => {
+    if (parseInt(item.id) === parseInt(itemId)) {
+      return {
+        ...item,
+        qty: qty,
+      };
+    } else {
+      return item;
+    }
+  });
+  await user.save();
+  res.status(200).json({ msg: "updated successfully" });
+};
+
+export const purchaseMiner = async (req, res) => {
+  const user = await MiningUser.findById(req.user.userId);
+  if (!user) throw new NotFoundError("No user found");
+  user.ownedMiners = [...user.ownedMiners, ...user.cartItems];
+  user.cartItems = [];
+  await user.save();
+  res.status(200).json({ msg: "purchase completed" });
 };

@@ -12,7 +12,11 @@ const miningUserSchema = new Schema(
       type: String,
     },
     ownedMiners: {
-      type: [Number],
+      type: [],
+    },
+    cartItems: {
+      type: [],
+      default: [],
     },
   },
   { timestamps: true }

@@ -1,4 +1,13 @@
-import { model, Schema } from "mongoose";
+import mongoose, { model, Schema } from "mongoose";
+import { type } from "os";
+
+const cartSchema = new Schema({
+  itemId: {
+    type: mongoose.Types.ObjectId,
+    ref: "MiningProduct",
+  },
+  qty: Number,
+});
 
 const miningUserSchema = new Schema(
   {
@@ -11,13 +20,8 @@ const miningUserSchema = new Schema(
     username: {
       type: String,
     },
-    ownedMiners: {
-      type: [],
-    },
-    cartItems: {
-      type: [],
-      default: [],
-    },
+    ownedMiners: [cartSchema],
+    cartItems: [cartSchema],
   },
   { timestamps: true }
 );

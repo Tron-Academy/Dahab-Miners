@@ -3,6 +3,7 @@ import {
   NotFoundError,
   UnauthenticatedError,
 } from "../../errors/customErrors.js";
+import MiningProduct from "../../models/miningApp/MiningProduct.js";
 import MiningUser from "../../models/miningApp/MiningUser.js";
 import { comparePassword, hashPassword } from "../../utils/bcrypt.js";
 import { createJWT } from "../../utils/jwtUtils.js";
@@ -71,7 +72,9 @@ export const miningLogout = async (req, res) => {
 
 export const getMiningUserInfo = async (req, res) => {
   const { userId } = req.user;
-  const user = await MiningUser.findById(userId).select("-password");
+  const user = await MiningUser.findById(userId)
+    .select("-password")
+    .populate(["cartItems.itemId", "ownedMiners.itemId"]);
   if (!user) throw new NotFoundError("No user found");
   res.status(200).json(user);
 };
@@ -82,10 +85,10 @@ export const addToCart = async (req, res) => {
   const user = await MiningUser.findById(req.user.userId);
   if (!user) throw new NotFoundError("No user has been found");
   const alreadyExist = user.cartItems.find(
-    (item) => parseInt(item.id) === parseInt(itemId)
+    (item) => item.itemId?.toString() === itemId.toString()
   );
   if (alreadyExist) throw new BadRequestError("Item Already on Cart");
-  user.cartItems.push({ id: itemId, qty: 1 });
+  user.cartItems.push({ itemId: itemId, qty: 1 });
   await user.save();
   res.status(200).json({ msg: "Added to cart successfully" });
 };
@@ -95,7 +98,7 @@ export const removeFromCart = async (req, res) => {
   const user = await MiningUser.findById(req.user.userId);
   if (!user) throw new NotFoundError("No user has been found");
   const filtered = user.cartItems.filter(
-    (item) => parseInt(item.id) !== parseInt(itemId)
+    (item) => item._id?.toString() !== itemId.toString()
   );
   user.cartItems = filtered;
   await user.save();
@@ -107,13 +110,13 @@ export const updateCartItem = async (req, res) => {
   const user = await MiningUser.findById(req.user.userId);
   if (!user) throw new NotFoundError("No user has been found");
   const alreadyExist = user.cartItems.find(
-    (item) => parseInt(item.id) === parseInt(itemId)
+    (item) => item._id?.toString() === itemId.toString()
   );
   if (!alreadyExist) throw new BadRequestError("Item Not found on Cart");
   user.cartItems = user.cartItems.map((item) => {
-    if (parseInt(item.id) === parseInt(itemId)) {
+    if (item._id?.toString() === itemId.toString()) {
       return {
-        ...item,
+        ...item.toObject(),
         qty: qty,
       };
     } else {
@@ -131,4 +134,10 @@ export const purchaseMiner = async (req, res) => {
   user.cartItems = [];
   await user.save();
   res.status(200).json({ msg: "purchase completed" });
+};
+
+export const getAllMiners = async (req, res) => {
+  const miners = await MiningProduct.find();
+  if (miners.length < 1) throw new NotFoundError("No Miners Found");
+  res.status(200).json(miners);
 };

@@ -1,5 +1,6 @@
 import {
   addToCart,
+  getAllMiners,
   getMiningUserInfo,
   miningLogin,
   miningLogout,
@@ -26,5 +27,6 @@ router.post("/addToCart", authenticateUser, addToCart);
 router.post("/removeItem", authenticateUser, removeFromCart);
 router.post("/updateCart", authenticateUser, updateCartItem);
 router.post("/purchase", authenticateUser, purchaseMiner);
+router.get("/miners", authenticateUser, getAllMiners);
 
 export default router;

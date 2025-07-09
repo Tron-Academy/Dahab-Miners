@@ -141,3 +141,9 @@ export const getAllMiners = async (req, res) => {
   if (miners.length < 1) throw new NotFoundError("No Miners Found");
   res.status(200).json(miners);
 };
+
+export const getSingleMiner = async (req, res) => {
+  const miner = await MiningProduct.findById(req.params.id);
+  if (!miner) throw new NotFoundError("No miner found");
+  res.status(200).json(miner);
+};

@@ -2,6 +2,7 @@ import {
   addToCart,
   getAllMiners,
   getMiningUserInfo,
+  getSingleMiner,
   miningLogin,
   miningLogout,
   miningRegister,
@@ -28,5 +29,6 @@ router.post("/removeItem", authenticateUser, removeFromCart);
 router.post("/updateCart", authenticateUser, updateCartItem);
 router.post("/purchase", authenticateUser, purchaseMiner);
 router.get("/miners", authenticateUser, getAllMiners);
+router.get("/miners/:id", authenticateUser, getSingleMiner);
 
 export default router;

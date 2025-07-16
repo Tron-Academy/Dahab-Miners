@@ -80,6 +80,15 @@ export const getMiningUserInfo = async (req, res) => {
 };
 
 //temporary controllers
+export const getCartItems = async (req, res) => {
+  const user = await MiningUser.findById(req.user.userId).populate(
+    "cartItems.itemId"
+  );
+  if (!user) throw new NotFoundError("No user has been found");
+  const items = user.cartItems;
+  res.status(200).json(items);
+};
+
 export const addToCart = async (req, res) => {
   const { itemId } = req.body;
   const user = await MiningUser.findById(req.user.userId);

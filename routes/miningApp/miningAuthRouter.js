@@ -1,15 +1,8 @@
 import {
-  addToCart,
-  getAllMiners,
-  getCartItems,
   getMiningUserInfo,
-  getSingleMiner,
   miningLogin,
   miningLogout,
   miningRegister,
-  purchaseMiner,
-  removeFromCart,
-  updateCartItem,
 } from "../../controllers/miningApp/miningAuthController.js";
 import { authenticateUser } from "../../middleware/authMiddleware.js";
 import { Router } from "express";

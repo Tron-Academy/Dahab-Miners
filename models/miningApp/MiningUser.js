@@ -1,5 +1,4 @@
 import mongoose, { model, Schema } from "mongoose";
-import { type } from "os";
 
 const cartSchema = new Schema({
   itemId: {
@@ -9,6 +8,19 @@ const cartSchema = new Schema({
   qty: Number,
 });
 
+const ownedSchema = new Schema({
+  itemId: {
+    type: mongoose.Types.ObjectId,
+    ref: "MiningProduct",
+  },
+  qty: Number,
+  batchId: String,
+  purchasedOn: Date,
+  validity: Date,
+  minedRevenue: Number,
+  hostingFeePaid: Number,
+  HostingFeeDue: Number,
+});
 const miningUserSchema = new Schema(
   {
     email: {
@@ -20,7 +32,7 @@ const miningUserSchema = new Schema(
     username: {
       type: String,
     },
-    ownedMiners: [cartSchema],
+    ownedMiners: [ownedSchema],
     cartItems: [cartSchema],
   },
   { timestamps: true }

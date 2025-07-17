@@ -24,13 +24,5 @@ router.post("/register", validateMiningUserRegister, miningRegister);
 router.post("/login", validateMiningUserLogin, miningLogin);
 router.post("/logout", miningLogout);
 router.get("/userInfo", authenticateUser, getMiningUserInfo);
-//temporary routes
-router.get("/cartItems", authenticateUser, getCartItems);
-router.post("/addToCart", authenticateUser, addToCart);
-router.post("/removeItem", authenticateUser, removeFromCart);
-router.post("/updateCart", authenticateUser, updateCartItem);
-router.post("/purchase", authenticateUser, purchaseMiner);
-router.get("/miners", authenticateUser, getAllMiners);
-router.get("/miners/:id", authenticateUser, getSingleMiner);
 
 export default router;

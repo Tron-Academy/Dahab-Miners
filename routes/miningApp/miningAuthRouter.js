@@ -3,6 +3,7 @@ import {
   miningLogin,
   miningLogout,
   miningRegister,
+  verifyCode,
 } from "../../controllers/miningApp/miningAuthController.js";
 import { authenticateUser } from "../../middleware/authMiddleware.js";
 import { Router } from "express";
@@ -17,5 +18,6 @@ router.post("/register", validateMiningUserRegister, miningRegister);
 router.post("/login", validateMiningUserLogin, miningLogin);
 router.post("/logout", miningLogout);
 router.get("/userInfo", authenticateUser, getMiningUserInfo);
+router.post("/verify", verifyCode);
 
 export default router;

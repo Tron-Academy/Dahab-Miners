@@ -8,6 +8,7 @@ import MiningUser from "../../models/miningApp/MiningUser.js";
 import { comparePassword, hashPassword } from "../../utils/bcrypt.js";
 import { createJWT } from "../../utils/jwtUtils.js";
 import jwt from "jsonwebtoken";
+import { sendMail, transporter } from "../../utils/nodemailer.js";
 
 export const miningRegister = async (req, res) => {
   const { email, password } = req.body;
@@ -19,6 +20,18 @@ export const miningRegister = async (req, res) => {
     password: hashed,
   });
   await newUser.save();
+  const code = Math.floor(100000 + Math.random() * 900000);
+  newUser.verificationCode = code.toString();
+  const mailOptions = {
+    from: {
+      name: "DAHAB MINING",
+      address: process.env.NODEMAILER_EMAIL,
+    },
+    to: newUser.email,
+    subject: "Account Verification",
+    text: `Welcome to Dahab Mining. Your verification code is ${code}`,
+  };
+  await sendMail(transporter, mailOptions);
   const token = createJWT({
     userId: newUser._id,
     username: newUser.username,
@@ -77,4 +90,15 @@ export const getMiningUserInfo = async (req, res) => {
     .populate(["cartItems.itemId", "ownedMiners.itemId"]);
   if (!user) throw new NotFoundError("No user found");
   res.status(200).json(user);
+};
+
+export const verifyCode = async (req, res) => {
+  const { email, code } = req.body;
+  const user = await MiningUser.findOne({ email: email });
+  if (!user) throw new NotFoundError("No user found");
+  if (user.verificationCode.toString() !== code.toString()) {
+    throw new BadRequestError("Invalid Verification Code");
+  } else {
+    res.status(200).json({ message: "Successfully verified" });
+  }
 };

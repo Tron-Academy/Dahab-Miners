@@ -16,6 +16,8 @@ const miningProductSchema = new Schema(
     riskFactor: Number,
     hostingFactor: Number,
     algorithm: String,
+    hostingFeePerKw: Number,
+    subtitle: String,
   },
   { timestamps: true }
 );

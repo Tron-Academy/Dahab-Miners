@@ -34,6 +34,19 @@ const miningUserSchema = new Schema(
     },
     ownedMiners: [ownedSchema],
     cartItems: [cartSchema],
+    minedRevenue: {
+      type: Number,
+      default: 0,
+    },
+    currentBalance: {
+      type: Number,
+      default: 0,
+    },
+    amountWithdrawed: {
+      type: Number,
+      default: 0,
+    },
+    verificationCode: String,
   },
   { timestamps: true }
 );

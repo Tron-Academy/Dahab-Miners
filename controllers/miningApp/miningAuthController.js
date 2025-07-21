@@ -19,7 +19,7 @@ export const miningRegister = async (req, res) => {
     email,
     password: hashed,
   });
-  await newUser.save();
+
   const code = Math.floor(100000 + Math.random() * 900000);
   newUser.verificationCode = code.toString();
   const mailOptions = {
@@ -32,6 +32,8 @@ export const miningRegister = async (req, res) => {
     text: `Welcome to Dahab Mining. Your verification code is ${code}`,
   };
   await sendMail(transporter, mailOptions);
+  newUser.verificationCode = code;
+  await newUser.save();
   const token = createJWT({
     userId: newUser._id,
     username: newUser.username,

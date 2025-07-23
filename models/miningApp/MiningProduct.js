@@ -18,6 +18,8 @@ const miningProductSchema = new Schema(
     algorithm: String,
     hostingFeePerKw: Number,
     subtitle: String,
+    features: [String],
+    idealFor: [String],
   },
   { timestamps: true }
 );

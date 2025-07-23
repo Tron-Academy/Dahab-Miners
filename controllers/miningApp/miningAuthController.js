@@ -20,7 +20,7 @@ export const miningRegister = async (req, res) => {
     password: hashed,
   });
 
-  const code = Math.floor(100000 + Math.random() * 900000);
+  const code = Math.floor(1000 + Math.random() * 9000);
   newUser.verificationCode = code.toString();
   const mailOptions = {
     from: {
@@ -34,18 +34,8 @@ export const miningRegister = async (req, res) => {
   await sendMail(transporter, mailOptions);
   newUser.verificationCode = code;
   await newUser.save();
-  const token = createJWT({
-    userId: newUser._id,
-    username: newUser.username,
-    role: "mining-user",
-  });
-  const tenDay = 1000 * 60 * 60 * 24 * 10;
-  res.cookie("token", token, {
-    httpOnly: true,
-    expires: new Date(Date.now() + tenDay),
-    secure: process.env.NODE_ENV === "production",
-  });
-  res.status(200).json({ msg: "successfully Registered", token });
+
+  res.status(200).json({ msg: "successfully Registered" });
 };
 
 export const miningLogin = async (req, res) => {
@@ -54,6 +44,7 @@ export const miningLogin = async (req, res) => {
   if (!user) throw new NotFoundError("Invalid Credentials");
   const isPasswordCorrect = await comparePassword(password, user.password);
   if (!isPasswordCorrect) throw new UnauthenticatedError("Invalid credentials");
+  if (!user.isVerified) throw new BadRequestError("account not verified");
   const token = createJWT({
     userId: user._id,
     username: user.username,
@@ -98,9 +89,62 @@ export const verifyCode = async (req, res) => {
   const { email, code } = req.body;
   const user = await MiningUser.findOne({ email: email });
   if (!user) throw new NotFoundError("No user found");
-  if (user.verificationCode.toString() !== code.toString()) {
+  if (user.verificationCode.toString() !== code.toString())
     throw new BadRequestError("Invalid Verification Code");
-  } else {
-    res.status(200).json({ message: "Successfully verified" });
-  }
+  user.isVerified = true;
+  await user.save();
+  const token = createJWT({
+    userId: user._id,
+    username: user.username,
+    role: "mining-user",
+  });
+  const tenDay = 1000 * 60 * 60 * 24 * 10;
+  res.cookie("token", token, {
+    httpOnly: true,
+    expires: new Date(Date.now() + tenDay),
+    secure: process.env.NODE_ENV === "production",
+  });
+  res.status(200).json({ message: "Successfully verified", token });
+};
+
+export const verifyAccount = async (req, res) => {
+  const { email } = req.body;
+  const user = await MiningUser.findOne({ email: email });
+  if (!user) throw new NotFoundError("No user found");
+  const code = Math.floor(1000 + Math.random() * 9000);
+  user.verificationCode = code.toString();
+  const mailOptions = {
+    from: {
+      name: "DAHAB MINING",
+      address: process.env.NODEMAILER_EMAIL,
+    },
+    to: user.email,
+    subject: "Account Verification",
+    text: `Welcome to Dahab Mining. Your verification code is ${code}`,
+  };
+  await sendMail(transporter, mailOptions);
+  user.verificationCode = code;
+  await user.save();
+  res.status(200).json({ message: "Otp send successfully" });
+};
+
+export const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  const user = await MiningUser.findOne({ email: email });
+  if (!user) throw new NotFoundError("No user found");
+  const code = Math.floor(1000 + Math.random() * 9000);
+  user.verificationCode = code.toString();
+  const mailOptions = {
+    from: {
+      name: "DAHAB MINING",
+      address: process.env.NODEMAILER_EMAIL,
+    },
+    to: user.email,
+    subject: "Password Reset",
+    text: `Welcome to Dahab Mining. We have received a request for password reset. Your verification code is ${code}`,
+  };
+  await sendMail(transporter, mailOptions);
+  user.verificationCode = code;
+  await user.save();
+  res.status(200).json({ message: "Otp send successfully" });
 };

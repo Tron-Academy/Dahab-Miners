@@ -47,6 +47,10 @@ const miningUserSchema = new Schema(
       default: 0,
     },
     verificationCode: String,
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

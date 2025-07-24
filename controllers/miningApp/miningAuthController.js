@@ -148,3 +148,22 @@ export const forgotPassword = async (req, res) => {
   await user.save();
   res.status(200).json({ message: "Otp send successfully" });
 };
+
+export const verifyPasswordResetCode = async (req, res) => {
+  const { email, code } = req.body;
+  const user = await MiningUser.findOne({ email: email });
+  if (!user) throw new NotFoundError("No user found");
+  if (user.verificationCode.toString() !== code.toString())
+    throw new BadRequestError("Code does not Match");
+  res.status(200).json({ message: "Code Success" });
+};
+
+export const resetPassword = async (req, res) => {
+  const { email, password } = req.body;
+  const user = await MiningUser.findOne({ email: email });
+  if (!user) throw new NotFoundError("No user found");
+  const hashedPassword = await hashPassword(password);
+  user.password = hashedPassword;
+  await user.save();
+  res.status(200).json({ message: "Password successfully reset" });
+};

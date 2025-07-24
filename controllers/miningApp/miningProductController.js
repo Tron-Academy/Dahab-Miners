@@ -4,7 +4,7 @@ import MiningUser from "../../models/miningApp/MiningUser.js";
 import { v4 as uuid4 } from "uuid";
 
 export const getAllMiners = async (req, res) => {
-  const miners = await MiningProduct.find();
+  const miners = await MiningProduct.find().sort({ price: 1 });
   if (miners.length < 1) throw new NotFoundError("No Miners Found");
   res.status(200).json(miners);
 };

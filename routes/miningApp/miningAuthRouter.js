@@ -4,8 +4,10 @@ import {
   miningLogin,
   miningLogout,
   miningRegister,
+  resetPassword,
   verifyAccount,
   verifyCode,
+  verifyPasswordResetCode,
 } from "../../controllers/miningApp/miningAuthController.js";
 import { authenticateUser } from "../../middleware/authMiddleware.js";
 import { Router } from "express";
@@ -23,5 +25,7 @@ router.get("/userInfo", authenticateUser, getMiningUserInfo);
 router.post("/verify", verifyCode);
 router.post("/verify-account", verifyAccount);
 router.post("/forgot-password", forgotPassword);
+router.post("/verify-passwordReset", verifyPasswordResetCode);
+router.post("/reset-password", resetPassword);
 
 export default router;

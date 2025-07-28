@@ -101,3 +101,12 @@ export const getOwnedMiners = async (req, res) => {
   const items = user.ownedMiners;
   res.status(200).json(items);
 };
+
+export const selectPayoutMode = async (req, res) => {
+  const user = await MiningUser.findById(req.user.userId);
+  if (!user) throw new NotFoundError("No user found");
+  user.isFirst = false;
+  user.payoutMode = req.body.mode;
+  await user.save();
+  res.status(200).json({ msg: "payout selected successfully" });
+};

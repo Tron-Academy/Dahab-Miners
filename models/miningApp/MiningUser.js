@@ -51,6 +51,19 @@ const miningUserSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    isFirst: {
+      type: Boolean,
+      default: true,
+    },
+    walletBalance: {
+      type: Number,
+      default: 0,
+    },
+    payoutMode: {
+      type: String,
+      default: "hold",
+      enum: ["hold", "profit"],
+    },
   },
   { timestamps: true }
 );

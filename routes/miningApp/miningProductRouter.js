@@ -7,6 +7,7 @@ import {
   getSingleMiner,
   purchaseMiner,
   removeFromCart,
+  selectPayoutMode,
   updateCartItem,
 } from "../../controllers/miningApp/miningProductController.js";
 
@@ -20,5 +21,6 @@ router.post("/removeItem", removeFromCart);
 router.post("/updateCart", updateCartItem);
 router.post("/purchase", purchaseMiner);
 router.get("/ownedMiners", getOwnedMiners);
+router.post("/payoutMode", selectPayoutMode);
 
 export default router;

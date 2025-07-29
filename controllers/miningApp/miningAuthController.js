@@ -9,6 +9,8 @@ import { comparePassword, hashPassword } from "../../utils/bcrypt.js";
 import { createJWT } from "../../utils/jwtUtils.js";
 import jwt from "jsonwebtoken";
 import { sendMail, transporter } from "../../utils/nodemailer.js";
+import speakeasy from "speakeasy";
+import qrcode from "qrcode";
 
 export const miningRegister = async (req, res) => {
   const { email, password } = req.body;
@@ -45,6 +47,34 @@ export const miningLogin = async (req, res) => {
   const isPasswordCorrect = await comparePassword(password, user.password);
   if (!isPasswordCorrect) throw new UnauthenticatedError("Invalid credentials");
   if (!user.isVerified) throw new BadRequestError("account not verified");
+  if (user.is2FAEnabled) {
+    res.status(200).json({ msg: "successfully logged in. Enter 2FA" });
+  } else {
+    const token = createJWT({
+      userId: user._id,
+      username: user.username,
+      role: "mining-user",
+    });
+    const tenDay = 1000 * 60 * 60 * 24 * 10;
+    res.cookie("token", token, {
+      httpOnly: true,
+      expires: new Date(Date.now() + tenDay),
+      secure: process.env.NODE_ENV === "production",
+    });
+    res.status(200).json({ msg: "successfully Logged in", token });
+  }
+};
+
+export const loginVerification = async (req, res) => {
+  const user = await MiningUser.findOne({ email: req.body.email });
+  if (!user) throw new NotFoundError("No user found");
+  const verified = speakeasy.totp.verify({
+    secret: user.twoFactorSecret,
+    encoding: "base32",
+    token: req.body.code,
+    window: 1,
+  });
+  if (!verified) throw new BadRequestError("Invalid OTP");
   const token = createJWT({
     userId: user._id,
     username: user.username,
@@ -56,7 +86,7 @@ export const miningLogin = async (req, res) => {
     expires: new Date(Date.now() + tenDay),
     secure: process.env.NODE_ENV === "production",
   });
-  res.status(200).json({ msg: "successfully Logged in", token });
+  res.status(200).json({ msg: "successfully verified", token });
 };
 
 export const miningLogout = async (req, res) => {
@@ -166,4 +196,43 @@ export const resetPassword = async (req, res) => {
   user.password = hashedPassword;
   await user.save();
   res.status(200).json({ message: "Password successfully reset" });
+};
+
+export const send2FaCodeQR = async (req, res) => {
+  const user = await MiningUser.findById(req.user.userId);
+  if (!user) throw new NotFoundError("No user found");
+  const secret = speakeasy.generateSecret({ name: "Dahab Mining" });
+  user.twoFactorSecret = secret.base32;
+  await user.save();
+  const qrCode = await qrcode.toDataURL(secret.otpauth_url);
+  res.status(200).json(qrCode);
+};
+
+export const verify2FA = async (req, res) => {
+  const user = await MiningUser.findById(req.user.userId)
+    .select("-password")
+    .populate(["cartItems.itemId", "ownedMiners.itemId"]);
+  if (!user) throw new NotFoundError("No user found");
+  const { code } = req.body;
+  const verified = speakeasy.totp.verify({
+    secret: user.twoFactorSecret,
+    encoding: "base32",
+    token: code,
+    window: 1,
+  });
+  if (!verified) throw new BadRequestError("Invalid OTP");
+  user.is2FAEnabled = true;
+  await user.save();
+  res.status(200).json({ msg: "successfully verified", user });
+};
+
+export const disable2FA = async (req, res) => {
+  const user = await MiningUser.findById(req.user.userId)
+    .select("-password")
+    .populate(["cartItems.itemId", "ownedMiners.itemId"]);
+  if (!user) throw new NotFoundError("No user found");
+  user.is2FAEnabled = false;
+  user.twoFactorSecret = "";
+  await user.save();
+  res.status(200).json({ msg: "successfully disabled 2FA", user });
 };

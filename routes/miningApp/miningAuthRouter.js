@@ -1,10 +1,14 @@
 import {
+  disable2FA,
   forgotPassword,
   getMiningUserInfo,
+  loginVerification,
   miningLogin,
   miningLogout,
   miningRegister,
   resetPassword,
+  send2FaCodeQR,
+  verify2FA,
   verifyAccount,
   verifyCode,
   verifyPasswordResetCode,
@@ -27,5 +31,9 @@ router.post("/verify-account", verifyAccount);
 router.post("/forgot-password", forgotPassword);
 router.post("/verify-passwordReset", verifyPasswordResetCode);
 router.post("/reset-password", resetPassword);
+router.get("/send2FAQR", authenticateUser, send2FaCodeQR);
+router.post("/verify2FA", authenticateUser, verify2FA);
+router.post("/disable2FA", authenticateUser, disable2FA);
+router.post("/login2FA", loginVerification);
 
 export default router;

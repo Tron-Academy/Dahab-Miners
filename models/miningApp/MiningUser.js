@@ -64,6 +64,11 @@ const miningUserSchema = new Schema(
       default: "hold",
       enum: ["hold", "profit"],
     },
+    twoFactorSecret: String,
+    is2FAEnabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

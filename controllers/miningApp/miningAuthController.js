@@ -3,7 +3,6 @@ import {
   NotFoundError,
   UnauthenticatedError,
 } from "../../errors/customErrors.js";
-import MiningProduct from "../../models/miningApp/MiningProduct.js";
 import MiningUser from "../../models/miningApp/MiningUser.js";
 import { comparePassword, hashPassword } from "../../utils/bcrypt.js";
 import { createJWT } from "../../utils/jwtUtils.js";
@@ -13,8 +12,7 @@ import speakeasy from "speakeasy";
 import qrcode from "qrcode";
 
 export const miningRegister = async (req, res) => {
-  const { email, password } = req.body;
-  const username = email.split(".")[0];
+  const { email, password, username } = req.body;
   const hashed = await hashPassword(password);
   const newUser = new MiningUser({
     username,
@@ -235,4 +233,17 @@ export const disable2FA = async (req, res) => {
   user.twoFactorSecret = "";
   await user.save();
   res.status(200).json({ msg: "successfully disabled 2FA", user });
+};
+
+export const withdrawalVerification = async (req, res) => {
+  const user = await MiningUser.findById(req.user.userId);
+  if (!user) throw new NotFoundError("No users found");
+  const verified = speakeasy.totp.verify({
+    secret: user.twoFactorSecret,
+    encoding: "base32",
+    token: req.body.code,
+    window: 1,
+  });
+  if (!verified) throw new BadRequestError("Invalid Code");
+  res.status(200).json({ msg: "successfully verified" });
 };

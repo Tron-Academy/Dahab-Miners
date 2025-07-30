@@ -25,12 +25,14 @@ const miningUserSchema = new Schema(
   {
     email: {
       type: String,
+      unique: true,
     },
     password: {
       type: String,
     },
     username: {
       type: String,
+      unique: true,
     },
     ownedMiners: [ownedSchema],
     cartItems: [cartSchema],

@@ -12,6 +12,7 @@ import {
   verifyAccount,
   verifyCode,
   verifyPasswordResetCode,
+  withdrawalVerification,
 } from "../../controllers/miningApp/miningAuthController.js";
 import { authenticateUser } from "../../middleware/authMiddleware.js";
 import { Router } from "express";
@@ -35,5 +36,6 @@ router.get("/send2FAQR", authenticateUser, send2FaCodeQR);
 router.post("/verify2FA", authenticateUser, verify2FA);
 router.post("/disable2FA", authenticateUser, disable2FA);
 router.post("/login2FA", loginVerification);
+router.post("/withdrawVerify", authenticateUser, withdrawalVerification);
 
 export default router;

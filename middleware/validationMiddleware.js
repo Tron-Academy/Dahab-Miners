@@ -199,6 +199,13 @@ export const validateMiningUserRegister = withValidationErrors([
       if (user) throw new BadRequestError("email already exists");
     }),
   body("password").notEmpty().withMessage("Password is required"),
+  body("username")
+    .notEmpty()
+    .withMessage("username is required")
+    .custom(async (username) => {
+      const user = await MiningUser.findOne({ username: username });
+      if (user) throw new BadRequestError("username already taken");
+    }),
 ]);
 
 export const validateMiningUserLogin = withValidationErrors([

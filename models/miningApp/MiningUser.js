@@ -8,6 +8,11 @@ const cartSchema = new Schema({
   qty: Number,
 });
 
+const minedRewardsSchema = new Schema({
+  date: Date,
+  amount: Number,
+});
+
 const ownedSchema = new Schema({
   itemId: {
     type: mongoose.Types.ObjectId,
@@ -20,7 +25,9 @@ const ownedSchema = new Schema({
   minedRevenue: Number,
   hostingFeePaid: Number,
   HostingFeeDue: Number,
+  revenueHistory: [minedRewardsSchema],
 });
+
 const miningUserSchema = new Schema(
   {
     email: {
@@ -71,6 +78,7 @@ const miningUserSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    allMinedRewards: [minedRewardsSchema],
   },
   { timestamps: true }
 );

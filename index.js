@@ -22,7 +22,12 @@ import inventoryRouter from "./routes/inventoryRouter.js";
 import alertRouter from "./routes/alertRouter.js";
 import miningAuthRouter from "./routes/miningApp/miningAuthRouter.js";
 import miningProductRouter from "./routes/miningApp/miningProductRouter.js";
-import { authenticateUser, isAdmin } from "./middleware/authMiddleware.js";
+import miningRevenueRouter from "./routes/miningApp/miningRevenueRouter.js";
+import {
+  authenticateUser,
+  isAdmin,
+  isSuperAdmin,
+} from "./middleware/authMiddleware.js";
 
 const app = express();
 
@@ -76,6 +81,13 @@ app.use("/api/admin/inventory", authenticateUser, isAdmin, inventoryRouter);
 app.use("/api/admin/alerts", authenticateUser, isAdmin, alertRouter);
 app.use("/api/mining/auth", miningAuthRouter);
 app.use("/api/mining/product", authenticateUser, miningProductRouter);
+app.use(
+  "/api/mining/revenue",
+  authenticateUser,
+  isAdmin,
+  isSuperAdmin,
+  miningRevenueRouter
+);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });

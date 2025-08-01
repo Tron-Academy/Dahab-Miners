@@ -23,6 +23,7 @@ import alertRouter from "./routes/alertRouter.js";
 import miningAuthRouter from "./routes/miningApp/miningAuthRouter.js";
 import miningProductRouter from "./routes/miningApp/miningProductRouter.js";
 import miningRevenueRouter from "./routes/miningApp/miningRevenueRouter.js";
+import miningPayoutRouter from "./routes/miningApp/miningPayoutRouter.js";
 import {
   authenticateUser,
   isAdmin,
@@ -88,6 +89,7 @@ app.use(
   isSuperAdmin,
   miningRevenueRouter
 );
+app.use("/api/mining/payout", authenticateUser, miningPayoutRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });

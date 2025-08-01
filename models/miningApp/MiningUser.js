@@ -79,6 +79,10 @@ const miningUserSchema = new Schema(
       default: false,
     },
     allMinedRewards: [minedRewardsSchema],
+    allPayouts: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "MiningPayout",
+    },
   },
   { timestamps: true }
 );

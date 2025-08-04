@@ -4,7 +4,7 @@ import MiningRevenue from "../../models/miningApp/MiningRevenue.js";
 import MiningUser from "../../models/miningApp/MiningUser.js";
 
 export const getAllRevenues = async (req, res) => {
-  const revenues = await MiningRevenue.find();
+  const revenues = await MiningRevenue.find().sort({ createdAt: -1 });
   if (!revenues) throw new NotFoundError("No revenue found");
   res.status(200).json(revenues);
 };

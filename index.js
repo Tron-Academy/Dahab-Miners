@@ -29,6 +29,7 @@ import {
   isAdmin,
   isSuperAdmin,
 } from "./middleware/authMiddleware.js";
+import morgan from "morgan";
 
 const app = express();
 
@@ -41,7 +42,9 @@ cloudinary.config({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("tiny"));
+}
 const allowedOrigins = [
   "http://dahabminers.com",
   "https://dahabminers.com",

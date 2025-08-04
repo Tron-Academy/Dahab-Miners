@@ -3,10 +3,9 @@ import MiningPayout from "../../models/miningApp/MiningPayout.js";
 import MiningUser from "../../models/miningApp/MiningUser.js";
 
 export const getAllPayouts = async (req, res) => {
-  const payouts = await MiningPayout.find().populate(
-    "user",
-    "username email currentBalance"
-  );
+  const payouts = await MiningPayout.find()
+    .sort({ createdAt: -1 })
+    .populate("user", "username email currentBalance");
   if (!payouts) throw new NotFoundError("No user found");
   res.status(200).json(payouts);
 };
@@ -33,7 +32,9 @@ export const makeWithdrawal = async (req, res) => {
 };
 
 export const getUserPayouts = async (req, res) => {
-  const payouts = await MiningPayout.find({ user: req.user.userId });
+  const payouts = await MiningPayout.find({ user: req.user.userId }).sort({
+    createdAt: -1,
+  });
   if (!payouts) throw new NotFoundError("No payouts found");
   res.status(200).json(payouts);
 };

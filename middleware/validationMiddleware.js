@@ -216,3 +216,24 @@ export const validateMiningUserLogin = withValidationErrors([
     .withMessage("Invalid Email format"),
   body("password").notEmpty().withMessage("Password is required"),
 ]);
+
+export const validateMiningUSerUpdateProfile = withValidationErrors([
+  body("username")
+    .notEmpty()
+    .withMessage("Username is required")
+    .custom(async (username, { req }) => {
+      const user = await MiningUser.findOne({ username: username });
+      if (user && user._id.toString() !== req.user.userId.toString())
+        throw new BadRequestError("Username already taken");
+    }),
+  body("email")
+    .notEmpty()
+    .withMessage("Email is required")
+    .isEmail()
+    .withMessage("Invalid email format")
+    .custom(async (email, { req }) => {
+      const user = await MiningUser.findOne({ email: email });
+      if (user && user._id.toString() !== req.user.userId.toString())
+        throw new BadRequestError("Email already taken");
+    }),
+]);

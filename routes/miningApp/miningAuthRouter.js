@@ -8,6 +8,7 @@ import {
   miningRegister,
   resetPassword,
   send2FaCodeQR,
+  updateProfile,
   verify2FA,
   verifyAccount,
   verifyCode,
@@ -19,6 +20,7 @@ import { Router } from "express";
 import {
   validateMiningUserLogin,
   validateMiningUserRegister,
+  validateMiningUSerUpdateProfile,
 } from "../../middleware/validationMiddleware.js";
 
 const router = Router();
@@ -37,5 +39,11 @@ router.post("/verify2FA", authenticateUser, verify2FA);
 router.post("/disable2FA", authenticateUser, disable2FA);
 router.post("/login2FA", loginVerification);
 router.post("/withdrawVerify", authenticateUser, withdrawalVerification);
+router.patch(
+  "/update-profile",
+  authenticateUser,
+  validateMiningUSerUpdateProfile,
+  updateProfile
+);
 
 export default router;

@@ -247,3 +247,13 @@ export const withdrawalVerification = async (req, res) => {
   if (!verified) throw new BadRequestError("Invalid Code");
   res.status(200).json({ msg: "successfully verified" });
 };
+
+export const updateProfile = async (req, res) => {
+  const { username, email } = req.body;
+  const user = await MiningUser.findById(req.user.userId);
+  if (!user) throw new NotFoundError("No user has been found");
+  user.username = username;
+  user.email = email;
+  await user.save();
+  res.status(200).json({ msg: "successfully updated" });
+};

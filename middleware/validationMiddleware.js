@@ -188,6 +188,7 @@ export const validateSetPriorityInput = withValidationErrors([
   // }),
 ]);
 
+// Mining App
 export const validateMiningUserRegister = withValidationErrors([
   body("email")
     .notEmpty()
@@ -236,4 +237,37 @@ export const validateMiningUSerUpdateProfile = withValidationErrors([
       if (user && user._id.toString() !== req.user.userId.toString())
         throw new BadRequestError("Email already taken");
     }),
+]);
+
+export const validateMiningLoginVerify = withValidationErrors([
+  body("email")
+    .notEmpty()
+    .withMessage("Email cannot be Empty")
+    .isEmail()
+    .withMessage("Invalid Email format"),
+  body("code").notEmpty().withMessage("Verification code is required"),
+]);
+
+export const validateMiningAccountVerify = withValidationErrors([
+  body("email")
+    .notEmpty()
+    .withMessage("Email cannot be Empty")
+    .isEmail()
+    .withMessage("Invalid Email format"),
+]);
+
+export const validateMiningVerifyCode = withValidationErrors([
+  body("code").notEmpty().withMessage("Verification code is required"),
+]);
+
+export const validateMakeWithdrawal = withValidationErrors([
+  body("amount").notEmpty().withMessage("Amount is required"),
+  body("address").notEmpty().withMessage("Wallet Address is required"),
+]);
+
+export const validateUpdatePayoutStatus = withValidationErrors([
+  body("id").notEmpty().withMessage("Payout Id is required"),
+  body("userId").notEmpty().withMessage("User ID is required"),
+  body("status").notEmpty().withMessage("Status is required"),
+  body("amount").notEmpty().withMessage("Amount is required"),
 ]);

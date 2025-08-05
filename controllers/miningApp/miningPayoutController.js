@@ -3,11 +3,19 @@ import MiningPayout from "../../models/miningApp/MiningPayout.js";
 import MiningUser from "../../models/miningApp/MiningUser.js";
 
 export const getAllPayouts = async (req, res) => {
+  const { currentPage } = req.query;
+  const page = currentPage || 1;
+  const limit = 15;
+  const skip = (page - 1) * limit;
   const payouts = await MiningPayout.find()
     .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit)
     .populate("user", "username email currentBalance");
   if (!payouts) throw new NotFoundError("No user found");
-  res.status(200).json(payouts);
+  const totalPayouts = await MiningPayout.countDocuments();
+  const totalPages = Math.ceil(totalPayouts / limit);
+  res.status(200).json({ payouts, totalPages });
 };
 
 export const makeWithdrawal = async (req, res) => {
@@ -32,11 +40,24 @@ export const makeWithdrawal = async (req, res) => {
 };
 
 export const getUserPayouts = async (req, res) => {
-  const payouts = await MiningPayout.find({ user: req.user.userId }).sort({
-    createdAt: -1,
-  });
+  const { status, currentPage } = req.query;
+  const queryObject = { user: req.user.userId };
+  if (status && status !== "All") {
+    queryObject.status = { $regex: status, $options: "i" };
+  }
+  const page = parseInt(currentPage) || 1;
+  const limit = 15;
+  const skip = (page - 1) * limit;
+  const payouts = await MiningPayout.find(queryObject)
+    .sort({
+      createdAt: -1,
+    })
+    .skip(skip)
+    .limit(limit);
   if (!payouts) throw new NotFoundError("No payouts found");
-  res.status(200).json(payouts);
+  const totalPayouts = await MiningPayout.countDocuments(queryObject);
+  const totalPages = Math.ceil(totalPayouts / limit);
+  res.status(200).json({ payouts, totalPages });
 };
 
 export const updatePayoutStatus = async (req, res) => {

@@ -18,9 +18,12 @@ import {
 import { authenticateUser } from "../../middleware/authMiddleware.js";
 import { Router } from "express";
 import {
+  validateMiningAccountVerify,
+  validateMiningLoginVerify,
   validateMiningUserLogin,
   validateMiningUserRegister,
   validateMiningUSerUpdateProfile,
+  validateMiningVerifyCode,
 } from "../../middleware/validationMiddleware.js";
 
 const router = Router();
@@ -29,16 +32,30 @@ router.post("/register", validateMiningUserRegister, miningRegister);
 router.post("/login", validateMiningUserLogin, miningLogin);
 router.post("/logout", miningLogout);
 router.get("/userInfo", authenticateUser, getMiningUserInfo);
-router.post("/verify", verifyCode);
-router.post("/verify-account", verifyAccount);
-router.post("/forgot-password", forgotPassword);
-router.post("/verify-passwordReset", verifyPasswordResetCode);
-router.post("/reset-password", resetPassword);
+router.post("/verify", validateMiningLoginVerify, verifyCode);
+router.post("/verify-account", validateMiningAccountVerify, verifyAccount);
+router.post("/forgot-password", validateMiningAccountVerify, forgotPassword);
+router.post(
+  "/verify-passwordReset",
+  validateMiningLoginVerify,
+  verifyPasswordResetCode
+);
+router.post("/reset-password", validateMiningUserLogin, resetPassword);
 router.get("/send2FAQR", authenticateUser, send2FaCodeQR);
-router.post("/verify2FA", authenticateUser, verify2FA);
+router.post(
+  "/verify2FA",
+  authenticateUser,
+  validateMiningVerifyCode,
+  verify2FA
+);
 router.post("/disable2FA", authenticateUser, disable2FA);
-router.post("/login2FA", loginVerification);
-router.post("/withdrawVerify", authenticateUser, withdrawalVerification);
+router.post("/login2FA", validateMiningLoginVerify, loginVerification);
+router.post(
+  "/withdrawVerify",
+  authenticateUser,
+  validateMiningVerifyCode,
+  withdrawalVerification
+);
 router.patch(
   "/update-profile",
   authenticateUser,

@@ -6,12 +6,22 @@ import {
   makeWithdrawal,
   updatePayoutStatus,
 } from "../../controllers/miningApp/miningPayoutController.js";
+import {
+  validateMakeWithdrawal,
+  validateUpdatePayoutStatus,
+} from "../../middleware/validationMiddleware.js";
 
 const router = Router();
 
 router.get("/", isAdmin, isSuperAdmin, getAllPayouts);
-router.post("/", makeWithdrawal);
+router.post("/", validateMakeWithdrawal, makeWithdrawal);
 router.get("/user", getUserPayouts);
-router.patch("/", isAdmin, isSuperAdmin, updatePayoutStatus);
+router.patch(
+  "/",
+  isAdmin,
+  isSuperAdmin,
+  validateUpdatePayoutStatus,
+  updatePayoutStatus
+);
 
 export default router;

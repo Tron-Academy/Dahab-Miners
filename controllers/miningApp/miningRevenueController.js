@@ -4,9 +4,18 @@ import MiningRevenue from "../../models/miningApp/MiningRevenue.js";
 import MiningUser from "../../models/miningApp/MiningUser.js";
 
 export const getAllRevenues = async (req, res) => {
-  const revenues = await MiningRevenue.find().sort({ createdAt: -1 });
+  const { currentPage } = req.query;
+  const page = currentPage || 1;
+  const limit = 15;
+  const skip = (page - 1) * limit;
+  const revenues = await MiningRevenue.find()
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit);
   if (!revenues) throw new NotFoundError("No revenue found");
-  res.status(200).json(revenues);
+  const totalRevenues = await MiningRevenue.countDocuments();
+  const totalPages = Math.ceil(totalRevenues / limit);
+  res.status(200).json({ revenues, totalPages });
 };
 
 export const addRevenue = async (req, res) => {

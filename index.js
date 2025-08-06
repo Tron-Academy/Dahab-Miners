@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { v2 as cloudinary } from "cloudinary";
+import morgan from "morgan";
 
 import errorHandlerMiddleware from "./middleware/errorHandleMiddleware.js";
 
@@ -24,12 +25,12 @@ import miningAuthRouter from "./routes/miningApp/miningAuthRouter.js";
 import miningProductRouter from "./routes/miningApp/miningProductRouter.js";
 import miningRevenueRouter from "./routes/miningApp/miningRevenueRouter.js";
 import miningPayoutRouter from "./routes/miningApp/miningPayoutRouter.js";
+import miningTransactionRouter from "./routes/miningApp/miningTransactionRouter.js";
 import {
   authenticateUser,
   isAdmin,
   isSuperAdmin,
 } from "./middleware/authMiddleware.js";
-import morgan from "morgan";
 
 const app = express();
 
@@ -93,6 +94,7 @@ app.use(
   miningRevenueRouter
 );
 app.use("/api/mining/payout", authenticateUser, miningPayoutRouter);
+app.use("/api/mining/transaction", authenticateUser, miningTransactionRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });

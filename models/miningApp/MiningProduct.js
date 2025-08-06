@@ -20,6 +20,10 @@ const miningProductSchema = new Schema(
     subtitle: String,
     features: [String],
     idealFor: [String],
+    category: {
+      type: String,
+      enum: ["A1246", "S19KPro"],
+    },
   },
   { timestamps: true }
 );

@@ -26,6 +26,7 @@ import miningProductRouter from "./routes/miningApp/miningProductRouter.js";
 import miningRevenueRouter from "./routes/miningApp/miningRevenueRouter.js";
 import miningPayoutRouter from "./routes/miningApp/miningPayoutRouter.js";
 import miningTransactionRouter from "./routes/miningApp/miningTransactionRouter.js";
+import miningSatsRouter from "./routes/miningApp/miningSatsRouter.js";
 import {
   authenticateUser,
   isAdmin,
@@ -95,6 +96,7 @@ app.use(
 );
 app.use("/api/mining/payout", authenticateUser, miningPayoutRouter);
 app.use("/api/mining/transaction", authenticateUser, miningTransactionRouter);
+app.use("/api/mining/sats", authenticateUser, miningSatsRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });

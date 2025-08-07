@@ -83,6 +83,7 @@ const miningUserSchema = new Schema(
       type: [mongoose.Schema.Types.ObjectId],
       ref: "MiningPayout",
     },
+    isTest: Boolean,
   },
   { timestamps: true }
 );

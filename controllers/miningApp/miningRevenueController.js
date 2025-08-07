@@ -3,12 +3,12 @@ import { NotFoundError } from "../../errors/customErrors.js";
 import MiningRevenue from "../../models/miningApp/MiningRevenue.js";
 import MiningUser from "../../models/miningApp/MiningUser.js";
 
-export const getAllRevenues = async (req, res) => {
-  const { currentPage } = req.query;
+export const getAllRevenuesByCategory = async (req, res) => {
+  const { currentPage, category } = req.query;
   const page = currentPage || 1;
   const limit = 15;
   const skip = (page - 1) * limit;
-  const revenues = await MiningRevenue.find()
+  const revenues = await MiningRevenue.find({ category: category })
     .sort({ createdAt: -1 })
     .skip(skip)
     .limit(limit);
@@ -18,8 +18,9 @@ export const getAllRevenues = async (req, res) => {
   res.status(200).json({ revenues, totalPages });
 };
 
-export const addRevenue = async (req, res) => {
-  const { amount, hashRate } = req.body;
+export const addRevenueByCategory = async (req, res) => {
+  const { amount, hashRate, category } = req.body;
+
   const revenuePerTh = amount / hashRate;
   const session = await mongoose.startSession();
   session.startTransaction();
@@ -33,30 +34,36 @@ export const addRevenue = async (req, res) => {
     const now = new Date();
     for (let user of users) {
       let userTotalRevenue = 0;
+      let modified = false;
       for (let owned of user.ownedMiners) {
-        if (owned.validity && new Date(owned.validity) < now) continue;
         const product = owned.itemId;
+        if (!product || product.category !== category) continue;
         if (!product || !product.hashRate) continue;
+        if (owned.validity && new Date(owned.validity) < now) continue;
         const totalHashRate = product.hashRate * owned.qty;
         const revenue = totalHashRate * revenuePerTh;
         owned.minedRevenue = (owned.minedRevenue || 0) + revenue;
         owned.revenueHistory.push({ date: now, amount: revenue });
         userTotalRevenue += revenue;
+        modified = true;
       }
-      user.minedRevenue = (user.minedRevenue || 0) + userTotalRevenue;
-      user.currentBalance = (user.currentBalance || 0) + userTotalRevenue;
-      splitUp.push({ user: user._id, amount: userTotalRevenue });
-      user.allMinedRewards.push({
-        date: now,
-        amount: userTotalRevenue,
-      });
-      await user.save({ session });
+      if (userTotalRevenue > 0 && modified) {
+        user.minedRevenue = (user.minedRevenue || 0) + userTotalRevenue;
+        user.currentBalance = (user.currentBalance || 0) + userTotalRevenue;
+        splitUp.push({ user: user._id, amount: userTotalRevenue });
+        user.allMinedRewards.push({
+          date: now,
+          amount: userTotalRevenue,
+        });
+        await user.save({ session });
+      }
     }
     const newRevenue = new MiningRevenue({
       date: now,
       amount: amount,
       hashRate: hashRate,
       split: splitUp,
+      category: category,
     });
     await newRevenue.save({ session });
     await session.commitTransaction();

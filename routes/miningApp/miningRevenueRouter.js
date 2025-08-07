@@ -1,11 +1,11 @@
 import { Router } from "express";
 import {
-  addRevenue,
-  getAllRevenues,
+  addRevenueByCategory,
+  getAllRevenuesByCategory,
 } from "../../controllers/miningApp/miningRevenueController.js";
 
 const router = Router();
-router.get("/", getAllRevenues);
-router.post("/", addRevenue);
+router.get("/", getAllRevenuesByCategory);
+router.post("/", addRevenueByCategory);
 
 export default router;

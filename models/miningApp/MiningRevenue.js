@@ -22,6 +22,10 @@ const MiningRevenueSchema = new Schema(
       type: Number,
     },
     split: [SplitSchema],
+    category: {
+      type: String,
+      enum: ["A1246", "S19KPro"],
+    },
   },
   { timestamps: true }
 );

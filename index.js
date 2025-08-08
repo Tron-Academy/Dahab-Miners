@@ -8,8 +8,10 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import { v2 as cloudinary } from "cloudinary";
 import morgan from "morgan";
+import cron from "node-cron";
 
 import errorHandlerMiddleware from "./middleware/errorHandleMiddleware.js";
+import { calculateAndDeductHostingFee } from "./cronJobs/walletDeductions.js";
 
 import authRouter from "./routes/authRouter.js";
 import adminProductRouter from "./routes/adminProductRouter.js";
@@ -107,6 +109,10 @@ app.use(errorHandlerMiddleware);
 const port = process.env.PORT || 3000;
 try {
   await mongoose.connect(process.env.MONGODB_URI);
+  cron.schedule("0 0 * * *", async () => {
+    console.log("Running hosting fee deduction job...");
+    await calculateAndDeductHostingFee();
+  });
   app.listen(port, () => {
     console.log(`server running on port ${port}`);
   });

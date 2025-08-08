@@ -13,6 +13,16 @@ const minedRewardsSchema = new Schema({
   amount: Number,
 });
 
+const walletTransactionSchema = new Schema({
+  date: Date,
+  amount: Number,
+  type: {
+    type: String,
+    enum: ["debited", "credited"],
+  },
+  currentWalletBalance: Number,
+});
+
 const ownedSchema = new Schema({
   itemId: {
     type: mongoose.Types.ObjectId,
@@ -84,6 +94,7 @@ const miningUserSchema = new Schema(
       ref: "MiningPayout",
     },
     isTest: Boolean,
+    walletTransactions: [walletTransactionSchema],
   },
   { timestamps: true }
 );

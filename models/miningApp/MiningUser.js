@@ -83,6 +83,9 @@ const miningUserSchema = new Schema(
       default: "hold",
       enum: ["hold", "profit"],
     },
+    lastPayoutSelected: {
+      type: Date,
+    },
     twoFactorSecret: String,
     is2FAEnabled: {
       type: Boolean,

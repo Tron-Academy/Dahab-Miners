@@ -107,6 +107,7 @@ export const purchaseMiner = async (req, res) => {
 
     user.ownedMiners.push(...newOwnedMiners);
     user.cartItems = [];
+    user.isFirst = false;
     await user.save({ session });
     await session.commitTransaction();
     session.endSession();
@@ -130,8 +131,19 @@ export const getOwnedMiners = async (req, res) => {
 export const selectPayoutMode = async (req, res) => {
   const user = await MiningUser.findById(req.user.userId);
   if (!user) throw new NotFoundError("No user found");
+  if (user.lastPayoutSelected) {
+    const now = new Date();
+    const diffInDays =
+      (now - new Date(user.lastPayoutSelected)) / (1000 * 60 * 60 * 24);
+
+    if (diffInDays < 60)
+      throw new BadRequestError(
+        "You can only change the payout once every 60 days"
+      );
+  }
   user.isFirst = false;
   user.payoutMode = req.body.mode;
+  user.lastPayoutSelected = new Date();
   await user.save();
-  res.status(200).json({ msg: "payout selected successfully" });
+  res.status(200).json({ msg: "payout selected successfully", user });
 };

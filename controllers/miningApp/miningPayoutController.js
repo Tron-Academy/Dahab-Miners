@@ -24,6 +24,10 @@ export const makeWithdrawal = async (req, res) => {
   const { amount, address } = req.body;
   if (user.currentBalance < amount)
     throw new BadRequestError("Insufficient Balance");
+  if (user.walletBalance < 0)
+    throw new BadRequestError(
+      "Cannot Process Transfer due to negative wallet balance"
+    );
   const newPayout = new MiningPayout({
     user: user._id,
     date: new Date(),

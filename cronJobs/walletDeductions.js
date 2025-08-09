@@ -11,15 +11,19 @@ export const calculateAndDeductHostingFee = async () => {
       .populate("ownedMiners.itemId")
       .session(session);
     const now = new Date();
+    const endOfDay = new Date(now);
+    endOfDay.setHours(23, 59, 59, 999);
     for (let user of users) {
       let totalHostingFee = 0;
+      if (user.payoutMode === "profit") continue;
       for (const owned of user.ownedMiners) {
         const product = owned.itemId;
+        if (owned.validity && new Date(owned.validity) < endOfDay) continue;
         if (!product || !product.power || !product.hostingFeePerKw) continue;
         const fee =
-          owned.qty * product.power * 24 * product.hostingFeePerKw * 0.9;
+          owned.qty * product.power * 24 * product.hostingFeePerKw * 3.67 * 0.9;
         totalHostingFee += fee;
-        product.hostingFeePaid = (product.hostingFeePaid || 0) + fee;
+        owned.hostingFeePaid = (owned.hostingFeePaid || 0) + fee;
       }
       if (totalHostingFee > 0) {
         user.walletBalance = (user.walletBalance || 0) - totalHostingFee;

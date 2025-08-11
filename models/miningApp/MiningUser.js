@@ -23,6 +23,13 @@ const walletTransactionSchema = new Schema({
   currentWalletBalance: Number,
 });
 
+const profitModeHostingTransactionSchema = new Schema({
+  date: Date,
+  amountAED: Number,
+  amountBTC: Number,
+  rateBTCNowAED: Number,
+});
+
 const ownedSchema = new Schema({
   itemId: {
     type: mongoose.Types.ObjectId,
@@ -98,6 +105,7 @@ const miningUserSchema = new Schema(
     },
     isTest: Boolean,
     walletTransactions: [walletTransactionSchema],
+    ProfitModeDeductions: [profitModeHostingTransactionSchema],
   },
   { timestamps: true }
 );

@@ -22,6 +22,10 @@ export const makeWithdrawal = async (req, res) => {
   const user = await MiningUser.findById(req.user.userId);
   if (!user) throw new NotFoundError("No user found");
   const { amount, address } = req.body;
+  if (amount < 0.005)
+    throw new BadRequestError(
+      "Only able to withdraw amounts larger than 0.005BTC"
+    );
   if (user.currentBalance < amount)
     throw new BadRequestError("Insufficient Balance");
   if (user.walletBalance < 0)

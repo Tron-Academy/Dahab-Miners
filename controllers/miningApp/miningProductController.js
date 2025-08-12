@@ -107,7 +107,6 @@ export const purchaseMiner = async (req, res) => {
 
     user.ownedMiners.push(...newOwnedMiners);
     user.cartItems = [];
-    user.isFirst = false;
     await user.save({ session });
     await session.commitTransaction();
     session.endSession();

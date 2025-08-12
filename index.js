@@ -109,10 +109,10 @@ app.use(errorHandlerMiddleware);
 const port = process.env.PORT || 3000;
 try {
   await mongoose.connect(process.env.MONGODB_URI);
-  // cron.schedule("58 23 * * *", async () => {
-  //   console.log("Running hosting fee deduction job...");
-  //   await calculateAndDeductHostingFee();
-  // });
+  cron.schedule("58 23 * * *", async () => {
+    console.log("Running hosting fee deduction job...");
+    await calculateAndDeductHostingFee();
+  });
   app.listen(port, () => {
     console.log(`server running on port ${port}`);
   });

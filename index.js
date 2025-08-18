@@ -35,6 +35,7 @@ import {
   isAdmin,
   isSuperAdmin,
 } from "./middleware/authMiddleware.js";
+import { addS19Revenue } from "./cronJobs/S19KRevenueAutomation.js";
 
 const app = express();
 
@@ -109,11 +110,19 @@ app.use("*", (req, res) => {
 app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 3000;
+const uri =
+  process.env.NODE_ENV === "production"
+    ? process.env.MONGODB_URI
+    : process.env.MONGODB_URI_DEV;
 try {
-  await mongoose.connect(process.env.MONGODB_URI);
+  await mongoose.connect(uri);
   cron.schedule("58 23 * * *", async () => {
     console.log("Running hosting fee deduction job...");
     await calculateAndDeductHostingFee();
+  });
+  cron.schedule("30 23 * * *", async () => {
+    console.log("Cron revenue started running");
+    await addS19Revenue();
   });
   app.listen(port, () => {
     console.log(`server running on port ${port}`);

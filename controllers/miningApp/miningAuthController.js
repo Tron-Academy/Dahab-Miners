@@ -41,7 +41,7 @@ export const miningRegister = async (req, res) => {
 export const miningLogin = async (req, res) => {
   const { email, password } = req.body;
   const user = await MiningUser.findOne({ email: email });
-  if (!user) throw new NotFoundError("Invalid Credentials");
+  if (!user) throw new NotFoundError("No User Found");
   const isPasswordCorrect = await comparePassword(password, user.password);
   if (!isPasswordCorrect) throw new UnauthenticatedError("Invalid credentials");
   if (!user.isVerified) throw new BadRequestError("account not verified");

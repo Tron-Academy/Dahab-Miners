@@ -106,6 +106,7 @@ const miningUserSchema = new Schema(
     isTest: Boolean,
     walletTransactions: [walletTransactionSchema],
     ProfitModeDeductions: [profitModeHostingTransactionSchema],
+    termsAgreedOn: Date,
   },
   { timestamps: true }
 );

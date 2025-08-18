@@ -18,6 +18,7 @@ export const miningRegister = async (req, res) => {
     username,
     email,
     password: hashed,
+    termsAgreedOn: new Date(),
   });
 
   const code = Math.floor(1000 + Math.random() * 9000);

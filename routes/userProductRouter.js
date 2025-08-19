@@ -9,6 +9,6 @@ const router = Router();
 
 router.get("/", getAllUserProducts);
 router.get("/featured", getFeaturedProducts);
-router.get("/:id", getSingleProduct);
+router.get("/:slug", getSingleProduct);
 
 export default router;

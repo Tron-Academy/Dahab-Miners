@@ -46,7 +46,7 @@ export const getFeaturedProducts = async (req, res) => {
 };
 
 export const getSingleProduct = async (req, res) => {
-  const product = await Product.findById(req.params.id);
+  const product = await Product.findOne({ slug: req.params.slug });
   if (!product) throw new NotFoundError("No product found");
   res.status(200).json({ msg: "success", product });
 };

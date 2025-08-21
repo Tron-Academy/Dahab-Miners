@@ -12,6 +12,12 @@ import cron from "node-cron";
 
 import errorHandlerMiddleware from "./middleware/errorHandleMiddleware.js";
 import { calculateAndDeductHostingFee } from "./cronJobs/walletDeductions.js";
+import {
+  authenticateUser,
+  isAdmin,
+  isSuperAdmin,
+} from "./middleware/authMiddleware.js";
+import { addS19Revenue } from "./cronJobs/S19KRevenueAutomation.js";
 
 import authRouter from "./routes/authRouter.js";
 import adminProductRouter from "./routes/adminProductRouter.js";
@@ -30,12 +36,7 @@ import miningPayoutRouter from "./routes/miningApp/miningPayoutRouter.js";
 import miningTransactionRouter from "./routes/miningApp/miningTransactionRouter.js";
 import miningSatsRouter from "./routes/miningApp/miningSatsRouter.js";
 import miningTermsRouter from "./routes/miningApp/miningTermsRouter.js";
-import {
-  authenticateUser,
-  isAdmin,
-  isSuperAdmin,
-} from "./middleware/authMiddleware.js";
-import { addS19Revenue } from "./cronJobs/S19KRevenueAutomation.js";
+import miningNotificationRouter from "./routes/miningApp/miningNotificationRouter.js";
 
 const app = express();
 
@@ -102,6 +103,11 @@ app.use("/api/mining/payout", authenticateUser, miningPayoutRouter);
 app.use("/api/mining/transaction", authenticateUser, miningTransactionRouter);
 app.use("/api/mining/sats", authenticateUser, miningSatsRouter);
 app.use("/api/mining/terms", authenticateUser, miningTermsRouter);
+app.use(
+  "/api/mining/notifications",
+  authenticateUser,
+  miningNotificationRouter
+);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });

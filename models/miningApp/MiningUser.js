@@ -107,6 +107,12 @@ const miningUserSchema = new Schema(
     walletTransactions: [walletTransactionSchema],
     ProfitModeDeductions: [profitModeHostingTransactionSchema],
     termsAgreedOn: Date,
+    notifications: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "MiningNotification",
+      },
+    ],
   },
   { timestamps: true }
 );

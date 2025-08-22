@@ -44,3 +44,11 @@ export const clearUserNotifications = async (req, res) => {
   await user.save();
   res.status(200).json({ msg: "successfully cleared notifications" });
 };
+
+export const getUserNotifications = async (req, res) => {
+  const user = await MiningUser.findById(req.user.userId).populate(
+    "notifications"
+  );
+  if (!user) throw new NotFoundError("No user has been found");
+  res.status(200).json({ notifications: user.notifications || [] });
+};

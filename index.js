@@ -122,14 +122,26 @@ const port = process.env.PORT || 3000;
 //     : process.env.MONGODB_URI_DEV;
 try {
   await mongoose.connect(process.env.MONGODB_URI);
-  cron.schedule("58 23 * * *", async () => {
-    console.log("Running hosting fee deduction job...");
-    await calculateAndDeductHostingFee();
-  });
-  cron.schedule("30 23 * * *", async () => {
-    console.log("Cron revenue started running");
-    await addS19Revenue();
-  });
+  cron.schedule(
+    "58 0 * * *",
+    async () => {
+      console.log("Running hosting fee deduction job...");
+      await calculateAndDeductHostingFee();
+    },
+    {
+      timezone: "Asia/Dubai", // UAE time zone
+    }
+  );
+  cron.schedule(
+    "45 0 * * *",
+    async () => {
+      console.log("Cron revenue started running");
+      await addS19Revenue();
+    },
+    {
+      timezone: "Asia/Dubai", // UAE time zone
+    }
+  );
   app.listen(port, () => {
     console.log(`server running on port ${port}`);
   });

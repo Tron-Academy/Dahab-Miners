@@ -31,10 +31,19 @@ export const addNotification = async (req, res) => {
 };
 
 export const getAllNotifications = async (req, res) => {
-  const allNotifications = await MiningNotification.find();
+  const { currentPage } = req.query;
+  const page = currentPage || 1;
+  const limit = 10;
+  const skip = (page - 1) * limit;
+  const allNotifications = await MiningNotification.find()
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit);
   if (!allNotifications.length)
     throw new NotFoundError("No notifications found");
-  res.status(200).json(allNotifications);
+  const totalNotifications = await MiningNotification.countDocuments();
+  const totalPages = Math.ceil(totalNotifications / limit);
+  res.status(200).json({ allNotifications, totalPages });
 };
 
 export const clearUserNotifications = async (req, res) => {

@@ -24,13 +24,13 @@ export const makeWithdrawal = async (req, res) => {
   const { amount, address } = req.body;
   if (amount < 0.005)
     throw new BadRequestError(
-      "Only able to withdraw amounts larger than 0.005BTC"
+      "Minimum withdrawal amount is 0.005 BTC. Please enter an amount equal to or greater than this threshold"
     );
   if (user.currentBalance < amount)
     throw new BadRequestError("Insufficient Balance");
   if (user.walletBalance < 0)
     throw new BadRequestError(
-      "Cannot Process Transfer due to negative wallet balance"
+      "Unable to withdraw due to negative wallet balance, Please top-up your wallet balance to withdraw"
     );
   const newPayout = new MiningPayout({
     user: user._id,
@@ -38,6 +38,7 @@ export const makeWithdrawal = async (req, res) => {
     walletAddress: address,
     amount: amount,
     status: "Pending",
+    isUpdated: false,
   });
   await newPayout.save();
   user.currentBalance = user.currentBalance - amount;

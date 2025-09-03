@@ -24,6 +24,10 @@ const MiningPayoutSchema = new Schema(
     },
     isUpdated: {
       type: Boolean,
+      default: false,
+    },
+    txid: {
+      type: String,
     },
   },
   { timestamps: true }

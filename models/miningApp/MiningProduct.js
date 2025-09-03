@@ -25,6 +25,7 @@ const miningProductSchema = new Schema(
       enum: ["A1246", "S19KPro"],
     },
     isTest: Boolean,
+    ogName: String,
   },
   { timestamps: true }
 );

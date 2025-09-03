@@ -37,6 +37,7 @@ import miningTransactionRouter from "./routes/miningApp/miningTransactionRouter.
 import miningSatsRouter from "./routes/miningApp/miningSatsRouter.js";
 import miningTermsRouter from "./routes/miningApp/miningTermsRouter.js";
 import miningNotificationRouter from "./routes/miningApp/miningNotificationRouter.js";
+// import { processBitGoPayouts } from "./cronJobs/BitgoCron.js";
 
 const app = express();
 
@@ -142,6 +143,18 @@ try {
       timezone: "Asia/Dubai", // UAE time zone
     }
   );
+  // cron.schedule(
+  //   "*/3 * * * *",
+  //   async () => {
+  //     console.log("Cron bitgo Process started running");
+  //     await processBitGoPayouts();
+  //     console.log("finished");
+  //   },
+  //   {
+  //     timezone: "Asia/Dubai", // UAE time zone
+  //   }
+  // );
+
   app.listen(port, () => {
     console.log(`server running on port ${port}`);
   });

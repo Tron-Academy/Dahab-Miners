@@ -16,7 +16,7 @@ export const miningRegister = async (req, res) => {
   const hashed = await hashPassword(password);
   const newUser = new MiningUser({
     username,
-    email,
+    email: email.toLowerCase(),
     password: hashed,
     termsAgreedOn: new Date(),
   });
@@ -41,7 +41,9 @@ export const miningRegister = async (req, res) => {
 
 export const miningLogin = async (req, res) => {
   const { email, password } = req.body;
-  const user = await MiningUser.findOne({ email: email });
+  const user = await MiningUser.findOne({
+    email: { $regex: `^${email}$`, $options: "i" },
+  });
   if (!user) throw new NotFoundError("No User Found");
   const isPasswordCorrect = await comparePassword(password, user.password);
   if (!isPasswordCorrect) throw new UnauthenticatedError("Invalid credentials");

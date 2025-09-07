@@ -37,6 +37,7 @@ import miningTransactionRouter from "./routes/miningApp/miningTransactionRouter.
 import miningSatsRouter from "./routes/miningApp/miningSatsRouter.js";
 import miningTermsRouter from "./routes/miningApp/miningTermsRouter.js";
 import miningNotificationRouter from "./routes/miningApp/miningNotificationRouter.js";
+import miningUserRouter from "./routes/miningApp/miningUserRouter.js";
 // import { processBitGoPayouts } from "./cronJobs/BitgoCron.js";
 
 const app = express();
@@ -109,6 +110,7 @@ app.use(
   authenticateUser,
   miningNotificationRouter
 );
+app.use("/api/mining/users", authenticateUser, isSuperAdmin, miningUserRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });

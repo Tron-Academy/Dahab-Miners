@@ -25,6 +25,12 @@ export const updateWalletBalance = async (req, res) => {
   const user = await MiningUser.findById(id);
   if (!user) throw new NotFoundError("no user found");
   user.walletBalance = user.walletBalance + parseFloat(amount);
+  user.walletTransactions.push({
+    date: new Date(),
+    amount: parseFloat(amount),
+    type: "credited",
+    currentWalletBalance: user.walletBalance,
+  });
   await user.save();
   res.status(200).json({ msg: "updated successfully" });
 };

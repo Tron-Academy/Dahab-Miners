@@ -3,7 +3,10 @@ import { NotFoundError } from "../../errors/customErrors.js";
 import MiningUser from "../../models/miningApp/MiningUser.js";
 import MiningPayment from "../../models/miningApp/MiningPayment.js";
 import crypto from "crypto";
-import { assignMinerToUser } from "../../utils/helperFunctions.js";
+import {
+  assignMinerToUser,
+  updateUserWallet,
+} from "../../utils/helperFunctions.js";
 
 export const createPaymentIntent = async (req, res) => {
   const { amount, message } = req.body;
@@ -13,7 +16,10 @@ export const createPaymentIntent = async (req, res) => {
     amount: Number(amount * 100),
     currency_code: "AED",
     message: message,
-    success_url: process.env.FRONTEND_SUCCESS_URL,
+    success_url:
+      message === "miner purchase"
+        ? process.env.FRONTEND_SUCCESS_URL
+        : process.env.FRONTEND_SUCCESS_URL_WALLET,
     cancel_url: process.env.FRONTEND_CANCEL_URL,
     failure_url: process.env.FRONTEND_FAILURE_URL,
     test: true,
@@ -101,7 +107,6 @@ export const processWebHook = async (req, res) => {
 
   const intent = payload.data;
   const { id: ziinaId, status, amount } = intent;
-  console.log(intent);
 
   const pi = await MiningPayment.findOneAndUpdate(
     { ziinaId },
@@ -109,8 +114,23 @@ export const processWebHook = async (req, res) => {
     { new: true }
   );
   try {
-    if (status === "completed" && pi && !pi.processed) {
+    if (
+      status === "completed" &&
+      pi &&
+      pi.message === "miner purchase" &&
+      !pi.processed
+    ) {
       await assignMinerToUser(pi.userId);
+      pi.processed = true;
+      await pi.save();
+    }
+    if (
+      status === "completed" &&
+      pi &&
+      pi.message === "wallet Topup" &&
+      !pi.processed
+    ) {
+      await updateUserWallet(pi.userId, amount);
       pi.processed = true;
       await pi.save();
     }

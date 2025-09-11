@@ -47,3 +47,24 @@ export const assignMinerToUser = async (userId) => {
     throw error;
   }
 };
+
+export const updateUserWallet = async (userId, amount) => {
+  try {
+    const user = await MiningUser.findById(userId);
+    if (!user) throw new NotFoundError("no user found");
+    user.walletBalance = user.walletBalance + Number(amount / 100);
+    user.walletTransactions.push({
+      date: new Date(),
+      amount: Number(amount / 100),
+      type: "credited",
+      currentWalletBalance: user.walletBalance,
+    });
+    await user.save();
+    return {
+      amount: Number(amount / 100),
+      currentBalance: user.currentBalance,
+    };
+  } catch (error) {
+    throw error;
+  }
+};

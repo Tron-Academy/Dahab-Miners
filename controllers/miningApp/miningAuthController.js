@@ -67,7 +67,9 @@ export const miningLogin = async (req, res) => {
 };
 
 export const loginVerification = async (req, res) => {
-  const user = await MiningUser.findOne({ email: req.body.email });
+  const user = await MiningUser.findOne({
+    email: { $regex: `^${req.body.email}$`, $options: "i" },
+  });
   if (!user) throw new NotFoundError("No user found");
   const verified = speakeasy.totp.verify({
     secret: user.twoFactorSecret,
@@ -118,7 +120,9 @@ export const getMiningUserInfo = async (req, res) => {
 
 export const verifyCode = async (req, res) => {
   const { email, code } = req.body;
-  const user = await MiningUser.findOne({ email: email });
+  const user = await MiningUser.findOne({
+    email: { $regex: `^${email}$`, $options: "i" },
+  });
   if (!user) throw new NotFoundError("No user found");
   if (user.verificationCode.toString() !== code.toString())
     throw new BadRequestError("Invalid Verification Code");
@@ -140,7 +144,9 @@ export const verifyCode = async (req, res) => {
 
 export const verifyAccount = async (req, res) => {
   const { email } = req.body;
-  const user = await MiningUser.findOne({ email: email });
+  const user = await MiningUser.findOne({
+    email: { $regex: `^${email}$`, $options: "i" },
+  });
   if (!user) throw new NotFoundError("No user found");
   const code = Math.floor(1000 + Math.random() * 9000);
   user.verificationCode = code.toString();
@@ -161,7 +167,9 @@ export const verifyAccount = async (req, res) => {
 
 export const forgotPassword = async (req, res) => {
   const { email } = req.body;
-  const user = await MiningUser.findOne({ email: email });
+  const user = await MiningUser.findOne({
+    email: { $regex: `^${email}$`, $options: "i" },
+  });
   if (!user) throw new NotFoundError("No user found");
   const code = Math.floor(1000 + Math.random() * 9000);
   user.verificationCode = code.toString();
@@ -182,7 +190,9 @@ export const forgotPassword = async (req, res) => {
 
 export const verifyPasswordResetCode = async (req, res) => {
   const { email, code } = req.body;
-  const user = await MiningUser.findOne({ email: email });
+  const user = await MiningUser.findOne({
+    email: { $regex: `^${email}$`, $options: "i" },
+  });
   if (!user) throw new NotFoundError("No user found");
   if (user.verificationCode.toString() !== code.toString())
     throw new BadRequestError("Code does not Match");
@@ -191,7 +201,9 @@ export const verifyPasswordResetCode = async (req, res) => {
 
 export const resetPassword = async (req, res) => {
   const { email, password } = req.body;
-  const user = await MiningUser.findOne({ email: email });
+  const user = await MiningUser.findOne({
+    email: { $regex: `^${email}$`, $options: "i" },
+  });
   if (!user) throw new NotFoundError("No user found");
   const hashedPassword = await hashPassword(password);
   user.password = hashedPassword;

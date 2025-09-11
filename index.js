@@ -33,11 +33,11 @@ import miningAuthRouter from "./routes/miningApp/miningAuthRouter.js";
 import miningProductRouter from "./routes/miningApp/miningProductRouter.js";
 import miningRevenueRouter from "./routes/miningApp/miningRevenueRouter.js";
 import miningPayoutRouter from "./routes/miningApp/miningPayoutRouter.js";
-import miningTransactionRouter from "./routes/miningApp/miningTransactionRouter.js";
 import miningSatsRouter from "./routes/miningApp/miningSatsRouter.js";
 import miningTermsRouter from "./routes/miningApp/miningTermsRouter.js";
 import miningNotificationRouter from "./routes/miningApp/miningNotificationRouter.js";
 import miningUserRouter from "./routes/miningApp/miningUserRouter.js";
+import miningPaymentRouter from "./routes/miningApp/miningPaymentRouter.js";
 // import { processBitGoPayouts } from "./cronJobs/BitgoCron.js";
 
 const app = express();
@@ -49,7 +49,13 @@ cloudinary.config({
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json());
+app.use((req, res, next) => {
+  if (req.originalUrl === "/api/mining/payment/webhooks/ziina") {
+    next(); // skip express.json for webhook
+  } else {
+    express.json()(req, res, next);
+  }
+});
 app.use(cookieParser());
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("tiny"));
@@ -102,7 +108,6 @@ app.use(
   miningRevenueRouter
 );
 app.use("/api/mining/payout", authenticateUser, miningPayoutRouter);
-app.use("/api/mining/transaction", authenticateUser, miningTransactionRouter);
 app.use("/api/mining/sats", authenticateUser, miningSatsRouter);
 app.use("/api/mining/terms", authenticateUser, miningTermsRouter);
 app.use(
@@ -111,6 +116,7 @@ app.use(
   miningNotificationRouter
 );
 app.use("/api/mining/users", authenticateUser, isSuperAdmin, miningUserRouter);
+app.use("/api/mining/payment", miningPaymentRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });

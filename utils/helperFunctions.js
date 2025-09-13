@@ -8,12 +8,33 @@ export const assignMinerToUser = async (userId) => {
   const session = await mongoose.startSession();
   session.startTransaction();
   try {
-    const user = await MiningUser.findById(userId).session(session);
+    const user = await MiningUser.findById(userId)
+      .populate("cartItems.itemId")
+      .session(session);
     if (!user) throw new NotFoundError("No user found");
     const purchasedOn = new Date();
     const validity = new Date();
     validity.setFullYear(validity.getFullYear() + 3);
     const newOwnedMiners = [];
+    const amount = user.cartItems.reduce(
+      (sum, item) =>
+        sum +
+        item.qty *
+          item.itemId.power *
+          24 *
+          item.itemId.hostingFeePerKw *
+          3.67 *
+          0.9 *
+          30,
+      0
+    );
+    user.walletBalance = user.walletBalance + amount;
+    user.walletTransactions.push({
+      date: new Date(),
+      amount: Number(amount),
+      type: "credited",
+      currentWalletBalance: user.walletBalance,
+    });
     for (const item of user.cartItems) {
       const product = await MiningProduct.findById(item.itemId).session(
         session

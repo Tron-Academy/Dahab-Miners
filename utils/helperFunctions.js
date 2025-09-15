@@ -24,7 +24,6 @@ export const assignMinerToUser = async (userId) => {
           24 *
           item.itemId.hostingFeePerKw *
           3.67 *
-          0.9 *
           30,
       0
     );

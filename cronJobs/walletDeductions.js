@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import MiningUser from "../models/miningApp/MiningUser.js";
 import axios from "axios";
 import { BadRequestError } from "../errors/customErrors.js";
+import A1246Uptime from "../models/miningApp/MiningA1246Uptime.js";
 
 export const calculateAndDeductHostingFee = async () => {
   const session = await mongoose.startSession();
@@ -27,7 +28,8 @@ export const calculateAndDeductHostingFee = async () => {
     })
       .populate("ownedMiners.itemId")
       .session(session);
-
+    const uptimes = await A1246Uptime.find();
+    const uptime = uptimes[0]?.A1246Uptime || 1;
     for (let user of users) {
       let totalHostingFee = 0;
 
@@ -35,8 +37,26 @@ export const calculateAndDeductHostingFee = async () => {
         const product = owned.itemId;
         if (owned.validity && new Date(owned.validity) < endOfDay) continue;
         if (!product || !product.power || !product.hostingFeePerKw) continue;
-        const fee =
-          owned.qty * product.power * 24 * product.hostingFeePerKw * 3.67 * 0.9;
+        let fee = 0;
+
+        if (product.category === "S19KPro") {
+          fee = owned.qty * product.power * 24 * product.hostingFeePerKw * 3.67;
+        }
+        if (product.category === "A1246") {
+          if (uptime >= 0.95) {
+            fee =
+              owned.qty * product.power * 24 * product.hostingFeePerKw * 3.67;
+          }
+          if (uptime < 0.95) {
+            fee =
+              owned.qty *
+              product.power *
+              24 *
+              product.hostingFeePerKw *
+              3.67 *
+              uptime;
+          }
+        }
         totalHostingFee += fee;
         owned.hostingFeePaid = (owned.hostingFeePaid || 0) + fee;
       }

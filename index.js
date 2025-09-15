@@ -33,7 +33,7 @@ import miningAuthRouter from "./routes/miningApp/miningAuthRouter.js";
 import miningProductRouter from "./routes/miningApp/miningProductRouter.js";
 import miningRevenueRouter from "./routes/miningApp/miningRevenueRouter.js";
 import miningPayoutRouter from "./routes/miningApp/miningPayoutRouter.js";
-import miningSatsRouter from "./routes/miningApp/miningSatsRouter.js";
+import miningSatsRouter from "./routes/miningApp/miningSatsAndUptimeRouter.js";
 import miningTermsRouter from "./routes/miningApp/miningTermsRouter.js";
 import miningNotificationRouter from "./routes/miningApp/miningNotificationRouter.js";
 import miningUserRouter from "./routes/miningApp/miningUserRouter.js";

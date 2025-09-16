@@ -22,7 +22,7 @@ export const createPaymentIntent = async (req, res) => {
         : process.env.FRONTEND_SUCCESS_URL_WALLET,
     cancel_url: process.env.FRONTEND_CANCEL_URL,
     failure_url: process.env.FRONTEND_FAILURE_URL,
-    test: true,
+    test: false,
     expiry: null,
     allow_tips: false,
   };
@@ -44,7 +44,7 @@ export const createPaymentIntent = async (req, res) => {
     cancelURL: data.cancel_url,
     message: data.message,
     allowTips: data.allow_tips,
-    isTest: true,
+    isTest: false,
     lastPayload: data,
   });
   await pi.save();

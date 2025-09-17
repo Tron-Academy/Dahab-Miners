@@ -10,17 +10,29 @@ import jwt from "jsonwebtoken";
 import { sendMail, transporter } from "../../utils/nodemailer.js";
 import speakeasy from "speakeasy";
 import qrcode from "qrcode";
+import MiningTerms from "../../models/miningApp/MiningTerms.js";
+import MiningPrivacy from "../../models/miningApp/MiningPrivacy.js";
 
 export const miningRegister = async (req, res) => {
   const { email, password, username } = req.body;
+  const terms = await MiningTerms.findOne().sort({ createdAt: -1 });
+  const policy = await MiningPrivacy.findOne().sort({ createdAt: -1 });
   const hashed = await hashPassword(password);
   const newUser = new MiningUser({
     username,
     email: email.toLowerCase(),
     password: hashed,
-    termsAgreedOn: new Date(),
+    latestTermVersion: terms.version,
+    latestPrivacyVersion: policy.version,
   });
-
+  newUser.termsAgreementHistory.push({
+    date: new Date(),
+    version: terms.version,
+  });
+  newUser.privacyAgreementHistory.push({
+    date: new Date(),
+    version: policy.version,
+  });
   const code = Math.floor(1000 + Math.random() * 9000);
   newUser.verificationCode = code.toString();
   const mailOptions = {

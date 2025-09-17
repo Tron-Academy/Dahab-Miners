@@ -4,6 +4,8 @@ import Admin from "../models/AdminModel.js";
 import mongoose from "mongoose";
 import Repair from "../models/RepairModel.js";
 import MiningUser from "../models/miningApp/MiningUser.js";
+import MiningTerms from "../models/miningApp/MiningTerms.js";
+import MiningPrivacy from "../models/miningApp/MiningPrivacy.js";
 
 const withValidationErrors = (validateValues) => {
   return [
@@ -270,4 +272,26 @@ export const validateUpdatePayoutStatus = withValidationErrors([
   body("userId").notEmpty().withMessage("User ID is required"),
   body("status").notEmpty().withMessage("Status is required"),
   body("amount").notEmpty().withMessage("Amount is required"),
+]);
+
+export const validateaddTerms = withValidationErrors([
+  body("version")
+    .notEmpty()
+    .withMessage("Version is required")
+    .custom(async (version, { req }) => {
+      const terms = await MiningTerms.findOne({ version: version });
+      if (terms) throw new BadRequestError("term version already exists");
+    }),
+  body("content").notEmpty().withMessage("content is required"),
+]);
+
+export const validateaddPrivacyPolicy = withValidationErrors([
+  body("version")
+    .notEmpty()
+    .withMessage("Version is required")
+    .custom(async (version, { req }) => {
+      const terms = await MiningPrivacy.findOne({ version: version });
+      if (terms) throw new BadRequestError("term version already exists");
+    }),
+  body("content").notEmpty().withMessage("content is required"),
 ]);

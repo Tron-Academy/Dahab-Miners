@@ -109,7 +109,7 @@ app.use(
 );
 app.use("/api/mining/payout", authenticateUser, miningPayoutRouter);
 app.use("/api/mining/sats", authenticateUser, miningSatsRouter);
-app.use("/api/mining/terms", authenticateUser, miningTermsRouter);
+app.use("/api/mining/terms", miningTermsRouter);
 app.use(
   "/api/mining/notifications",
   authenticateUser,

@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
 
-const MiningTermsSchema = new Schema(
+const MiningPrivacySchema = new Schema(
   {
     version: {
       type: Number,
@@ -15,5 +15,5 @@ const MiningTermsSchema = new Schema(
   { timestamps: true }
 );
 
-const MiningTerms = model("MiningTerms", MiningTermsSchema);
-export default MiningTerms;
+const MiningPrivacy = model("MiningPrivacy", MiningPrivacySchema);
+export default MiningPrivacy;

@@ -23,6 +23,16 @@ const walletTransactionSchema = new Schema({
   currentWalletBalance: Number,
 });
 
+const termsAgrementSchema = new Schema({
+  date: Date,
+  version: Number,
+});
+
+const privacyAgrementSchema = new Schema({
+  date: Date,
+  version: Number,
+});
+
 const profitModeHostingTransactionSchema = new Schema({
   date: Date,
   amountAED: Number,
@@ -106,7 +116,10 @@ const miningUserSchema = new Schema(
     isTest: Boolean,
     walletTransactions: [walletTransactionSchema],
     ProfitModeDeductions: [profitModeHostingTransactionSchema],
-    termsAgreedOn: Date,
+    latestTermVersion: String,
+    termsAgreementHistory: [termsAgrementSchema],
+    latestPrivacyVersion: String,
+    privacyAgreementHistory: [privacyAgrementSchema],
     notifications: [
       {
         type: mongoose.Schema.Types.ObjectId,

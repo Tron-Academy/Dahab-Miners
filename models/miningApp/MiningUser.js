@@ -16,6 +16,7 @@ const minedRewardsSchema = new Schema({
 const walletTransactionSchema = new Schema({
   date: Date,
   amount: Number,
+  message: String,
   type: {
     type: String,
     enum: ["debited", "credited"],
@@ -37,6 +38,7 @@ const profitModeHostingTransactionSchema = new Schema({
   date: Date,
   amountAED: Number,
   amountBTC: Number,
+  message: String,
   rateBTCNowAED: Number,
 });
 

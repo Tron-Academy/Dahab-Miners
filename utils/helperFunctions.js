@@ -33,6 +33,7 @@ export const assignMinerToUser = async (userId) => {
       amount: Number(amount),
       type: "credited",
       currentWalletBalance: user.walletBalance,
+      message: "Miner Purchase Hosting Fee Prepayment for 1 Month",
     });
     for (const item of user.cartItems) {
       const product = await MiningProduct.findById(item.itemId).session(
@@ -78,6 +79,7 @@ export const updateUserWallet = async (userId, amount) => {
       amount: Number(amount / 100),
       type: "credited",
       currentWalletBalance: user.walletBalance,
+      message: "Wallet Recharge",
     });
     await user.save();
     return {

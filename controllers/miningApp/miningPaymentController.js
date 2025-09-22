@@ -1,4 +1,5 @@
 import axios from "axios";
+import { v4 as uuid4 } from "uuid";
 import { NotFoundError } from "../../errors/customErrors.js";
 import MiningUser from "../../models/miningApp/MiningUser.js";
 import MiningPayment from "../../models/miningApp/MiningPayment.js";
@@ -7,6 +8,8 @@ import {
   assignMinerToUser,
   updateUserWallet,
 } from "../../utils/helperFunctions.js";
+import { deusxPayRequest, verifyWebhook } from "../../utils/deusxpay.js";
+import MiningCryptoPayment from "../../models/miningApp/MiningCryptoPayment.js";
 
 export const createPaymentIntent = async (req, res) => {
   const { amount, message } = req.body;
@@ -140,3 +143,61 @@ export const processWebHook = async (req, res) => {
   res.sendStatus(200);
 };
 //test true
+
+export const createCryptoPaymentIntent = async (req, res) => {
+  const { amount, message } = req.body;
+  const orderId = uuid4();
+  const requestBody = {
+    requested_currency: "AED",
+    requested_amount: amount.toString(),
+    payment_currency: "BTC",
+    profile_uuid: process.env.DEUSX_PROFILE_UUID,
+    passthrough: JSON.stringify({ orderId: orderId, note: message }),
+    notes: message,
+  };
+
+  const response = await deusxPayRequest("payments/", requestBody, "POST");
+  const paymentData = response.data;
+
+  const payment = new MiningCryptoPayment({
+    deusxId: paymentData.id,
+    userId: req.user.userId,
+    orderId: orderId,
+    requestedCurrency: paymentData.requested_currency,
+    requestedAmount: paymentData.requested_amount,
+    paymentCurrency: paymentData.payment_currency,
+    status: paymentData.status,
+    addresses: paymentData.addresses,
+    notes: paymentData.notes,
+    passthrough: paymentData.passthrough,
+    rawResponse: paymentData,
+  });
+
+  await payment.save();
+  res.status(200).json(paymentData);
+};
+
+export const deusxWebhook = async (req, res) => {
+  try {
+    const event = req.body;
+    if (!verifyWebhook(event.callback_id, event.signature)) {
+      console.error("❌ Invalid webhook signature");
+      return res.status(401).json({ error: "Invalid signature" });
+    }
+    console.log("✅ Webhook verified:", event.callback_status);
+    const payment = await MiningCryptoPayment.findOneAndUpdate(
+      { deusxId: event.id },
+      { status: event.status, rawResponse: req.body },
+      { new: true }
+    );
+    if (!payment) {
+      console.warn("⚠️ No payment found for deusxId:", event.id);
+    } else {
+      console.log("🔄 Updated payment:", payment.orderId, event.status);
+    }
+    res.sendStatus(200);
+  } catch (error) {
+    console.error("Webhook error:", err.message);
+    res.sendStatus(500);
+  }
+};

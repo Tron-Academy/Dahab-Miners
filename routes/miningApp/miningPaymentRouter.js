@@ -1,8 +1,10 @@
 import { Router } from "express";
 import express from "express";
 import {
+  createCryptoPaymentIntent,
   createPaymentIntent,
   deleteWebHook,
+  deusxWebhook,
   getPaymentIntent,
   processWebHook,
   registerWebhook,
@@ -20,6 +22,12 @@ router.post(
   "/webhooks/ziina",
   express.raw({ type: "application/json" }),
   processWebHook
+);
+router.post("/create-crypto-intent", createCryptoPaymentIntent);
+router.post(
+  "/webhooks/deusx",
+  express.raw({ type: "application/json" }),
+  deusxWebhook
 );
 
 export default router;

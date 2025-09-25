@@ -4,9 +4,10 @@ import { BadRequestError, NotFoundError } from "../errors/customErrors.js";
 import MiningProduct from "../models/miningApp/MiningProduct.js";
 import { v4 as uuid4 } from "uuid";
 
-export const assignMinerToUser = async (userId) => {
+export const assignMinerToUser = async (userId, items) => {
   const session = await mongoose.startSession();
   session.startTransaction();
+  const buyItems = JSON.parse(items);
   try {
     const user = await MiningUser.findById(userId)
       .populate("cartItems.itemId")
@@ -16,7 +17,7 @@ export const assignMinerToUser = async (userId) => {
     const validity = new Date();
     validity.setFullYear(validity.getFullYear() + 3);
     const newOwnedMiners = [];
-    const amount = user.cartItems.reduce(
+    const amount = buyItems.reduce(
       (sum, item) =>
         sum +
         item.qty *
@@ -35,7 +36,7 @@ export const assignMinerToUser = async (userId) => {
       currentWalletBalance: user.walletBalance,
       message: "Miner Purchase Hosting Fee Prepayment for 1 Month",
     });
-    for (const item of user.cartItems) {
+    for (const item of buyItems) {
       const product = await MiningProduct.findById(item.itemId).session(
         session
       );

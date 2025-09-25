@@ -146,3 +146,11 @@ export const selectPayoutMode = async (req, res) => {
   await user.save();
   res.status(200).json({ msg: "payout selected successfully", user });
 };
+
+export const emptyCart = async (req, res) => {
+  const user = await MiningUser.findById(req.user.userId);
+  if (!user) throw new NotFoundError("No user found");
+  user.cartItems = [];
+  await user.save();
+  res.status(200).json({ msg: "success" });
+};

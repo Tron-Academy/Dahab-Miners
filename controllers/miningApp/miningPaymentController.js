@@ -12,7 +12,7 @@ import { deusxPayRequest, verifyWebhook } from "../../utils/deusxpay.js";
 import MiningCryptoPayment from "../../models/miningApp/MiningCryptoPayment.js";
 
 export const createPaymentIntent = async (req, res) => {
-  const { amount, message } = req.body;
+  const { amount, message, items } = req.body;
   const user = await MiningUser.findById(req.user.userId);
   if (!user) throw new NotFoundError("No user has been found");
   const payload = {
@@ -49,6 +49,7 @@ export const createPaymentIntent = async (req, res) => {
     allowTips: data.allow_tips,
     isTest: false,
     lastPayload: data,
+    items: items,
   });
   await pi.save();
 
@@ -123,7 +124,7 @@ export const processWebHook = async (req, res) => {
       pi.message === "miner purchase" &&
       !pi.processed
     ) {
-      await assignMinerToUser(pi.userId);
+      await assignMinerToUser(pi.userId, pi.items);
       pi.processed = true;
       await pi.save();
     }
@@ -145,7 +146,7 @@ export const processWebHook = async (req, res) => {
 //test true
 
 export const createCryptoPaymentIntent = async (req, res) => {
-  const { amount, message } = req.body;
+  const { amount, message, items } = req.body;
   const orderId = uuid4();
   const requestBody = {
     requested_currency: "AED",
@@ -160,21 +161,29 @@ export const createCryptoPaymentIntent = async (req, res) => {
   const paymentData = response.data;
 
   const payment = new MiningCryptoPayment({
-    deusxId: paymentData.id,
+    deusxId: paymentData.result.id,
     userId: req.user.userId,
     orderId: orderId,
-    requestedCurrency: paymentData.requested_currency,
-    requestedAmount: paymentData.requested_amount,
-    paymentCurrency: paymentData.payment_currency,
-    status: paymentData.status,
-    addresses: paymentData.addresses,
-    notes: paymentData.notes,
-    passthrough: paymentData.passthrough,
-    rawResponse: paymentData,
+    requestedCurrency: paymentData.result.requested_currency,
+    requestedAmount: paymentData.result.requested_amount,
+    paymentCurrency: paymentData.result.payment_currency,
+    status: paymentData.result.status,
+    addresses: paymentData.result.addresses,
+    notes: paymentData.result.notes,
+    passthrough: paymentData.result.passthrough,
+    rawResponse: paymentData.result,
+    paymentAmount: paymentData.result.payment_amount,
+    items: items,
   });
 
   await payment.save();
-  res.status(200).json(paymentData);
+  res.status(200).json(paymentData.result);
+};
+
+export const getCryptoPaymentIntent = async (req, res) => {
+  const payment = await MiningCryptoPayment.findOne({ deusxId: req.params.id });
+  if (!payment) throw new NotFoundError("No Payment Found");
+  res.status(200).json(payment);
 };
 
 export const deusxWebhook = async (req, res) => {
@@ -185,19 +194,42 @@ export const deusxWebhook = async (req, res) => {
       return res.status(401).json({ error: "Invalid signature" });
     }
     console.log("✅ Webhook verified:", event.callback_status);
-    const payment = await MiningCryptoPayment.findOneAndUpdate(
-      { deusxId: event.id },
-      { status: event.status, rawResponse: req.body },
-      { new: true }
-    );
+
+    const payment = await MiningCryptoPayment.findOne({
+      deusxId: event.payment?.id,
+    });
     if (!payment) {
       console.warn("⚠️ No payment found for deusxId:", event.id);
-    } else {
-      console.log("🔄 Updated payment:", payment.orderId, event.status);
+      return res.sendStatus(200);
     }
+    payment.status = event.payment.status;
+    payment.rawResponse = req.body;
+    if (event.callback_status === "payment_complete" && !payment.processed) {
+      try {
+        await assignMinerToUser(payment.userId, payment.items);
+        payment.processed = true;
+        await payment.save();
+        console.log("🎉 Miner assigned to user:", payment.userId);
+      } catch (error) {
+        console.error("❌ assignMinerToUser failed:", error.message);
+        return res.sendStatus(500); // ⚡ DeusX will retry webhook later
+      }
+    } else {
+      await payment.save();
+    }
+
+    console.log("🔄 Updated payment:", payment.orderId, event.status);
     res.sendStatus(200);
   } catch (error) {
-    console.error("Webhook error:", err.message);
+    console.error("Webhook error:", error.message);
     res.sendStatus(500);
   }
+};
+
+export const getCryptoTransactions = async (req, res) => {
+  const payments = await MiningCryptoPayment.find({
+    userId: req.user.userId,
+  }).sort({ createdAt: -1 });
+  if (!payments) throw new NotFoundError("No payments");
+  res.status(200).json(payments);
 };

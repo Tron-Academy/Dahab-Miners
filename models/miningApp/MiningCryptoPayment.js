@@ -22,6 +22,10 @@ const MiningCryptoPaymentSchema = new Schema(
       type: Number,
       required: true,
     },
+    paymentAmount: {
+      type: Number,
+      required: true,
+    },
     paymentCurrency: {
       type: String,
       required: true,
@@ -41,6 +45,13 @@ const MiningCryptoPaymentSchema = new Schema(
     },
     rawResponse: {
       type: Object,
+    },
+    processed: {
+      type: Boolean,
+      default: false,
+    },
+    items: {
+      type: String,
     },
   },
   { timestamps: true }

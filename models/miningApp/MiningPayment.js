@@ -49,6 +49,9 @@ const MiningPaymentSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    items: {
+      type: String,
+    },
   },
   {
     timestamps: true,

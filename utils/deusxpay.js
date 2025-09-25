@@ -5,8 +5,8 @@ import https from "https";
 import url from "url";
 
 const API_URL = "https://preprod-api.deusxpay.com/pay";
-const API_KEY = process.env.DEUSX_API_KEY;
-const API_SECRET = process.env.DEUSX_API_SECRET;
+const API_KEY = process.env.DEUSX_API_KEY2;
+const API_SECRET = process.env.DEUSX_API_SECRET2;
 
 function encodeHmac(key, msg) {
   return crypto.createHmac("sha256", key).update(msg).digest("hex");
@@ -17,8 +17,9 @@ export async function deusxPayRequest(
   payload = null,
   method = "GET"
 ) {
-  const nonce = Date.now().toString();
+  const nonce = new Date().getTime().toString();
   const parsedUrl = url.parse(endpoint, true);
+
   const basePath = parsedUrl.pathname.startsWith("/v1/")
     ? parsedUrl.pathname
     : `/v1/${parsedUrl.pathname}`;
@@ -26,9 +27,13 @@ export async function deusxPayRequest(
   const queryParams = new URLSearchParams(parsedUrl.query).toString();
   let stringPayload = "";
   if (method !== "GET" && payload) {
-    stringPayload =
-      typeof payload === "object" ? JSON.stringify(payload) : payload;
+    if (typeof payload === "object") {
+      stringPayload = JSON.stringify(payload);
+    } else if (typeof payload === "string") {
+      stringPayload = payload;
+    }
   }
+
   const signatureData = {
     path: requestPath,
     nonce: nonce,
@@ -38,9 +43,7 @@ export async function deusxPayRequest(
   const signatureDataString = JSON.stringify(signatureData);
   const b64 = Base64.encode(signatureDataString);
   const signature = encodeHmac(API_SECRET, b64);
-  console.log("🔑 Signing Data:", signatureDataString);
-  console.log("📦 Base64:", b64);
-  console.log("📝 Signature:", signature);
+
   const headers = {
     "X-DEUSXPAY-KEY": API_KEY,
     "X-DEUSXPAY-NONCE": nonce,
@@ -50,9 +53,7 @@ export async function deusxPayRequest(
   const fullUrl = `${API_URL}${requestPath}${
     queryParams ? `?${queryParams}` : ""
   }`;
-  console.log("🌍 Full URL:", fullUrl);
-  console.log("📦 Payload:", payload);
-  console.log("🔑 Headers:", headers);
+
   return axios({
     method,
     url: fullUrl,

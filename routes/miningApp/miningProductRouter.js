@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   addToCart,
+  emptyCart,
   getAllMiners,
   getCartItems,
   getOwnedMiners,
@@ -22,5 +23,6 @@ router.post("/updateCart", updateCartItem);
 router.post("/purchase", purchaseMiner);
 router.get("/ownedMiners", getOwnedMiners);
 router.post("/payoutMode", selectPayoutMode);
+router.patch("/empty-cart", emptyCart);
 
 export default router;

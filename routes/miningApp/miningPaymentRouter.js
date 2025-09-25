@@ -5,6 +5,8 @@ import {
   createPaymentIntent,
   deleteWebHook,
   deusxWebhook,
+  getCryptoPaymentIntent,
+  getCryptoTransactions,
   getPaymentIntent,
   processWebHook,
   registerWebhook,
@@ -23,11 +25,21 @@ router.post(
   express.raw({ type: "application/json" }),
   processWebHook
 );
-router.post("/create-crypto-intent", createCryptoPaymentIntent);
+router.post(
+  "/create-crypto-intent",
+  authenticateUser,
+  createCryptoPaymentIntent
+);
+router.get(
+  "/create-crypto-intent/:id",
+  authenticateUser,
+  getCryptoPaymentIntent
+);
 router.post(
   "/webhooks/deusx",
   express.raw({ type: "application/json" }),
   deusxWebhook
 );
+router.get("/crypto-transactions", authenticateUser, getCryptoTransactions);
 
 export default router;

@@ -12,6 +12,9 @@ import speakeasy from "speakeasy";
 import qrcode from "qrcode";
 import MiningTerms from "../../models/miningApp/MiningTerms.js";
 import MiningPrivacy from "../../models/miningApp/MiningPrivacy.js";
+import axios from "axios";
+import mongoose from "mongoose";
+import MiningAccountClosure from "../../models/miningApp/MiningAccountClosure.js";
 
 export const miningRegister = async (req, res) => {
   const { email, password, username } = req.body;
@@ -283,4 +286,86 @@ export const updateProfile = async (req, res) => {
   user.email = email;
   await user.save();
   res.status(200).json({ msg: "successfully updated" });
+};
+
+export const deleteAccount = async (req, res) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+
+  try {
+    const user = await MiningUser.findByIdAndDelete(req.user.userId, {
+      session,
+    });
+    if (!user) throw new NotFoundError("No user found");
+    const { data } = await axios.get(
+      "https://api.minerstat.com/v2/coins?list=BTC"
+    );
+    const btcPriceUSD = data[0]?.price;
+    const btcPriceAED = btcPriceUSD * 3.67;
+    if (!btcPriceAED || btcPriceAED <= 0)
+      throw new BadRequestError("Not able to get BTC price");
+    const totalBTCinAED = user.currentBalance * btcPriceAED;
+    const totalFinal = user.walletBalance + totalBTCinAED;
+    const newAccountClosure = new MiningAccountClosure({
+      username: user.username,
+      email: user.email,
+      lastBTCBalance: user.currentBalance,
+      lastWalletBalance: user.walletBalance,
+      lastBTCinAED: totalBTCinAED,
+      BTCPriceInAED: btcPriceAED,
+      totalBalance: totalFinal,
+      type: totalFinal > 0 ? "refund" : totalFinal < 0 ? "due" : "neutral",
+      rawData: JSON.stringify(user),
+    });
+    await newAccountClosure.save({ session });
+    if (totalFinal > 0) {
+      const mailOptions = {
+        from: {
+          name: "DAHAB MINING",
+          address: process.env.NODEMAILER_EMAIL,
+        },
+        to: user.email,
+        subject: "Account Deletion - Payment Refund",
+        text: `Hello ${
+          user.username
+        },\n\n This is to confirm that your account has been permanently deleted as per your request. All associated data, including miners, transactions, and wallet balances, have been securely removed.\n\n We truly appreciate the trust you placed in us and regret seeing you leave. After account closure, you still have a remaining balance of AED ${totalFinal.toFixed(
+          2
+        )}. Please reply to this email with your bank or wallet details so we can process your refund promptly.\n\n Thank you once again for being part of Dahab Mining.\n\n Regards, \n Dahab Mining`,
+      };
+      await sendMail(transporter, mailOptions);
+    } else if (totalFinal < 0) {
+      const mailOptions = {
+        from: {
+          name: "DAHAB MINING",
+          address: process.env.NODEMAILER_EMAIL,
+        },
+        to: user.email,
+        subject: "Account Deletion - Payment Due",
+        text: `Hello ${
+          user.username
+        },\n\n This is to confirm that your account has been permanently deleted as per your request. All associated data, including miners, transactions, and wallet balances, have been securely removed.\n\n We sincerely appreciate the time you spent with us. After account closure, your account shows a pending due of AED ${totalFinal.toFixed(
+          2
+        )}. Please reply to this email with your preferred payment method so we can settle this amount and close your record.\n\n We kindly ask you to clear this balance at the earliest to avoid further escalation.\n\n Regards,\n Dahab Mining`,
+      };
+      await sendMail(transporter, mailOptions);
+    } else {
+      const mailOptions = {
+        from: {
+          name: "DAHAB MINING",
+          address: process.env.NODEMAILER_EMAIL,
+        },
+        to: user.email,
+        subject: "Account Deletion- No Due",
+        text: `Hello ${user.username},\n\n This is to confirm that your account has been permanently deleted as per your request. All associated data, including miners, transactions, and wallet balances, have been securely removed.\n\n We’re thankful for the time you spent with us and regret seeing you leave. Please note that you have no dues or refunds pending on your account. \n Thank you for being a valued part of Dahab Mining.\n\n Regards, \n Dahab Mining`,
+      };
+      await sendMail(transporter, mailOptions);
+    }
+    await session.commitTransaction();
+    res.status(200).json({ msg: "successfull" });
+  } catch (error) {
+    await session.abortTransaction();
+    res.status(500).json({ msg: "something went wrong", error });
+  } finally {
+    session.endSession();
+  }
 };

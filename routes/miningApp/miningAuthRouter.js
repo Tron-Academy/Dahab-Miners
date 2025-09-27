@@ -1,4 +1,5 @@
 import {
+  deleteAccount,
   disable2FA,
   forgotPassword,
   getMiningUserInfo,
@@ -62,5 +63,6 @@ router.patch(
   validateMiningUSerUpdateProfile,
   updateProfile
 );
+router.delete("/delete-account", authenticateUser, deleteAccount);
 
 export default router;

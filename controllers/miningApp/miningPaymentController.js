@@ -206,7 +206,13 @@ export const deusxWebhook = async (req, res) => {
     payment.rawResponse = req.body;
     if (event.callback_status === "payment_complete" && !payment.processed) {
       try {
-        await assignMinerToUser(payment.userId, payment.items);
+        if (payment.notes === "miner purchase") {
+          await assignMinerToUser(payment.userId, payment.items);
+        }
+        if (payment.notes === "wallet Topup") {
+          const paymentAmount = payment.requestedAmount * 100; //because using the same function of ziina. in zina amount is in smaller units
+          await updateUserWallet(payment.userId, paymentAmount);
+        }
         payment.processed = true;
         await payment.save();
         console.log("🎉 Miner assigned to user:", payment.userId);

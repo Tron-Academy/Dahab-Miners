@@ -146,12 +146,12 @@ export const processWebHook = async (req, res) => {
 //test true
 
 export const createCryptoPaymentIntent = async (req, res) => {
-  const { amount, message, items } = req.body;
+  const { amount, message, items, crypto } = req.body;
   const orderId = uuid4();
   const requestBody = {
     requested_currency: "AED",
     requested_amount: amount.toString(),
-    payment_currency: "BTC",
+    payment_currency: crypto,
     profile_uuid: process.env.DEUSX_PROFILE_UUID,
     passthrough: JSON.stringify({ orderId: orderId, note: message }),
     notes: message,

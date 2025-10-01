@@ -15,7 +15,9 @@ export const getAllRevenuesByCategory = async (req, res) => {
     .skip(skip)
     .limit(limit);
   if (!revenues) throw new NotFoundError("No revenue found");
-  const totalRevenues = await MiningRevenue.countDocuments();
+  const totalRevenues = await MiningRevenue.countDocuments({
+    category: category,
+  });
   const totalPages = Math.ceil(totalRevenues / limit);
   res.status(200).json({ revenues, totalPages });
 };

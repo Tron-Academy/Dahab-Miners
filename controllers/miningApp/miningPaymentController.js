@@ -10,6 +10,7 @@ import {
 } from "../../utils/helperFunctions.js";
 import { deusxPayRequest, verifyWebhook } from "../../utils/deusxpay.js";
 import MiningCryptoPayment from "../../models/miningApp/MiningCryptoPayment.js";
+import MiningPayout from "../../models/miningApp/MiningPayout.js";
 
 export const createPaymentIntent = async (req, res) => {
   const { amount, message, items } = req.body;
@@ -195,37 +196,81 @@ export const deusxWebhook = async (req, res) => {
     }
     console.log("✅ Webhook verified:", event.callback_status);
 
-    const payment = await MiningCryptoPayment.findOne({
-      deusxId: event.payment?.id,
-    });
-    if (!payment) {
-      console.warn("⚠️ No payment found for deusxId:", event.id);
-      return res.sendStatus(200);
-    }
-    payment.status = event.payment.status;
-    payment.rawResponse = req.body;
-    if (event.callback_status === "payment_complete" && !payment.processed) {
-      try {
-        if (payment.notes === "miner purchase") {
-          await assignMinerToUser(payment.userId, payment.items);
-        }
-        if (payment.notes === "wallet Topup") {
-          const paymentAmount = payment.requestedAmount * 100; //because using the same function of ziina. in zina amount is in smaller units
-          await updateUserWallet(payment.userId, paymentAmount);
-        }
-        payment.processed = true;
-        await payment.save();
-        console.log("🎉 Miner assigned to user:", payment.userId);
-      } catch (error) {
-        console.error("❌ assignMinerToUser failed:", error.message);
-        return res.sendStatus(500); // ⚡ DeusX will retry webhook later
+    if (event.payment) {
+      const payment = await MiningCryptoPayment.findOne({
+        deusxId: event.payment?.id,
+      });
+      if (!payment) {
+        console.warn("⚠️ No payment found for deusxId:", event.payment?.id);
+        return res.sendStatus(200);
       }
-    } else {
-      await payment.save();
-    }
+      payment.status = event.payment.status;
+      payment.rawResponse = req.body;
+      if (event.callback_status === "payment_complete" && !payment.processed) {
+        try {
+          if (payment.notes === "miner purchase") {
+            await assignMinerToUser(payment.userId, payment.items);
+          }
+          if (payment.notes === "wallet Topup") {
+            const paymentAmount = payment.requestedAmount * 100; //because using the same function of ziina. in zina amount is in smaller units
+            await updateUserWallet(payment.userId, paymentAmount);
+          }
+          payment.processed = true;
+          await payment.save();
+          console.log("🎉 Miner assigned to user:", payment.userId);
+        } catch (error) {
+          console.error("❌ assignMinerToUser failed:", error.message);
+          return res.sendStatus(500); // ⚡ DeusX will retry webhook later
+        }
+      } else {
+        await payment.save();
+      }
 
-    console.log("🔄 Updated payment:", payment.orderId, event.status);
-    res.sendStatus(200);
+      console.log("🔄 Updated payment:", payment.orderId, event.payment.status);
+      res.sendStatus(200);
+    } else if (event.withdrawal) {
+      const withdrawal = await MiningPayout.findOne({
+        deusxId: event.withdrawal?.id,
+      });
+      if (!withdrawal) {
+        console.warn(
+          "⚠️ No withdrawal found for deusxId:",
+          event.withdrawal?.id
+        );
+        return res.sendStatus(200);
+      }
+      withdrawal.status = event.withdrawal.status;
+      withdrawal.rawResponse = JSON.stringify(req.body);
+      if (
+        event.callback_status === "withdrawal_complete" &&
+        !withdrawal.isUpdated
+      ) {
+        try {
+          const user = await MiningUser.findById(withdrawal.user);
+          if (!user) throw new NotFoundError("No user found");
+          user.currentBalance = user.currentBalance - withdrawal.amount;
+          user.amountWithdrawed = user.amountWithdrawed + withdrawal.amount;
+          withdrawal.isUpdated = true;
+          await user.save();
+          await withdrawal.save();
+          console.log(
+            "🎉 Amount successfully transferred to user:",
+            withdrawal.user
+          );
+        } catch (error) {
+          console.error("❌ Transaction failed failed:", error.message);
+          return res.sendStatus(500); // ⚡ DeusX will retry webhook later
+        }
+      } else {
+        await withdrawal.save();
+      }
+      console.log(
+        "🔄 Updated Withdrawal:",
+        withdrawal._id,
+        event.withdrawal.status
+      );
+      res.sendStatus(200);
+    }
   } catch (error) {
     console.error("Webhook error:", error.message);
     res.sendStatus(500);
@@ -233,9 +278,20 @@ export const deusxWebhook = async (req, res) => {
 };
 
 export const getCryptoTransactions = async (req, res) => {
+  const { currentPage } = req.query;
+  const page = currentPage || 1;
+  const limit = 15;
+  const skip = (page - 1) * limit;
   const payments = await MiningCryptoPayment.find({
     userId: req.user.userId,
-  }).sort({ createdAt: -1 });
+  })
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit);
   if (!payments) throw new NotFoundError("No payments");
-  res.status(200).json(payments);
+  const totalTransactions = await MiningCryptoPayment.countDocuments({
+    userId: req.user.userId,
+  });
+  const totalPages = Math.ceil(totalTransactions / limit);
+  res.status(200).json({ payments, totalPages });
 };

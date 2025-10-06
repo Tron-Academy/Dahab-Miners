@@ -15,8 +15,7 @@ const MiningPayoutSchema = new Schema(
     },
     status: {
       type: String,
-      default: "Pending",
-      enum: ["Pending", "Completed", "Failed"],
+      default: "pending",
     },
     walletAddress: {
       type: String,
@@ -27,6 +26,33 @@ const MiningPayoutSchema = new Schema(
       default: false,
     },
     txid: {
+      type: String,
+    },
+    deusxId: {
+      type: String,
+    },
+    remoteUID: {
+      type: String,
+    },
+    transactionFee: {
+      type: Number,
+    },
+    referenceId: {
+      type: String,
+    },
+    withdrawCurrency: {
+      type: String,
+    },
+    recieverCurrency: {
+      type: String,
+    },
+    network: {
+      type: String,
+    },
+    notes: {
+      type: String,
+    },
+    rawResponse: {
       type: String,
     },
   },

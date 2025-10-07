@@ -6,12 +6,13 @@ import {
   getAllNotifications,
   getUserNotifications,
 } from "../../controllers/miningApp/miningNotifications.js";
+import { validateAddNotificationInput } from "../../middleware/validationMiddleware.js";
 
 const router = Router();
 
 router.get("/", isSuperAdmin, getAllNotifications);
 router.get("/user", getUserNotifications);
-router.post("/", isSuperAdmin, addNotification);
+router.post("/", isSuperAdmin, validateAddNotificationInput, addNotification);
 router.delete("/", clearUserNotifications);
 
 export default router;

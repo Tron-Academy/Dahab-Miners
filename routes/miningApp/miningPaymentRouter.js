@@ -11,12 +11,20 @@ import {
   processWebHook,
   registerWebhook,
 } from "../../controllers/miningApp/miningPaymentController.js";
-import bodyParser from "body-parser";
 import { authenticateUser } from "../../middleware/authMiddleware.js";
+import {
+  validateCreateCryptoIntentInput,
+  validateCreateIntentInput,
+} from "../../middleware/validationMiddleware.js";
 
 const router = Router();
 
-router.post("/create-intent", authenticateUser, createPaymentIntent);
+router.post(
+  "/create-intent",
+  authenticateUser,
+  validateCreateIntentInput,
+  createPaymentIntent
+);
 router.get("/create-intent/:ziinaId", authenticateUser, getPaymentIntent);
 router.post("/webhooks/register", registerWebhook);
 router.delete("/webhooks/delete", deleteWebHook);
@@ -28,6 +36,7 @@ router.post(
 router.post(
   "/create-crypto-intent",
   authenticateUser,
+  validateCreateCryptoIntentInput,
   createCryptoPaymentIntent
 );
 router.get(

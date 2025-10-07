@@ -190,7 +190,7 @@ export const validateSetPriorityInput = withValidationErrors([
   // }),
 ]);
 
-// Mining App
+// Mining App - Auth
 export const validateMiningUserRegister = withValidationErrors([
   body("email")
     .notEmpty()
@@ -262,6 +262,25 @@ export const validateMiningVerifyCode = withValidationErrors([
   body("code").notEmpty().withMessage("Verification code is required"),
 ]);
 
+//mining-app - notifications
+export const validateAddNotificationInput = withValidationErrors([
+  body("message").notEmpty().withMessage("Message field is required"),
+]);
+
+//mining-app - payment gateway
+export const validateCreateIntentInput = withValidationErrors([
+  body("amount").notEmpty().withMessage("Amount is required"),
+  body("message").notEmpty().withMessage("Message is required"),
+]);
+
+export const validateCreateCryptoIntentInput = withValidationErrors([
+  body("amount").notEmpty().withMessage("Amount is required"),
+  body("message").notEmpty().withMessage("Message is required"),
+  body("crypto").notEmpty().withMessage("Crypto Type has to be specified"),
+]);
+
+//mining-app - Payout
+
 export const validateMakeWithdrawal = withValidationErrors([
   body("amount").notEmpty().withMessage("Amount is required"),
   body("address").notEmpty().withMessage("Wallet Address is required"),
@@ -274,6 +293,39 @@ export const validateUpdatePayoutStatus = withValidationErrors([
   body("amount").notEmpty().withMessage("Amount is required"),
 ]);
 
+// mining-app - Cart
+
+export const validateAddRemoveCartInput = withValidationErrors([
+  body("itemId")
+    .notEmpty()
+    .withMessage("Item Id cannot be Empty")
+    .isMongoId()
+    .withMessage("Invalid Product Id"),
+]);
+
+export const validateUpdateCartInput = withValidationErrors([
+  body("itemId")
+    .notEmpty()
+    .withMessage("Item Id cannot be Empty")
+    .isMongoId()
+    .withMessage("Invalid Product Id"),
+  body("qty").notEmpty().withMessage("Qty is required"),
+]);
+
+//mining-app - Revenue
+export const validateAddRevenueInput = withValidationErrors([
+  body("amount").notEmpty().withMessage("Amount is required"),
+  body("hashRate").notEmpty().withMessage("Hash Rate is required"),
+  body("category").notEmpty().withMessage("Category is required"),
+  body("uptime").notEmpty().withMessage("Uptime is required"),
+]);
+
+//mining-app - sats
+export const validateAddSatsInput = withValidationErrors([
+  body("sats").notEmpty().withMessage("sats value is required"),
+]);
+
+//mining-app - terms and conditions
 export const validateaddTerms = withValidationErrors([
   body("version")
     .notEmpty()
@@ -294,4 +346,15 @@ export const validateaddPrivacyPolicy = withValidationErrors([
       if (terms) throw new BadRequestError("term version already exists");
     }),
   body("content").notEmpty().withMessage("content is required"),
+]);
+
+//mining-app - wallet
+
+export const validateUpdateUserWallet = withValidationErrors([
+  body("amount").notEmpty().withMessage("Amount is required"),
+  body("id")
+    .notEmpty()
+    .withMessage("User Id is required")
+    .isMongoId()
+    .withMessage("Invalid User ID"),
 ]);

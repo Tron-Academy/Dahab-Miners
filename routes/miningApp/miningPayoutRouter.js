@@ -24,6 +24,6 @@ router.patch(
   validateUpdatePayoutStatus,
   updatePayoutStatus
 );
-router.post("/withdraw-intent", createWithdrawalIntent);
+router.post("/withdraw-intent", validateMakeWithdrawal, createWithdrawalIntent);
 
 export default router;

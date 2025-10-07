@@ -6,12 +6,13 @@ import {
   getA1246Uptime,
   getSats,
 } from "../../controllers/miningApp/miningSatsAndUptimeController.js";
+import { validateAddSatsInput } from "../../middleware/validationMiddleware.js";
 
 const router = Router();
 
-router.post("/", isSuperAdmin, addNewSats);
+router.post("/", isSuperAdmin, validateAddSatsInput, addNewSats);
 router.get("/", getSats);
-router.post("/uptime", isSuperAdmin, addA1246Uptime);
+// router.post("/uptime", isSuperAdmin, addA1246Uptime);
 router.get("/uptime", getA1246Uptime);
 
 export default router;

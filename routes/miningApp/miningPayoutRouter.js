@@ -17,13 +17,13 @@ const router = Router();
 router.get("/", isAdmin, isSuperAdmin, getAllPayouts);
 router.post("/", validateMakeWithdrawal, makeWithdrawal);
 router.get("/user", getUserPayouts);
-// router.patch(
-//   "/",
-//   isAdmin,
-//   isSuperAdmin,
-//   validateUpdatePayoutStatus,
-//   updatePayoutStatus
-// );
+router.patch(
+  "/",
+  isAdmin,
+  isSuperAdmin,
+  validateUpdatePayoutStatus,
+  updatePayoutStatus
+);
 router.post("/withdraw-intent", createWithdrawalIntent);
 
 export default router;

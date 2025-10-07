@@ -95,11 +95,11 @@ export const createWithdrawalIntent = async (req, res) => {
   const user = await MiningUser.findById(req.user.userId);
   if (!user) throw new NotFoundError("No user found");
   const { amount, address } = req.body;
-  const totalAmount = amount + 0.00033;
-  // if (amount < 0.005)
-  //   throw new BadRequestError(
-  //     "Minimum withdrawal amount is 0.005 BTC. Please enter an amount equal to or greater than this threshold"
-  //   );
+  const totalAmount = Number(amount) + 0.00033;
+  if (amount < 0.005)
+    throw new BadRequestError(
+      "Minimum withdrawal amount is 0.005 BTC. Please enter an amount equal to or greater than this threshold"
+    );
   const payouts = await MiningPayout.find({
     user: req.user.userId,
     status: { $nin: ["Complete", "Failed", "Cancelled", "Rejected"] },
@@ -117,7 +117,7 @@ export const createWithdrawalIntent = async (req, res) => {
 
   const requestBody = {
     fiat_currency: "AED",
-    crypto_amount_net: totalAmount,
+    crypto_amount_net: Number(amount),
     profile_id: process.env.DEUSX_PROFILE_UUID,
     address: address,
     currency: "BTC",

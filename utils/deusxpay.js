@@ -4,7 +4,7 @@ import { Base64 } from "js-base64";
 import https from "https";
 import url from "url";
 
-const API_URL = "https://preprod-api.deusxpay.com/pay";
+const API_URL = "https://api.deusxpay.com/pay";
 const API_KEY = process.env.DEUSX_API_KEY2;
 const API_SECRET = process.env.DEUSX_API_SECRET2;
 

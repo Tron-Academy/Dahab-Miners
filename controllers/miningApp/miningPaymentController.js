@@ -144,7 +144,6 @@ export const processWebHook = async (req, res) => {
   }
   res.sendStatus(200);
 };
-//test true
 
 export const createCryptoPaymentIntent = async (req, res) => {
   const { amount, message, items, crypto } = req.body;

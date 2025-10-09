@@ -294,3 +294,7 @@ export const getCryptoTransactions = async (req, res) => {
   const totalPages = Math.ceil(totalTransactions / limit);
   res.status(200).json({ payments, totalPages });
 };
+
+export const walletInfo = async (req, res) => {
+  res.status(200).json({ message: "No Information Available" });
+};

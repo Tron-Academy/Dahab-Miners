@@ -10,6 +10,7 @@ import {
   getPaymentIntent,
   processWebHook,
   registerWebhook,
+  walletInfo,
 } from "../../controllers/miningApp/miningPaymentController.js";
 import { authenticateUser } from "../../middleware/authMiddleware.js";
 import {
@@ -49,6 +50,7 @@ router.post(
   express.raw({ type: "application/json" }),
   deusxWebhook
 );
+router.get("/wallet-info", walletInfo);
 router.get("/crypto-transactions", authenticateUser, getCryptoTransactions);
 
 export default router;

@@ -370,3 +370,9 @@ export const setPriority = async (req, res) => {
     session.endSession();
   }
 };
+
+export const deleteRepairMiner = async (req, res) => {
+  const miner = await Repair.findByIdAndDelete(req.params.id);
+  if (!miner) throw new NotFoundError("No miner has been found");
+  res.status(200).json({ msg: "Deleted successfully" });
+};

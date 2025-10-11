@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   addIssues,
   addNewRepairMiner,
+  deleteRepairMiner,
   failTesting,
   generateReport,
   getAllRepairMiner,
@@ -26,6 +27,7 @@ import {
   validateUpdateRepairStatusInput,
 } from "../middleware/validationMiddleware.js";
 import upload from "../middleware/multerMiddleware.js";
+import { isSuperAdmin } from "../middleware/authMiddleware.js";
 
 const router = Router();
 
@@ -53,5 +55,6 @@ router.patch("/test-fail/:id", validateTestPassInput, failTesting);
 router.patch("/generateReport/:id", generateReport);
 router.patch("/set-priority/:id", validateSetPriorityInput, setPriority);
 router.delete("/:id", removeMiner);
+router.delete("/delete/:id", isSuperAdmin, deleteRepairMiner);
 
 export default router;

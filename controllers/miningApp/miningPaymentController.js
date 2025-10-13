@@ -296,5 +296,8 @@ export const getCryptoTransactions = async (req, res) => {
 };
 
 export const walletInfo = async (req, res) => {
-  res.status(200).json({ message: "No Information Available" });
+  res.status(200).json({
+    message:
+      "This is a read only page to make payments towards wallet please visit mining.dahabminers.com",
+  });
 };

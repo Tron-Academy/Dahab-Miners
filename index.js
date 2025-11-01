@@ -38,6 +38,7 @@ import miningTermsRouter from "./routes/miningApp/miningTermsRouter.js";
 import miningNotificationRouter from "./routes/miningApp/miningNotificationRouter.js";
 import miningUserRouter from "./routes/miningApp/miningUserRouter.js";
 import miningPaymentRouter from "./routes/miningApp/miningPaymentRouter.js";
+import { addA1246AutomatedRevenue } from "./cronJobs/A124RevenueAutomation.js";
 // import { processBitGoPayouts } from "./cronJobs/BitgoCron.js";
 
 const app = express();
@@ -142,7 +143,7 @@ try {
     }
   );
   cron.schedule(
-    "45 0 * * *",
+    "10 0 * * *",
     async () => {
       console.log("Cron revenue started running");
       await addS19Revenue();
@@ -151,17 +152,14 @@ try {
       timezone: "Asia/Dubai", // UAE time zone
     }
   );
-  // cron.schedule(
-  //   "*/3 * * * *",
-  //   async () => {
-  //     console.log("Cron bitgo Process started running");
-  //     await processBitGoPayouts();
-  //     console.log("finished");
-  //   },
-  //   {
-  //     timezone: "Asia/Dubai", // UAE time zone
-  //   }
-  // );
+  cron.schedule(
+    "50 1 * * *",
+    async () => {
+      console.log("Cron for A1246 revenue and hosting started running");
+      await addA1246AutomatedRevenue();
+    },
+    { timezone: "Asia/Dubai" }
+  );
 
   app.listen(port, () => {
     console.log(`server running on port ${port}`);
@@ -170,5 +168,3 @@ try {
   console.log(error);
   process.exit(1);
 }
-
-//test

@@ -12,6 +12,7 @@ const A1246UptimeSchema = new Schema(
     },
     uptimeHistory: {
       type: [uptimeHistorySchema],
+      default: [],
     },
   },
   { timestamps: true }

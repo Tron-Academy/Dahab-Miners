@@ -3,6 +3,8 @@ import { BadRequestError, NotFoundError } from "../../errors/customErrors.js";
 import MiningProduct from "../../models/miningApp/MiningProduct.js";
 import MiningUser from "../../models/miningApp/MiningUser.js";
 import { v4 as uuid4 } from "uuid";
+import { v2 as cloudinary } from "cloudinary";
+import { formatImage } from "../../middleware/multerMiddleware.js";
 
 export const getAllMiners = async (req, res) => {
   const miners = await MiningProduct.find({ isTest: { $ne: true } }).sort({
@@ -12,10 +14,127 @@ export const getAllMiners = async (req, res) => {
   res.status(200).json(miners);
 };
 
+export const addNewMiner = async (req, res) => {
+  const {
+    name,
+    hashRate,
+    power,
+    price,
+    stock,
+    hostingFeePerKw,
+    breakEvenHash,
+    coin,
+    algorithm,
+    category,
+    description,
+    subtitle,
+    investmentFactor,
+    riskFactor,
+    hostingFactor,
+    revenueFactor,
+    efficiencyFactor,
+    features,
+    idealFor,
+  } = req.body;
+  let image;
+  let imageId;
+  if (req.file) {
+    const file = formatImage(req.file);
+    const response = await cloudinary.uploader.upload(file);
+
+    image = response.secure_url;
+    imageId = response.public_id;
+  }
+  if (!req.file) throw new BadRequestError("No Image file found");
+
+  const newMiner = new MiningProduct({
+    name,
+    hashRate: Number(hashRate),
+    power: Number(power),
+    price: Number(price),
+    stock: Number(stock),
+    hostingFeePerKw: Number(hostingFeePerKw),
+    breakEvenHash: Number(breakEvenHash),
+    coin,
+    algorithm,
+    category,
+    description,
+    subtitle,
+    investmentFactor: Number(investmentFactor),
+    riskFactor: Number(riskFactor),
+    hostingFactor: Number(hostingFactor),
+    revenueFactor: Number(revenueFactor),
+    efficiencyFactor: Number(efficiencyFactor),
+    features: features.split(","),
+    idealFor: idealFor.split(","),
+    image,
+    imageId,
+  });
+  await newMiner.save();
+  res.status(201).json({ msg: "success" });
+};
+
 export const getSingleMiner = async (req, res) => {
   const miner = await MiningProduct.findById(req.params.id);
   if (!miner) throw new NotFoundError("No miner found");
   res.status(200).json(miner);
+};
+
+export const editSingleMiner = async (req, res) => {
+  const {
+    name,
+    hashRate,
+    power,
+    price,
+    stock,
+    hostingFeePerKw,
+    breakEvenHash,
+    coin,
+    algorithm,
+    category,
+    description,
+    subtitle,
+    investmentFactor,
+    riskFactor,
+    hostingFactor,
+    revenueFactor,
+    efficiencyFactor,
+    features,
+    idealFor,
+  } = req.body;
+
+  const miner = await MiningProduct.findById(req.params.id);
+  if (!miner) throw new NotFoundError("No miner found");
+  if (req.file) {
+    const file = formatImage(req.file);
+    if (miner.imageId) {
+      await cloudinary.uploader.destroy(miner.imageId);
+    }
+    const response = await cloudinary.uploader.upload(file);
+    miner.image = response.secure_url;
+    miner.imageId = response.public_id;
+  }
+  miner.name = name;
+  miner.hashRate = Number(hashRate);
+  miner.power = Number(power);
+  miner.price = Number(price);
+  miner.stock = Number(stock);
+  miner.hostingFeePerKw = Number(hostingFeePerKw);
+  miner.breakEvenHash = Number(breakEvenHash);
+  miner.coin = coin;
+  miner.algorithm = algorithm;
+  miner.category = category;
+  miner.description = description;
+  miner.subtitle = subtitle;
+  miner.investmentFactor = Number(investmentFactor);
+  miner.riskFactor = Number(riskFactor);
+  miner.hostingFactor = Number(hostingFactor);
+  miner.revenueFactor = Number(revenueFactor);
+  miner.efficiencyFactor = Number(efficiencyFactor);
+  miner.features = features.split(",");
+  miner.idealFor = idealFor.split(",");
+  await miner.save();
+  res.status(200).json({ msg: "success" });
 };
 
 export const getCartItems = async (req, res) => {

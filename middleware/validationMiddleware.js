@@ -312,6 +312,35 @@ export const validateUpdateCartInput = withValidationErrors([
   body("qty").notEmpty().withMessage("Qty is required"),
 ]);
 
+//mining-app - Product
+
+export const validateAddMiningMiner = withValidationErrors([
+  body("name").notEmpty().withMessage("Name is required"),
+  body("hashRate").notEmpty().withMessage("HashRate is required"),
+  body("power").notEmpty().withMessage("power is required"),
+  body("stock").notEmpty().withMessage("stock is required"),
+  body("hostingFeePerKw")
+    .notEmpty()
+    .withMessage("Hosting Fee Per KW is required"),
+  body("breakEvenHash").notEmpty().withMessage("Break Even Hash is required"),
+  body("coin").notEmpty().withMessage("Coin is required"),
+  body("algorithm").notEmpty().withMessage("Algorithm is required"),
+  body("category").notEmpty().withMessage("Category is required"),
+  body("description").notEmpty().withMessage("Description is required"),
+  body("subtitle").notEmpty().withMessage("Subtitle is required"),
+  body("investmentFactor")
+    .notEmpty()
+    .withMessage("Investment Factor is required"),
+  body("riskFactor").notEmpty().withMessage("Risk Factor is required"),
+  body("hostingFactor").notEmpty().withMessage("Hosting Factor is required"),
+  body("revenueFactor").notEmpty().withMessage("Revenue Factor is required"),
+  body("efficiencyFactor")
+    .notEmpty()
+    .withMessage("Efficiency Factor is required"),
+  body("features").notEmpty().withMessage("Features is required"),
+  body("idealFor").notEmpty().withMessage("Ideal for is required"),
+]);
+
 //mining-app - Revenue
 export const validateAddRevenueInput = withValidationErrors([
   body("amount").notEmpty().withMessage("Amount is required"),

@@ -137,6 +137,18 @@ export const editSingleMiner = async (req, res) => {
   res.status(200).json({ msg: "success" });
 };
 
+// export const deleteMiningMiner = async (req, res) => {
+//   const session = await mongoose.startSession();
+//   session.startTransaction();
+//   try {
+//     const minerId = req.params.id;
+//     const deletedMiner = await MiningProduct.findByIdAndDelete(minerId, {
+//       session,
+//     });
+//     if (!deletedMiner) throw new NotFoundError("No miner found");
+//   } catch (error) {}
+// };
+
 export const getCartItems = async (req, res) => {
   const user = await MiningUser.findById(req.user.userId).populate(
     "cartItems.itemId"

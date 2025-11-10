@@ -18,14 +18,31 @@ export const assignMinerToUser = async (userId, items) => {
     validity.setFullYear(validity.getFullYear() + 3);
     const newOwnedMiners = [];
     const amount = buyItems.reduce(
-      (sum, item) =>
-        sum +
-        item.qty *
-          item.itemId.power *
-          24 *
-          item.itemId.hostingFeePerKw *
-          3.67 *
-          30,
+      (sum, item) => {
+        if (item.itemId.isBulkHosting) {
+          return (
+            sum +
+            item.qty *
+              item.itemId.power *
+              24 *
+              item.itemId.hostingFeePerKw *
+              3.67 *
+              365 *
+              3
+          );
+        } else {
+          return (
+            sum +
+            item.qty *
+              item.itemId.power *
+              24 *
+              item.itemId.hostingFeePerKw *
+              3.67 *
+              30
+          );
+        }
+      },
+
       0
     );
     user.walletBalance = user.walletBalance + amount;
@@ -34,7 +51,7 @@ export const assignMinerToUser = async (userId, items) => {
       amount: Number(amount),
       type: "credited",
       currentWalletBalance: user.walletBalance,
-      message: "Miner Purchase Hosting Fee Prepayment for 1 Month",
+      message: "Miner Purchase Hosting Fee Prepayment",
     });
     for (const item of buyItems) {
       const product = await MiningProduct.findById(item.itemId).session(

@@ -29,6 +29,7 @@ const miningProductSchema = new Schema(
     },
     isTest: Boolean,
     ogName: String,
+    isBulkHosting: Boolean,
   },
   { timestamps: true }
 );

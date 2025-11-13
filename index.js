@@ -38,6 +38,7 @@ import miningTermsRouter from "./routes/miningApp/miningTermsRouter.js";
 import miningNotificationRouter from "./routes/miningApp/miningNotificationRouter.js";
 import miningUserRouter from "./routes/miningApp/miningUserRouter.js";
 import miningPaymentRouter from "./routes/miningApp/miningPaymentRouter.js";
+import iosRouter from "./routes/miningApp/iosRouter.js";
 import { addA1246AutomatedRevenue } from "./cronJobs/A124RevenueAutomation.js";
 // import { processBitGoPayouts } from "./cronJobs/BitgoCron.js";
 
@@ -118,6 +119,7 @@ app.use(
 );
 app.use("/api/mining/users", authenticateUser, isSuperAdmin, miningUserRouter);
 app.use("/api/mining/payment", miningPaymentRouter);
+app.use("/api/mining/ios", iosRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });

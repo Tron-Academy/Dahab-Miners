@@ -35,6 +35,7 @@ export const addNewMiner = async (req, res) => {
     efficiencyFactor,
     features,
     idealFor,
+    bulkHosting,
   } = req.body;
   let image;
   let imageId;
@@ -69,6 +70,7 @@ export const addNewMiner = async (req, res) => {
     idealFor: idealFor.split(","),
     image,
     imageId,
+    isBulkHosting: bulkHosting === "Yes" ? true : false,
   });
   await newMiner.save();
   res.status(201).json({ msg: "success" });
@@ -101,6 +103,7 @@ export const editSingleMiner = async (req, res) => {
     efficiencyFactor,
     features,
     idealFor,
+    bulkHosting,
   } = req.body;
 
   const miner = await MiningProduct.findById(req.params.id);
@@ -133,6 +136,7 @@ export const editSingleMiner = async (req, res) => {
   miner.efficiencyFactor = Number(efficiencyFactor);
   miner.features = features.split(",");
   miner.idealFor = idealFor.split(",");
+  miner.isBulkHosting = bulkHosting === "Yes" ? true : false;
   await miner.save();
   res.status(200).json({ msg: "success" });
 };

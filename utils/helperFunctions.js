@@ -91,17 +91,17 @@ export const updateUserWallet = async (userId, amount) => {
   try {
     const user = await MiningUser.findById(userId);
     if (!user) throw new NotFoundError("no user found");
-    user.walletBalance = user.walletBalance + Number(amount / 100);
+    user.walletBalance = user.walletBalance + Number(amount);
     user.walletTransactions.push({
       date: new Date(),
-      amount: Number(amount / 100),
+      amount: Number(amount),
       type: "credited",
       currentWalletBalance: user.walletBalance,
       message: "Wallet Recharge",
     });
     await user.save();
     return {
-      amount: Number(amount / 100),
+      amount: Number(amount),
       currentBalance: user.currentBalance,
     };
   } catch (error) {

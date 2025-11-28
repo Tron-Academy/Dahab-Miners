@@ -116,6 +116,13 @@ const miningUserSchema = new Schema(
       ref: "MiningPayout",
     },
     isTest: Boolean,
+    isRefferal: {
+      type: Boolean,
+      default: false,
+    },
+    referralCode: {
+      type: String,
+    },
     walletTransactions: [walletTransactionSchema],
     ProfitModeDeductions: [profitModeHostingTransactionSchema],
     latestTermVersion: String,

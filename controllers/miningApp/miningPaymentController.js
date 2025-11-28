@@ -1,6 +1,6 @@
 import axios from "axios";
 import { v4 as uuid4 } from "uuid";
-import { NotFoundError } from "../../errors/customErrors.js";
+import { BadRequestError, NotFoundError } from "../../errors/customErrors.js";
 import MiningUser from "../../models/miningApp/MiningUser.js";
 import MiningPayment from "../../models/miningApp/MiningPayment.js";
 import crypto from "crypto";
@@ -11,13 +11,47 @@ import {
 import { deusxPayRequest, verifyWebhook } from "../../utils/deusxpay.js";
 import MiningCryptoPayment from "../../models/miningApp/MiningCryptoPayment.js";
 import MiningPayout from "../../models/miningApp/MiningPayout.js";
+import MiningVoucher from "../../models/miningApp/MiningVoucher.js";
 
 export const createPaymentIntent = async (req, res) => {
-  const { amount, message, items } = req.body;
+  const { amount, message, items, voucherCode } = req.body;
   const user = await MiningUser.findById(req.user.userId);
   if (!user) throw new NotFoundError("No user has been found");
+
+  let finalAmount = Number(amount);
+  let discountValue = 0;
+  // VOUCHER CHECKS
+  let appliedVoucher = null;
+
+  if (voucherCode) {
+    //voucher exist check
+    const voucher = await MiningVoucher.findOne({ code: voucherCode });
+    if (!voucher) throw new BadRequestError("Invalid voucher code");
+    //validity check
+    const today = new Date();
+    if (new Date(voucher.validity) < today) {
+      throw new BadRequestError("This voucher has expired");
+    }
+    //min spent
+    if (finalAmount < voucher.minimumSpent) {
+      throw new BadRequestError(
+        `Minimum amount of ${voucher.minimumSpent} must be spent to avail this offer`
+      );
+    }
+    //voucher type
+    if (voucher.applicableFor !== "Both" && voucher.applicableFor !== message)
+      throw new BadRequestError(
+        `This voucher is not applicable for ${message}`
+      );
+
+    discountValue = (finalAmount * voucher.discount) / 100;
+    finalAmount = finalAmount - discountValue;
+
+    if (finalAmount < 1) finalAmount = 1;
+    appliedVoucher = voucher;
+  }
   const payload = {
-    amount: Number(amount * 100),
+    amount: Number(finalAmount * 100),
     currency_code: "AED",
     message: message,
     success_url:
@@ -40,7 +74,8 @@ export const createPaymentIntent = async (req, res) => {
   const pi = new MiningPayment({
     ziinaId: data.id,
     userId: user._id,
-    amount: data.amount,
+    amount: Number(data.amount) / 100,
+    actualAmount: Number(amount),
     currencyCode: data.currency_code,
     status: data.status,
     redirectURL: data.redirect_url,
@@ -51,6 +86,9 @@ export const createPaymentIntent = async (req, res) => {
     isTest: false,
     lastPayload: data,
     items: items,
+    voucherCode: voucherCode || null,
+    discountApplied: appliedVoucher?.discount || 0,
+    discountAmount: discountValue,
   });
   await pi.save();
 
@@ -135,7 +173,7 @@ export const processWebHook = async (req, res) => {
       pi.message === "wallet Topup" &&
       !pi.processed
     ) {
-      await updateUserWallet(pi.userId, amount);
+      await updateUserWallet(pi.userId, pi.actualAmount);
       pi.processed = true;
       await pi.save();
     }
@@ -146,11 +184,49 @@ export const processWebHook = async (req, res) => {
 };
 
 export const createCryptoPaymentIntent = async (req, res) => {
-  const { amount, message, items, crypto } = req.body;
+  const { amount, message, items, crypto, voucherCode } = req.body;
   const orderId = uuid4();
+
+  const user = await MiningUser.findById(req.user.userId);
+  if (!user) throw new NotFoundError("No user has been found");
+
+  let finalAmount = Number(amount);
+  let discountValue = 0;
+  //VOUCHER CHECKS
+
+  let appliedVoucher = null;
+
+  if (voucherCode) {
+    //voucher exists
+    const voucher = await MiningVoucher.findOne({ code: voucherCode });
+    if (!voucher) throw new BadRequestError("Invalid voucher code");
+
+    //check validity
+    const today = new Date();
+    if (new Date(voucher.validity) < today)
+      throw new BadRequestError("This voucher is expired");
+
+    //minimum spent
+    if (finalAmount < voucher.minimumSpent)
+      throw new BadRequestError(
+        `Minimum amount of ${voucher.minimumSpent} must be spent to avail this offer`
+      );
+
+    //applicable type
+    if (voucher.applicableFor !== "Both" && voucher.applicableFor !== message) {
+      throw new BadRequestError(`This offer is not applicable for ${message}`);
+    }
+
+    discountValue = (finalAmount * voucher.discount) / 100;
+    finalAmount = finalAmount - discountValue;
+
+    if (finalAmount < 1) finalAmount = 1;
+    appliedVoucher = voucher;
+  }
+
   const requestBody = {
     requested_currency: "AED",
-    requested_amount: amount.toString(),
+    requested_amount: finalAmount.toString(),
     payment_currency: crypto,
     profile_uuid: process.env.DEUSX_PROFILE_UUID,
     passthrough: JSON.stringify({ orderId: orderId, note: message }),
@@ -162,10 +238,11 @@ export const createCryptoPaymentIntent = async (req, res) => {
 
   const payment = new MiningCryptoPayment({
     deusxId: paymentData.result.id,
-    userId: req.user.userId,
+    userId: user._id,
     orderId: orderId,
     requestedCurrency: paymentData.result.requested_currency,
     requestedAmount: paymentData.result.requested_amount,
+    actualAmount: Number(amount),
     paymentCurrency: paymentData.result.payment_currency,
     status: paymentData.result.status,
     addresses: paymentData.result.addresses,
@@ -174,6 +251,9 @@ export const createCryptoPaymentIntent = async (req, res) => {
     rawResponse: paymentData.result,
     paymentAmount: paymentData.result.payment_amount,
     items: items,
+    voucherCode: voucherCode || null,
+    discountApplied: appliedVoucher?.discount || 0,
+    discountAmount: discountValue,
   });
 
   await payment.save();
@@ -211,7 +291,7 @@ export const deusxWebhook = async (req, res) => {
             await assignMinerToUser(payment.userId, payment.items);
           }
           if (payment.notes === "wallet Topup") {
-            const paymentAmount = payment.requestedAmount * 100; //because using the same function of ziina. in zina amount is in smaller units
+            const paymentAmount = payment.actualAmount;
             await updateUserWallet(payment.userId, paymentAmount);
           }
           payment.processed = true;

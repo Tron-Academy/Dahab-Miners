@@ -22,6 +22,10 @@ const MiningCryptoPaymentSchema = new Schema(
       type: Number,
       required: true,
     },
+    actualAmount: {
+      type: Number,
+      required: true,
+    },
     paymentAmount: {
       type: Number,
       required: true,
@@ -53,6 +57,9 @@ const MiningCryptoPaymentSchema = new Schema(
     items: {
       type: String,
     },
+    voucherCode: String,
+    discountApplied: Number,
+    discountAmount: Number,
   },
   { timestamps: true }
 );

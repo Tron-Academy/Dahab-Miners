@@ -387,3 +387,15 @@ export const validateUpdateUserWallet = withValidationErrors([
     .isMongoId()
     .withMessage("Invalid User ID"),
 ]);
+
+///Voucher Validation
+
+export const validateAddMiningVoucher = withValidationErrors([
+  body("name").notEmpty().withMessage("Name is required"),
+  body("code").notEmpty().withMessage("Code is required"),
+  body("description").notEmpty().withMessage("Description is required"),
+  body("voucherType").notEmpty().withMessage("Voucher Type is required"),
+  body("validity").notEmpty().withMessage("Validity is required"),
+  body("minimum").notEmpty().withMessage("Minimum is required"),
+  body("discount").notEmpty().withMessage("Discount is required"),
+]);

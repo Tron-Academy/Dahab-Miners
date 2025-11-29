@@ -13,6 +13,17 @@ const minedRewardsSchema = new Schema({
   amount: Number,
 });
 
+const referralVoucherSchema = new Schema({
+  name: String,
+  code: String,
+  discount: Number,
+  description: String,
+  minimumSpent: Number,
+  isApplied: Boolean,
+  applicableFor: String,
+  validity: Date,
+});
+
 const walletTransactionSchema = new Schema({
   date: Date,
   amount: Number,
@@ -116,13 +127,10 @@ const miningUserSchema = new Schema(
       ref: "MiningPayout",
     },
     isTest: Boolean,
-    isRefferal: {
-      type: Boolean,
-      default: false,
-    },
-    referralCode: {
+    referredBy: {
       type: String,
     },
+    referralVouchers: { type: [referralVoucherSchema], default: [] },
     walletTransactions: [walletTransactionSchema],
     ProfitModeDeductions: [profitModeHostingTransactionSchema],
     latestTermVersion: String,

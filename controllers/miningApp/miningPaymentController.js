@@ -24,9 +24,20 @@ export const createPaymentIntent = async (req, res) => {
   let appliedVoucher = null;
 
   if (voucherCode) {
-    //voucher exist check
-    const voucher = await MiningVoucher.findOne({ code: voucherCode });
-    if (!voucher) throw new BadRequestError("Invalid voucher code");
+    let voucher = null;
+    if (voucherCode.startsWith("REF")) {
+      voucher = user.referralVouchers.find((item) => item.code === voucherCode);
+      if (!voucher) throw new NotFoundError("No voucher found");
+
+      if (voucher.isApplied) {
+        throw new BadRequestError("This voucher is already used");
+      }
+    } else {
+      //voucher exist check
+      voucher = await MiningVoucher.findOne({ code: voucherCode });
+      if (!voucher) throw new BadRequestError("Invalid voucher code");
+    }
+
     //validity check
     const today = new Date();
     if (new Date(voucher.validity) < today) {
@@ -91,6 +102,10 @@ export const createPaymentIntent = async (req, res) => {
     discountAmount: discountValue,
   });
   await pi.save();
+  if (voucherCode.startsWith("REF")) {
+    appliedVoucher.isApplied = true;
+    await user.save();
+  }
 
   res
     .status(200)
@@ -197,10 +212,18 @@ export const createCryptoPaymentIntent = async (req, res) => {
   let appliedVoucher = null;
 
   if (voucherCode) {
-    //voucher exists
-    const voucher = await MiningVoucher.findOne({ code: voucherCode });
-    if (!voucher) throw new BadRequestError("Invalid voucher code");
+    let voucher = null;
+    if (voucherCode.startsWith("REF")) {
+      voucher = user.referralVouchers.find((item) => item.code === voucherCode);
+      if (!voucher) throw new BadRequestError("Invalid voucher code");
 
+      if (voucher.isApplied)
+        throw new BadRequestError("This voucher has already been applied");
+    } else {
+      //voucher exists
+      voucher = await MiningVoucher.findOne({ code: voucherCode });
+      if (!voucher) throw new BadRequestError("Invalid voucher code");
+    }
     //check validity
     const today = new Date();
     if (new Date(voucher.validity) < today)
@@ -257,6 +280,10 @@ export const createCryptoPaymentIntent = async (req, res) => {
   });
 
   await payment.save();
+  if (voucherCode.startsWith("REF")) {
+    appliedVoucher.isApplied = true;
+    await user.save();
+  }
   res.status(200).json(paymentData.result);
 };
 

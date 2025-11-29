@@ -17,9 +17,14 @@ import mongoose from "mongoose";
 import MiningAccountClosure from "../../models/miningApp/MiningAccountClosure.js";
 
 export const miningRegister = async (req, res) => {
-  const { email, password, username } = req.body;
+  const { email, password, username, referral } = req.body;
   const terms = await MiningTerms.findOne().sort({ createdAt: -1 });
   const policy = await MiningPrivacy.findOne().sort({ createdAt: -1 });
+  let referredUser = null;
+  if (referral) {
+    referredUser = await MiningUser.findOne({ username: referral });
+    if (!referredUser) throw new NotFoundError("Referral Code not exist");
+  }
   const hashed = await hashPassword(password);
   const newUser = new MiningUser({
     username,
@@ -36,6 +41,32 @@ export const miningRegister = async (req, res) => {
     date: new Date(),
     version: policy.version,
   });
+  if (referral) {
+    newUser.referredBy = referredUser.username;
+    const today = new Date();
+    const validTill = new Date(today);
+    validTill.setMonth(today.getMonth() + 3);
+    newUser.referralVouchers.push({
+      name: "REFFERAL",
+      code: `REF-${referredUser.username.toUpperCase()}`,
+      discount: 10,
+      description: `Grab instant 10% discount on all wallet topup and Miner purchase`,
+      applicableFor: "Both",
+      minimumSpent: 2000,
+      validity: validTill,
+      isApplied: false,
+    });
+    referredUser.referralVouchers.push({
+      name: "REFFERAL",
+      code: `REF-${newUser.username.toUpperCase()}`,
+      discount: 30,
+      description: `Grab instant 10% discount on all wallet topup and Miner purchase`,
+      applicableFor: "Both",
+      minimumSpent: 2000,
+      validity: validTill,
+      isApplied: false,
+    });
+  }
   const code = Math.floor(1000 + Math.random() * 9000);
   newUser.verificationCode = code.toString();
   const mailOptions = {
@@ -49,6 +80,7 @@ export const miningRegister = async (req, res) => {
   };
   await sendMail(transporter, mailOptions);
   newUser.verificationCode = code;
+  await referredUser.save();
   await newUser.save();
 
   res.status(200).json({ msg: "successfully Registered" });

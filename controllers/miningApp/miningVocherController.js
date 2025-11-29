@@ -1,4 +1,5 @@
 import { NotFoundError } from "../../errors/customErrors.js";
+import MiningUser from "../../models/miningApp/MiningUser.js";
 import MiningVoucher from "../../models/miningApp/MiningVoucher.js";
 
 export const addNewVoucher = async (req, res) => {
@@ -34,6 +35,26 @@ export const getAllVouchers = async (req, res) => {
   try {
     const vouchers = await MiningVoucher.find().sort({ createdAt: -1 });
     res.status(200).json(vouchers);
+  } catch (error) {
+    res
+      .status(error.statusCode || 500)
+      .json({ msg: error.msg || error.message });
+  }
+};
+
+export const getUserVouchers = async (req, res) => {
+  try {
+    const vouchers = await MiningVoucher.find().sort({ createdAt: -1 });
+    const user = await MiningUser.findById(req.user.userId);
+    if (!user) throw new NotFoundError("No user found");
+    let referralVouchers = [];
+    if (user.referralVouchers?.length > 0) {
+      referralVouchers = user.referralVouchers.filter(
+        (item) => item.isApplied === false
+      );
+    }
+    const totalVouchers = [...vouchers, ...referralVouchers];
+    res.status(200).json(totalVouchers);
   } catch (error) {
     res
       .status(error.statusCode || 500)

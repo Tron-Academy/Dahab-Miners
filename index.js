@@ -9,12 +9,18 @@ import cors from "cors";
 import { v2 as cloudinary } from "cloudinary";
 import morgan from "morgan";
 import cron from "node-cron";
+import helmet from "helmet";
+import hpp from "hpp";
+import mongoSanitize from "express-mongo-sanitize";
+import xss from "xss-clean";
+import rateLimit from "express-rate-limit";
 
 import errorHandlerMiddleware from "./middleware/errorHandleMiddleware.js";
 import { calculateAndDeductHostingFee } from "./cronJobs/walletDeductions.js";
 import {
   authenticateUser,
   isAdmin,
+  isIntermine,
   isSuperAdmin,
 } from "./middleware/authMiddleware.js";
 import { addS19Revenue } from "./cronJobs/S19KRevenueAutomation.js";
@@ -41,10 +47,25 @@ import miningPaymentRouter from "./routes/miningApp/miningPaymentRouter.js";
 import iosRouter from "./routes/miningApp/iosRouter.js";
 import miningVoucherRouter from "./routes/miningApp/miningVoucherRouter.js";
 import { addA1246AutomatedRevenue } from "./cronJobs/A124RevenueAutomation.js";
+import intermineRouter from "./routes/intermine/intermineRouter.js";
+import adminNotificationRouter from "./routes/adminNotificationRouter.js";
+
 // import { processBitGoPayouts } from "./cronJobs/BitgoCron.js";
 
 const app = express();
 
+app.use(hpp());
+app.use(helmet());
+app.use(mongoSanitize());
+app.use(xss());
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 300, // block after 300 requests/15 min
+  message: "Too many requests, please try again later.",
+});
+app.use(limiter);
+app.disable("x-powered-by");
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -68,6 +89,7 @@ const allowedOrigins = [
   "https://dahabminers.com",
   "https://mining.dahabminers.com",
   "http://localhost:5173",
+  "http://localhost:3000",
 ];
 
 app.use(
@@ -122,6 +144,13 @@ app.use("/api/mining/users", authenticateUser, isSuperAdmin, miningUserRouter);
 app.use("/api/mining/payment", miningPaymentRouter);
 app.use("/api/mining/ios", iosRouter);
 app.use("/api/mining/voucher", authenticateUser, miningVoucherRouter);
+app.use("/api/intermine", isIntermine, intermineRouter);
+app.use(
+  "/api/admin/notification",
+  authenticateUser,
+  isSuperAdmin,
+  adminNotificationRouter
+);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });

@@ -80,7 +80,9 @@ export const miningRegister = async (req, res) => {
   };
   await sendMail(transporter, mailOptions);
   newUser.verificationCode = code;
-  await referredUser.save();
+  if (referredUser) {
+    await referredUser.save();
+  }
   await newUser.save();
 
   res.status(200).json({ msg: "successfully Registered" });

@@ -32,6 +32,12 @@ const DataSchema = new Schema(
     workerId: {
       type: String,
     },
+    serviceProviderChanged: {
+      type: Boolean,
+    },
+    serviceProviderChangedTo: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

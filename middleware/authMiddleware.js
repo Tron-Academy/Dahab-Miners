@@ -1,4 +1,7 @@
-import { UnauthenticatedError } from "../errors/customErrors.js";
+import {
+  BadRequestError,
+  UnauthenticatedError,
+} from "../errors/customErrors.js";
 import { verifyJWT } from "../utils/jwtUtils.js";
 
 export const authenticateUser = async (req, res, next) => {
@@ -68,4 +71,12 @@ export const isRepairAdmin = async (req, res, next) => {
     console.log(error);
     throw new UnauthenticatedError("Not Authorised for this operation");
   }
+};
+
+export const isIntermine = async (req, res, next) => {
+  const apiKey = req.headers["x-api-key"];
+  if (!apiKey) throw new UnauthenticatedError("Missing API Key");
+  if (apiKey !== process.env.INTERMINE_API_KEY)
+    throw new BadRequestError("Invalid API Key");
+  next();
 };

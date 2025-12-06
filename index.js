@@ -49,6 +49,7 @@ import miningVoucherRouter from "./routes/miningApp/miningVoucherRouter.js";
 import { addA1246AutomatedRevenue } from "./cronJobs/A124RevenueAutomation.js";
 import intermineRouter from "./routes/intermine/intermineRouter.js";
 import adminNotificationRouter from "./routes/adminNotificationRouter.js";
+import adminMessageRouter from "./routes/adminMessageRouter.js";
 
 // import { processBitGoPayouts } from "./cronJobs/BitgoCron.js";
 
@@ -150,6 +151,12 @@ app.use(
   authenticateUser,
   isSuperAdmin,
   adminNotificationRouter
+);
+app.use(
+  "/api/admin/messages",
+  authenticateUser,
+  isSuperAdmin,
+  adminMessageRouter
 );
 
 app.use("*", (req, res) => {

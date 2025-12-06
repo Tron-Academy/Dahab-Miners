@@ -1,3 +1,5 @@
+export const intermineURL = "http://localhost:3000/api/v1/service-provider";
+
 export const manufacturer = [
   "Aisen",
   "Baikal",

@@ -399,3 +399,22 @@ export const validateAddMiningVoucher = withValidationErrors([
   body("minimum").notEmpty().withMessage("Minimum is required"),
   body("discount").notEmpty().withMessage("Discount is required"),
 ]);
+
+//Notification
+export const validateMarkNotificationRead = withValidationErrors([
+  body("id")
+    .notEmpty()
+    .withMessage("Notification Id is required")
+    .isMongoId()
+    .withMessage("Invalid Id"),
+]);
+
+//Messages
+export const validateSendMessage = withValidationErrors([
+  body("issueGroup")
+    .notEmpty()
+    .withMessage("Message Group is required")
+    .isMongoId()
+    .withMessage("Invalid Group Id"),
+  body("message").notEmpty().withMessage("message is required"),
+]);

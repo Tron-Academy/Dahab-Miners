@@ -1,9 +1,12 @@
+import { NotFoundError } from "../errors/customErrors.js";
 import Notification from "../models/Notification.js";
 
 //Get All unread Notification
 export const getAllUnreadNotification = async (req, res) => {
   try {
-    const notifications = await Notification.find({ isRead: false });
+    const notifications = await Notification.find({ isRead: false }).sort({
+      createdAt: -1,
+    });
     res.status(200).json(notifications);
   } catch (error) {
     res
@@ -38,10 +41,18 @@ export const getAllNotifications = async (req, res) => {
 };
 
 //mark notification as read
-export const markNotificationUnread = async (req, res) => {
+export const markNotificationRead = async (req, res) => {
   try {
     const { id } = req.body;
-    const notification = await Notification.findById(id);
+    const notification = await Notification.findByIdAndUpdate(
+      id,
+      {
+        isRead: true,
+      },
+      { new: true }
+    );
+    if (!notification) throw new NotFoundError("No notification found");
+    res.status(200).json({ msg: "success" });
   } catch (error) {
     res
       .status(error.statusCode || 500)

@@ -56,6 +56,7 @@ export const sendMessage = async (req, res) => {
         issueId: messageGroup.issueId,
         message,
         serviceProvider: "Dahab",
+        serviceProviderId: newMessage._id,
       },
       {
         headers: {

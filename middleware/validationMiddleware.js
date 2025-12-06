@@ -418,3 +418,9 @@ export const validateSendMessage = withValidationErrors([
     .withMessage("Invalid Group Id"),
   body("message").notEmpty().withMessage("message is required"),
 ]);
+
+export const validateRecieveStatus = withValidationErrors([
+  body("message").notEmpty().withMessage("message is required"),
+  body("messageId").notEmpty().withMessage("message Id is required"),
+  body("status").notEmpty().withMessage("message is required"),
+]);

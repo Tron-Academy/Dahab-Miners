@@ -92,3 +92,20 @@ export const sendReminder = async (req, res) => {
   await existing.save();
   res.status(200).json({ msg: "success" });
 };
+
+//update Message Status
+export const recieveMessageStatus = async (req, res) => {
+  try {
+    const { messageId, message, status } = req.body;
+    const msg = await Message.findByIdAndUpdate(messageId, {
+      message: message,
+      status: status,
+    });
+    if (!msg) throw new NotFoundError("No Message found");
+    res.status(200).json({ message: "success" });
+  } catch (error) {
+    res
+      .status(error.statusCode || 500)
+      .json({ msg: error.msg || error.message });
+  }
+};

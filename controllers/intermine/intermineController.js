@@ -1,5 +1,7 @@
 import { NotFoundError } from "../../errors/customErrors.js";
 import Data from "../../models/DataModel.js";
+import Issue from "../../models/intermine/Issue.js";
+import Message from "../../models/intermine/Message.js";
 import Notification from "../../models/Notification.js";
 
 export const AddMinerData = async (req, res) => {
@@ -49,11 +51,27 @@ export const editMinerData = async (req, res) => {
 };
 
 export const issueReport = async (req, res) => {
-  const { model, serialNumber, issue, description, issueId } = req.body;
+  const { model, serialNumber, issue, description, issueId, clientName, type } =
+    req.body;
   const notification = await Notification.create({
     notification: `An issue - ${issue} has been reported for the intermine Miner-${model} serial No - ${serialNumber}. ${description}`,
     isRead: false,
   });
+  const newIssue = await Issue.create({
+    issueId: issueId,
+    issue: issue,
+    description: description || "",
+    serialNumber: serialNumber,
+    clientName: clientName,
+    miner: model,
+  });
+  const newMessage = await Message.create({
+    message: notification.notification,
+    issue: newIssue._id,
+    sendBy: type,
+  });
+  newIssue.messages.push(newMessage._id);
+  await newIssue.save();
   res.status(200).json({ msg: "success" });
 };
 
@@ -63,5 +81,31 @@ export const sendReminder = async (req, res) => {
     notification: `REMINDER ! The issue -${issue} reported for the intermine miner ${model} with serial No ${serialNumber} has not been solved yet.`,
     isRead: false,
   });
+  const existing = await Issue.findOne({ issueId: issueId });
+  if (!issue) throw new NotFoundError("No issue found");
+  const newMessage = await Message.create({
+    message: notification.notification,
+    issue: existing._id,
+    sendBy: "INTERMINE",
+  });
+  existing.messages.push(newMessage._id);
+  await existing.save();
   res.status(200).json({ msg: "success" });
+};
+
+//update Message Status
+export const recieveMessageStatus = async (req, res) => {
+  try {
+    const { messageId, message, status } = req.body;
+    const msg = await Message.findByIdAndUpdate(messageId, {
+      message: message,
+      status: status,
+    });
+    if (!msg) throw new NotFoundError("No Message found");
+    res.status(200).json({ message: "success" });
+  } catch (error) {
+    res
+      .status(error.statusCode || 500)
+      .json({ msg: error.msg || error.message });
+  }
 };

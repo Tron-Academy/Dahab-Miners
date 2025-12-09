@@ -49,6 +49,7 @@ import miningVoucherRouter from "./routes/miningApp/miningVoucherRouter.js";
 import { addA1246AutomatedRevenue } from "./cronJobs/A124RevenueAutomation.js";
 import intermineRouter from "./routes/intermine/intermineRouter.js";
 import adminNotificationRouter from "./routes/adminNotificationRouter.js";
+import adminMessageRouter from "./routes/adminMessageRouter.js";
 
 // import { processBitGoPayouts } from "./cronJobs/BitgoCron.js";
 
@@ -90,6 +91,8 @@ const allowedOrigins = [
   "https://mining.dahabminers.com",
   "http://localhost:5173",
   "http://localhost:3000",
+  "http://localhost:5175",
+  "https://intermine-backend.onrender.com",
 ];
 
 app.use(
@@ -151,6 +154,12 @@ app.use(
   isSuperAdmin,
   adminNotificationRouter
 );
+app.use(
+  "/api/admin/messages",
+  authenticateUser,
+  isSuperAdmin,
+  adminMessageRouter
+);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });
@@ -158,7 +167,7 @@ app.use("*", (req, res) => {
 
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 // const uri =
 //   process.env.NODE_ENV === "production"
 //     ? process.env.MONGODB_URI

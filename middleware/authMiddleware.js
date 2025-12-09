@@ -76,7 +76,7 @@ export const isRepairAdmin = async (req, res, next) => {
 export const isIntermine = async (req, res, next) => {
   const apiKey = req.headers["x-api-key"];
   if (!apiKey) throw new UnauthenticatedError("Missing API Key");
-  if (apiKey !== process.env.INTERMINE_API_KEY)
+  if (apiKey !== process.env.INTERMINE_ALLOW_API_KEY)
     throw new BadRequestError("Invalid API Key");
   next();
 };

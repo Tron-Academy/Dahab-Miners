@@ -167,7 +167,7 @@ app.use("*", (req, res) => {
 
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 // const uri =
 //   process.env.NODE_ENV === "production"
 //     ? process.env.MONGODB_URI

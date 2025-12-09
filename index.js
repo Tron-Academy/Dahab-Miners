@@ -94,7 +94,7 @@ const allowedOrigins = [
   "http://localhost:5175",
   "https://intermine-backend.onrender.com",
 ];
-
+//Test
 app.use(
   cors({
     credentials: true,

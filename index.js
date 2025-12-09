@@ -91,6 +91,8 @@ const allowedOrigins = [
   "https://mining.dahabminers.com",
   "http://localhost:5173",
   "http://localhost:3000",
+  "http://localhost:5175",
+  "https://intermine-backend.onrender.com",
 ];
 
 app.use(
@@ -165,7 +167,7 @@ app.use("*", (req, res) => {
 
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 // const uri =
 //   process.env.NODE_ENV === "production"
 //     ? process.env.MONGODB_URI

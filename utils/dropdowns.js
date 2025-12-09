@@ -1,5 +1,6 @@
-export const intermineURL = "http://localhost:3000/api/v1/service-provider";
-
+export const intermineURL =
+  "https://intermine-backend.onrender.com/api/v1/service-provider";
+//http://localhost:3000/api/v1/service-provider
 export const manufacturer = [
   "Aisen",
   "Baikal",

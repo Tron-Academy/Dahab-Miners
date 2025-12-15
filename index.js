@@ -50,6 +50,8 @@ import { addA1246AutomatedRevenue } from "./cronJobs/A124RevenueAutomation.js";
 import intermineRouter from "./routes/intermine/intermineRouter.js";
 import adminNotificationRouter from "./routes/adminNotificationRouter.js";
 import adminMessageRouter from "./routes/adminMessageRouter.js";
+import extraRouter from "./routes/extraRouter.js";
+import { getBitcoinData } from "./cronJobs/GetBitcoinData.js";
 
 // import { processBitGoPayouts } from "./cronJobs/BitgoCron.js";
 
@@ -161,6 +163,7 @@ app.use(
   isSuperAdmin,
   adminMessageRouter
 );
+app.use("/api/extra", extraRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });
@@ -186,7 +189,7 @@ try {
     }
   );
   cron.schedule(
-    "10 0 * * *",
+    "15 0 * * *",
     async () => {
       console.log("Cron revenue started running");
       await addS19Revenue();
@@ -202,6 +205,16 @@ try {
       await addA1246AutomatedRevenue();
     },
     { timezone: "Asia/Dubai" }
+  );
+  cron.schedule(
+    "10 0 * * *",
+    async () => {
+      console.log("Cron JOb for BTC Data started running");
+      await getBitcoinData();
+    },
+    {
+      timezone: "Asia/Dubai", // UAE time zone
+    }
   );
 
   app.listen(port, () => {

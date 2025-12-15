@@ -2,9 +2,10 @@ import axios from "axios";
 import A1246PoolReward from "../models/miningApp/A1246PoolReward.js";
 import A1246Uptime from "../models/miningApp/MiningA1246Uptime.js";
 import mongoose from "mongoose";
-import { BadRequestError } from "../errors/customErrors.js";
+import { BadRequestError, NotFoundError } from "../errors/customErrors.js";
 import MiningUser from "../models/miningApp/MiningUser.js";
 import MiningRevenue from "../models/miningApp/MiningRevenue.js";
+import BitCoinData from "../models/BitCoinData.js";
 
 export const calculateTotalA124Revenue = async () => {
   try {
@@ -114,16 +115,16 @@ export const addA1246AutomatedRevenue = async () => {
     const hashRate = 90000;
     const revenuePerTh = amount / hashRate;
     //getting live btc price
-    const { data } = await axios.get(
-      "https://api.minerstat.com/v2/coins?list=BTC"
-    );
-    const btcPriceUSD = data[0]?.price;
-    if (!btcPriceUSD || btcPriceUSD <= 0) {
+
+    const data = await BitCoinData.findOne();
+    if (!data) throw new NotFoundError("No BTC Data found");
+    const btcPriceUSD = data.price;
+    if (!btcPriceUSD || btcPriceUSD <= 0)
       throw new Error("Unable to fetch BTC price");
-    }
     const btcPriceAED = btcPriceUSD * 3.67;
     if (!btcPriceAED || btcPriceAED <= 0)
       throw new BadRequestError("Not able to get BTC price");
+
     //finding all users who owns atleast 1 miner
     const users = await MiningUser.find({
       "ownedMiners.0": { $exists: true },

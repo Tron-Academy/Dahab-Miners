@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 import MiningUser from "../models/miningApp/MiningUser.js";
 import axios from "axios";
-import { BadRequestError } from "../errors/customErrors.js";
+import { BadRequestError, NotFoundError } from "../errors/customErrors.js";
+import BitCoinData from "../models/BitCoinData.js";
 
 export const calculateAndDeductHostingFee = async () => {
   const session = await mongoose.startSession();
@@ -9,10 +10,10 @@ export const calculateAndDeductHostingFee = async () => {
 
   try {
     //get btc data
-    const { data } = await axios.get(
-      "https://api.minerstat.com/v2/coins?list=BTC"
-    );
-    const btcPriceUSD = data[0]?.price;
+
+    const data = await BitCoinData.findOne();
+    if (!data) throw new NotFoundError("No BTC Data found");
+    const btcPriceUSD = data.price;
     const btcPriceAED = btcPriceUSD * 3.67;
     if (!btcPriceAED || btcPriceAED <= 0)
       throw new BadRequestError("Not able to get BTC price");

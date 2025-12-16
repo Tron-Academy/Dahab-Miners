@@ -424,3 +424,22 @@ export const validateRecieveStatus = withValidationErrors([
   body("messageId").notEmpty().withMessage("message Id is required"),
   body("status").notEmpty().withMessage("message is required"),
 ]);
+
+//EVENTS
+export const validateAddEvent = withValidationErrors([
+  body("title").notEmpty().withMessage("Event title is required"),
+  body("date")
+    .notEmpty()
+    .withMessage("Date is required")
+    .isDate()
+    .withMessage("Invalid date format"),
+  body("mainContent").notEmpty().withMessage("Main Content is required"),
+  body("location").notEmpty().withMessage("Location is required"),
+  body("slug").notEmpty().withMessage("Slug is required"),
+  body("altText").notEmpty().withMessage("Alt text is required"),
+  body("metaTitle").notEmpty().withMessage("Meta Title is required"),
+  body("metaDescription")
+    .notEmpty()
+    .withMessage("Meta Description is required"),
+  body("metaKeywords").notEmpty().withMessage("Meta Keywords is required"),
+]);

@@ -443,3 +443,13 @@ export const validateAddEvent = withValidationErrors([
     .withMessage("Meta Description is required"),
   body("metaKeywords").notEmpty().withMessage("Meta Keywords is required"),
 ]);
+
+export const validateDeleteImage = withValidationErrors([
+  body("publicId").notEmpty().withMessage("Public id is required"),
+  body("eventId")
+    .notEmpty()
+    .withMessage("Event id is required")
+    .isMongoId()
+    .withMessage("Invalid Event Id"),
+  body("imageType").notEmpty().withMessage("Image type is required"),
+]);

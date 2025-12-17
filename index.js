@@ -24,6 +24,7 @@ import {
   isSuperAdmin,
 } from "./middleware/authMiddleware.js";
 import { addS19Revenue } from "./cronJobs/S19KRevenueAutomation.js";
+import { getBitcoinData } from "./cronJobs/GetBitcoinData.js";
 
 import authRouter from "./routes/authRouter.js";
 import adminProductRouter from "./routes/adminProductRouter.js";
@@ -51,7 +52,7 @@ import intermineRouter from "./routes/intermine/intermineRouter.js";
 import adminNotificationRouter from "./routes/adminNotificationRouter.js";
 import adminMessageRouter from "./routes/adminMessageRouter.js";
 import extraRouter from "./routes/extraRouter.js";
-import { getBitcoinData } from "./cronJobs/GetBitcoinData.js";
+import eventRouter from "./routes/eventRouter.js";
 
 // import { processBitGoPayouts } from "./cronJobs/BitgoCron.js";
 
@@ -163,6 +164,7 @@ app.use(
   isSuperAdmin,
   adminMessageRouter
 );
+app.use("/api/events", eventRouter);
 app.use("/api/extra", extraRouter);
 
 app.use("*", (req, res) => {

@@ -280,7 +280,7 @@ export const createCryptoPaymentIntent = async (req, res) => {
   });
 
   await payment.save();
-  if (voucherCode.startsWith("REF")) {
+  if (voucherCode?.startsWith("REF")) {
     appliedVoucher.isApplied = true;
     await user.save();
   }

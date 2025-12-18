@@ -83,6 +83,17 @@ export const getAllEvents = async (req, res) => {
   }
 };
 
+export const getSingleEventBySlug = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const event = await Event.findOne({ slug: id });
+    if (!event) throw new NotFoundError("No event found");
+    res.status(200).json(event);
+  } catch (error) {
+    res.status(500).json({ msg: error.msg || error.message });
+  }
+};
+
 export const getSingleEvent = async (req, res) => {
   try {
     const event = await Event.findById(req.params.id);

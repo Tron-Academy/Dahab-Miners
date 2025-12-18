@@ -8,6 +8,7 @@ import {
   editEvent,
   getAllEvents,
   getSingleEvent,
+  getSingleEventBySlug,
 } from "../controllers/eventController.js";
 import {
   validateAddEvent,
@@ -30,6 +31,7 @@ router.post(
   addNewEvent
 );
 router.get("/", getAllEvents);
+router.get("/slug/:id", getSingleEventBySlug);
 router.get("/:id", getSingleEvent);
 
 router.patch(

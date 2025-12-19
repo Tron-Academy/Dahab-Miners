@@ -75,19 +75,16 @@ export const validateAddProductInput = withValidationErrors([
   body("cryptoCurrencyItem")
     .notEmpty()
     .withMessage("Crypto currency is required"),
-  body("productImage").notEmpty().withMessage("Product Image is required"),
-  body("productImagePublicId")
-    .notEmpty()
-    .withMessage("Error in product image upload. upload again"),
-  body("featuredImage").notEmpty().withMessage("Featured image is required"),
-  body("featuredImagePublicId")
-    .notEmpty()
-    .withMessage("Error in featured image upload. upload again"),
   body("slug").notEmpty().withMessage("Slug is required"),
   body("metaTitle").notEmpty().withMessage("Meta title is required"),
   body("metaDescription")
     .notEmpty()
     .withMessage("Meta Description is required"),
+  body("overview").notEmpty().withMessage("Overview is required"),
+  body("specs").notEmpty().withMessage("specifications is required"),
+  body("productCategory")
+    .notEmpty()
+    .withMessage("product category is required"),
 ]);
 
 export const validateSingleAdminProductId = withValidationErrors([

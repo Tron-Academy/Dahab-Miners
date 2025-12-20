@@ -29,7 +29,15 @@ router.post(
 router.patch("/make-featured", makeFeatured);
 router.patch("/remove-featured", removeFeatured);
 router.get("/:id", validateSingleAdminProductId, getSingleProductAdmin);
-router.patch("/:id", validateAddProductInput, editProduct);
+router.patch(
+  "/:id",
+  upload.fields([
+    { name: "mainImage", maxCount: 1 },
+    { name: "featuredImage", maxCount: 1 },
+  ]),
+  validateAddProductInput,
+  editProduct
+);
 router.delete("/:id", deleteProduct);
 
 export default router;

@@ -1,5 +1,15 @@
 import mongoose, { model, Schema } from "mongoose";
 
+const FaqSchema = new Schema({
+  question: String,
+  answer: String,
+});
+
+const SpecsSchema = new Schema({
+  spec: String,
+  value: String,
+});
+
 const ProductSchema = new Schema(
   {
     productName: {
@@ -57,6 +67,10 @@ const ProductSchema = new Schema(
     metaKeywords: {
       type: String,
     },
+    productFaq: [FaqSchema],
+    productSpecifications: [SpecsSchema],
+    productSchema: String,
+    overview: String,
   },
   {
     timestamps: true,

@@ -158,7 +158,7 @@ export const editProduct = async (req, res) => {
     product.metaTitle = metaTitle;
     product.productSpecifications = specs ? JSON.parse(specs) : [];
     product.productFaq = faq ? JSON.parse(faq) : [];
-    product.schema = schema;
+    product.productSchema = schema;
     await product.save();
     res.status(200).json({ msg: "successfully updated" });
   } catch (error) {

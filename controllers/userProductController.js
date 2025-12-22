@@ -8,6 +8,7 @@ export const getAllUserProducts = async (req, res) => {
     manufacturerOptions,
     sortby,
     currentPage,
+    productCategory,
   } = req.query;
   const queryObject = {};
   if (keyWord && keyWord !== "") {
@@ -18,6 +19,9 @@ export const getAllUserProducts = async (req, res) => {
   }
   if (manufacturerOptions && manufacturerOptions !== "ALL") {
     queryObject.manufacturer = manufacturerOptions;
+  }
+  if (productCategory && productCategory !== "ALL") {
+    queryObject.productCategory = productCategory;
   }
   const sortOptions = {
     Newest: "-createdAt",
@@ -48,5 +52,5 @@ export const getFeaturedProducts = async (req, res) => {
 export const getSingleProduct = async (req, res) => {
   const product = await Product.findOne({ slug: req.params.slug });
   if (!product) throw new NotFoundError("No product found");
-  res.status(200).json({ msg: "success", product });
+  res.status(200).json(product);
 };

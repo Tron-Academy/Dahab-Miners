@@ -54,6 +54,10 @@ import adminMessageRouter from "./routes/adminMessageRouter.js";
 import extraRouter from "./routes/extraRouter.js";
 import eventRouter from "./routes/eventRouter.js";
 
+//Version 2 Routes
+import miningUserRouterV2 from "./routes/miningApp/v2/miningUserRouterV2.js";
+import miningCartRouter from "./routes/miningApp/v2/miningCartRouter.js";
+
 // import { processBitGoPayouts } from "./cronJobs/BitgoCron.js";
 
 const app = express();
@@ -164,6 +168,10 @@ app.use(
 );
 app.use("/api/events", eventRouter);
 app.use("/api/extra", extraRouter);
+
+//version 2 routes
+app.use("/api/v2/user", authenticateUser, miningUserRouterV2);
+app.use("/api/v2/cart", authenticateUser, miningCartRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });

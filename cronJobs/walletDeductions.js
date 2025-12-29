@@ -3,6 +3,8 @@ import MiningUser from "../models/miningApp/MiningUser.js";
 import axios from "axios";
 import { BadRequestError, NotFoundError } from "../errors/customErrors.js";
 import BitCoinData from "../models/BitCoinData.js";
+import WalletTransaction from "../models/miningApp/v2/WalletTransaction.js";
+import ProfitModeTransaction from "../models/miningApp/v2/ProfitModeTransaction.js";
 
 export const calculateAndDeductHostingFee = async () => {
   const session = await mongoose.startSession();
@@ -11,7 +13,7 @@ export const calculateAndDeductHostingFee = async () => {
   try {
     //get btc data
 
-    const data = await BitCoinData.findOne();
+    const data = await BitCoinData.findOne().session(session);
     if (!data) throw new NotFoundError("No BTC Data found");
     const btcPriceUSD = data.price;
     const btcPriceAED = btcPriceUSD * 3.67;
@@ -26,7 +28,13 @@ export const calculateAndDeductHostingFee = async () => {
     const users = await MiningUser.find({
       "ownedMiners.0": { $exists: true },
     })
-      .populate("ownedMiners.itemId")
+      .populate({
+        path: "ownedMiners",
+        populate: {
+          path: "itemId",
+          model: "MiningProduct",
+        },
+      })
       .session(session);
 
     for (let user of users) {
@@ -46,11 +54,13 @@ export const calculateAndDeductHostingFee = async () => {
         }
         totalHostingFee += fee;
         owned.hostingFeePaid = (owned.hostingFeePaid || 0) + fee;
+        await owned.save({ session });
       }
       if (totalHostingFee > 0) {
         if (user.payoutMode === "hold") {
           user.walletBalance = (user.walletBalance || 0) - totalHostingFee;
-          user.walletTransactions.push({
+          const newWalletTransaction = new WalletTransaction({
+            user: user._id,
             date: now,
             amount: totalHostingFee,
             type: "debited",
@@ -58,6 +68,7 @@ export const calculateAndDeductHostingFee = async () => {
               "Hosting For owned S19KPro, S21 (if any) based on 100% uptime",
             currentWalletBalance: user.walletBalance,
           });
+          await newWalletTransaction.save({ session });
         } else if (user.payoutMode === "profit") {
           const hostingFeeInBTC = totalHostingFee / btcPriceAED;
           const lastReward =
@@ -67,7 +78,8 @@ export const calculateAndDeductHostingFee = async () => {
           const lastRewardAmount = lastReward?.amount || 0;
           if (hostingFeeInBTC < lastRewardAmount) {
             user.currentBalance = (user.currentBalance || 0) - hostingFeeInBTC;
-            user.ProfitModeDeductions.push({
+            const newProfitModeTransaction = new ProfitModeTransaction({
+              user: user._id,
               date: now,
               amountAED: totalHostingFee,
               amountBTC: hostingFeeInBTC,
@@ -75,10 +87,12 @@ export const calculateAndDeductHostingFee = async () => {
               message:
                 "Hosting for owned S19KPro, S21 (if any) based on 100% uptime",
             });
+            await newProfitModeTransaction.save({ session });
           } else {
             user.payoutMode = "hold";
             user.walletBalance = (user.walletBalance || 0) - totalHostingFee;
-            user.walletTransactions.push({
+            const newTransaction = new WalletTransaction({
+              user: user._id,
               date: now,
               amount: totalHostingFee,
               type: "debited",
@@ -86,6 +100,7 @@ export const calculateAndDeductHostingFee = async () => {
                 "Hosting For owned S19KPro, S21 (if any) based on 100% uptime (Payout mode auto-switched to hold mode)",
               currentWalletBalance: user.walletBalance,
             });
+            await newTransaction.save({ session });
           }
         }
         await user.save({ session });

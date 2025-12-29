@@ -53,21 +53,6 @@ const profitModeHostingTransactionSchema = new Schema({
   rateBTCNowAED: Number,
 });
 
-const ownedSchema = new Schema({
-  itemId: {
-    type: mongoose.Types.ObjectId,
-    ref: "MiningProduct",
-  },
-  qty: Number,
-  batchId: String,
-  purchasedOn: Date,
-  validity: Date,
-  minedRevenue: Number,
-  hostingFeePaid: Number,
-  HostingFeeDue: Number,
-  revenueHistory: [minedRewardsSchema],
-});
-
 const miningUserSchema = new Schema(
   {
     email: {
@@ -81,7 +66,10 @@ const miningUserSchema = new Schema(
       type: String,
       unique: true,
     },
-    ownedMiners: [ownedSchema],
+    ownedMiners: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "OwnedMiner",
+    },
     cartItems: [cartSchema],
     minedRevenue: {
       type: Number,

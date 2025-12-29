@@ -6,6 +6,9 @@ import { BadRequestError, NotFoundError } from "../errors/customErrors.js";
 import MiningUser from "../models/miningApp/MiningUser.js";
 import MiningRevenue from "../models/miningApp/MiningRevenue.js";
 import BitCoinData from "../models/BitCoinData.js";
+import MinedReward from "../models/miningApp/v2/MinedRewards.js";
+import WalletTransaction from "../models/miningApp/v2/WalletTransaction.js";
+import ProfitModeTransaction from "../models/miningApp/v2/ProfitModeTransaction.js";
 
 export const calculateTotalA124Revenue = async () => {
   try {
@@ -116,7 +119,7 @@ export const addA1246AutomatedRevenue = async () => {
     const revenuePerTh = amount / hashRate;
     //getting live btc price
 
-    const data = await BitCoinData.findOne();
+    const data = await BitCoinData.findOne().session(session);
     if (!data) throw new NotFoundError("No BTC Data found");
     const btcPriceUSD = data.price;
     if (!btcPriceUSD || btcPriceUSD <= 0)
@@ -129,7 +132,13 @@ export const addA1246AutomatedRevenue = async () => {
     const users = await MiningUser.find({
       "ownedMiners.0": { $exists: true },
     })
-      .populate("ownedMiners.itemId")
+      .populate({
+        path: "ownedMiners",
+        populate: {
+          path: "itemId",
+          model: "MiningProduct",
+        },
+      })
       .session(session);
     //logic for revenue splitting for A1246
     const splitUp = [];
@@ -171,22 +180,26 @@ export const addA1246AutomatedRevenue = async () => {
         }
         totalHostingFee += fee;
         owned.hostingFeePaid = (owned.hostingFeePaid || 0) + fee;
+        await owned.save({ session });
       }
       //revenue part
       if (userTotalRevenue > 0 && modified) {
         user.minedRevenue = (user.minedRevenue || 0) + userTotalRevenue;
         user.currentBalance = (user.currentBalance || 0) + userTotalRevenue;
         splitUp.push({ user: user._id, amount: userTotalRevenue });
-        user.allMinedRewards.push({
+        const newReward = new MinedReward({
+          user: user._id,
           date: now,
           amount: userTotalRevenue,
         });
+        await newReward.save({ session });
       }
       //hosting fee part
       if (totalHostingFee > 0) {
         if (user.payoutMode === "hold") {
           user.walletBalance = (user.walletBalance || 0) - totalHostingFee;
-          user.walletTransactions.push({
+          const newWalletTransaction = new WalletTransaction({
+            user: user._id,
             date: now,
             amount: totalHostingFee,
             type: "debited",
@@ -195,11 +208,13 @@ export const addA1246AutomatedRevenue = async () => {
               uptime >= 0.95 ? "100%" : (uptime * 100).toFixed(3) + "%"
             } uptime`,
           });
+          await newWalletTransaction.save({ session });
         } else if (user.payoutMode === "profit") {
           const hostingFeeInBTC = totalHostingFee / btcPriceAED;
           if (hostingFeeInBTC < userTotalRevenue) {
             user.currentBalance = (user.currentBalance || 0) - hostingFeeInBTC;
-            user.ProfitModeDeductions.push({
+            const newProfitModeTransaction = new ProfitModeTransaction({
+              user: user._id,
               date: now,
               amountAED: totalHostingFee,
               amountBTC: hostingFeeInBTC,
@@ -208,10 +223,12 @@ export const addA1246AutomatedRevenue = async () => {
                 uptime >= 0.95 ? "100%" : (uptime * 100).toFixed(3) + "%"
               } uptime`,
             });
+            await newProfitModeTransaction.save({ session });
           } else {
             user.payoutMode = "hold";
             user.walletBalance = (user.walletBalance || 0) - totalHostingFee;
-            user.walletTransactions.push({
+            const newTransaction = new WalletTransaction({
+              user: user._id,
               date: now,
               amount: totalHostingFee,
               type: "debited",
@@ -220,6 +237,7 @@ export const addA1246AutomatedRevenue = async () => {
                 uptime >= 0.95 ? "100%" : (uptime * 100).toFixed(3) + "%"
               } uptime (Payout mode auto-switched to hold mode)`,
             });
+            await newTransaction.save({ session });
           }
         }
       }

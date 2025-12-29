@@ -1,5 +1,6 @@
 import { NotFoundError } from "../../errors/customErrors.js";
 import MiningUser from "../../models/miningApp/MiningUser.js";
+import WalletTransaction from "../../models/miningApp/v2/WalletTransaction.js";
 
 export const getAllMiningUsers = async (req, res) => {
   const { currentPage, keyWord } = req.query;
@@ -26,12 +27,14 @@ export const updateWalletBalance = async (req, res) => {
   const user = await MiningUser.findById(id);
   if (!user) throw new NotFoundError("no user found");
   user.walletBalance = user.walletBalance + parseFloat(amount);
-  user.walletTransactions.push({
+  const newWalletTransaction = new WalletTransaction({
+    user: user._id,
     date: new Date(),
-    amount: parseFloat(amount),
+    amount: Number(amount),
     type: "credited",
     currentWalletBalance: user.walletBalance,
   });
+  await newWalletTransaction.save();
   await user.save();
   res.status(200).json({ msg: "updated successfully" });
 };
@@ -54,7 +57,13 @@ export const getUsersMiners = async (req, res) => {
     }
     const users = await MiningUser.find(queryObject)
       .select("-password")
-      .populate("ownedMiners.itemId")
+      .populate({
+        path: "ownedMiners",
+        populate: {
+          path: "itemId",
+          model: "MiningProduct",
+        },
+      })
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);

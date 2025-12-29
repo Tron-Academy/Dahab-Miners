@@ -5,6 +5,7 @@ import MiningUser from "../../models/miningApp/MiningUser.js";
 import { v4 as uuid4 } from "uuid";
 import { v2 as cloudinary } from "cloudinary";
 import { formatImage } from "../../middleware/multerMiddleware.js";
+import OwnedMiner from "../../models/miningApp/v2/OwnedMiners.js";
 
 export const getAllMiners = async (req, res) => {
   const miners = await MiningProduct.find({ isTest: { $ne: true } }).sort({
@@ -141,125 +142,12 @@ export const editSingleMiner = async (req, res) => {
   res.status(200).json({ msg: "success" });
 };
 
-// export const deleteMiningMiner = async (req, res) => {
-//   const session = await mongoose.startSession();
-//   session.startTransaction();
-//   try {
-//     const minerId = req.params.id;
-//     const deletedMiner = await MiningProduct.findByIdAndDelete(minerId, {
-//       session,
-//     });
-//     if (!deletedMiner) throw new NotFoundError("No miner found");
-//   } catch (error) {}
-// };
-
-export const getCartItems = async (req, res) => {
-  const user = await MiningUser.findById(req.user.userId).populate(
-    "cartItems.itemId"
-  );
-  if (!user) throw new NotFoundError("No user has been found");
-  const items = user.cartItems;
-  res.status(200).json(items);
-};
-
-export const addToCart = async (req, res) => {
-  const { itemId } = req.body;
-  const user = await MiningUser.findById(req.user.userId);
-  if (!user) throw new NotFoundError("No user has been found");
-  const alreadyExist = user.cartItems.find(
-    (item) => item.itemId?.toString() === itemId.toString()
-  );
-  if (alreadyExist) throw new BadRequestError("Item Already on Cart");
-  user.cartItems.push({ itemId: itemId, qty: 1 });
-  await user.save();
-  res.status(200).json({ msg: "Added to cart successfully" });
-};
-
-export const removeFromCart = async (req, res) => {
-  const { itemId } = req.body;
-  const user = await MiningUser.findById(req.user.userId);
-  if (!user) throw new NotFoundError("No user has been found");
-  const filtered = user.cartItems.filter(
-    (item) => item._id?.toString() !== itemId.toString()
-  );
-  user.cartItems = filtered;
-  await user.save();
-  res.status(200).json({ msg: "successfully removed from cart" });
-};
-
-export const updateCartItem = async (req, res) => {
-  const { itemId, qty } = req.body;
-  const user = await MiningUser.findById(req.user.userId);
-  if (!user) throw new NotFoundError("No user has been found");
-  const alreadyExist = user.cartItems.find(
-    (item) => item._id?.toString() === itemId.toString()
-  );
-  if (!alreadyExist) throw new BadRequestError("Item Not found on Cart");
-  user.cartItems = user.cartItems.map((item) => {
-    if (item._id?.toString() === itemId.toString()) {
-      return {
-        ...item.toObject(),
-        qty: qty,
-      };
-    } else {
-      return item;
-    }
-  });
-  await user.save();
-  res.status(200).json({ msg: "updated successfully" });
-};
-
-export const purchaseMiner = async (req, res) => {
-  const session = await mongoose.startSession();
-  session.startTransaction();
-  try {
-    const user = await MiningUser.findById(req.user.userId).session(session);
-    if (!user) throw new NotFoundError("No user found");
-    const purchasedOn = new Date();
-    const validity = new Date();
-    validity.setFullYear(validity.getFullYear() + 3);
-    const newOwnedMiners = [];
-    for (const item of user.cartItems) {
-      const product = await MiningProduct.findById(item.itemId).session(
-        session
-      );
-      if (!product) throw new BadRequestError("No Product found");
-      if (product.stock < item.qty)
-        throw new BadRequestError("Product Qty Not in Stock");
-      product.stock -= item.qty;
-      await product.save({ session });
-      newOwnedMiners.push({
-        itemId: item.itemId,
-        qty: item.qty,
-        batchId: uuid4(),
-        purchasedOn,
-        validity,
-        minedRevenue: 0,
-        hostingFeePaid: 0,
-        HostingFeeDue: 0,
-      });
-    }
-
-    user.ownedMiners.push(...newOwnedMiners);
-    user.cartItems = [];
-    await user.save({ session });
-    await session.commitTransaction();
-    session.endSession();
-    res.status(200).json({ msg: "purchase completed" });
-  } catch (error) {
-    await session.abortTransaction();
-    session.endSession();
-    throw new BadRequestError("Cannot proceed with purchase");
-  }
-};
-
 export const getOwnedMiners = async (req, res) => {
-  const user = await MiningUser.findById(req.user.userId).populate(
-    "ownedMiners.itemId"
+  const miners = await OwnedMiner.find({ user: req.user.userId }).populate(
+    "itemId",
+    "name image power hashRate hostingFeePerKw coin algorithm"
   );
-  if (!user) throw new NotFoundError("No user found");
-  const items = user.ownedMiners;
-  res.status(200).json(items);
+  res.status(200).json(miners);
 };
 
 export const selectPayoutMode = async (req, res) => {
@@ -282,10 +170,44 @@ export const selectPayoutMode = async (req, res) => {
   res.status(200).json({ msg: "payout selected successfully", user });
 };
 
-export const emptyCart = async (req, res) => {
-  const user = await MiningUser.findById(req.user.userId);
-  if (!user) throw new NotFoundError("No user found");
-  user.cartItems = [];
-  await user.save();
-  res.status(200).json({ msg: "success" });
+export const assignProduct = async (req, res) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
+    const { userId, productId, qty } = req.body;
+    const user = await MiningUser.findById(userId).session(session);
+    if (!user) throw new NotFoundError("No user found");
+    const product = await MiningProduct.findById(productId).session(session);
+    if (!product) throw new NotFoundError("No product found");
+    if (product.stock < qty)
+      throw new BadRequestError("Product Qty Not in Stock");
+    const purchasedOn = new Date();
+    const validity = new Date();
+    validity.setFullYear(validity.getFullYear() + 3);
+    product.stock -= qty;
+    await product.save({ session });
+    const newOwned = new OwnedMiner({
+      user: user._id,
+      itemId: productId,
+      batchId: uuid4(),
+      purchasedOn,
+      validity,
+      minedRevenue: 0,
+      hostingFeePaid: 0,
+      HostingFeeDue: 0,
+      qty: qty,
+    });
+    await newOwned.save({ session });
+    user.ownedMiners.push(newOwned._id);
+    await user.save({ session });
+    await session.commitTransaction();
+    session.endSession();
+    res.status(200).json({ msg: "success" });
+  } catch (error) {
+    await session.abortTransaction();
+    session.endSession();
+    res
+      .status(error.statusCode || 500)
+      .json({ msg: error.message || error.msg });
+  }
 };

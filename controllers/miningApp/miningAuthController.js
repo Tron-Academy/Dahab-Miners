@@ -15,6 +15,7 @@ import MiningPrivacy from "../../models/miningApp/MiningPrivacy.js";
 import axios from "axios";
 import mongoose from "mongoose";
 import MiningAccountClosure from "../../models/miningApp/MiningAccountClosure.js";
+import BitCoinData from "../../models/BitCoinData.js";
 
 export const miningRegister = async (req, res) => {
   const { email, password, username, referral } = req.body;
@@ -331,10 +332,12 @@ export const deleteAccount = async (req, res) => {
       session,
     });
     if (!user) throw new NotFoundError("No user found");
-    const { data } = await axios.get(
-      "https://api.minerstat.com/v2/coins?list=BTC"
-    );
-    const btcPriceUSD = data[0]?.price;
+
+    const data = await BitCoinData.findOne();
+    if (!data) throw new NotFoundError("No BTC Data found");
+    const btcPriceUSD = data.price;
+    if (!btcPriceUSD || btcPriceUSD <= 0)
+      throw new Error("Unable to fetch BTC price");
     const btcPriceAED = btcPriceUSD * 3.67;
     if (!btcPriceAED || btcPriceAED <= 0)
       throw new BadRequestError("Not able to get BTC price");

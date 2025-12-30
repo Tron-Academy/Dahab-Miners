@@ -1,4 +1,7 @@
-import { NotFoundError } from "../../../errors/customErrors.js";
+import {
+  BadRequestError,
+  NotFoundError,
+} from "../../../errors/customErrors.js";
 import MiningUser from "../../../models/miningApp/MiningUser.js";
 
 //Cart Operations
@@ -8,7 +11,10 @@ export const getCartItems = async (req, res) => {
     const user = await MiningUser.findById(userId)
       .select("cartItems")
       .lean()
-      .populate("cartItems.itemId", "name image price");
+      .populate(
+        "cartItems.itemId",
+        "name image price power hostingFeePerKw isBulkHosting"
+      );
     if (!user) throw new NotFoundError("No user found");
     const cartItems = user.cartItems;
     res.status(200).json(cartItems);
@@ -44,6 +50,10 @@ export const addToCart = async (req, res) => {
     const { productId } = req.body;
     const user = await MiningUser.findById(userId).select("cartItems");
     if (!user) throw new NotFoundError("No user found");
+    const alreadyExist = user.cartItems.find(
+      (item) => item.itemId.toString() === productId.toString()
+    );
+    if (alreadyExist) throw new BadRequestError("Item already on cart");
     user.cartItems.push({ itemId: productId, qty: 1 });
     await user.save();
     res.status(200).json({ msg: "success" });

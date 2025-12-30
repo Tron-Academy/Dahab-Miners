@@ -134,13 +134,7 @@ app.use("/api/admin/inventory", authenticateUser, isAdmin, inventoryRouter);
 app.use("/api/admin/alerts", authenticateUser, isAdmin, alertRouter);
 app.use("/api/mining/auth", miningAuthRouter);
 app.use("/api/mining/product", authenticateUser, miningProductRouter);
-app.use(
-  "/api/mining/revenue",
-  authenticateUser,
-  isAdmin,
-  isSuperAdmin,
-  miningRevenueRouter
-);
+app.use("/api/mining/revenue", miningRevenueRouter);
 app.use("/api/mining/payout", authenticateUser, miningPayoutRouter);
 app.use("/api/mining/sats", authenticateUser, miningSatsRouter);
 app.use("/api/mining/terms", miningTermsRouter);

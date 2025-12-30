@@ -8,8 +8,15 @@ export const getUserInfoV2 = async (req, res) => {
     const { userId } = req.user;
     const user = await MiningUser.findById(userId)
       .select(
-        "email username cartItems minedRevenue currentBalance amountWithdrawed isVerified isFirst walletBalance payoutMode lastPayoutSelected is2FAEnabled isTest latestTermVersion latestPrivacyVersion"
+        "email username cartItems minedRevenue currentBalance ownedMiners notifications amountWithdrawed isVerified isFirst walletBalance payoutMode lastPayoutSelected is2FAEnabled isTest latestTermVersion latestPrivacyVersion"
       )
+      .populate({
+        path: "ownedMiners",
+        populate: {
+          path: "itemId",
+          model: "MiningProduct",
+        },
+      })
       .lean();
     if (!user) throw new NotFoundError("No user found");
     res.status(200).json(user);
@@ -48,7 +55,7 @@ export const walletTransactions = async (req, res) => {
   try {
     const { currentPage } = req.query;
     const page = Number(currentPage) || 1;
-    const limit = 20;
+    const limit = 15;
     const skip = (page - 1) * limit;
     const transactions = await WalletTransaction.find({
       user: req.user.userId,

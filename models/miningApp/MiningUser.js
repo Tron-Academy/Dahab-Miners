@@ -118,6 +118,8 @@ const miningUserSchema = new Schema(
     referredBy: {
       type: String,
     },
+    profilePic: String,
+    profilePicPublicId: String,
     referralVouchers: { type: [referralVoucherSchema], default: [] },
     walletTransactions: [walletTransactionSchema],
     ProfitModeDeductions: [profitModeHostingTransactionSchema],

@@ -57,6 +57,7 @@ import eventRouter from "./routes/eventRouter.js";
 //Version 2 Routes
 import miningUserRouterV2 from "./routes/miningApp/v2/miningUserRouterV2.js";
 import miningCartRouter from "./routes/miningApp/v2/miningCartRouter.js";
+import leaderboardRouter from "./routes/miningApp/v2/leaderboardRouter.js";
 
 // import { processBitGoPayouts } from "./cronJobs/BitgoCron.js";
 
@@ -166,6 +167,7 @@ app.use("/api/extra", extraRouter);
 //version 2 routes
 app.use("/api/v2/user", authenticateUser, miningUserRouterV2);
 app.use("/api/v2/cart", authenticateUser, miningCartRouter);
+app.use("/api/v2/leaderboard", authenticateUser, leaderboardRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });

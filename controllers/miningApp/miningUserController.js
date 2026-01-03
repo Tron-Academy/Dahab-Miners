@@ -1,6 +1,10 @@
-import { NotFoundError } from "../../errors/customErrors.js";
+import mongoose from "mongoose";
+import { BadRequestError, NotFoundError } from "../../errors/customErrors.js";
+import MiningProduct from "../../models/miningApp/MiningProduct.js";
 import MiningUser from "../../models/miningApp/MiningUser.js";
+import OwnedMiner from "../../models/miningApp/v2/OwnedMiners.js";
 import WalletTransaction from "../../models/miningApp/v2/WalletTransaction.js";
+import { v4 as uuid4 } from "uuid";
 
 export const getAllMiningUsers = async (req, res) => {
   const { currentPage, keyWord } = req.query;
@@ -70,6 +74,19 @@ export const getUsersMiners = async (req, res) => {
     const totalUsers = await MiningUser.countDocuments(queryObject);
     const totalPages = Math.ceil(totalUsers / limit);
     res.status(200).json({ users, totalPages, totalUsers });
+  } catch (error) {
+    res
+      .status(error.statusCode || 500)
+      .json({ msg: error.msg || error.message });
+  }
+};
+
+export const getAllMinersForDropdown = async (req, res) => {
+  try {
+    const miners = await MiningProduct.find()
+      .select("name hashRate power stock hostingFeePerKw")
+      .lean();
+    res.status(200).json(miners);
   } catch (error) {
     res
       .status(error.statusCode || 500)

@@ -35,6 +35,7 @@ export const getMinerLeaderboard = async (req, res) => {
           userId: "$user._id",
           name: "$user.username",
           profilePic: "$user.profilePic",
+
           totalMiners: 1,
           totalRevenue: 1,
         },
@@ -49,6 +50,7 @@ export const getMinerLeaderboard = async (req, res) => {
         myIndex !== -1
           ? {
               position: myIndex + 1,
+              totalUsers: leaderboard.length,
               totalMiners: leaderboard[myIndex].totalMiners,
               totalRevenue: leaderboard[myIndex].totalRevenue,
             }
@@ -135,6 +137,7 @@ export const getHashrateLeaderboard = async (req, res) => {
         myIndex !== -1
           ? {
               position: myIndex + 1,
+              totalUsers: leaderboard.length,
               totalHashrate: leaderboard[myIndex].totalHashrate,
               totalRevenue: leaderboard[myIndex].totalRevenue,
             }
@@ -188,6 +191,7 @@ export const getBTCleaderboard = async (req, res) => {
         myIndex !== -1
           ? {
               position: myIndex + 1,
+              totalUsers: leaderboard.length,
               minedRevenue: leaderboard[myIndex].minedRevenue,
             }
           : null,

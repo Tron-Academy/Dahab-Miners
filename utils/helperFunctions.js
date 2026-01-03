@@ -63,6 +63,7 @@ export const assignMinerToUser = async (userId, items) => {
       if (product.stock < item.qty)
         throw new BadRequestError("Product Qty Not in Stock");
       product.stock -= item.qty;
+      product.sold = (product.sold || 0) + item.qty;
       await product.save({ session });
       const newOwned = new OwnedMiner({
         user: user._id,

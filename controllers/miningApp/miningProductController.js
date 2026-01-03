@@ -179,23 +179,24 @@ export const assignProduct = async (req, res) => {
     if (!user) throw new NotFoundError("No user found");
     const product = await MiningProduct.findById(productId).session(session);
     if (!product) throw new NotFoundError("No product found");
-    if (product.stock < qty)
+    if (product.stock < Number(qty))
       throw new BadRequestError("Product Qty Not in Stock");
     const purchasedOn = new Date();
     const validity = new Date();
     validity.setFullYear(validity.getFullYear() + 3);
-    product.stock -= qty;
+    product.stock -= Number(qty);
+    product.sold = (product.sold || 0) + Number(qty);
     await product.save({ session });
     const newOwned = new OwnedMiner({
       user: user._id,
-      itemId: productId,
+      itemId: product._id,
       batchId: uuid4(),
       purchasedOn,
       validity,
       minedRevenue: 0,
       hostingFeePaid: 0,
       HostingFeeDue: 0,
-      qty: qty,
+      qty: Number(qty),
     });
     await newOwned.save({ session });
     user.ownedMiners.push(newOwned._id);

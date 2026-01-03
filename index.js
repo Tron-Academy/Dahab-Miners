@@ -99,6 +99,7 @@ const allowedOrigins = [
   "https://mining.dahabminers.com",
   "https://admin.dahabminers.com",
   "http://localhost:5173",
+  "http://localhost:3000",
   "https://api.intermine-solutions.de",
 ];
 //Test

@@ -57,7 +57,7 @@ export const addS19Revenue = async () => {
         const totalHashRate = product.hashRate * owned.qty;
         const revenue = totalHashRate * revenuePerTh;
         owned.minedRevenue = (owned.minedRevenue || 0) + revenue;
-        owned.revenueHistory.push({ date: now, amount: revenue });
+        // owned.revenueHistory.push({ date: now, amount: revenue });
         userTotalRevenue += revenue;
         modified = true;
         await owned.save({ session });

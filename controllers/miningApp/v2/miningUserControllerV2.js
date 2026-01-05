@@ -41,7 +41,7 @@ export const getProfitModeTransactions = async (req, res) => {
     const transactions = await ProfitModeTransaction.find({
       user: req.user.userId,
     })
-      .sort({ createdAt: -1 })
+      .sort({ date: -1 })
       .skip(skip)
       .limit(limit);
     const totalTransactions = await ProfitModeTransaction.countDocuments({
@@ -65,7 +65,7 @@ export const walletTransactions = async (req, res) => {
     const transactions = await WalletTransaction.find({
       user: req.user.userId,
     })
-      .sort({ createdAt: -1 })
+      .sort({ date: -1 })
       .skip(skip)
       .limit(limit);
     const totalTransactions = await WalletTransaction.countDocuments({

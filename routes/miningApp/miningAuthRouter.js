@@ -26,13 +26,14 @@ import {
   validateMiningUSerUpdateProfile,
   validateMiningVerifyCode,
 } from "../../middleware/validationMiddleware.js";
+import { versionGuard } from "../../middleware/versionCheckMiddleware.js";
 
 const router = Router();
 
 router.post("/register", validateMiningUserRegister, miningRegister);
 router.post("/login", validateMiningUserLogin, miningLogin);
 router.post("/logout", miningLogout);
-router.get("/userInfo", authenticateUser, getMiningUserInfo);
+router.get("/userInfo", authenticateUser, versionGuard, getMiningUserInfo);
 router.post("/verify", validateMiningLoginVerify, verifyCode);
 router.post("/verify-account", validateMiningAccountVerify, verifyAccount);
 router.post("/forgot-password", validateMiningAccountVerify, forgotPassword);

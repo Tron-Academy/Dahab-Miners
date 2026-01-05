@@ -62,10 +62,10 @@ export const addNewProduct = async (req, res) => {
       productSpecifications: specs ? JSON.parse(specs) : [],
       productFaq: faq ? JSON.parse(faq) : [],
       productSchema: schema,
-      productImage: mainImage.url || "",
-      productImagePublicId: mainImage.publicId || "",
-      featuredImage: featuredImage.url || "",
-      featuredImagePublicId: featuredImage.publicId || "",
+      productImage: mainImage?.url || "",
+      productImagePublicId: mainImage?.publicId || "",
+      featuredImage: featuredImage?.url || "",
+      featuredImagePublicId: featuredImage?.publicId || "",
     });
     await newProduct.save();
     res.status(201).json({ msg: "Product created successfully" });

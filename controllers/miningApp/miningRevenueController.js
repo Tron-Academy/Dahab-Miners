@@ -87,7 +87,7 @@ export const addRevenueByCategory = async (req, res) => {
         const totalHashRate = product.hashRate * owned.qty;
         const revenue = totalHashRate * revenuePerTh;
         owned.minedRevenue = (owned.minedRevenue || 0) + revenue;
-        owned.revenueHistory.push({ date: now, amount: revenue });
+        // owned.revenueHistory.push({ date: now, amount: revenue });
         userTotalRevenue += revenue;
         modified = true;
         //hosting fee part
@@ -181,7 +181,7 @@ export const getAllMiningRewardsForUser = async (req, res) => {
     const skip = (page - 1) * limit;
     const allRewards = await MinedReward.find({ user: req.user.userId })
       .sort({
-        createdAt: -1,
+        date: -1,
       })
       .skip(skip)
       .limit(limit);

@@ -4,6 +4,10 @@ import MiningRevenue from "../../models/miningApp/MiningRevenue.js";
 import MiningUser from "../../models/miningApp/MiningUser.js";
 import A1246Uptime from "../../models/miningApp/MiningA1246Uptime.js";
 import axios from "axios";
+import BitCoinData from "../../models/BitCoinData.js";
+import MinedReward from "../../models/miningApp/v2/MinedRewards.js";
+import WalletTransaction from "../../models/miningApp/v2/WalletTransaction.js";
+import ProfitModeTransaction from "../../models/miningApp/v2/ProfitModeTransaction.js";
 
 export const getAllRevenuesByCategory = async (req, res) => {
   const { currentPage, category } = req.query;
@@ -31,10 +35,10 @@ export const addRevenueByCategory = async (req, res) => {
 
   try {
     //getting live btc price
-    const { data } = await axios.get(
-      "https://api.minerstat.com/v2/coins?list=BTC"
-    );
-    const btcPriceUSD = data[0]?.price;
+
+    const data = await BitCoinData.findOne().session(session);
+    if (!data) throw new NotFoundError("No BTC Data found");
+    const btcPriceUSD = data.price;
     const btcPriceAED = btcPriceUSD * 3.67;
     if (!btcPriceAED || btcPriceAED <= 0)
       throw new BadRequestError("Not able to get BTC price");
@@ -42,7 +46,13 @@ export const addRevenueByCategory = async (req, res) => {
     const users = await MiningUser.find({
       "ownedMiners.0": { $exists: true },
     })
-      .populate("ownedMiners.itemId")
+      .populate({
+        path: "ownedMiners",
+        populate: {
+          path: "itemId",
+          model: "MiningProduct",
+        },
+      })
       .session(session);
     //adding the new uptime for the day.
     const uptimes = await A1246Uptime.find().session(session);
@@ -98,22 +108,26 @@ export const addRevenueByCategory = async (req, res) => {
         }
         totalHostingFee += fee;
         owned.hostingFeePaid = (owned.hostingFeePaid || 0) + fee;
+        await owned.save({ session });
       }
       //revenue part
       if (userTotalRevenue > 0 && modified) {
         user.minedRevenue = (user.minedRevenue || 0) + userTotalRevenue;
         user.currentBalance = (user.currentBalance || 0) + userTotalRevenue;
         splitUp.push({ user: user._id, amount: userTotalRevenue });
-        user.allMinedRewards.push({
+        const newReward = new MinedReward({
+          user: user._id,
           date: now,
           amount: userTotalRevenue,
         });
+        await newReward.save({ session });
       }
       //hosting fee part
       if (totalHostingFee > 0) {
         if (user.payoutMode === "hold") {
           user.walletBalance = (user.walletBalance || 0) - totalHostingFee;
-          user.walletTransactions.push({
+          const newWalletTransaction = new WalletTransaction({
+            user: user._id,
             date: now,
             amount: totalHostingFee,
             type: "debited",
@@ -122,10 +136,12 @@ export const addRevenueByCategory = async (req, res) => {
               uptime >= 0.95 ? "100%" : uptime * 100 + "%"
             } uptime`,
           });
+          await newWalletTransaction.save({ session });
         } else if (user.payoutMode === "profit") {
           const hostingFeeInBTC = totalHostingFee / btcPriceAED;
           user.currentBalance = (user.currentBalance || 0) - hostingFeeInBTC;
-          user.ProfitModeDeductions.push({
+          const newProfitModeTransaction = new ProfitModeTransaction({
+            user: user._id,
             date: now,
             amountAED: totalHostingFee,
             amountBTC: hostingFeeInBTC,
@@ -134,6 +150,7 @@ export const addRevenueByCategory = async (req, res) => {
               uptime >= 0.95 ? "100%" : uptime * 100 + "%"
             } uptime`,
           });
+          await newProfitModeTransaction.save({ session });
         }
       }
       await user.save({ session });
@@ -153,5 +170,29 @@ export const addRevenueByCategory = async (req, res) => {
     await session.abortTransaction();
     session.endSession();
     res.status(500).json({ msg: "something went wrong", error: error.message });
+  }
+};
+
+export const getAllMiningRewardsForUser = async (req, res) => {
+  try {
+    const { currentPage } = req.query;
+    const page = Number(currentPage) || 1;
+    const limit = 20;
+    const skip = (page - 1) * limit;
+    const allRewards = await MinedReward.find({ user: req.user.userId })
+      .sort({
+        createdAt: -1,
+      })
+      .skip(skip)
+      .limit(limit);
+    const totalRewards = await MinedReward.countDocuments({
+      user: req.user.userId,
+    });
+    const totalPages = Math.ceil(totalRewards / limit);
+    res.status(200).json({ allRewards, totalPages, totalRewards });
+  } catch (error) {
+    res
+      .status(error.statusCode || 500)
+      .json({ msg: error.message || error.msg });
   }
 };

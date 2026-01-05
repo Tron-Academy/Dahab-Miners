@@ -1,22 +1,16 @@
 import { Router } from "express";
 import {
   addNewMiner,
-  addToCart,
+  assignProduct,
   editSingleMiner,
-  emptyCart,
   getAllMiners,
-  getCartItems,
   getOwnedMiners,
   getSingleMiner,
-  purchaseMiner,
-  removeFromCart,
   selectPayoutMode,
-  updateCartItem,
 } from "../../controllers/miningApp/miningProductController.js";
 import {
   validateAddMiningMiner,
-  validateAddRemoveCartInput,
-  validateUpdateCartInput,
+  validateAssignProduct,
 } from "../../middleware/validationMiddleware.js";
 import upload from "../../middleware/multerMiddleware.js";
 
@@ -36,13 +30,7 @@ router.patch(
   editSingleMiner
 );
 router.get("/miners/:id", getSingleMiner);
-router.get("/cartItems", getCartItems);
-router.post("/addToCart", validateAddRemoveCartInput, addToCart);
-router.post("/removeItem", validateAddRemoveCartInput, removeFromCart);
-router.post("/updateCart", validateUpdateCartInput, updateCartItem);
-// router.post("/purchase", purchaseMiner);
 router.get("/ownedMiners", getOwnedMiners);
 router.post("/payoutMode", selectPayoutMode);
-router.patch("/empty-cart", emptyCart);
-
+router.post("/assign", validateAssignProduct, assignProduct);
 export default router;

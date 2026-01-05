@@ -54,6 +54,11 @@ import adminMessageRouter from "./routes/adminMessageRouter.js";
 import extraRouter from "./routes/extraRouter.js";
 import eventRouter from "./routes/eventRouter.js";
 
+//Version 2 Routes
+import miningUserRouterV2 from "./routes/miningApp/v2/miningUserRouterV2.js";
+import miningCartRouter from "./routes/miningApp/v2/miningCartRouter.js";
+import leaderboardRouter from "./routes/miningApp/v2/leaderboardRouter.js";
+
 // import { processBitGoPayouts } from "./cronJobs/BitgoCron.js";
 
 const app = express();
@@ -94,6 +99,7 @@ const allowedOrigins = [
   "https://mining.dahabminers.com",
   "https://admin.dahabminers.com",
   "http://localhost:5173",
+  "http://localhost:3000",
   "https://api.intermine-solutions.de",
 ];
 //Test
@@ -130,13 +136,7 @@ app.use("/api/admin/inventory", authenticateUser, isAdmin, inventoryRouter);
 app.use("/api/admin/alerts", authenticateUser, isAdmin, alertRouter);
 app.use("/api/mining/auth", miningAuthRouter);
 app.use("/api/mining/product", authenticateUser, miningProductRouter);
-app.use(
-  "/api/mining/revenue",
-  authenticateUser,
-  isAdmin,
-  isSuperAdmin,
-  miningRevenueRouter
-);
+app.use("/api/mining/revenue", miningRevenueRouter);
 app.use("/api/mining/payout", authenticateUser, miningPayoutRouter);
 app.use("/api/mining/sats", authenticateUser, miningSatsRouter);
 app.use("/api/mining/terms", miningTermsRouter);
@@ -164,6 +164,11 @@ app.use(
 );
 app.use("/api/events", eventRouter);
 app.use("/api/extra", extraRouter);
+
+//version 2 routes
+app.use("/api/v2/user", authenticateUser, miningUserRouterV2);
+app.use("/api/v2/cart", authenticateUser, miningCartRouter);
+app.use("/api/v2/leaderboard", authenticateUser, leaderboardRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "Not Found" });

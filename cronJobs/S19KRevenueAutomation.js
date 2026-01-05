@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import MiningRevenue from "../models/miningApp/MiningRevenue.js";
 import MiningSats from "../models/miningApp/MiningSats.js";
 import MiningUser from "../models/miningApp/MiningUser.js";
+import MinedReward from "../models/miningApp/v2/MinedRewards.js";
 
 export const addS19Revenue = async () => {
   //   const { amount, hashRate, category } = req.body;
@@ -16,7 +17,13 @@ export const addS19Revenue = async () => {
     const users = await MiningUser.find({
       "ownedMiners.0": { $exists: true },
     })
-      .populate("ownedMiners.itemId")
+      .populate({
+        path: "ownedMiners",
+        populate: {
+          path: "itemId",
+          model: "MiningProduct",
+        },
+      })
       .session(session);
     const now = new Date();
 
@@ -53,15 +60,18 @@ export const addS19Revenue = async () => {
         owned.revenueHistory.push({ date: now, amount: revenue });
         userTotalRevenue += revenue;
         modified = true;
+        await owned.save({ session });
       }
       if (userTotalRevenue > 0 && modified) {
         user.minedRevenue = (user.minedRevenue || 0) + userTotalRevenue;
         user.currentBalance = (user.currentBalance || 0) + userTotalRevenue;
         splitUp.push({ user: user._id, amount: userTotalRevenue });
-        user.allMinedRewards.push({
+        const newReward = new MinedReward({
+          user: user._id,
           date: now,
           amount: userTotalRevenue,
         });
+        await newReward.save({ session });
         await user.save({ session });
       }
     }

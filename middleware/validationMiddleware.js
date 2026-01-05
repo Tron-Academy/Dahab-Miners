@@ -450,3 +450,38 @@ export const validateDeleteImage = withValidationErrors([
     .withMessage("Invalid Event Id"),
   body("imageType").notEmpty().withMessage("Image type is required"),
 ]);
+
+///VERSION 2
+
+//cart
+export const validateUpdateCart = withValidationErrors([
+  body("cartId")
+    .notEmpty()
+    .withMessage("Cart id is required")
+    .isMongoId()
+    .withMessage("Invalid Cart Id"),
+  body("qty").notEmpty().withMessage("Quantity is required"),
+]);
+
+export const validateAddToCart = withValidationErrors([
+  body("productId")
+    .notEmpty()
+    .withMessage("Product Id is required")
+    .isMongoId()
+    .withMessage("Invalid Product Id"),
+]);
+
+//product assign
+export const validateAssignProduct = withValidationErrors([
+  body("userId")
+    .notEmpty()
+    .withMessage("User Id is required")
+    .isMongoId()
+    .withMessage("Invalid User Id"),
+  body("productId")
+    .notEmpty()
+    .withMessage("Product Id is required")
+    .isMongoId()
+    .withMessage("Invalid Product Id"),
+  body("qty").notEmpty().withMessage("qty is required"),
+]);

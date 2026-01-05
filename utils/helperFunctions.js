@@ -3,15 +3,15 @@ import MiningUser from "../models/miningApp/MiningUser.js";
 import { BadRequestError, NotFoundError } from "../errors/customErrors.js";
 import MiningProduct from "../models/miningApp/MiningProduct.js";
 import { v4 as uuid4 } from "uuid";
+import WalletTransaction from "../models/miningApp/v2/WalletTransaction.js";
+import OwnedMiner from "../models/miningApp/v2/OwnedMiners.js";
 
 export const assignMinerToUser = async (userId, items) => {
   const session = await mongoose.startSession();
   session.startTransaction();
   const buyItems = JSON.parse(items);
   try {
-    const user = await MiningUser.findById(userId)
-      .populate("cartItems.itemId")
-      .session(session);
+    const user = await MiningUser.findById(userId).session(session);
     if (!user) throw new NotFoundError("No user found");
     const purchasedOn = new Date();
     const validity = new Date();
@@ -45,14 +45,16 @@ export const assignMinerToUser = async (userId, items) => {
 
       0
     );
-    user.walletBalance = user.walletBalance + amount;
-    user.walletTransactions.push({
+    user.walletBalance = (user.walletBalance || 0) + Number(amount);
+    const newWalletTransaction = new WalletTransaction({
+      user: user._id,
       date: new Date(),
       amount: Number(amount),
       type: "credited",
       currentWalletBalance: user.walletBalance,
       message: "Miner Purchase Hosting Fee Prepayment",
     });
+    await newWalletTransaction.save({ session });
     for (const item of buyItems) {
       const product = await MiningProduct.findById(item.itemId).session(
         session
@@ -61,8 +63,10 @@ export const assignMinerToUser = async (userId, items) => {
       if (product.stock < item.qty)
         throw new BadRequestError("Product Qty Not in Stock");
       product.stock -= item.qty;
+      product.sold = (product.sold || 0) + item.qty;
       await product.save({ session });
-      newOwnedMiners.push({
+      const newOwned = new OwnedMiner({
+        user: user._id,
         itemId: item.itemId,
         qty: item.qty,
         batchId: uuid4(),
@@ -72,6 +76,8 @@ export const assignMinerToUser = async (userId, items) => {
         hostingFeePaid: 0,
         HostingFeeDue: 0,
       });
+      await newOwned.save({ session });
+      newOwnedMiners.push(newOwned._id);
     }
 
     user.ownedMiners.push(...newOwnedMiners);
@@ -91,14 +97,16 @@ export const updateUserWallet = async (userId, amount) => {
   try {
     const user = await MiningUser.findById(userId);
     if (!user) throw new NotFoundError("no user found");
-    user.walletBalance = user.walletBalance + Number(amount);
-    user.walletTransactions.push({
+    user.walletBalance = (user.walletBalance || 0) + Number(amount);
+    const newWalletTransaction = new WalletTransaction({
+      user: user._id,
       date: new Date(),
       amount: Number(amount),
       type: "credited",
       currentWalletBalance: user.walletBalance,
       message: "Wallet Recharge",
     });
+    await newWalletTransaction.save();
     await user.save();
     return {
       amount: Number(amount),

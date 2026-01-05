@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  getAllMinersForDropdown,
   getAllMiningUsers,
   getUsersMiners,
   updateWalletBalance,
@@ -11,5 +12,6 @@ const router = Router();
 router.get("/", getAllMiningUsers);
 router.patch("/wallet", validateUpdateUserWallet, updateWalletBalance);
 router.get("/owned", getUsersMiners);
+router.get("/miner-dropdown", getAllMinersForDropdown);
 
 export default router;

@@ -23,6 +23,7 @@ export const addNewProduct = async (req, res) => {
       metaKeywords,
       metaTitle,
       specs,
+      alt,
       faq,
       schema,
     } = req.body;
@@ -66,6 +67,7 @@ export const addNewProduct = async (req, res) => {
       productImagePublicId: mainImage?.publicId || "",
       featuredImage: featuredImage?.url || "",
       featuredImagePublicId: featuredImage?.publicId || "",
+      imageAltText: alt || "",
     });
     await newProduct.save();
     res.status(201).json({ msg: "Product created successfully" });
@@ -113,6 +115,7 @@ export const editProduct = async (req, res) => {
       metaTitle,
       specs,
       faq,
+      alt,
       schema,
     } = req.body;
     const product = await Product.findById(req.params.id);
@@ -159,6 +162,7 @@ export const editProduct = async (req, res) => {
     product.productSpecifications = specs ? JSON.parse(specs) : [];
     product.productFaq = faq ? JSON.parse(faq) : [];
     product.productSchema = schema;
+    product.imageAltText = alt || "";
     await product.save();
     res.status(200).json({ msg: "successfully updated" });
   } catch (error) {

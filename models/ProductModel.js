@@ -69,6 +69,7 @@ const ProductSchema = new Schema(
     },
     productFaq: [FaqSchema],
     productSpecifications: [SpecsSchema],
+    imageAltText: String,
     productSchema: String,
     overview: String,
   },

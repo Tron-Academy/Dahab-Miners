@@ -67,6 +67,7 @@ const ProductSchema = new Schema(
     metaKeywords: {
       type: String,
     },
+    isTopRated: Boolean,
     productFaq: [FaqSchema],
     productSpecifications: [SpecsSchema],
     imageAltText: String,

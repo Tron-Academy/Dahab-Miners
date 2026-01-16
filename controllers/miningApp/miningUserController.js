@@ -5,6 +5,8 @@ import MiningUser from "../../models/miningApp/MiningUser.js";
 import OwnedMiner from "../../models/miningApp/v2/OwnedMiners.js";
 import WalletTransaction from "../../models/miningApp/v2/WalletTransaction.js";
 import { v4 as uuid4 } from "uuid";
+import BitCoinData from "../../models/BitCoinData.js";
+import ProfitModeTransaction from "../../models/miningApp/v2/ProfitModeTransaction.js";
 
 export const getAllMiningUsers = async (req, res) => {
   const { currentPage, keyWord } = req.query;
@@ -91,5 +93,72 @@ export const getAllMinersForDropdown = async (req, res) => {
     res
       .status(error.statusCode || 500)
       .json({ msg: error.msg || error.message });
+  }
+};
+
+export const settleNegativeWallet = async (req, res) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
+    const { userId } = req.body;
+    const user = await MiningUser.findById(userId).session(session);
+    if (!user) throw new NotFoundError("No user found");
+    if (user.walletBalance >= 0)
+      throw new BadRequestError(
+        "Wallet balance is not negative. No deduction needed."
+      );
+    const btcData = await BitCoinData.findOne()
+      .sort({ createdAt: -1 })
+      .session(session);
+    if (!btcData || !btcData.price)
+      throw new NotFoundError("BTC Price unavailable");
+    const btcPriceAED = btcData.price * 3.67;
+
+    const requiredAED = Math.abs(user.walletBalance);
+    const requiredBTC = requiredAED / btcPriceAED;
+
+    let btcToDeduct = 0;
+    let walletRecoveredAED = 0;
+
+    if (user.currentBalance >= requiredBTC) {
+      btcToDeduct = requiredBTC;
+      walletRecoveredAED = requiredAED;
+      user.currentBalance -= btcToDeduct;
+      user.walletBalance = 0;
+    } else {
+      btcToDeduct = user.currentBalance;
+      walletRecoveredAED = btcToDeduct * btcPriceAED;
+
+      user.currentBalance = 0;
+      user.walletBalance += walletRecoveredAED;
+    }
+    const newWalletTransaction = new WalletTransaction({
+      user: user._id,
+      date: new Date(),
+      amount: walletRecoveredAED,
+      message: "Wallet deficit settled using BTC balance",
+      type: "credited",
+      currentWalletBalance: user.walletBalance,
+    });
+    const newProfitModeTransaction = new ProfitModeTransaction({
+      user: user._id,
+      date: new Date(),
+      amountAED: walletRecoveredAED,
+      amountBTC: btcToDeduct,
+      message: "BTC converted to settle negative wallet balance",
+      rateBTCNowAED: btcPriceAED,
+    });
+    await user.save({ session });
+    await newWalletTransaction.save({ session });
+    await newProfitModeTransaction.save({ session });
+    await session.commitTransaction();
+    res.status(200).json({ message: "successfully debited" });
+  } catch (error) {
+    await session.abortTransaction();
+    res
+      .status(error.statusCode || 500)
+      .json({ msg: error.msg || error.message });
+  } finally {
+    session.endSession();
   }
 };

@@ -201,3 +201,31 @@ export const deleteProduct = async (req, res) => {
   await Product.findByIdAndDelete(req.params.id);
   res.status(200).json({ msg: "success" });
 };
+
+export const makeProductTopRated = async (req, res) => {
+  try {
+    const product = await Product.findById(req.body.id);
+    if (!product) throw new NotFoundError("No product found");
+    product.isTopRated = true;
+    await product.save();
+    res.status(200).json({ msg: "Success" });
+  } catch (error) {
+    res
+      .status(error.statusCode || 500)
+      .json({ error: error.msg || error.message });
+  }
+};
+
+export const removeTopRated = async (req, res) => {
+  try {
+    const product = await Product.findById(req.body.id);
+    if (!product) throw new NotFoundError("No product found");
+    product.isTopRated = false;
+    await product.save();
+    res.status(200).json({ msg: "success" });
+  } catch (error) {
+    res
+      .status(error.statusCode || 500)
+      .json({ error: error.msg || error.message });
+  }
+};

@@ -10,7 +10,9 @@ import {
   getAllProductsAdmin,
   getSingleProductAdmin,
   makeFeatured,
+  makeProductTopRated,
   removeFeatured,
+  removeTopRated,
 } from "../controllers/adminProductController.js";
 import upload from "../middleware/multerMiddleware.js";
 
@@ -28,6 +30,8 @@ router.post(
 );
 router.patch("/make-featured", makeFeatured);
 router.patch("/remove-featured", removeFeatured);
+router.patch("/make-toprated", makeProductTopRated);
+router.patch("/remove-toprated", removeTopRated);
 router.get("/:id", validateSingleAdminProductId, getSingleProductAdmin);
 router.patch(
   "/:id",

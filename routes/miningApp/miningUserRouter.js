@@ -3,6 +3,7 @@ import {
   getAllMinersForDropdown,
   getAllMiningUsers,
   getUsersMiners,
+  settleNegativeWallet,
   updateWalletBalance,
 } from "../../controllers/miningApp/miningUserController.js";
 import { validateUpdateUserWallet } from "../../middleware/validationMiddleware.js";
@@ -13,5 +14,6 @@ router.get("/", getAllMiningUsers);
 router.patch("/wallet", validateUpdateUserWallet, updateWalletBalance);
 router.get("/owned", getUsersMiners);
 router.get("/miner-dropdown", getAllMinersForDropdown);
+router.patch("/deduct", settleNegativeWallet);
 
 export default router;

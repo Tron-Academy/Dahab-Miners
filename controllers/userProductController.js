@@ -45,7 +45,7 @@ export const getAllUserProducts = async (req, res) => {
 
 export const getFeaturedProducts = async (req, res) => {
   const products = await Product.find({ isFeatured: true });
-  if (!products) throw new NotFoundError("No products found");
+
   res.status(200).json({ msg: "success", products });
 };
 
@@ -53,4 +53,16 @@ export const getSingleProduct = async (req, res) => {
   const product = await Product.findOne({ slug: req.params.slug });
   if (!product) throw new NotFoundError("No product found");
   res.status(200).json(product);
+};
+
+export const getTopRatedProducts = async (req, res) => {
+  try {
+    const products = await Product.find({ isTopRated: true });
+
+    res.status(200).json(products);
+  } catch (error) {
+    res
+      .status(error.statusCode || 500)
+      .json({ error: error.msg || error.message });
+  }
 };

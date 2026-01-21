@@ -12,7 +12,7 @@ import cron from "node-cron";
 import helmet from "helmet";
 import hpp from "hpp";
 import mongoSanitize from "express-mongo-sanitize";
-import xss from "xss-clean";
+// import xss from "xss-clean";
 import rateLimit from "express-rate-limit";
 
 import errorHandlerMiddleware from "./middleware/errorHandleMiddleware.js";
@@ -66,7 +66,7 @@ const app = express();
 app.use(hpp());
 app.use(helmet());
 app.use(mongoSanitize());
-app.use(xss());
+// app.use(xss());
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -116,7 +116,7 @@ app.use(
     },
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // Ensure all necessary methods are allowed
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
-  })
+  }),
 );
 app.options("*", cors());
 
@@ -143,7 +143,7 @@ app.use("/api/mining/terms", miningTermsRouter);
 app.use(
   "/api/mining/notifications",
   authenticateUser,
-  miningNotificationRouter
+  miningNotificationRouter,
 );
 app.use("/api/mining/users", authenticateUser, isSuperAdmin, miningUserRouter);
 app.use("/api/mining/payment", miningPaymentRouter);
@@ -154,13 +154,13 @@ app.use(
   "/api/admin/notification",
   authenticateUser,
   isSuperAdmin,
-  adminNotificationRouter
+  adminNotificationRouter,
 );
 app.use(
   "/api/admin/messages",
   authenticateUser,
   isSuperAdmin,
-  adminMessageRouter
+  adminMessageRouter,
 );
 app.use("/api/events", eventRouter);
 app.use("/api/extra", extraRouter);
@@ -191,7 +191,7 @@ try {
     },
     {
       timezone: "Asia/Dubai", // UAE time zone
-    }
+    },
   );
   cron.schedule(
     "15 0 * * *",
@@ -201,7 +201,7 @@ try {
     },
     {
       timezone: "Asia/Dubai", // UAE time zone
-    }
+    },
   );
   cron.schedule(
     "50 1 * * *",
@@ -209,7 +209,7 @@ try {
       console.log("Cron for A1246 revenue and hosting started running");
       await addA1246AutomatedRevenue();
     },
-    { timezone: "Asia/Dubai" }
+    { timezone: "Asia/Dubai" },
   );
   cron.schedule(
     "10 0 * * *",
@@ -219,7 +219,7 @@ try {
     },
     {
       timezone: "Asia/Dubai", // UAE time zone
-    }
+    },
   );
 
   app.listen(port, () => {

@@ -72,11 +72,12 @@ const ProductSchema = new Schema(
     productSpecifications: [SpecsSchema],
     imageAltText: String,
     productSchema: String,
+    profitURLWord: String,
     overview: String,
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const Product = model("Product", ProductSchema);

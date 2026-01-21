@@ -25,6 +25,7 @@ export const addNewProduct = async (req, res) => {
       specs,
       alt,
       faq,
+      profitURL,
       schema,
     } = req.body;
     const uploadSingle = async (file) => {
@@ -68,6 +69,7 @@ export const addNewProduct = async (req, res) => {
       featuredImage: featuredImage?.url || "",
       featuredImagePublicId: featuredImage?.publicId || "",
       imageAltText: alt || "",
+      profitURLWord: profitURL,
     });
     await newProduct.save();
     res.status(201).json({ msg: "Product created successfully" });
@@ -117,6 +119,7 @@ export const editProduct = async (req, res) => {
       faq,
       alt,
       schema,
+      profitURL,
     } = req.body;
     const product = await Product.findById(req.params.id);
     if (!product) throw new NotFoundError("No Product found");
@@ -163,6 +166,7 @@ export const editProduct = async (req, res) => {
     product.productFaq = faq ? JSON.parse(faq) : [];
     product.productSchema = schema;
     product.imageAltText = alt || "";
+    product.profitURLWord = profitURL;
     await product.save();
     res.status(200).json({ msg: "successfully updated" });
   } catch (error) {

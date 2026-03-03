@@ -53,6 +53,7 @@ import adminNotificationRouter from "./routes/adminNotificationRouter.js";
 import adminMessageRouter from "./routes/adminMessageRouter.js";
 import extraRouter from "./routes/extraRouter.js";
 import eventRouter from "./routes/eventRouter.js";
+import minerModelRouter from "./routes/minerModelRouter.js";
 
 //Version 2 Routes
 import miningUserRouterV2 from "./routes/miningApp/v2/miningUserRouterV2.js";
@@ -166,6 +167,12 @@ app.use(
 );
 app.use("/api/events", eventRouter);
 app.use("/api/extra", extraRouter);
+app.use(
+  "/api/admin/miner-model",
+  authenticateUser,
+  isSuperAdmin,
+  minerModelRouter,
+);
 
 //version 2 routes
 app.use("/api/v2/user", authenticateUser, miningUserRouterV2);
@@ -179,12 +186,12 @@ app.use("*", (req, res) => {
 app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 3000;
-// const uri =
-//   process.env.NODE_ENV === "production"
-//     ? process.env.MONGODB_URI
-//     : process.env.MONGODB_URI_DEV;
+const uri =
+  process.env.NODE_ENV === "production"
+    ? process.env.MONGODB_URI
+    : process.env.MONGODB_URI_DEV;
 try {
-  await mongoose.connect(process.env.MONGODB_URI);
+  await mongoose.connect(uri);
   cron.schedule(
     "58 0 * * *",
     async () => {

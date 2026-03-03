@@ -23,7 +23,10 @@ export const addNewRepairMiner = async (req, res) => {
 };
 
 export const getAllRepairMiner = async (req, res) => {
-  const { search } = req.query;
+  const { search, currentPage } = req.query;
+  const page = Number(currentPage) || 1;
+  const limit = 20;
+  const skip = (page - 1) * limit;
   let queryObject = {};
   let conditions = [];
   if (search && search !== "") {
@@ -40,9 +43,13 @@ export const getAllRepairMiner = async (req, res) => {
   if (conditions.length > 0) {
     queryObject = { $and: conditions };
   }
-  const miners = await Repair.find(queryObject).sort("priority");
-  if (!miners) throw new NotFoundError("No miners has been found");
-  res.status(200).json(miners);
+  const miners = await Repair.find(queryObject)
+    .sort("priority")
+    .skip(skip)
+    .limit(limit);
+  const totalMiners = await Repair.countDocuments(queryObject);
+  const totalPages = Math.ceil(totalMiners / limit);
+  res.status(200).json({ miners, totalPages });
 };
 
 export const getReadyToConnectMiners = async (req, res) => {
@@ -115,7 +122,7 @@ export const updateRepairStatus = async (req, res) => {
   if (!miner) throw new NotFoundError("No miner found");
   const problemsArray = miner.problems;
   const selectedProblem = problemsArray.find(
-    (item) => item._id.toString() === problemId.toString()
+    (item) => item._id.toString() === problemId.toString(),
   );
   if (!selectedProblem)
     throw new NotFoundError("Unable to find the selected problem");
@@ -126,7 +133,7 @@ export const updateRepairStatus = async (req, res) => {
   selectedProblem.repairRemark = repairRemark;
   selectedProblem.repairUpdatedOn = new Date();
   const selectedIndex = problemsArray.findIndex(
-    (item) => item._id.toString() === problemId.toString()
+    (item) => item._id.toString() === problemId.toString(),
   );
   problemsArray[selectedIndex] = selectedProblem;
   miner.problems = problemsArray;
@@ -166,7 +173,7 @@ export const updateRepairProcess = async (req, res) => {
   const miner = await Repair.findById(req.body.id);
   if (!miner) throw new NotFoundError("No miner found");
   const problemsArray = miner.problems.filter(
-    (item) => item.issueStatus === "Repair Done"
+    (item) => item.issueStatus === "Repair Done",
   );
   if (problemsArray.length === miner.problems.length) {
     miner.status = "Need Testing";
@@ -298,7 +305,7 @@ export const generateReport = async (req, res) => {
       doc
         .fontSize(12)
         .text(
-          `Status: ${problem.issueStatus} on ${problem.updatedAt.toString()}`
+          `Status: ${problem.issueStatus} on ${problem.updatedAt.toString()}`,
         )
         .moveDown();
     });
@@ -350,14 +357,14 @@ export const setPriority = async (req, res) => {
         priority: { $gte: req.body.priority },
       },
       { $inc: { priority: 1 } },
-      { session }
+      { session },
     );
     const updatedData = await Repair.findByIdAndUpdate(
       req.params.id,
       {
         priority: req.body.priority,
       },
-      { new: true, session }
+      { new: true, session },
     );
     if (!updatedData) throw new NotFoundError("No Repair Data Found");
     await session.commitTransaction();

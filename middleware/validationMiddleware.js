@@ -485,3 +485,14 @@ export const validateAssignProduct = withValidationErrors([
     .withMessage("Invalid Product Id"),
   body("qty").notEmpty().withMessage("qty is required"),
 ]);
+
+//Miner Models
+export const validateAddMinerModel = withValidationErrors([
+  body("manufacturer").notEmpty().withMessage("Manufacturer is required"),
+  body("name").notEmpty().withMessage("Name is required"),
+  body("hashrate").notEmpty().withMessage("Hash Rate is required"),
+  body("power").notEmpty().withMessage("Power is required"),
+  body("coolingType").notEmpty().withMessage("Cooling Type is required"),
+  body("algorithm").notEmpty().withMessage("Name is required"),
+  body("coins").notEmpty().withMessage("Coins are required"),
+]);

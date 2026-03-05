@@ -6,6 +6,7 @@ import Repair from "../models/RepairModel.js";
 import MiningUser from "../models/miningApp/MiningUser.js";
 import MiningTerms from "../models/miningApp/MiningTerms.js";
 import MiningPrivacy from "../models/miningApp/MiningPrivacy.js";
+import Client from "../models/Clients.js";
 
 const withValidationErrors = (validateValues) => {
   return [
@@ -495,4 +496,45 @@ export const validateAddMinerModel = withValidationErrors([
   body("coolingType").notEmpty().withMessage("Cooling Type is required"),
   body("algorithm").notEmpty().withMessage("Name is required"),
   body("coins").notEmpty().withMessage("Coins are required"),
+]);
+
+//clients
+
+export const validateAddClient = withValidationErrors([
+  body("name").notEmpty().withMessage("Name is required"),
+  body("clientId")
+    .notEmpty()
+    .withMessage("Client Id is required")
+    .custom(async (clientId) => {
+      const user = await Client.findOne({ clientId: clientId });
+      if (user) throw new BadRequestError("Client Id already exists");
+    }),
+  body("email")
+    .notEmpty()
+    .withMessage("Email is required")
+    .isEmail()
+    .withMessage("Invalid Email format")
+    .custom(async (email) => {
+      const user = await Client.findOne({ email: email });
+      if (user) throw new BadRequestError("Email already exists");
+    }),
+  body("password").notEmpty().withMessage("Password field is required"),
+  body("address").notEmpty().withMessage("Address is required"),
+]);
+
+export const validateAddInternalNote = withValidationErrors([
+  body("note").notEmpty().withMessage("Note is required"),
+  body("user")
+    .notEmpty()
+    .withMessage("User is required")
+    .isMongoId()
+    .withMessage("User must be in MongoDB Id format"),
+]);
+
+export const validateEditClient = withValidationErrors([
+  body("name").notEmpty().withMessage("Name is required"),
+  body("email").notEmpty().withMessage("Email is required"),
+  body("clientId").notEmpty().withMessage("Client Id is required"),
+  body("address").notEmpty().withMessage("Address is required"),
+  body("userId").notEmpty().withMessage("User Id is required"),
 ]);

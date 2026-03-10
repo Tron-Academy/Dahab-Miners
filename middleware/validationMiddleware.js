@@ -538,3 +538,19 @@ export const validateEditClient = withValidationErrors([
   body("address").notEmpty().withMessage("Address is required"),
   body("userId").notEmpty().withMessage("User Id is required"),
 ]);
+
+//Warranty
+
+export const validateAddWarranty = withValidationErrors([
+  body("minerId").notEmpty().withMessage("Miner Id is required"),
+  body("type").notEmpty().withMessage("Type is required"),
+  body("start").notEmpty().withMessage("start date is required"),
+  body("end").notEmpty().withMessage("end date is required"),
+]);
+
+export const validateUpdateWarranty = withValidationErrors([
+  body("warrantyId").notEmpty().withMessage("Warranty Id is required"),
+  body("type").notEmpty().withMessage("Type is required"),
+  body("startDate").notEmpty().withMessage("start date is required"),
+  body("endDate").notEmpty().withMessage("end date is required"),
+]);

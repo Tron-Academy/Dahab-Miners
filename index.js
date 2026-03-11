@@ -56,6 +56,7 @@ import eventRouter from "./routes/eventRouter.js";
 import minerModelRouter from "./routes/minerModelRouter.js";
 import adminClientRouter from "./routes/adminClientRouter.js";
 import warrantyRouter from "./routes/adminWarrantyRouter.js";
+import farmRouter from "./routes/miningFarmRouter.js";
 
 //Version 2 Routes
 import miningUserRouterV2 from "./routes/miningApp/v2/miningUserRouterV2.js";
@@ -177,6 +178,7 @@ app.use(
 );
 app.use("/api/admin/client", authenticateUser, isSuperAdmin, adminClientRouter);
 app.use("/api/admin/warranty", authenticateUser, isSuperAdmin, warrantyRouter);
+app.use("/api/admin/mining-farm", authenticateUser, isSuperAdmin, farmRouter);
 
 //version 2 routes
 app.use("/api/v2/user", authenticateUser, miningUserRouterV2);

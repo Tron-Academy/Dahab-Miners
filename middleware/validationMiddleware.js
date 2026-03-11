@@ -554,3 +554,63 @@ export const validateUpdateWarranty = withValidationErrors([
   body("startDate").notEmpty().withMessage("start date is required"),
   body("endDate").notEmpty().withMessage("end date is required"),
 ]);
+
+// Mining Farms
+export const validateAddMiningFarm = withValidationErrors([
+  body("farm").notEmpty().withMessage("Farm Name is required"),
+  body("capacity").notEmpty().withMessage("Capacity is required"),
+  body("farmType").notEmpty().withMessage("Farm Type is required"),
+  body("farmStatus").notEmpty().withMessage("Farm Status is required"),
+  body("country").notEmpty().withMessage("Country is required"),
+  body("totalSlots").notEmpty().withMessage("Total Slots is required"),
+  body("contract").notEmpty().withMessage("Contract Type is required"),
+  body("commissioningDay")
+    .notEmpty()
+    .withMessage("Commissioning Date is required"),
+  body("contractDuration")
+    .notEmpty()
+    .withMessage("Contract Duration is required"),
+]);
+
+export const validateUpdateMiningFarm = withValidationErrors([
+  body("farm").notEmpty().withMessage("Farm Name is required"),
+  body("capacity").notEmpty().withMessage("Capacity is required"),
+  body("farmId").notEmpty().withMessage("Farm Id is required"),
+  body("farmType").notEmpty().withMessage("Farm Type is required"),
+  body("totalSlots").notEmpty().withMessage("Total Slots is required"),
+  body("country").notEmpty().withMessage("Country is required"),
+  body("contract").notEmpty().withMessage("Contract Type is required"),
+  body("commissioningDay")
+    .notEmpty()
+    .withMessage("Commissioning Date is required"),
+  body("contractDuration")
+    .notEmpty()
+    .withMessage("Contract Duration is required"),
+]);
+
+export const validateCreateAnnouncement = withValidationErrors([
+  body("farmId").notEmpty().withMessage("Farm Id is required"),
+  body("message").notEmpty().withMessage("Message is required"),
+  body("isOffline").notEmpty().withMessage("Is Offline is required"),
+  body("startAt").notEmpty().withMessage("Starting Time is required"),
+]);
+
+export const validateUpdateFarmStatus = withValidationErrors([
+  body("farmId").notEmpty().withMessage("Farm Id is required"),
+  body("status").notEmpty().withMessage("Status is required"),
+  body("inform").notEmpty().withMessage("Inform is required"),
+  body("autoActive").notEmpty().withMessage("Auto Active is required"),
+  body("activationTime").notEmpty().withMessage("Activation Time is required"),
+]);
+
+export const validateBulkUpdateMinerStatus = withValidationErrors([
+  body("farmId").notEmpty().withMessage("Farm Id is required"),
+  body("status").notEmpty().withMessage("Status is required"),
+  body("miners").notEmpty().withMessage("Miners list is required"),
+]);
+
+export const validateBulkMoveFarm = withValidationErrors([
+  body("oldFarmId").notEmpty().withMessage("Old Farm Id is required"),
+  body("newFarmId").notEmpty().withMessage("New Farm Id is required"),
+  body("miners").notEmpty().withMessage("Miners list is required"),
+]);

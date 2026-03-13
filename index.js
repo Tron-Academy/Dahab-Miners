@@ -192,12 +192,12 @@ app.use("*", (req, res) => {
 app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 3000;
-const uri =
-  process.env.NODE_ENV === "production"
-    ? process.env.MONGODB_URI
-    : process.env.MONGODB_URI_DEV;
+// const uri =
+//   process.env.NODE_ENV === "production"
+//     ? process.env.MONGODB_URI
+//     : process.env.MONGODB_URI_DEV;
 try {
-  await mongoose.connect(uri);
+  await mongoose.connect(process.env.MONGODB_URI);
   cron.schedule(
     "58 0 * * *",
     async () => {
@@ -227,7 +227,7 @@ try {
     { timezone: "Asia/Dubai" },
   );
   cron.schedule(
-    "10 0 * * *",
+    "1 0 * * *",
     async () => {
       console.log("Cron JOb for BTC Data started running");
       await getBitcoinData();

@@ -25,7 +25,6 @@ export const addNewMiningFarm = async (req, res) => {
     const {
       farm,
       capacity,
-      serviceProvider,
       farmType,
       farmStatus,
       totalSlots,
@@ -38,7 +37,6 @@ export const addNewMiningFarm = async (req, res) => {
     const newFarm = await MiningFarm.create({
       farm,
       capacity,
-      serviceProvider: serviceProvider || "",
       farmType: farmType,
       farmStatus,
       country,
@@ -62,7 +60,6 @@ export const editMiningFarm = async (req, res) => {
       farm,
       capacity,
       farmId,
-      serviceProvider,
       farmType,
       totalSlots,
       country,
@@ -75,7 +72,6 @@ export const editMiningFarm = async (req, res) => {
     if (!miningFarm) throw new NotFoundError("No mining Farm found");
     miningFarm.farm = farm;
     miningFarm.capacity = capacity;
-    miningFarm.serviceProvider = serviceProvider || "";
     miningFarm.farmType = farmType;
     miningFarm.country = country;
     miningFarm.contractType = contract;

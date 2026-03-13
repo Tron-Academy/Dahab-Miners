@@ -7,6 +7,7 @@ import WalletTransaction from "../../models/miningApp/v2/WalletTransaction.js";
 import { v4 as uuid4 } from "uuid";
 import BitCoinData from "../../models/BitCoinData.js";
 import ProfitModeTransaction from "../../models/miningApp/v2/ProfitModeTransaction.js";
+import axios from "axios";
 
 export const getAllMiningUsers = async (req, res) => {
   const { currentPage, keyWord } = req.query;
@@ -105,18 +106,41 @@ export const settleNegativeWallet = async (req, res) => {
     if (!user) throw new NotFoundError("No user found");
     if (user.walletBalance >= 0)
       throw new BadRequestError(
-        "Wallet balance is not negative. No deduction needed."
+        "Wallet balance is not negative. No deduction needed.",
       );
-    const btcData = await BitCoinData.findOne()
-      .sort({ createdAt: -1 })
-      .session(session);
-    if (!btcData || !btcData.price)
-      throw new NotFoundError("BTC Price unavailable");
+    const { data } = await axios.get(
+      "https://api.minerstat.com/v2/coins?list=BTC",
+      {
+        headers: {
+          "X-API-Key": process.env.MINERSTAT_API_KEY,
+        },
+      },
+    );
+    const btcData = data?.[0];
+    if (!btcData || !btcData.price) throw new Error("Unable to get BTC DATA");
+    const existing = await BitCoinData.findOne();
+    if (!existing) {
+      const newData = new BitCoinData({
+        network_hashrate: btcData.network_hashrate,
+        price: btcData.price,
+        difficulty: btcData.difficulty,
+        reward: btcData.reward,
+        reward_block: btcData.reward_block,
+        reward_unit: btcData.reward_unit,
+      });
+      await newData.save();
+    } else {
+      existing.network_hashrate = btcData.network_hashrate;
+      existing.price = btcData.price;
+      existing.difficulty = btcData.difficulty;
+      existing.reward = btcData.reward;
+      existing.reward_block = btcData.reward_block;
+      existing.reward_unit = btcData.reward_unit;
+      await existing.save();
+    }
     const btcPriceAED = btcData.price * 3.67;
-
     const requiredAED = Math.abs(user.walletBalance);
     const requiredBTC = requiredAED / btcPriceAED;
-
     let btcToDeduct = 0;
     let walletRecoveredAED = 0;
 

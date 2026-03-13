@@ -10,9 +10,9 @@ export const getBitcoinData = async () => {
         headers: {
           "X-API-Key": process.env.MINERSTAT_API_KEY,
         },
-      }
+      },
     );
-    const btcData = data?.data[0];
+    const btcData = data?.[0];
     if (!btcData) throw new Error("Unable to get BTC DATA");
     const existing = await BitCoinData.findOne();
     if (!existing) {

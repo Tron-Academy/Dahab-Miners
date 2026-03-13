@@ -17,7 +17,10 @@ export const addInventoryItem = async (req, res) => {
 };
 
 export const getAllItems = async (req, res) => {
-  const { search, type } = req.query;
+  const { search, type, currentPage } = req.query;
+  const page = Number(currentPage) || 1;
+  const limit = 20;
+  const skip = (page - 1) * limit;
   let queryObject = {};
   if (search && search !== "") {
     queryObject.itemName = { $regex: search, $options: "i" };
@@ -25,9 +28,13 @@ export const getAllItems = async (req, res) => {
   if (type && type !== "All") {
     queryObject.category = type;
   }
-  const items = await Inventory.find(queryObject);
-  if (!items) throw new NotFoundError("No Items found");
-  res.status(200).json(items);
+  const items = await Inventory.find(queryObject)
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit);
+  const totalItems = await Inventory.countDocuments(queryObject);
+  const totalPages = Math.ceil(totalItems / limit);
+  res.status(200).json({ items, totalPages });
 };
 
 export const getSingleItem = async (req, res) => {

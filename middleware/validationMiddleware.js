@@ -6,6 +6,7 @@ import Repair from "../models/RepairModel.js";
 import MiningUser from "../models/miningApp/MiningUser.js";
 import MiningTerms from "../models/miningApp/MiningTerms.js";
 import MiningPrivacy from "../models/miningApp/MiningPrivacy.js";
+import Client from "../models/Clients.js";
 
 const withValidationErrors = (validateValues) => {
   return [
@@ -484,4 +485,132 @@ export const validateAssignProduct = withValidationErrors([
     .isMongoId()
     .withMessage("Invalid Product Id"),
   body("qty").notEmpty().withMessage("qty is required"),
+]);
+
+//Miner Models
+export const validateAddMinerModel = withValidationErrors([
+  body("manufacturer").notEmpty().withMessage("Manufacturer is required"),
+  body("name").notEmpty().withMessage("Name is required"),
+  body("hashrate").notEmpty().withMessage("Hash Rate is required"),
+  body("power").notEmpty().withMessage("Power is required"),
+  body("coolingType").notEmpty().withMessage("Cooling Type is required"),
+  body("algorithm").notEmpty().withMessage("Name is required"),
+  body("coins").notEmpty().withMessage("Coins are required"),
+]);
+
+//clients
+
+export const validateAddClient = withValidationErrors([
+  body("name").notEmpty().withMessage("Name is required"),
+  body("clientId")
+    .notEmpty()
+    .withMessage("Client Id is required")
+    .custom(async (clientId) => {
+      const user = await Client.findOne({ clientId: clientId });
+      if (user) throw new BadRequestError("Client Id already exists");
+    }),
+  body("email")
+    .notEmpty()
+    .withMessage("Email is required")
+    .isEmail()
+    .withMessage("Invalid Email format")
+    .custom(async (email) => {
+      const user = await Client.findOne({ email: email });
+      if (user) throw new BadRequestError("Email already exists");
+    }),
+  body("password").notEmpty().withMessage("Password field is required"),
+  body("address").notEmpty().withMessage("Address is required"),
+]);
+
+export const validateAddInternalNote = withValidationErrors([
+  body("note").notEmpty().withMessage("Note is required"),
+  body("user")
+    .notEmpty()
+    .withMessage("User is required")
+    .isMongoId()
+    .withMessage("User must be in MongoDB Id format"),
+]);
+
+export const validateEditClient = withValidationErrors([
+  body("name").notEmpty().withMessage("Name is required"),
+  body("email").notEmpty().withMessage("Email is required"),
+  body("clientId").notEmpty().withMessage("Client Id is required"),
+  body("address").notEmpty().withMessage("Address is required"),
+  body("userId").notEmpty().withMessage("User Id is required"),
+]);
+
+//Warranty
+
+export const validateAddWarranty = withValidationErrors([
+  body("minerId").notEmpty().withMessage("Miner Id is required"),
+  body("type").notEmpty().withMessage("Type is required"),
+  body("start").notEmpty().withMessage("start date is required"),
+  body("end").notEmpty().withMessage("end date is required"),
+]);
+
+export const validateUpdateWarranty = withValidationErrors([
+  body("warrantyId").notEmpty().withMessage("Warranty Id is required"),
+  body("type").notEmpty().withMessage("Type is required"),
+  body("startDate").notEmpty().withMessage("start date is required"),
+  body("endDate").notEmpty().withMessage("end date is required"),
+]);
+
+// Mining Farms
+export const validateAddMiningFarm = withValidationErrors([
+  body("farm").notEmpty().withMessage("Farm Name is required"),
+  body("capacity").notEmpty().withMessage("Capacity is required"),
+  body("farmType").notEmpty().withMessage("Farm Type is required"),
+  body("farmStatus").notEmpty().withMessage("Farm Status is required"),
+  body("country").notEmpty().withMessage("Country is required"),
+  body("totalSlots").notEmpty().withMessage("Total Slots is required"),
+  body("contract").notEmpty().withMessage("Contract Type is required"),
+  body("commissioningDay")
+    .notEmpty()
+    .withMessage("Commissioning Date is required"),
+  body("contractDuration")
+    .notEmpty()
+    .withMessage("Contract Duration is required"),
+]);
+
+export const validateUpdateMiningFarm = withValidationErrors([
+  body("farm").notEmpty().withMessage("Farm Name is required"),
+  body("capacity").notEmpty().withMessage("Capacity is required"),
+  body("farmId").notEmpty().withMessage("Farm Id is required"),
+  body("farmType").notEmpty().withMessage("Farm Type is required"),
+  body("totalSlots").notEmpty().withMessage("Total Slots is required"),
+  body("country").notEmpty().withMessage("Country is required"),
+  body("contract").notEmpty().withMessage("Contract Type is required"),
+  body("commissioningDay")
+    .notEmpty()
+    .withMessage("Commissioning Date is required"),
+  body("contractDuration")
+    .notEmpty()
+    .withMessage("Contract Duration is required"),
+]);
+
+export const validateCreateAnnouncement = withValidationErrors([
+  body("farmId").notEmpty().withMessage("Farm Id is required"),
+  body("message").notEmpty().withMessage("Message is required"),
+  body("isOffline").notEmpty().withMessage("Is Offline is required"),
+  body("startAt").notEmpty().withMessage("Starting Time is required"),
+]);
+
+export const validateUpdateFarmStatus = withValidationErrors([
+  body("farmId").notEmpty().withMessage("Farm Id is required"),
+  body("status").notEmpty().withMessage("Status is required"),
+  body("inform").notEmpty().withMessage("Inform is required"),
+  body("autoActive").notEmpty().withMessage("Auto Active is required"),
+  body("activationTime").notEmpty().withMessage("Activation Time is required"),
+]);
+
+export const validateBulkUpdateMinerStatus = withValidationErrors([
+  body("farmId").notEmpty().withMessage("Farm Id is required"),
+  body("status").notEmpty().withMessage("Status is required"),
+  body("miners").notEmpty().withMessage("Miners list is required"),
+]);
+
+export const validateBulkMoveFarm = withValidationErrors([
+  body("oldFarmId").notEmpty().withMessage("Old Farm Id is required"),
+  body("newFarmId").notEmpty().withMessage("New Farm Id is required"),
+  body("miners").notEmpty().withMessage("Miners list is required"),
 ]);

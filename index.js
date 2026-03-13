@@ -53,6 +53,10 @@ import adminNotificationRouter from "./routes/adminNotificationRouter.js";
 import adminMessageRouter from "./routes/adminMessageRouter.js";
 import extraRouter from "./routes/extraRouter.js";
 import eventRouter from "./routes/eventRouter.js";
+import minerModelRouter from "./routes/minerModelRouter.js";
+import adminClientRouter from "./routes/adminClientRouter.js";
+import warrantyRouter from "./routes/adminWarrantyRouter.js";
+import farmRouter from "./routes/miningFarmRouter.js";
 
 //Version 2 Routes
 import miningUserRouterV2 from "./routes/miningApp/v2/miningUserRouterV2.js";
@@ -166,6 +170,15 @@ app.use(
 );
 app.use("/api/events", eventRouter);
 app.use("/api/extra", extraRouter);
+app.use(
+  "/api/admin/miner-model",
+  authenticateUser,
+  isSuperAdmin,
+  minerModelRouter,
+);
+app.use("/api/admin/client", authenticateUser, isSuperAdmin, adminClientRouter);
+app.use("/api/admin/warranty", authenticateUser, isSuperAdmin, warrantyRouter);
+app.use("/api/admin/mining-farm", authenticateUser, isSuperAdmin, farmRouter);
 
 //version 2 routes
 app.use("/api/v2/user", authenticateUser, miningUserRouterV2);
@@ -214,7 +227,7 @@ try {
     { timezone: "Asia/Dubai" },
   );
   cron.schedule(
-    "10 0 * * *",
+    "1 0 * * *",
     async () => {
       console.log("Cron JOb for BTC Data started running");
       await getBitcoinData();

@@ -67,7 +67,6 @@ const DataSchema = new Schema(
     },
     model: {
       type: String,
-      required: true,
     },
     status: {
       type: String,

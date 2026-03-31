@@ -20,6 +20,17 @@ export const getAllMiningFarms = async (req, res) => {
   }
 };
 
+export const getMiningFarmsDropdown = async (req, res) => {
+  try {
+    const farms = await MiningFarm.find().select("farm").lean();
+    res.status(200).json(farms);
+  } catch (error) {
+    res
+      .status(error.statusCode || 500)
+      .json({ error: error.msg || error.message });
+  }
+};
+
 export const addNewMiningFarm = async (req, res) => {
   try {
     const {

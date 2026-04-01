@@ -7,6 +7,8 @@ import Client from "../models/Clients.js";
 import MinerModel from "../models/MinerModel.js";
 import MiningFarm from "../models/MiningFarm.js";
 import Warranty from "../models/Warranty.js";
+import DahabIssue from "../models/DahabIssues.js";
+import DahabMessage from "../models/DahabMessage.js";
 
 export const addNewData = async (req, res) => {
   const {
@@ -408,5 +410,44 @@ export const editV2Data = async (req, res) => {
     res
       .status(error.statusCode || 500)
       .json({ error: error.msg || error.message });
+  }
+};
+
+export const deleteDataV2 = async (req, res) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
+    const { id } = req.params;
+    const miner = await Data.findById(id).session(session);
+    if (!miner) throw new NotFoundError("No miner found");
+    const client = await Client.findById(miner.client).session(session);
+    if (!client) throw new NotFoundError("No client found");
+    await DahabIssue.deleteMany({ miner: miner._id }).session(session);
+    await DahabMessage.deleteMany({ miner: miner._id }).session(session);
+    await Warranty.deleteMany({ miner: miner._id }).session(session);
+    const farm = await MiningFarm.findById(miner.actualLocationId).session(
+      session,
+    );
+    if (!farm) throw new BadRequestError("No farm has been found");
+    farm.current -= miner.power;
+    farm.miners = farm.miners.filter(
+      (item) => item.toString() !== miner._id.toString(),
+    );
+    farm.occupiedSlots -= 1;
+    client.owned = client.owned.filter(
+      (item) => item.toString() !== miner._id.toString(),
+    );
+    await client.save({ session });
+    await farm.save({ session });
+    await miner.deleteOne({ session });
+    await session.commitTransaction();
+    res.status(200).json({ message: "Miner successfully" });
+  } catch (error) {
+    await session.abortTransaction();
+    res
+      .status(error.statusCode || 500)
+      .json({ error: error.msg || error.message });
+  } finally {
+    session.endSession();
   }
 };

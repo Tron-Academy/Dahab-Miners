@@ -4,6 +4,7 @@ import {
   addNewDataV2,
   bulkUpload,
   deleteData,
+  deleteDataV2,
   DownloadCSV,
   editV2Data,
   getAllDatas,
@@ -29,5 +30,6 @@ router.patch("/updateData/:id", validateDataInput, updateSingleData);
 router.patch("/updateDataV2/:id", validateDataV2Input, editV2Data);
 router.patch("/updateRestricted/:id", isEditor, restrictedUpdate);
 router.delete("/deleteData/:id", isSuperAdmin, deleteData);
+router.delete("/deleteDataV2/:id", isSuperAdmin, deleteDataV2);
 
 export default router;

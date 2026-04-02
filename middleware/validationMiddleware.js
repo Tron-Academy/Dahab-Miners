@@ -625,3 +625,13 @@ export const validateBulkMoveFarm = withValidationErrors([
   body("newFarmId").notEmpty().withMessage("New Farm Id is required"),
   body("miners").notEmpty().withMessage("Miners list is required"),
 ]);
+
+//Issue
+export const validateAddIssueType = withValidationErrors([
+  body("issueType").notEmpty().withMessage("Issue Type is required"),
+]);
+
+export const validateEditIssueType = withValidationErrors([
+  body("issueType").notEmpty().withMessage("Issue Type is required"),
+  body("id").notEmpty().withMessage("Issue Type ID is required"),
+]);

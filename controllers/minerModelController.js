@@ -31,7 +31,10 @@ export const addNewMinerModel = async (req, res) => {
 
 export const getAllMinerModelsForDropdown = async (req, res) => {
   try {
-    const models = await MinerModel.find().sort({ name: 1 }).lean();
+    const models = await MinerModel.find()
+      .sort({ name: 1 })
+      .select("manufacturer name hashRate power")
+      .lean();
     res.status(200).json(models);
   } catch (error) {
     res

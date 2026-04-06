@@ -152,6 +152,17 @@ export const editClient = async (req, res) => {
   }
 };
 
+export const getClientsDropdown = async (req, res) => {
+  try {
+    const clients = await Client.find().select("clientName").lean();
+    res.status(200).json(clients);
+  } catch (error) {
+    res
+      .status(error.statusCode || 500)
+      .json({ error: error.msg || error.message });
+  }
+};
+
 // export const deleteClient = async (req, res) => {
 //   const session = await mongoose.startSession();
 //   session.startTransaction();

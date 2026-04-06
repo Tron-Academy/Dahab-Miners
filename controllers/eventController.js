@@ -46,7 +46,7 @@ export const addNewEvent = async (req, res) => {
     }
     if (req.files?.carouselImages?.length > 0) {
       data.carouselImages = await Promise.all(
-        req.files.carouselImages.map((file) => uploadSingle(file))
+        req.files.carouselImages.map((file) => uploadSingle(file)),
       );
     }
     const newEvent = new Event({
@@ -127,7 +127,7 @@ export const deleteImage = async (req, res) => {
     } else if (imageType === "carousel") {
       await cloudinary.uploader.destroy(publicId);
       event.carouselImages = event.carouselImages.filter(
-        (item) => item.publicId !== publicId
+        (item) => item.publicId !== publicId,
       );
       await event.save();
       return res.status(200).json({ msg: "Image deleted successfully" });
@@ -190,7 +190,7 @@ export const editEvent = async (req, res) => {
     }
     if (req.files?.carouselImages?.length > 0) {
       const newImages = await Promise.all(
-        req.files.carouselImages.map((file) => uploadSingle(file))
+        req.files.carouselImages.map((file) => uploadSingle(file)),
       );
       data.carouselImages = [...data.carouselImages, ...newImages];
     }
@@ -233,8 +233,8 @@ export const deleteEvent = async (req, res) => {
     if (event.carouselImages?.length > 0) {
       await Promise.all(
         event.carouselImages.map((item) =>
-          cloudinary.uploader.destroy(item.publicId)
-        )
+          cloudinary.uploader.destroy(item.publicId),
+        ),
       );
     }
     await event.deleteOne();

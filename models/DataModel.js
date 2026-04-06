@@ -27,12 +27,14 @@ const DataSchema = new Schema(
     },
     macAddress: {
       type: String,
+      unique: true,
     },
     modelName: {
       type: String,
     },
     serialNumber: {
       type: String,
+      unique: true,
     },
     clientName: {
       type: String,
@@ -42,6 +44,7 @@ const DataSchema = new Schema(
     },
     workerId: {
       type: String,
+      unique: true,
     },
     serviceProviderChanged: {
       type: Boolean,
@@ -68,6 +71,7 @@ const DataSchema = new Schema(
     model: {
       type: String,
     },
+    modelId: { type: mongoose.Schema.Types.ObjectId, ref: "MinerModel" },
     status: {
       type: String,
       enum: ["online", "offline", "In Transit"],
@@ -119,6 +123,9 @@ const DataSchema = new Schema(
     power: {
       type: Number,
     },
+    pool: {
+      type: String,
+    },
     internalNote: {
       type: [String],
       default: [],
@@ -128,6 +135,9 @@ const DataSchema = new Schema(
     },
     offlineHistory: {
       type: [offlineHistorySchema],
+    },
+    version: {
+      type: String,
     },
   },
   { timestamps: true },

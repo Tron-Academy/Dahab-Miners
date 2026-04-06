@@ -120,7 +120,18 @@ export const validateDataInput = withValidationErrors([
     .notEmpty()
     .withMessage("Current Location is required"),
   body("temporary").notEmpty().withMessage("Temporary is required"),
+  body("workerId").notEmpty().withMessage("Worker ID is  required"),
+]);
+
+export const validateDataV2Input = withValidationErrors([
+  body("client").notEmpty().withMessage("Client is required"),
   body("workerId").notEmpty().withMessage("Worker ID is not required"),
+  body("serialNumber").notEmpty().withMessage("Serial Number is  required"),
+  body("model").notEmpty().withMessage("model is required"),
+  body("status").notEmpty().withMessage("status is required"),
+  body("location").notEmpty().withMessage("location is required"),
+  body("poolAddress").notEmpty().withMessage("pool address is required"),
+  body("macAddress").notEmpty().withMessage("mac Address is required"),
 ]);
 
 export const validateRepairInput = withValidationErrors([
@@ -613,4 +624,23 @@ export const validateBulkMoveFarm = withValidationErrors([
   body("oldFarmId").notEmpty().withMessage("Old Farm Id is required"),
   body("newFarmId").notEmpty().withMessage("New Farm Id is required"),
   body("miners").notEmpty().withMessage("Miners list is required"),
+]);
+
+//Issue
+export const validateAddIssueType = withValidationErrors([
+  body("issueType").notEmpty().withMessage("Issue Type is required"),
+]);
+
+export const validateEditIssueType = withValidationErrors([
+  body("issueType").notEmpty().withMessage("Issue Type is required"),
+  body("id").notEmpty().withMessage("Issue Type ID is required"),
+]);
+
+export const validateReportIssue = withValidationErrors([
+  body("issue").notEmpty().withMessage("Issue is required"),
+  body("workerId").notEmpty().withMessage("Worker ID is required"),
+  body("miner").notEmpty().withMessage("Miner is required"),
+  body("client").notEmpty().withMessage("Client is required"),
+  body("status").notEmpty().withMessage("Status is required"),
+  body("description").notEmpty().withMessage("Description is required"),
 ]);

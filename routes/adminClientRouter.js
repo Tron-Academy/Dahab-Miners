@@ -10,6 +10,7 @@ import {
   clearClientNotes,
   editClient,
   getAllClients,
+  getClientsDropdown,
   getSingleClient,
 } from "../controllers/adminClientController.js";
 
@@ -17,6 +18,7 @@ const router = Router();
 
 router.post("/", validateAddClient, addNewClient);
 router.get("/", getAllClients);
+router.get("/dropdown", getClientsDropdown);
 router.get("/:id", getSingleClient);
 router.patch("/", validateEditClient, editClient);
 router.patch("/add-note", validateAddInternalNote, addClientNote);

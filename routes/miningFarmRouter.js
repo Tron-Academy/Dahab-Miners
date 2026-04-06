@@ -7,6 +7,7 @@ import {
   editMiningFarm,
   getAllMinersInFarm,
   getAllMiningFarms,
+  getMiningFarmsDropdown,
   updateFarmStatus,
   updateMinerStatusBulk,
 } from "../controllers/miningFarmController.js";
@@ -22,6 +23,7 @@ import {
 const router = Router();
 
 router.get("/", getAllMiningFarms);
+router.get("/dropdown", getMiningFarmsDropdown);
 router.get("/miners/:id", getAllMinersInFarm);
 router.post("/", validateAddMiningFarm, addNewMiningFarm);
 router.post(

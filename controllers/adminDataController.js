@@ -451,3 +451,21 @@ export const deleteDataV2 = async (req, res) => {
     session.endSession();
   }
 };
+
+export const getDataDropdown = async (req, res) => {
+  try {
+    const { search } = req.query;
+    const queryObject = { version: "2" };
+    if (search && search !== "") {
+      queryObject.client = search;
+    }
+    const datas = await Data.find(queryObject)
+      .select("workerId manufacturer model")
+      .lean();
+    res.status(200).json(datas);
+  } catch (error) {
+    res
+      .status(error.statusCode || 500)
+      .json({ error: error.msg || error.message });
+  }
+};

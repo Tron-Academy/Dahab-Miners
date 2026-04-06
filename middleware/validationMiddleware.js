@@ -635,3 +635,12 @@ export const validateEditIssueType = withValidationErrors([
   body("issueType").notEmpty().withMessage("Issue Type is required"),
   body("id").notEmpty().withMessage("Issue Type ID is required"),
 ]);
+
+export const validateReportIssue = withValidationErrors([
+  body("issue").notEmpty().withMessage("Issue is required"),
+  body("workerId").notEmpty().withMessage("Worker ID is required"),
+  body("miner").notEmpty().withMessage("Miner is required"),
+  body("client").notEmpty().withMessage("Client is required"),
+  body("status").notEmpty().withMessage("Status is required"),
+  body("description").notEmpty().withMessage("Description is required"),
+]);

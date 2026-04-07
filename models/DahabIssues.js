@@ -15,6 +15,9 @@ const IssueSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "IssueType",
     },
+    issueName: {
+      type: String,
+    },
     workerAddress: {
       type: String,
     },
@@ -26,11 +29,16 @@ const IssueSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Data",
     },
+    minerModel: {
+      type: String,
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Client",
     },
-
+    username: {
+      type: String,
+    },
     description: {
       type: String,
     },

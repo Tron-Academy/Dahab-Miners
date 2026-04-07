@@ -70,9 +70,12 @@ export const reportIssue = async (req, res) => {
       );
     const newIssue = new DahabIssue({
       issue: issue,
+      issueName: targetIssue.issueType,
       workerAddress: workerId,
       miner: targetMiner._id,
+      minerModel: targetMiner.model,
       user: targetClient._id,
+      username: targetClient.clientName,
       status: "Pending",
       description: description || "",
       type: "repair",
@@ -99,6 +102,141 @@ export const reportIssue = async (req, res) => {
     await newIssue.save({ session });
     await session.commitTransaction();
     res.status(200).json({ message: "Issue Added" });
+  } catch (error) {
+    await session.abortTransaction();
+    res
+      .status(error.statusCode || 500)
+      .json({ error: error.msg || error.message });
+  } finally {
+    session.endSession();
+  }
+};
+
+export const getAllIssues = async (req, res) => {
+  try {
+    const { status, currentPage, search } = req.query;
+    const page = Number(currentPage);
+    const limit = 15;
+    const skip = (page - 1) * limit;
+    const queryObject = {};
+    if (status && status !== "ALL") {
+      queryObject.status = status;
+    }
+    if (search && search !== "") {
+      const searchRegex = new RegExp(search, "i");
+      queryObject.$or = [
+        { issueName: searchRegex },
+        { username: searchRegex },
+        { minerModel: searchRegex },
+        { workerAddress: searchRegex },
+      ];
+    }
+    const issues = await DahabIssue.find(queryObject)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+      .populate("miner", "serialNumber")
+      .populate("user", "clientId");
+    const totalIssues = await DahabIssue.countDocuments(queryObject);
+    const totalPages = Math.ceil(totalIssues / limit);
+    res.status(200).json({ issues, totalIssues, totalPages });
+  } catch (error) {
+    res
+      .status(error.statusCode || 500)
+      .json({ error: error.msg || error.message });
+  }
+};
+
+export const updateIssueStatus = async (req, res) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
+    const { status } = req.body;
+    const issue = await DahabIssue.findById(req.params.id)
+      .populate("issue")
+      .session(session);
+    if (!issue) throw new NotFoundError("No issue found");
+    if (issue.status === "Resolved")
+      throw new BadRequestError("Issue Already Resolved");
+    if (status === "Warranty") {
+      issue.status = "Warranty";
+      issue.statusHistory.push({
+        status: "Warranty",
+        changedBy: "Admin",
+        changedOn: new Date(),
+      });
+      await issue.save({ session });
+      await session.commitTransaction();
+      return res.status(200).json({ message: "Status changed", issue });
+    }
+    if (status === "Pending") {
+      issue.status = "Pending";
+      issue.statusHistory.push({
+        status: "Pending",
+        changedBy: "Admin",
+        changedOn: new Date(),
+      });
+      await issue.save({ session });
+      await session.commitTransaction();
+      return res.status(200).json({ message: "Status changed", issue });
+    }
+    if (status === "Repair Center") {
+      issue.status = "Repair Center";
+      issue.statusHistory.push({
+        status: "Repair Center",
+        changedBy: "Admin",
+        changedOn: new Date(),
+      });
+      await issue.save({ session });
+      await session.commitTransaction();
+      return res.status(200).json({ message: "Status changed", issue });
+    }
+    if (status === "Resolved") {
+      issue.status = "Resolved";
+      issue.statusHistory.push({
+        status: "Resolved",
+        changedBy: "Admin",
+        changedOn: new Date(),
+      });
+      issue.resolvedOn = new Date();
+      const miner = await Data.findById(issue.miner).session(session);
+      if (!miner) throw new NotFoundError("Unable to find Miner");
+      miner.status = "online";
+      miner.offlineReason = "";
+      const minerOfflineObj = miner.offlineHistory.find(
+        (item) => item.issue.toString() === issue._id.toString(),
+      );
+      if (minerOfflineObj && minerOfflineObj.isOpen) {
+        minerOfflineObj.isOpen = false;
+      }
+      if (issue.type === "repair") {
+        miner.currentIssue = null;
+        // notification = new Notification({
+        //   problem: `An issue ${issue.issue.issueType} has been successfully resolved for your miner ${miner.model} (${miner.workerId})`,
+        //   client: miner.client,
+        //   miner: miner._id,
+        //   isIssue: true,
+        //   issue: issue._id,
+        //   status: "unread",
+        // });
+      }
+      // if (issue.type === "change") {
+      //   notification = new Notification({
+      //     problem: `The Pool Change request for your miner ${miner.model} (${miner.workerId}) has been approved`,
+      //     client: miner.client,
+      //     issue: issue._id,
+      //     isIssue: true,
+      //     miner: miner._id,
+      //     status: "unread",
+      //   });
+      // }
+      // await notification.save({ session });
+      await miner.save({ session });
+      await issue.save({ session });
+      await session.commitTransaction();
+      return res.status(200).json({ message: "success", notification, issue });
+    }
+    throw new BadRequestError("Invalid Status Type");
   } catch (error) {
     await session.abortTransaction();
     res

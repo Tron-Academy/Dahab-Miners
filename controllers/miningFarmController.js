@@ -39,13 +39,14 @@ export const addNewMiningFarm = async (req, res) => {
       farmType,
       farmStatus,
       totalSlots,
+      facilityCode,
       country,
       contract,
       commissioningDay,
       contractDuration,
       info,
     } = req.body;
-    const newFarm = await MiningFarm.create({
+    const newFarm = new MiningFarm({
       farm,
       capacity,
       farmType: farmType,
@@ -57,6 +58,10 @@ export const addNewMiningFarm = async (req, res) => {
       contractDuration: new Date(contractDuration),
       farmInfo: info || "",
     });
+    if (facilityCode) {
+      newFarm.facilityCode = facilityCode;
+    }
+    await newFarm.save();
     res.status(200).json({ message: "New Farm added successfully", newFarm });
   } catch (error) {
     res
@@ -69,6 +74,7 @@ export const editMiningFarm = async (req, res) => {
   try {
     const {
       farm,
+      facilityCode,
       capacity,
       farmId,
       farmType,
@@ -90,6 +96,9 @@ export const editMiningFarm = async (req, res) => {
     miningFarm.dayOfCommissioning = new Date(commissioningDay);
     miningFarm.contractDuration = new Date(contractDuration);
     miningFarm.farmInfo = info || "";
+    if (facilityCode) {
+      miningFarm.facilityCode = facilityCode;
+    }
     await miningFarm.save();
     res.status(200).json({ message: "Successfully updated", miningFarm });
   } catch (error) {

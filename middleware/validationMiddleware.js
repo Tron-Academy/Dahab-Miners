@@ -644,3 +644,7 @@ export const validateReportIssue = withValidationErrors([
   body("status").notEmpty().withMessage("Status is required"),
   body("description").notEmpty().withMessage("Description is required"),
 ]);
+
+export const validateUpdateIssueStatus = withValidationErrors([
+  body("status").notEmpty().withMessage("Status is required"),
+]);

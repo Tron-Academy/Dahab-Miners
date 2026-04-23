@@ -6,6 +6,10 @@ const MiningFarmSchema = new Schema(
       type: String,
       unique: true,
     },
+    facilityCode: {
+      type: String,
+      unique: true,
+    },
     capacity: {
       type: Number,
     },

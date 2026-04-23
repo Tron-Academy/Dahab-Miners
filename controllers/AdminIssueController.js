@@ -236,7 +236,6 @@ export const updateIssueStatus = async (req, res) => {
       await session.commitTransaction();
       return res.status(200).json({ message: "success", notification, issue });
     }
-    throw new BadRequestError("Invalid Status Type");
   } catch (error) {
     await session.abortTransaction();
     res

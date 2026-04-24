@@ -46,6 +46,7 @@ export const addNewDataV2 = async (req, res) => {
       model,
       status,
       location,
+      temporaryLocation,
       warrantyStart,
       warrantyEnd,
       poolAddress,
@@ -66,16 +67,35 @@ export const addNewDataV2 = async (req, res) => {
     if (existingMiner)
       throw new BadRequestError("Miner with same SN/worker/mac found");
     let miningFarm = null;
+    let temporaryFarm = null;
     let newTotal;
     miningFarm = await MiningFarm.findById(location).session(session);
     if (!miningFarm) throw new NotFoundError("No miningfarm found");
-    newTotal = miningFarm.current + Number(minerModel.power);
-    if (miningFarm.capacity < newTotal) {
-      throw new BadRequestError("Mining Farm maximum capacity reached");
+    if (temporaryLocation) {
+      temporaryFarm =
+        await MiningFarm.findById(temporaryLocation).session(session);
+      if (!temporaryFarm) throw new NotFoundError("No mining farm found");
     }
-    if (miningFarm.occupiedSlots >= miningFarm.totalSlots) {
-      throw new BadRequestError("No slots available at farm");
+    if (temporaryFarm) {
+      newTotal = temporaryFarm.current + Number(minerModel.power);
+      if (temporaryFarm.capacity < newTotal) {
+        throw new BadRequestError(
+          "Mining Farm maximum capacity reached at temporary farm",
+        );
+      }
+      if (temporaryFarm.occupiedSlots >= temporaryFarm.totalSlots) {
+        throw new BadRequestError("No slots available at temporary farm");
+      }
+    } else if (miningFarm) {
+      newTotal = miningFarm.current + Number(minerModel.power);
+      if (miningFarm.capacity < newTotal) {
+        throw new BadRequestError("Mining Farm maximum capacity reached");
+      }
+      if (miningFarm.occupiedSlots >= miningFarm.totalSlots) {
+        throw new BadRequestError("No slots available at farm");
+      }
     }
+
     const newData = new Data({
       client: client,
       clientName: clientUser.clientName,
@@ -86,8 +106,8 @@ export const addNewDataV2 = async (req, res) => {
       status: status,
       actualLocation: miningFarm.farm,
       actualLocationId: miningFarm._id,
-      currentLocation: miningFarm.farm,
-      currentLocationId: miningFarm._id,
+      currentLocation: temporaryFarm?.farm || undefined,
+      currentLocationId: temporaryFarm?._id || undefined,
       pool: poolAddress,
       hashRate: minerModel.hashRate,
       power: minerModel.power,
@@ -118,7 +138,21 @@ export const addNewDataV2 = async (req, res) => {
       newData.relatedWarranty = newWarranty._id;
       await newWarranty.save({ session });
     }
-    if (miningFarm) {
+
+    if (temporaryFarm) {
+      temporaryFarm.current = temporaryFarm.current + Number(newData.power);
+      temporaryFarm.occupiedSlots += 1;
+      temporaryFarm.temporaryMiners.push({
+        miner: newData._id,
+        serialNumber: newData.serialNumber,
+      });
+      miningFarm.movedMiners.push({
+        miner: newData._id,
+        serialNumber: newData.serialNumber,
+      });
+      await temporaryFarm.save({ session });
+      await miningFarm.save({ session });
+    } else if (miningFarm) {
       miningFarm.current = miningFarm.current + Number(newData.power);
       miningFarm.occupiedSlots += 1;
       miningFarm.miners.push(newData._id);
@@ -316,6 +350,7 @@ export const editV2Data = async (req, res) => {
       model,
       status,
       location,
+      temporaryLocation,
       poolAddress,
       connectionDate,
       macAddress,
@@ -330,44 +365,279 @@ export const editV2Data = async (req, res) => {
     const oldPower = Number(miner.power || 0);
     const newPower = Number(minermodel.power);
 
-    const oldFarmName = miner.actualLocation || null;
+    const oldFarmId = miner.actualLocationId || null;
     let oldFarm = null;
     let newFarm = null;
+
+    const temporaryOldFarmId = miner.currentLocationId || null;
+    let tempOldFarm = null;
+    let tempNewFarm = null;
 
     newFarm = await MiningFarm.findById(location).session(session);
     if (!newFarm) throw new NotFoundError("NO Farm found");
 
-    if (oldFarmName !== newFarm.farm) {
-      oldFarm = await MiningFarm.findOne({ farm: oldFarmName }).session(
-        session,
-      );
-      if (!oldFarm) throw new NotFoundError("old mining farm not found");
-      const adjusted = newFarm.current + newPower;
-      if (adjusted > newFarm.capacity) {
-        throw new BadRequestError("Capacity exceeded at new farm");
-      }
-      if (newFarm.occupiedSlots >= newFarm.totalSlots) {
-        throw new BadRequestError("No slots available in new farm");
-      }
-      oldFarm.current -= oldPower;
-      oldFarm.miners = oldFarm.miners.filter(
-        (item) => item.toString() !== miner._id.toString(),
-      );
-      oldFarm.occupiedSlots -= 1;
-      newFarm.current += newPower;
-      newFarm.miners.push(miner._id);
-      newFarm.occupiedSlots += 1;
-
-      await oldFarm.save({ session });
-      await newFarm.save({ session });
-    } else if (oldPower !== newPower) {
-      const adjusted = newFarm.current - oldPower + newPower;
-      if (adjusted > newFarm.capacity) {
-        throw new BadRequestError("Capacity ecxceeded at current farm");
-      }
-      newFarm.current = adjusted;
-      await newFarm.save({ session });
+    if (temporaryLocation) {
+      tempNewFarm =
+        await MiningFarm.findById(temporaryLocation).session(session);
+      if (!tempNewFarm) throw new NotFoundError("No temporary farm found");
     }
+
+    if (tempNewFarm) {
+      //if there is a temporary farm
+      if (!temporaryOldFarmId) {
+        //if this is a first time temporary farm
+        const adjusted = tempNewFarm.current + newPower;
+        if (adjusted > tempNewFarm.capacity)
+          throw new BadRequestError("Capacity exceeded at temporary farm");
+        if (tempNewFarm.occupiedSlots >= tempNewFarm.totalSlots) {
+          throw new BadRequestError("No slots available in temporary farm");
+        }
+        tempNewFarm.current += newPower;
+        tempNewFarm.occupiedSlots += 1;
+        if (
+          !tempNewFarm.temporaryMiners.some(
+            (item) => item.miner.toString() === miner._id.toString(),
+          )
+        ) {
+          tempNewFarm.temporaryMiners.push({
+            miner: miner._id,
+            serialNumber: miner.serialNumber,
+          });
+        }
+        //if the the actual farms are different with a new temporary farm
+        if (newFarm._id.toString() !== oldFarmId.toString()) {
+          oldFarm = await MiningFarm.findById(oldFarmId).session(session);
+          if (!oldFarm)
+            throw new BadRequestError("Old Actual location not found");
+          oldFarm.miners = oldFarm.miners.filter(
+            (item) => item.toString() !== miner._id.toString(),
+          );
+          oldFarm.current -= oldPower;
+          oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
+          if (
+            !newFarm.movedMiners.some(
+              (item) => item.miner.toString() === miner._id.toString(),
+            )
+          ) {
+            newFarm.movedMiners.push({
+              miner: miner._id,
+              serialNumber: miner.serialNumber,
+            });
+          }
+          await newFarm.save({ session });
+          await oldFarm.save({ session });
+
+          //if the actual farms are same with a new temporary farm
+        } else if (newFarm._id.toString() === oldFarmId.toString()) {
+          newFarm.miners = newFarm.miners.filter(
+            (item) => item.toString() !== miner._id.toString(),
+          );
+          if (
+            !newFarm.movedMiners.some(
+              (item) => item.miner.toString() === miner._id.toString(),
+            )
+          ) {
+            newFarm.movedMiners.push({
+              miner: miner._id,
+              serialNumber: miner.serialNumber,
+            });
+          }
+
+          newFarm.current -= oldPower;
+          newFarm.occupiedSlots = Math.max(0, newFarm.occupiedSlots - 1);
+          await newFarm.save({ session });
+        }
+        await tempNewFarm.save({ session });
+        //if there is a change in temporary farm
+      } else if (temporaryOldFarmId.toString() !== tempNewFarm._id.toString()) {
+        tempOldFarm =
+          await MiningFarm.findById(temporaryOldFarmId).session(session);
+        if (!tempOldFarm)
+          throw new NotFoundError("Old temporary farm is not found");
+        const adjusted = tempNewFarm.current + newPower;
+        if (adjusted > tempNewFarm.capacity) {
+          throw new BadRequestError("Capacity exceeded at new temporary farm");
+        }
+        if (tempNewFarm.occupiedSlots >= tempNewFarm.totalSlots) {
+          throw new BadRequestError("No slots available at new temporary farm");
+        }
+        tempOldFarm.current -= oldPower;
+        tempOldFarm.occupiedSlots = Math.max(0, tempOldFarm.occupiedSlots - 1);
+        tempOldFarm.temporaryMiners = tempOldFarm.temporaryMiners.filter(
+          (item) => item.miner.toString() !== miner._id.toString(),
+        );
+        tempNewFarm.current += newPower;
+        tempNewFarm.occupiedSlots += 1;
+        if (
+          !tempNewFarm.temporaryMiners.some(
+            (item) => item.miner.toString() === miner._id.toString(),
+          )
+        ) {
+          tempNewFarm.temporaryMiners.push({
+            miner: miner._id,
+            serialNumber: miner.serialNumber,
+          });
+        }
+
+        //if the actual farms are different with different temporary farms
+        if (oldFarmId.toString() !== newFarm._id.toString()) {
+          oldFarm = await MiningFarm.findById(oldFarmId).session(session);
+          if (!oldFarm)
+            throw new NotFoundError("Old Actual location not found");
+          oldFarm.movedMiners = oldFarm.movedMiners.filter(
+            (item) => item.miner.toString() !== miner._id.toString(),
+          );
+          if (
+            !newFarm.movedMiners.some(
+              (item) => item.miner.toString() === miner._id.toString(),
+            )
+          ) {
+            newFarm.movedMiners.push({
+              miner: miner._id,
+              serialNumber: miner.serialNumber,
+            });
+          }
+          await oldFarm.save({ session });
+          await newFarm.save({ session });
+        }
+        await tempOldFarm.save({ session });
+        await tempNewFarm.save({ session });
+        //if there is a change in power with no change in temporary farm
+      } else if (oldPower !== newPower) {
+        const adjusted = tempNewFarm.current - oldPower + newPower;
+        if (adjusted > tempNewFarm.capacity) {
+          throw new BadRequestError(
+            "Capacity exceeded at the temporary location",
+          );
+        }
+        tempNewFarm.current = adjusted;
+        await tempNewFarm.save({ session });
+        //if the actual farms are different with same temporary farms
+        if (oldFarmId.toString() !== newFarm._id.toString()) {
+          oldFarm = await MiningFarm.findById(oldFarmId).session(session);
+          if (!oldFarm)
+            throw new NotFoundError("Old Actual location not found");
+          oldFarm.movedMiners = oldFarm.movedMiners.filter(
+            (item) => item.miner.toString() !== miner._id.toString(),
+          );
+          if (
+            !newFarm.movedMiners.some(
+              (item) => item.miner.toString() === miner._id.toString(),
+            )
+          ) {
+            newFarm.movedMiners.push({
+              miner: miner._id,
+              serialNumber: miner.serialNumber,
+            });
+          }
+          await oldFarm.save({ session });
+          await newFarm.save({ session });
+        }
+      }
+      //if there is no temporary farm
+    } else {
+      //if both actual farms are different without a temporary farm
+      if (oldFarmId.toString() !== newFarm._id.toString()) {
+        oldFarm = await MiningFarm.findById(oldFarmId).session(session);
+        if (!oldFarm) throw new NotFoundError("old mining farm not found");
+        const adjusted = newFarm.current + newPower;
+        if (adjusted > newFarm.capacity) {
+          throw new BadRequestError("Capacity exceeded at new farm");
+        }
+        if (newFarm.occupiedSlots >= newFarm.totalSlots) {
+          throw new BadRequestError("No slots available in new farm");
+        }
+        oldFarm.current -= oldPower;
+        oldFarm.miners = oldFarm.miners.filter(
+          (item) => item.toString() !== miner._id.toString(),
+        );
+        oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
+        newFarm.current += newPower;
+        if (
+          !newFarm.miners.some(
+            (item) => item.toString() === miner._id.toString(),
+          )
+        ) {
+          newFarm.miners.push(miner._id);
+        }
+
+        newFarm.occupiedSlots += 1;
+        //if there is an old temporary farm and no new
+        if (temporaryOldFarmId) {
+          tempOldFarm =
+            await MiningFarm.findById(temporaryOldFarmId).session(session);
+          if (!tempOldFarm)
+            throw new NotFoundError("No old temporary farm found");
+          tempOldFarm.current -= oldPower;
+          tempOldFarm.occupiedSlots = Math.max(
+            0,
+            tempOldFarm.occupiedSlots - 1,
+          );
+          tempOldFarm.temporaryMiners = tempOldFarm.temporaryMiners.filter(
+            (item) => item.miner.toString() !== miner._id.toString(),
+          );
+          await tempOldFarm.save({ session });
+        }
+
+        await oldFarm.save({ session });
+        await newFarm.save({ session });
+        //if power is different and same actual farm without temporary farm
+      } else if (oldPower !== newPower) {
+        const adjusted = newFarm.current - oldPower + newPower;
+        if (adjusted > newFarm.capacity) {
+          throw new BadRequestError("Capacity ecxceeded at current farm");
+        }
+        newFarm.current = adjusted;
+        await newFarm.save({ session });
+        //if old temp farm exists without change in actual farm and no new temp farm and change in power
+        if (temporaryOldFarmId) {
+          tempOldFarm =
+            await MiningFarm.findById(temporaryOldFarmId).session(session);
+          if (!tempOldFarm)
+            throw new NotFoundError("No old temporary farm found");
+          tempOldFarm.current -= oldPower;
+          tempOldFarm.occupiedSlots = Math.max(
+            0,
+            tempOldFarm.occupiedSlots - 1,
+          );
+          tempOldFarm.temporaryMiners = tempOldFarm.temporaryMiners.filter(
+            (item) => item.miner.toString() !== miner._id.toString(),
+          );
+          await tempOldFarm.save({ session });
+        }
+      } else if (temporaryOldFarmId) {
+        tempOldFarm =
+          await MiningFarm.findById(temporaryOldFarmId).session(session);
+        if (!tempOldFarm)
+          throw new NotFoundError("No old temporary farm found");
+        tempOldFarm.current -= oldPower;
+        tempOldFarm.occupiedSlots = Math.max(0, tempOldFarm.occupiedSlots - 1);
+        tempOldFarm.temporaryMiners = tempOldFarm.temporaryMiners.filter(
+          (item) => item.miner.toString() !== miner._id.toString(),
+        );
+        const adjusted = newFarm.current + newPower;
+        if (adjusted > newFarm.capacity) {
+          throw new BadRequestError("Capacity exceeded at actual location");
+        }
+        if (newFarm.occupiedSlots >= newFarm.totalSlots)
+          throw new BadRequestError("Slots exceeded at actual location");
+        newFarm.movedMiners = newFarm.movedMiners.filter(
+          (item) => item.miner.toString() !== miner._id.toString(),
+        );
+        if (
+          !newFarm.miners.some(
+            (item) => item.toString() === miner._id.toString(),
+          )
+        ) {
+          newFarm.miners.push(miner._id);
+        }
+        newFarm.current += newPower;
+        newFarm.occupiedSlots += 1;
+        await newFarm.save({ session });
+        await tempOldFarm.save({ session });
+      }
+    }
+
     if (miner.client.toString() !== clientUser._id.toString()) {
       const oldClient = await Client.findById(miner.client).session(session);
       if (oldClient) {
@@ -398,6 +668,8 @@ export const editV2Data = async (req, res) => {
     if (connectionDate) miner.connectionDate = new Date(connectionDate);
     miner.actualLocation = newFarm.farm;
     miner.actualLocationId = newFarm._id;
+    miner.currentLocation = tempNewFarm?.farm || undefined;
+    miner.currentLocationId = tempNewFarm?._id || undefined;
 
     await miner.save({ session });
     await clientUser.save({ session });
@@ -429,16 +701,39 @@ export const deleteDataV2 = async (req, res) => {
       session,
     );
     if (!farm) throw new BadRequestError("No farm has been found");
-    farm.current -= miner.power;
-    farm.miners = farm.miners.filter(
-      (item) => item.toString() !== miner._id.toString(),
-    );
-    farm.occupiedSlots -= 1;
+    let temporaryFarm;
+
+    if (miner.currentLocationId) {
+      temporaryFarm = await MiningFarm.findById(
+        miner.currentLocationId,
+      ).session(session);
+      if (!temporaryFarm)
+        throw new BadRequestError("No temporary farm has been found");
+      temporaryFarm.current -= miner.power;
+      temporaryFarm.occupiedSlots = Math.max(
+        0,
+        temporaryFarm.occupiedSlots - 1,
+      );
+      temporaryFarm.temporaryMiners = temporaryFarm.temporaryMiners.filter(
+        (item) => item.miner.toString() !== miner._id.toString(),
+      );
+      farm.movedMiners = farm.movedMiners.filter(
+        (item) => item.miner.toString() !== miner._id.toString(),
+      );
+      await temporaryFarm.save({ session });
+      await farm.save({ session });
+    } else {
+      farm.current -= miner.power;
+      farm.miners = farm.miners.filter(
+        (item) => item.toString() !== miner._id.toString(),
+      );
+      farm.occupiedSlots -= 1;
+      await farm.save({ session });
+    }
     client.owned = client.owned.filter(
       (item) => item.toString() !== miner._id.toString(),
     );
     await client.save({ session });
-    await farm.save({ session });
     await miner.deleteOne({ session });
     await session.commitTransaction();
     res.status(200).json({ message: "Miner successfully" });

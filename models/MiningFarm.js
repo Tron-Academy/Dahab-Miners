@@ -1,5 +1,16 @@
 import mongoose, { model, Schema } from "mongoose";
 
+const temporaryMinersSchema = new Schema(
+  {
+    miner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Data",
+    },
+    serialNumber: String,
+  },
+  { id: false },
+);
+
 const MiningFarmSchema = new Schema(
   {
     farm: {
@@ -27,6 +38,12 @@ const MiningFarmSchema = new Schema(
     miners: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Data",
+    },
+    movedMiners: {
+      type: [temporaryMinersSchema],
+    },
+    temporaryMiners: {
+      type: [temporaryMinersSchema],
     },
     farmStatus: {
       type: String,

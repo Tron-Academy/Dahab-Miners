@@ -9,6 +9,8 @@ import MiningFarm from "../models/MiningFarm.js";
 import Warranty from "../models/Warranty.js";
 import DahabIssue from "../models/DahabIssues.js";
 import DahabMessage from "../models/DahabMessage.js";
+import { parseCSVBuffer } from "../utils/parseCSV.js";
+import fs from "fs";
 
 export const addNewData = async (req, res) => {
   const {
@@ -46,6 +48,7 @@ export const addNewDataV2 = async (req, res) => {
       model,
       status,
       location,
+      nowRunning,
       temporaryLocation,
       warrantyStart,
       warrantyEnd,
@@ -64,7 +67,7 @@ export const addNewDataV2 = async (req, res) => {
         { macAddress: macAddress },
       ],
     }).session(session);
-    if (existingMiner)
+    if (existingMiner && existingMiner.version === "2")
       throw new BadRequestError("Miner with same SN/worker/mac found");
     let miningFarm = null;
     let temporaryFarm = null;
@@ -116,6 +119,7 @@ export const addNewDataV2 = async (req, res) => {
       coolingType: minerModel.coolingType,
       manufacturer: minerModel.manufacturer,
       macAddress: macAddress,
+      temporaryOwner: nowRunning ? nowRunning : undefined,
       version: "2",
     });
     if (connectionDate) {
@@ -168,6 +172,189 @@ export const addNewDataV2 = async (req, res) => {
     await session.abortTransaction();
     session.endSession();
     res
+      .status(error.statusCode || 500)
+      .json({ error: error.msg || error.message });
+  }
+};
+
+export const bulkUploadDataV2 = async (req, res) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
+    if (!req.file) throw new BadRequestError("No CSV file found");
+    const rows = await parseCSVBuffer(req.file.buffer);
+    if (!rows.length) throw new BadRequestError("CSV is Empty");
+
+    //collecting unique values
+    const clientNames = [...new Set(rows.map((r) => r.clientName))];
+    const modelNames = [...new Set(rows.map((r) => r.modelName))];
+    const locationNames = [...new Set(rows.map((r) => r.actualLocation))];
+    const tempLocationNames = [
+      ...new Set(rows.map((r) => r.currentLocation).filter(Boolean)),
+    ];
+
+    //Fetching all Data
+    const [clients, models, farms, tempFarms] = await Promise.all([
+      Client.find({ clientName: { $in: clientNames } }).session(session),
+      MinerModel.find({ name: { $in: modelNames } }).session(session),
+      MiningFarm.find({ farm: { $in: locationNames } }).session(session),
+      MiningFarm.find({ farm: { $in: tempLocationNames } }).session(session),
+    ]);
+
+    //Mapping Data for easy retrieval
+    const clientMap = new Map(clients.map((c) => [c.clientName, c]));
+    const modelMap = new Map(models.map((m) => [m.name, m]));
+    const farmMap = new Map(farms.map((f) => [f.farm, f]));
+    const tempFarmMap = new Map(tempFarms.map((f) => [f.farm, f]));
+
+    //Duplicate Check
+    const serials = rows.map((r) => r.serialNumber);
+    const workers = rows.map((r) => r.workerId);
+    const macs = rows.map((r) => r.macAddress);
+
+    const existing = await Data.find({
+      $or: [
+        { serialNumber: { $in: serials } },
+        { macAddress: { $in: macs } },
+        { workerId: { $in: workers } },
+      ],
+      version: "2",
+    }).session(session);
+    const existingSet = new Set(
+      existing.map((e) => `${e.serialNumber}_${e.workerId}_${e.macAddress}`),
+    );
+
+    //Prepare bulk data
+    const dataToInsert = [];
+    const warrantiesToInsert = [];
+    const cleanedRows = rows.filter((row) =>
+      Object.values(row).some((val) => val && val.toString().trim() !== ""),
+    );
+
+    for (const row of cleanedRows) {
+      const client = clientMap.get(row.clientName);
+      const model = modelMap.get(row.modelName);
+      const farm = farmMap.get(row.actualLocation);
+      const tempFarm = row.currentLocation
+        ? tempFarmMap.get(row.currentLocation)
+        : null;
+
+      if (!client)
+        throw new NotFoundError(
+          `Client Not Found under name ${row.clientName}`,
+        );
+      if (!model)
+        throw new NotFoundError(
+          `Model not found under the name ${row.modelName}`,
+        );
+      if (!farm)
+        throw new NotFoundError(
+          `Farm for actual location Not found under the name ${row.actualLocation}`,
+        );
+
+      if (row.currentLocation && !tempFarm)
+        throw new NotFoundError(
+          `Farm for current location not found under the name ${row.currentLocation}`,
+        );
+      if (tempFarm && tempFarm._id.toString() === farm._id.toString()) {
+        throw new BadRequestError(
+          "Temporary and actual location cannot be same for " +
+            row.serialNumber,
+        );
+      }
+      const key = `${row.serialNumber}_${row.workerId}_${row.macAddress}`;
+      if (existingSet.has(key))
+        throw new BadRequestError(`Dulicate miner ${row.serialNumber}`);
+      const selectedFarm = tempFarm || farm;
+      const newTotal = selectedFarm.current + Number(model.power);
+      if (selectedFarm.capacity < newTotal)
+        throw new BadRequestError(`Capacity exceeded in ${selectedFarm.farm}`);
+      if (selectedFarm.occupiedSlots >= selectedFarm.totalSlots)
+        throw new BadRequestError(`No slots available at ${selectedFarm.farm}`);
+      const minerId = new mongoose.Types.ObjectId();
+      const newMiner = {
+        _id: minerId,
+        client: client._id,
+        clientName: client.clientName,
+        workerId: row.workerId,
+        serialNumber: row.serialNumber,
+        model: model.name,
+        modelId: model._id,
+        status: row.status,
+        actualLocation: farm.farm,
+        actualLocationId: farm._id,
+        currentLocation: tempFarm?.farm,
+        currentLocationId: tempFarm?._id,
+        hashRate: model.hashRate,
+        power: model.power,
+        coins: model.coins,
+        algorithm: model.algorithm,
+        coolingType: model.coolingType,
+        manufacturer: model.manufacturer,
+        macAddress: row.macAddress,
+        temporaryOwner: row.nowRunning ? row.nowRunning : undefined,
+        version: "2",
+      };
+      if (row.connectionDate) {
+        newMiner.connectionDate = new Date(row.connectionDate);
+      }
+      if (row.warrantyStart && row.warrantyEnd) {
+        const warrantyId = new mongoose.Types.ObjectId();
+        warrantiesToInsert.push({
+          _id: warrantyId,
+          warrantyType: "Manufacturer",
+          startDate: new Date(row.warrantyStart),
+          endDate: new Date(row.warrantyEnd),
+          user: client._id,
+          miner: minerId,
+          status: "active",
+        });
+        newMiner.relatedWarranty = warrantyId;
+      }
+      dataToInsert.push(newMiner);
+
+      //Farm updates
+      selectedFarm.current += Number(model.power);
+      selectedFarm.occupiedSlots += 1;
+      if (tempFarm) {
+        tempFarm.temporaryMiners.push({
+          miner: minerId,
+          serialNumber: row.serialNumber,
+        });
+        farm.movedMiners.push({
+          miner: minerId,
+          serialNumber: row.serialNumber,
+        });
+      } else {
+        farm.miners.push(minerId);
+      }
+      client.owned.push(minerId);
+    }
+    await Data.insertMany(dataToInsert, { session });
+    if (warrantiesToInsert.length) {
+      await Warranty.insertMany(warrantiesToInsert, { session });
+    }
+    for (const c of clients) {
+      await c.save({ session });
+    }
+
+    for (const f of farms) {
+      await f.save({ session });
+    }
+
+    for (const f of tempFarms) {
+      await f.save({ session });
+    }
+    await session.commitTransaction();
+    session.endSession();
+
+    return res
+      .status(200)
+      .json({ message: "successfully uploaded", count: dataToInsert.length });
+  } catch (error) {
+    await session.abortTransaction();
+    session.endSession();
+    return res
       .status(error.statusCode || 500)
       .json({ error: error.msg || error.message });
   }
@@ -351,6 +538,7 @@ export const editV2Data = async (req, res) => {
       status,
       location,
       temporaryLocation,
+      nowRunning,
       poolAddress,
       connectionDate,
       macAddress,
@@ -670,6 +858,7 @@ export const editV2Data = async (req, res) => {
     miner.actualLocationId = newFarm._id;
     miner.currentLocation = tempNewFarm?.farm || undefined;
     miner.currentLocationId = tempNewFarm?._id || undefined;
+    miner.temporaryOwner = nowRunning ? nowRunning : undefined;
 
     await miner.save({ session });
     await clientUser.save({ session });

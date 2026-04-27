@@ -1,4 +1,4 @@
-import { NotFoundError } from "../../errors/customErrors.js";
+import { BadRequestError, NotFoundError } from "../../errors/customErrors.js";
 import Data from "../../models/DataModel.js";
 import Issue from "../../models/intermine/Issue.js";
 import Message from "../../models/intermine/Message.js";
@@ -9,44 +9,45 @@ export const AddMinerData = async (req, res) => {
     req.body;
   const data = await Data.findOne({ serialNumber: serialNumber });
   if (!data) {
-    const newData = new Data({
-      currentLocation: location,
-      actualLocation: location,
-      modelName: model,
-      serialNumber: serialNumber,
-      macAddress: mac,
-      clientName: client,
-      temporaryOwner: nowRunning,
-      workerId: worker,
-    });
-    const notification = await Notification.create({
-      notification: `A new Miner data has been created by Intermine. Model-${model}, serial Number-${serialNumber}`,
-      isRead: false,
-    });
-    await newData.save();
-    return res.status(201).json({ msg: "success" });
+    // const newData = new Data({
+    //   currentLocation: location,
+    //   actualLocation: location,
+    //   modelName: model,
+    //   serialNumber: serialNumber,
+    //   macAddress: mac,
+    //   clientName: client,
+    //   temporaryOwner: nowRunning,
+    //   workerId: worker,
+    // });
+    // const notification = await Notification.create({
+    //   notification: `A new Miner data has been created by Intermine. Model-${model}, serial Number-${serialNumber}`,
+    //   isRead: false,
+    // });
+    // await newData.save();
+    // return res.status(201).json({ msg: "success" });
+    throw new BadRequestError("Data not found on dahab database");
   }
-  res.status(200).json({ msg: "Data Already exists" });
+  res.status(200).json({ msg: "OK" });
 };
 
 export const editMinerData = async (req, res) => {
   const { client, nowRunning, location, model, serialNumber, mac, worker } =
     req.body;
   const data = await Data.findOne({ serialNumber: serialNumber });
-  if (!data) throw new NotFoundError("No data found");
-  data.actualLocation = location;
-  data.currentLocation = location;
-  data.macAddress = mac;
-  data.modelName = model;
-  data.serialNumber = serialNumber;
-  data.clientName = client;
-  data.temporaryOwner = nowRunning;
-  data.workerId = worker;
-  const notification = await Notification.create({
-    notification: `A mining data has been updated by Intermine. Miner-${model} Serial Number-${serialNumber}`,
-    isRead: false,
-  });
-  await data.save();
+  if (!data) throw new NotFoundError("No data found on dahab datacenter");
+  // data.actualLocation = location;
+  // data.currentLocation = location;
+  // data.macAddress = mac;
+  // data.modelName = model;
+  // data.serialNumber = serialNumber;
+  // data.clientName = client;
+  // data.temporaryOwner = nowRunning;
+  // data.workerId = worker;
+  // const notification = await Notification.create({
+  //   notification: `A mining data has been updated by Intermine. Miner-${model} Serial Number-${serialNumber}`,
+  //   isRead: false,
+  // });
+  // await data.save();
   res.status(200).json({ msg: "success" });
 };
 

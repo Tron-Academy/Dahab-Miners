@@ -120,6 +120,10 @@ const DataSchema = new Schema(
     hashRate: {
       type: Number,
     },
+    hashUnit: {
+      type: String,
+      default: "TH",
+    },
     power: {
       type: Number,
     },

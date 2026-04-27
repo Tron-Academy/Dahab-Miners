@@ -71,7 +71,9 @@ export const addNewMiningFarm = async (req, res) => {
 };
 
 export const editMiningFarm = async (req, res) => {
+  const session = await mongoose.startSession();
   try {
+    await session.startTransaction();
     const {
       farm,
       facilityCode,
@@ -85,8 +87,20 @@ export const editMiningFarm = async (req, res) => {
       contractDuration,
       info,
     } = req.body;
-    const miningFarm = await MiningFarm.findById(farmId);
+    const miningFarm = await MiningFarm.findById(farmId).session(session);
     if (!miningFarm) throw new NotFoundError("No mining Farm found");
+    if (farm !== miningFarm.farm) {
+      await Data.updateMany(
+        { actualLocationId: miningFarm._id },
+        { actualLocation: farm },
+        { session },
+      );
+      await Data.updateMany(
+        { currentLocationId: miningFarm._id },
+        { currentLocation: farm },
+        { session },
+      );
+    }
     miningFarm.farm = farm;
     miningFarm.capacity = capacity;
     miningFarm.farmType = farmType;
@@ -99,9 +113,13 @@ export const editMiningFarm = async (req, res) => {
     if (facilityCode) {
       miningFarm.facilityCode = facilityCode;
     }
-    await miningFarm.save();
+    await miningFarm.save({ session });
+    await session.commitTransaction();
+    session.endSession();
     res.status(200).json({ message: "Successfully updated", miningFarm });
   } catch (error) {
+    await session.abortTransaction();
+    session.endSession();
     res
       .status(error.statusCode || 500)
       .json({ error: error.msg || error.message });

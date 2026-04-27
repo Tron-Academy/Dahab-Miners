@@ -3,6 +3,7 @@ import {
   addNewData,
   addNewDataV2,
   bulkUpload,
+  bulkUploadDataV2,
   deleteData,
   deleteDataV2,
   DownloadCSV,
@@ -18,12 +19,19 @@ import {
   validateDataV2Input,
 } from "../middleware/validationMiddleware.js";
 import { isEditor, isSuperAdmin } from "../middleware/authMiddleware.js";
+import { uploadCsv } from "../middleware/multerCSV.js";
 
 const router = Router();
 
 router.post("/addData", validateDataInput, isSuperAdmin, addNewData);
 router.post("/addDataV2", validateDataV2Input, isSuperAdmin, addNewDataV2);
 router.post("/bulkData", isSuperAdmin, bulkUpload);
+router.post(
+  "/bulkDataV2",
+  isSuperAdmin,
+  uploadCsv.single("file"),
+  bulkUploadDataV2,
+);
 router.get("/getData", getAllDatas);
 router.get("/download-csv", DownloadCSV);
 router.get("/dropdown", getDataDropdown);

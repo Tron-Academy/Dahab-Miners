@@ -14,6 +14,10 @@ const MinerModelSchema = new Schema(
     hashRate: {
       type: Number,
     },
+    hashUnit: {
+      type: String,
+      default: "TH",
+    },
     coolingType: {
       type: String,
     },

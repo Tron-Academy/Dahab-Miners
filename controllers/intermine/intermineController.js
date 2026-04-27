@@ -1,8 +1,10 @@
+import mongoose from "mongoose";
 import { BadRequestError, NotFoundError } from "../../errors/customErrors.js";
 import Data from "../../models/DataModel.js";
 import Issue from "../../models/intermine/Issue.js";
 import Message from "../../models/intermine/Message.js";
 import Notification from "../../models/Notification.js";
+import DahabIssue from "../../models/DahabIssues.js";
 
 export const AddMinerData = async (req, res) => {
   const { client, nowRunning, location, model, serialNumber, mac, worker } =
@@ -52,28 +54,80 @@ export const editMinerData = async (req, res) => {
 };
 
 export const issueReport = async (req, res) => {
-  const { model, serialNumber, issue, description, issueId, clientName, type } =
-    req.body;
-  const notification = await Notification.create({
-    notification: `An issue - ${issue} has been reported for the intermine Miner-${model} serial No - ${serialNumber}. ${description}`,
-    isRead: false,
-  });
-  const newIssue = await Issue.create({
-    issueId: issueId,
-    issue: issue,
-    description: description || "",
-    serialNumber: serialNumber,
-    clientName: clientName,
-    miner: model,
-  });
-  const newMessage = await Message.create({
-    message: notification.notification,
-    issue: newIssue._id,
-    sendBy: type,
-  });
-  newIssue.messages.push(newMessage._id);
-  await newIssue.save();
-  res.status(200).json({ msg: "success" });
+  const session = await mongoose.startSession();
+  try {
+    session.startTransaction();
+    const {
+      model,
+      serialNumber,
+      issue,
+      description,
+      issueId,
+      clientName,
+      type,
+      status,
+    } = req.body;
+    const miner = await Data.findOne({ serialNumber: serialNumber }).session(
+      session,
+    );
+    if (!miner)
+      throw new NotFoundError("The reported miner not found on Dahab Database");
+    if (miner.currentIssue)
+      throw new BadRequestError(
+        "Issue already reported for this miner on Dahab Database",
+      );
+    const notification = new Notification({
+      notification: `An issue - ${issue} has been reported for the intermine Miner-${model} serial No - ${serialNumber}. ${description}`,
+      isRead: false,
+    });
+    const newIssue = new DahabIssue({
+      issueName: issue,
+      description: description ? description : undefined,
+      workerAddress: miner.workerId,
+      miner: miner._id,
+      minerModel: miner.model,
+      user: miner.client,
+      username: miner.clientName,
+      status: "Pending",
+      type: "repair",
+      owner: "Intermine",
+      intermineId: issueId,
+      statusHistory: [
+        { status: "Pending", changedBy: "Intermine", changedOn: new Date() },
+      ],
+    });
+    const newMessage = new Message({
+      message: notification.notification,
+      issue: newIssue._id,
+      sendBy: type,
+    });
+    newIssue.messages.push(newMessage._id);
+    if (status === "offline") {
+      miner.status = "offline";
+      miner.offlineReason = "issue";
+      miner.offlineHistory.push({
+        issue: newIssue._id,
+        date: new Date(),
+        isOpen: true,
+        reason: "issue",
+      });
+    }
+    miner.currentIssue = newIssue._id;
+    miner.issueHistory.push(newIssue._id);
+    await miner.save({ session });
+    await newMessage.save({ session });
+    await notification.save({ session });
+    await newIssue.save({ session });
+    await session.commitTransaction();
+    session.endSession();
+    res.status(200).json({ msg: "success" });
+  } catch (error) {
+    await session.abortTransaction();
+    session.endSession();
+    res
+      .status(error.statusCode || 500)
+      .json({ msg: error.msg || error.message });
+  }
 };
 
 export const sendReminder = async (req, res) => {

@@ -4,6 +4,9 @@ import Client from "../models/Clients.js";
 import Data from "../models/DataModel.js";
 import IssueType from "../models/IssueType.js";
 import DahabIssue from "../models/DahabIssues.js";
+import Message from "../models/intermine/Message.js";
+import axios from "axios";
+import { intermineURL } from "../utils/dropdowns.js";
 
 export const addIssueType = async (req, res) => {
   try {
@@ -243,5 +246,70 @@ export const updateIssueStatus = async (req, res) => {
       .json({ error: error.msg || error.message });
   } finally {
     session.endSession();
+  }
+};
+
+export const getIssueMessages = async (req, res) => {
+  try {
+    const messages = await Message.find({ issue: req.params.id });
+    res.status(200).json(messages);
+  } catch (error) {
+    res
+      .status(error.statusCode || 500)
+      .json({ error: error.msg || error.message });
+  }
+};
+
+export const sendResponseToIssue = async (req, res) => {
+  const session = await mongoose.startSession();
+  try {
+    session.startTransaction();
+    const { message, issue } = req.body;
+    if (!message || !issue)
+      throw new NotFoundError("Message or issue cannot be empty");
+    const targetIssue = await DahabIssue.findById(issue).session(session);
+    if (!targetIssue) throw new NotFoundError("No target issue found");
+    const newMessage = new Message({
+      message: message,
+      sendBy: "Dahab",
+      issue: issue,
+    });
+    targetIssue.messages.push(newMessage._id);
+    try {
+      await axios.post(
+        `${intermineURL}/receive-message`,
+        {
+          issueId: targetIssue.intermineId,
+          message,
+          serviceProvider: "Dahab",
+          serviceProviderId: newMessage._id,
+        },
+        {
+          headers: {
+            "x-api-key": process.env.INTERMINE_API_KEY,
+          },
+        },
+      );
+    } catch (error) {
+      await session.abortTransaction();
+      session.endSession();
+      return res.status(500).json({
+        error:
+          error.response.data.error ||
+          error.response.data.message ||
+          "something went wrong with intermine server",
+      });
+    }
+    await newMessage.save({ session });
+    await targetIssue.save({ session });
+    await session.commitTransaction();
+    session.endSession();
+    res.status(200).json({ message: "response send successfully" });
+  } catch (error) {
+    await session.abortTransaction();
+    session.endSession();
+    res
+      .status(error.statusCode || 500)
+      .json({ error: error.msg || error.message });
   }
 };

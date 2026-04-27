@@ -56,7 +56,7 @@ const IssueSchema = new Schema(
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Message",
     },
-
+    intermineId: { type: String },
     owner: {
       type: String,
     },

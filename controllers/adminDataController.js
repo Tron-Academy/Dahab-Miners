@@ -107,6 +107,7 @@ export const addNewDataV2 = async (req, res) => {
       model: minerModel.name,
       modelId: minerModel._id,
       status: status,
+      hashUnit: minerModel.hashUnit || "TH",
       actualLocation: miningFarm.farm,
       actualLocationId: miningFarm._id,
       currentLocation: temporaryFarm?.farm || undefined,
@@ -286,6 +287,7 @@ export const bulkUploadDataV2 = async (req, res) => {
         currentLocation: tempFarm?.farm,
         currentLocationId: tempFarm?._id,
         hashRate: model.hashRate,
+        hashUnit: model.hashUnit || "TH",
         power: model.power,
         coins: model.coins,
         algorithm: model.algorithm,
@@ -844,6 +846,7 @@ export const editV2Data = async (req, res) => {
     miner.modelId = minermodel._id;
     miner.status = status;
     miner.hashRate = minermodel.hashRate;
+    miner.hashUnit = minermodel.hashUnit || "TH";
     miner.power = minermodel.power;
     miner.manufacturer = minermodel.manufacturer;
     miner.coins = minermodel.coins;

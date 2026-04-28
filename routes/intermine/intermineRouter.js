@@ -5,6 +5,7 @@ import {
   issueReport,
   recieveMessageStatus,
   sendReminder,
+  updateIssueStatusFromIntermine,
 } from "../../controllers/intermine/intermineController.js";
 import { validateRecieveStatus } from "../../middleware/validationMiddleware.js";
 
@@ -14,6 +15,6 @@ router.post("/addMiner", AddMinerData);
 router.patch("/editMiner", editMinerData);
 router.patch("/report-issue", issueReport);
 router.patch("/reminder", sendReminder);
-router.patch("/update-status", validateRecieveStatus, recieveMessageStatus);
+router.patch("/update-status", updateIssueStatusFromIntermine);
 
 export default router;

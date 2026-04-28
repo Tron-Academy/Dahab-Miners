@@ -131,21 +131,96 @@ export const issueReport = async (req, res) => {
 };
 
 export const sendReminder = async (req, res) => {
-  const { model, serialNumber, issue, issueId } = req.body;
-  const notification = await Notification.create({
-    notification: `REMINDER ! The issue -${issue} reported for the intermine miner ${model} with serial No ${serialNumber} has not been solved yet.`,
-    isRead: false,
-  });
-  const existing = await Issue.findOne({ issueId: issueId });
-  if (!issue) throw new NotFoundError("No issue found");
-  const newMessage = await Message.create({
-    message: notification.notification,
-    issue: existing._id,
-    sendBy: "INTERMINE",
-  });
-  existing.messages.push(newMessage._id);
-  await existing.save();
-  res.status(200).json({ msg: "success" });
+  const session = await mongoose.startSession();
+  try {
+    session.startTransaction();
+    const { model, serialNumber, issue, issueId } = req.body;
+    const notification = new Notification({
+      notification: `REMINDER ! The issue -${issue} reported for the intermine miner ${model} with serial No ${serialNumber} has not been solved yet.`,
+      isRead: false,
+    });
+    const existing = await DahabIssue.findOne({ intermineId: issueId })
+      .populate("miner", "serialNumber")
+      .session(session);
+    if (!existing) throw new NotFoundError("No issue found on Dahab Database");
+    if (serialNumber !== existing.miner?.serialNumber)
+      throw new BadRequestError("Incorrect serial number");
+    const newMessage = new Message({
+      message: notification.notification,
+      issue: existing._id,
+      sendBy: "INTERMINE",
+    });
+    existing.messages.push(newMessage._id);
+    await existing.save({ session });
+    await newMessage.save({ session });
+    await notification.save({ session });
+    await session.commitTransaction();
+    session.endSession();
+    res.status(200).json({ msg: "success" });
+  } catch (error) {
+    await session.abortTransaction();
+    session.endSession();
+    res
+      .status(error.statusCode || 500)
+      .json({ msg: error.msg || error.message });
+  }
+};
+
+//update status of repair
+export const updateIssueStatusFromIntermine = async (req, res) => {
+  const session = await mongoose.startSession();
+  try {
+    session.startTransaction();
+    const { issueId, status, serialNumber } = req.body;
+    const issue = await DahabIssue.findOne({ intermineId: issueId })
+      .populate("miner", "serialNumber")
+      .session(session);
+    if (!issue) throw new NotFoundError("Issue not found on Dahab database");
+    if (serialNumber !== issue.miner.serialNumber) {
+      throw new BadRequestError("Invalid serial number in Dahab Database");
+    }
+    if (status !== "Resolved") {
+      issue.status = status;
+      issue.statusHistory.push({
+        status: status,
+        changedBy: "Intermine",
+        changedOn: new Date(),
+      });
+    } else if (status === "Resolved") {
+      issue.status = status;
+      issue.statusHistory.push({
+        status: status,
+        changedBy: "Intermine",
+        changedOn: new Date(),
+      });
+      issue.resolvedOn = new Date();
+      const miner = await Data.findById(issue.miner._id).session(session);
+      if (!miner)
+        throw new BadRequestError(
+          "The target miner is missing on Dahab Database",
+        );
+      miner.currentIssue = null;
+      miner.status = "online";
+      miner.offlineReason = "";
+      const minerOfflineObj = miner.offlineHistory.find(
+        (item) => item.issue.toString() === issue._id.toString(),
+      );
+      if (minerOfflineObj && minerOfflineObj.isOpen) {
+        minerOfflineObj.isOpen = false;
+      }
+      await miner.save({ session });
+    }
+    await issue.save({ session });
+    await session.commitTransaction();
+    session.endSession();
+    res.status(200).json({ message: "updated successfully" });
+  } catch (error) {
+    await session.abortTransaction();
+    session.endSession();
+    res
+      .status(error.statusCode || 500)
+      .json({ msg: error.msg || error.message });
+  }
 };
 
 //update Message Status

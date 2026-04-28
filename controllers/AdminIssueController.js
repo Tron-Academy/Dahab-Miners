@@ -152,49 +152,56 @@ export const getAllIssues = async (req, res) => {
 
 export const updateIssueStatus = async (req, res) => {
   const session = await mongoose.startSession();
-  session.startTransaction();
+
   try {
+    session.startTransaction();
     const { status } = req.body;
     const issue = await DahabIssue.findById(req.params.id)
       .populate("issue")
+      .populate("miner", "serialNumber")
       .session(session);
     if (!issue) throw new NotFoundError("No issue found");
     if (issue.status === "Resolved")
       throw new BadRequestError("Issue Already Resolved");
-    if (status === "Warranty") {
-      issue.status = "Warranty";
+    if (status !== "Resolved") {
+      issue.status = status;
       issue.statusHistory.push({
-        status: "Warranty",
+        status: status,
         changedBy: "Admin",
         changedOn: new Date(),
       });
+      if (issue.username.toLowerCase() === "intermine") {
+        try {
+          await axios.patch(
+            `${intermineURL}/update-issue-status`,
+            {
+              issueId: issue.intermineId,
+              status,
+              serialNumber: issue.miner.serialNumber,
+            },
+            {
+              headers: {
+                "x-api-key": process.env.INTERMINE_API_KEY,
+              },
+            },
+          );
+        } catch (error) {
+          await session.abortTransaction();
+          session.endSession();
+          return res.status(500).json({
+            error:
+              error.response.data.error ||
+              error.response.data.message ||
+              "something went wrong with intermine server",
+          });
+        }
+      }
+
       await issue.save({ session });
       await session.commitTransaction();
+      session.endSession();
       return res.status(200).json({ message: "Status changed", issue });
-    }
-    if (status === "Pending") {
-      issue.status = "Pending";
-      issue.statusHistory.push({
-        status: "Pending",
-        changedBy: "Admin",
-        changedOn: new Date(),
-      });
-      await issue.save({ session });
-      await session.commitTransaction();
-      return res.status(200).json({ message: "Status changed", issue });
-    }
-    if (status === "Repair Center") {
-      issue.status = "Repair Center";
-      issue.statusHistory.push({
-        status: "Repair Center",
-        changedBy: "Admin",
-        changedOn: new Date(),
-      });
-      await issue.save({ session });
-      await session.commitTransaction();
-      return res.status(200).json({ message: "Status changed", issue });
-    }
-    if (status === "Resolved") {
+    } else if (status === "Resolved") {
       issue.status = "Resolved";
       issue.statusHistory.push({
         status: "Resolved",
@@ -212,6 +219,33 @@ export const updateIssueStatus = async (req, res) => {
       if (minerOfflineObj && minerOfflineObj.isOpen) {
         minerOfflineObj.isOpen = false;
       }
+      if (issue.username.toLowerCase() === "intermine") {
+        try {
+          await axios.patch(
+            `${intermineURL}/update-issue-status`,
+            {
+              issueId: issue.intermineId,
+              status,
+              serialNumber: miner.serialNumber,
+            },
+            {
+              headers: {
+                "x-api-key": process.env.INTERMINE_API_KEY,
+              },
+            },
+          );
+        } catch (error) {
+          await session.abortTransaction();
+          session.endSession();
+          return res.status(500).json({
+            error:
+              error.response.data.error ||
+              error.response.data.message ||
+              "something went wrong with intermine server",
+          });
+        }
+      }
+
       if (issue.type === "repair") {
         miner.currentIssue = null;
         // notification = new Notification({
@@ -237,15 +271,15 @@ export const updateIssueStatus = async (req, res) => {
       await miner.save({ session });
       await issue.save({ session });
       await session.commitTransaction();
-      return res.status(200).json({ message: "success", notification, issue });
+      session.endSession();
+      res.status(200).json({ message: "success", issue });
     }
   } catch (error) {
     await session.abortTransaction();
+    session.endSession();
     res
       .status(error.statusCode || 500)
       .json({ error: error.msg || error.message });
-  } finally {
-    session.endSession();
   }
 };
 

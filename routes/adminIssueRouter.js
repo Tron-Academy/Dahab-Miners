@@ -5,7 +5,9 @@ import {
   editIssueType,
   getAllIssues,
   getAllIssueTypes,
+  getIssueMessages,
   reportIssue,
+  sendResponseToIssue,
   updateIssueStatus,
 } from "../controllers/AdminIssueController.js";
 import {
@@ -22,6 +24,8 @@ router.get("/type", getAllIssueTypes);
 router.patch("/type", isSuperAdmin, validateEditIssueType, editIssueType);
 router.post("/", validateReportIssue, reportIssue);
 router.get("/", isSuperAdmin, getAllIssues);
+router.get("/messages/:id", isSuperAdmin, getIssueMessages);
+router.post("/send-response", isSuperAdmin, sendResponseToIssue);
 router.patch(
   "/update-status/:id",
   isSuperAdmin,

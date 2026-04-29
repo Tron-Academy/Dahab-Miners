@@ -54,8 +54,8 @@ export const editIssueType = async (req, res) => {
 
 export const reportIssue = async (req, res) => {
   const session = await mongoose.startSession();
-  session.startTransaction();
   try {
+    session.startTransaction();
     const { issue, workerId, miner, client, status, description } = req.body;
     const targetMiner = await Data.findById(miner).session(session);
     if (!targetMiner) throw new NotFoundError("No miner found");
@@ -87,6 +87,7 @@ export const reportIssue = async (req, res) => {
         changedBy: "Admin",
         changedOn: new Date(),
       },
+      owner: "Intermine",
     });
     targetMiner.issueHistory.push(newIssue._id);
     targetMiner.currentIssue = newIssue._id;
@@ -101,17 +102,47 @@ export const reportIssue = async (req, res) => {
         reason: "issue",
       });
     }
+    if (targetClient.clientName.toLowerCase() === "intermine") {
+      try {
+        const intermineResponse = await axios.post(
+          `${intermineURL}/report-new-issue`,
+          {
+            serialNumber: targetMiner.serialNumber,
+            issue: targetIssue.issueType,
+            description: description,
+            status: status === "offline" ? "offline" : "online",
+            workerId: workerId,
+          },
+          {
+            headers: {
+              "x-api-key": process.env.INTERMINE_API_KEY,
+            },
+          },
+        );
+        const intermineIssue = intermineResponse.data.issue;
+        newIssue.intermineId = intermineIssue._id;
+      } catch (error) {
+        await session.abortTransaction();
+        session.endSession();
+        return res.status(500).json({
+          error:
+            error.response.data.error ||
+            error.response.data.message ||
+            "something went wrong with intermine server",
+        });
+      }
+    }
     await targetMiner.save({ session });
     await newIssue.save({ session });
     await session.commitTransaction();
+    session.endSession();
     res.status(200).json({ message: "Issue Added" });
   } catch (error) {
     await session.abortTransaction();
+    session.endSession();
     res
       .status(error.statusCode || 500)
       .json({ error: error.msg || error.message });
-  } finally {
-    session.endSession();
   }
 };
 

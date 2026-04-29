@@ -433,7 +433,17 @@ export const getAllDatas = async (req, res) => {
 
 export const getSingleData = async (req, res) => {
   const { id } = req.params;
-  const data = await Data.findById(id);
+  const data = await Data.findById(id)
+    .populate({
+      path: "issueHistory",
+      select:
+        "status type description createdAt updatedAt owner resolvedOn issueName", // only needed fields
+    })
+    .populate({
+      path: "changeHistory",
+      select:
+        "status type createdAt updatedAt changeRequest owner resolvedOn issueName",
+    });
   if (!data) throw new NotFoundError("No data found");
   res.status(200).json({ msg: "success", data });
 };

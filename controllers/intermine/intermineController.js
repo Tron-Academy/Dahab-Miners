@@ -199,7 +199,9 @@ export const updateIssueStatusFromIntermine = async (req, res) => {
         throw new BadRequestError(
           "The target miner is missing on Dahab Database",
         );
-      miner.currentIssue = null;
+      if (issue.type === "repair") {
+        miner.currentIssue = null;
+      }
       miner.status = "online";
       miner.offlineReason = "";
       const minerOfflineObj = miner.offlineHistory.find(

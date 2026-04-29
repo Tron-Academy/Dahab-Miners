@@ -107,16 +107,18 @@ const DataSchema = new Schema(
     },
     currentIssue: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Issue",
+      ref: "DahabIssue",
       default: null,
     },
     issueHistory: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Issue",
+        ref: "DahabIssue",
       },
     ],
-    changeHistory: [{ type: mongoose.Schema.Types.ObjectId, ref: "Issue" }],
+    changeHistory: [
+      { type: mongoose.Schema.Types.ObjectId, ref: "DahabIssue" },
+    ],
     hashRate: {
       type: Number,
     },

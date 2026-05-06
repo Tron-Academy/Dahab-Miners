@@ -5,6 +5,8 @@ import FarmAnnouncement from "../models/FarmAnnouncement.js";
 import Data from "../models/DataModel.js";
 import Notification2 from "../models/Notification2.js";
 import NormalFarmAnnouncement from "../models/NormalFarmAnnouncement.js";
+import axios from "axios";
+import { intermineURL } from "../utils/dropdowns.js";
 
 export const getAllMiningFarms = async (req, res) => {
   try {
@@ -233,9 +235,13 @@ export const getAllMinersInFarm = async (req, res) => {
   try {
     const { id } = req.params;
     const miners = await MiningFarm.findById(id)
-      .select("miners")
+      .select("miners temporaryMiners")
       .populate({
         path: "miners",
+        select: "manufacturer model clientName workerId power status",
+      })
+      .populate({
+        path: "temporaryMiners.miner",
         select: "manufacturer model clientName workerId power status",
       })
       .lean();
@@ -291,30 +297,95 @@ export const updateFarmStatus = async (req, res) => {
       });
       await farm.save({ session });
       await Data.updateMany(
-        { currentLocationId: farm._id, offlineReason: "", status: "online" },
+        {
+          $or: [
+            // If currentLocationId exists, match using it
+            {
+              currentLocationId: { $exists: true, $ne: null },
+              currentLocationId: farm._id,
+            },
+
+            // If currentLocationId does not exist, use actualLocationId
+            {
+              $or: [
+                { currentLocationId: { $exists: false } },
+                { currentLocationId: null },
+              ],
+              actualLocationId: farm._id,
+            },
+          ],
+          offlineReason: "",
+          status: "online",
+        },
         { $set: { status: "offline", offlineReason: "farm maintenance" } },
         { session },
       );
       if (inform) {
-        const miners = await Data.find({ currentLocationId: farm._id }).session(
-          session,
+        const miners = await Data.find({
+          $or: [
+            // If currentLocationId exists, use it
+            {
+              currentLocationId: { $exists: true, $ne: null },
+              currentLocationId: farm._id,
+            },
+
+            // Otherwise use actualLocationId
+            {
+              $or: [
+                { currentLocationId: { $exists: false } },
+                { currentLocationId: null },
+              ],
+              actualLocationId: farm._id,
+            },
+          ],
+        }).session(session);
+        const intermineMiners = miners.filter(
+          (miner) => miner.clientName.toLowerCase() === "intermine",
         );
-        const clients = [
-          ...new Set(miners.map((item) => item.client.toString())),
-        ];
-        const notifications = clients.map((clientId) => {
-          return {
-            client: clientId,
-            status: "unread",
-            isForAdmin: false,
-            problem: `Maintenance work at ${
-              farm.farm
-            }: The Farm is now offline due to a maintenance work. We are sorry for the inconvenience and will be Online as soon as possible.`,
+        if (intermineMiners.length) {
+          const mappedSerialNumbers = intermineMiners.map(
+            (miner) => miner.serialNumber,
+          );
+          if (!farm.facilityCode)
+            throw new BadRequestError(
+              "Facility code not found for the current farm",
+            );
+          const intermineBody = {
+            farmCode: farm.facilityCode,
+            serialNumbers: JSON.stringify(mappedSerialNumbers),
           };
-        });
-        if (notifications.length > 0) {
-          await Notification2.insertMany(notifications, { session });
+          try {
+            await axios.post(`${intermineURL}/turn-off-farm`, intermineBody, {
+              headers: {
+                "x-api-key": process.env.INTERMINE_API_KEY,
+              },
+            });
+          } catch (error) {
+            await session.abortTransaction();
+            return res.status(500).json({
+              error:
+                error.response.data.message ||
+                error.response.data.error ||
+                "something went wrong with intermine server",
+            });
+          }
         }
+        // const clients = [
+        //   ...new Set(miners.map((item) => item.client.toString())),
+        // ];
+        // const notifications = clients.map((clientId) => {
+        //   return {
+        //     client: clientId,
+        //     status: "unread",
+        //     isForAdmin: false,
+        //     problem: `Maintenance work at ${
+        //       farm.farm
+        //     }: The Farm is now offline due to a maintenance work. We are sorry for the inconvenience and will be Online as soon as possible.`,
+        //   };
+        // });
+        // if (notifications.length > 0) {
+        //   await Notification2.insertMany(notifications, { session });
+        // }
       }
       await session.commitTransaction();
       return res.status(200).json({ message: "success" });
@@ -338,30 +409,94 @@ export const updateFarmStatus = async (req, res) => {
       }
       await farm.save({ session });
       await Data.updateMany(
-        { currentLocationId: farm._id, offlineReason: "farm maintenance" },
+        {
+          $or: [
+            // If currentLocationId exists, use it
+            {
+              currentLocationId: { $exists: true, $ne: null },
+              currentLocationId: farm._id,
+            },
+
+            // Otherwise use actualLocationId
+            {
+              $or: [
+                { currentLocationId: { $exists: false } },
+                { currentLocationId: null },
+              ],
+              actualLocationId: farm._id,
+            },
+          ],
+          offlineReason: "farm maintenance",
+        },
         { $set: { status: "online", offlineReason: "" } },
         { session },
       );
       if (inform) {
-        const miners = await Data.find({ currentLocationId: farm._id }).session(
-          session,
+        const miners = await Data.find({
+          $or: [
+            // If currentLocationId exists, use it
+            {
+              currentLocationId: { $exists: true, $ne: null },
+              currentLocationId: farm._id,
+            },
+
+            // Otherwise use actualLocationId
+            {
+              $or: [
+                { currentLocationId: { $exists: false } },
+                { currentLocationId: null },
+              ],
+              actualLocationId: farm._id,
+            },
+          ],
+        }).session(session);
+        const intermineMiners = miners.filter(
+          (miner) => miner.clientName.toLowerCase() === "intermine",
         );
-        const clients = [
-          ...new Set(miners.map((item) => item.client.toString())),
-        ];
-        const notifications = clients.map((clientId) => {
-          return {
-            client: clientId,
-            status: "unread",
-            isForAdmin: false,
-            problem: `Maintenance work Completed at ${
-              farm.farm
-            }: The Farm is now online `,
+        if (intermineMiners.length) {
+          const mappedSerialNumbers = intermineMiners.map(
+            (miner) => miner.serialNumber,
+          );
+          if (!farm.facilityCode)
+            throw new BadRequestError(
+              "The facility code is missing for the farm",
+            );
+          const intermineBody = {
+            farmCode: farm.facilityCode,
+            serialNumbers: JSON.stringify(mappedSerialNumbers),
           };
-        });
-        if (notifications.length > 0) {
-          await Notification2.insertMany(notifications, { session });
+          try {
+            await axios.post(`${intermineURL}/turn-on-farm`, intermineBody, {
+              headers: {
+                "x-api-key": process.env.INTERMINE_API_KEY,
+              },
+            });
+          } catch (error) {
+            await session.abortTransaction();
+            return res.status(500).json({
+              error:
+                error.response.data.message ||
+                error.response.data.error ||
+                "something went wrong with intermine server",
+            });
+          }
         }
+        // const clients = [
+        //   ...new Set(miners.map((item) => item.client.toString())),
+        // ];
+        // const notifications = clients.map((clientId) => {
+        //   return {
+        //     client: clientId,
+        //     status: "unread",
+        //     isForAdmin: false,
+        //     problem: `Maintenance work Completed at ${
+        //       farm.farm
+        //     }: The Farm is now online `,
+        //   };
+        // });
+        // if (notifications.length > 0) {
+        //   await Notification2.insertMany(notifications, { session });
+        // }
       }
       await session.commitTransaction();
       return res.status(200).json({ message: "success" });

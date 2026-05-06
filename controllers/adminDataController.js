@@ -612,7 +612,7 @@ export const editV2Data = async (req, res) => {
           oldFarm.miners = oldFarm.miners.filter(
             (item) => item.toString() !== miner._id.toString(),
           );
-          oldFarm.current -= oldPower;
+          oldFarm.current = Math.max(0, oldFarm.current - oldPower);
           oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
           if (
             !newFarm.movedMiners.some(
@@ -643,7 +643,7 @@ export const editV2Data = async (req, res) => {
             });
           }
 
-          newFarm.current -= oldPower;
+          newFarm.current = Math.max(0, newFarm.current - oldPower);
           newFarm.occupiedSlots = Math.max(0, newFarm.occupiedSlots - 1);
           await newFarm.save({ session });
         }
@@ -661,7 +661,7 @@ export const editV2Data = async (req, res) => {
         if (tempNewFarm.occupiedSlots >= tempNewFarm.totalSlots) {
           throw new BadRequestError("No slots available at new temporary farm");
         }
-        tempOldFarm.current -= oldPower;
+        tempOldFarm.current = Math.max(0, tempOldFarm.current - oldPower);
         tempOldFarm.occupiedSlots = Math.max(0, tempOldFarm.occupiedSlots - 1);
         tempOldFarm.temporaryMiners = tempOldFarm.temporaryMiners.filter(
           (item) => item.miner.toString() !== miner._id.toString(),
@@ -747,7 +747,7 @@ export const editV2Data = async (req, res) => {
         if (newFarm.occupiedSlots >= newFarm.totalSlots) {
           throw new BadRequestError("No slots available in new farm");
         }
-        oldFarm.current -= oldPower;
+        oldFarm.current = Math.max(0, oldFarm.current - oldPower);
         oldFarm.miners = oldFarm.miners.filter(
           (item) => item.toString() !== miner._id.toString(),
         );
@@ -768,7 +768,7 @@ export const editV2Data = async (req, res) => {
             await MiningFarm.findById(temporaryOldFarmId).session(session);
           if (!tempOldFarm)
             throw new NotFoundError("No old temporary farm found");
-          tempOldFarm.current -= oldPower;
+          tempOldFarm.current = Math.max(0, tempOldFarm.current - oldPower);
           tempOldFarm.occupiedSlots = Math.max(
             0,
             tempOldFarm.occupiedSlots - 1,
@@ -795,7 +795,7 @@ export const editV2Data = async (req, res) => {
             await MiningFarm.findById(temporaryOldFarmId).session(session);
           if (!tempOldFarm)
             throw new NotFoundError("No old temporary farm found");
-          tempOldFarm.current -= oldPower;
+          tempOldFarm.current = Math.max(0, tempOldFarm.current - oldPower);
           tempOldFarm.occupiedSlots = Math.max(
             0,
             tempOldFarm.occupiedSlots - 1,
@@ -810,7 +810,7 @@ export const editV2Data = async (req, res) => {
           await MiningFarm.findById(temporaryOldFarmId).session(session);
         if (!tempOldFarm)
           throw new NotFoundError("No old temporary farm found");
-        tempOldFarm.current -= oldPower;
+        tempOldFarm.current = Math.max(0, tempOldFarm.current - oldPower);
         tempOldFarm.occupiedSlots = Math.max(0, tempOldFarm.occupiedSlots - 1);
         tempOldFarm.temporaryMiners = tempOldFarm.temporaryMiners.filter(
           (item) => item.miner.toString() !== miner._id.toString(),

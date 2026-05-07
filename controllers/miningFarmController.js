@@ -172,24 +172,62 @@ export const createFarmAnnouncement = async (req, res) => {
         newAnnouncement.status = "scheduled";
       }
       await newAnnouncement.save({ session });
-      const miners = await Data.find({ currentLocationId: farm._id }).session(
-        session,
-      );
-      const clients = [
-        ...new Set(miners.map((item) => item.client.toString())),
-      ];
-      const notifications = clients.map((clientId) => {
-        return {
-          client: clientId,
-          status: "unread",
-          isForAdmin: false,
-          problem: `Planned maintenance at ${
-            farm.farm
-          }: ${message}. Scheduled at ${new Date(startAt).toLocaleString()}`,
-        };
-      });
-      if (notifications.length > 0) {
-        await Notification2.insertMany(notifications, { session });
+      const miners = await Data.find({
+        $or: [
+          // If currentLocationId exists, match using it
+          {
+            currentLocationId: { $exists: true, $ne: null },
+            currentLocationId: farm._id,
+          },
+
+          // If currentLocationId does not exist, use actualLocationId
+          {
+            $or: [
+              { currentLocationId: { $exists: false } },
+              { currentLocationId: null },
+            ],
+            actualLocationId: farm._id,
+          },
+        ],
+      }).session(session);
+      if (miners.length) {
+        const intermineMiners = miners.filter(
+          (miner) => miner.clientName.toLowerCase() === "intermine",
+        );
+        if (intermineMiners.length) {
+          const serialNumbers = intermineMiners.map(
+            (miner) => miner.serialNumber,
+          );
+          if (!farm.facilityCode)
+            throw new BadRequestError("Facility code not found for the farm");
+          try {
+            const intermineBody = {
+              farmCode: farm.facilityCode,
+              serialNumbers: JSON.stringify(serialNumbers),
+              message,
+              startAt: startAt,
+              endAt: endAt,
+            };
+            await axios.post(
+              `${intermineURL}/create-farmAnnouncement`,
+              intermineBody,
+              {
+                headers: {
+                  "x-api-key": process.env.INTERMINE_API_KEY,
+                },
+              },
+            );
+          } catch (error) {
+            await session.abortTransaction();
+            return res.status(500).json({
+              error:
+                error?.response?.data?.error ||
+                error?.response?.data?.message ||
+                error.message ||
+                "Something went wrong with intermine server",
+            });
+          }
+        }
       }
 
       await session.commitTransaction();
@@ -200,24 +238,59 @@ export const createFarmAnnouncement = async (req, res) => {
         message: message,
       });
       await newNormalAnnouncement.save({ session });
-      const miners = await Data.find({ currentLocationId: farm._id }).session(
-        session,
-      );
-      const clients = [
-        ...new Set(miners.map((item) => item.client.toString())),
-      ];
-      const notifications = clients.map((clientId) => {
-        return {
-          client: clientId,
-          status: "unread",
-          isForAdmin: false,
-          problem: `Announcement From mining farm ${farm.farm}: ${message}`,
-        };
-      });
-      if (notifications.length > 0) {
-        await Notification2.insertMany(notifications, { session });
-      }
+      const miners = await Data.find({
+        $or: [
+          // If currentLocationId exists, match using it
+          {
+            currentLocationId: { $exists: true, $ne: null },
+            currentLocationId: farm._id,
+          },
 
+          // If currentLocationId does not exist, use actualLocationId
+          {
+            $or: [
+              { currentLocationId: { $exists: false } },
+              { currentLocationId: null },
+            ],
+            actualLocationId: farm._id,
+          },
+        ],
+      }).session(session);
+      if (miners.length) {
+        const intermineMiners = miners.filter(
+          (miner) => miner.clientName.toLowerCase() === "intermine",
+        );
+        if (intermineMiners.length) {
+          const serialNumbers = intermineMiners.map(
+            (miner) => miner.serialNumber,
+          );
+
+          try {
+            const intermineBody = {
+              serialNumbers: JSON.stringify(serialNumbers),
+              message,
+            };
+            await axios.post(
+              `${intermineURL}/create-normalAnnouncement`,
+              intermineBody,
+              {
+                headers: {
+                  "x-api-key": process.env.INTERMINE_API_KEY,
+                },
+              },
+            );
+          } catch (error) {
+            await session.abortTransaction();
+            return res.status(500).json({
+              error:
+                error?.response?.data?.error ||
+                error?.response?.data?.message ||
+                error.message ||
+                "Something went wrong with intermine server",
+            });
+          }
+        }
+      }
       await session.commitTransaction();
       return res.status(200).json({ message: "Success" });
     }
@@ -353,6 +426,7 @@ export const updateFarmStatus = async (req, res) => {
           const intermineBody = {
             farmCode: farm.facilityCode,
             serialNumbers: JSON.stringify(mappedSerialNumbers),
+            endAt: activationTime,
           };
           try {
             await axios.post(`${intermineURL}/turn-off-farm`, intermineBody, {

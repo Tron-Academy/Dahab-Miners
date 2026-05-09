@@ -10,21 +10,21 @@ const logRequest = (req, status, message) => {
       ip: req.ip,
       status,
       message,
-      slug: req.body?.slug || null,
-      title: req.body?.title || null,
+      slug: req.body?.article?.slug || null,
+      title: req.body?.article?.title || null,
     })
   );
 };
 
 export const publishBlog = async (req, res) => {
-  const {
-    title,
-    slug,
-    content,
-    meta_title,
-    meta_description,
-    featured_image_url,
-  } = req.body;
+  const { article, main_image } = req.body;
+
+  const title = article?.title;
+  const slug = article?.slug;
+  const content = article?.content;
+  const featured_image_url = article?.main_image_url || main_image?.url || "";
+  const meta_title = article?.title || "";
+  const meta_description = article?.keyword || "";
 
   if (!title || !slug || !content) {
     logRequest(req, 400, "Missing required fields");
@@ -52,11 +52,11 @@ export const publishBlog = async (req, res) => {
     title,
     slug,
     content: sanitizedContent,
-    metaTitle: meta_title || "",
-    metaDescription: meta_description || "",
-    blogImage: featured_image_url || "",
+    metaTitle: meta_title,
+    metaDescription: meta_description,
+    blogImage: featured_image_url,
     blogImagePublicId: "",
-    metaKeywords: "",
+    metaKeywords: meta_description,
   });
 
   await newBlog.save();

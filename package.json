@@ -42,7 +42,7 @@
     "semver": "^7.7.3",
     "speakeasy": "^2.0.0",
     "uuid": "^11.1.0",
-    "xss-clean": "^0.1.4"
+    "xss-clean": "^0.1.4",
     "sanitize-html": "^2.13.0",
   }
 }

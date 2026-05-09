@@ -264,9 +264,11 @@ export const createFarmAnnouncement = async (req, res) => {
           const serialNumbers = intermineMiners.map(
             (miner) => miner.serialNumber,
           );
-
+          if (!farm.facilityCode)
+            throw new BadRequestError("Facility code not found for the farm");
           try {
             const intermineBody = {
+              farmCode: farm.facilityCode,
               serialNumbers: JSON.stringify(serialNumbers),
               message,
             };

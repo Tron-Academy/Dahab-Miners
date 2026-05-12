@@ -64,6 +64,7 @@ import publishBlogRouter from "./routes/publishBlogRouter.js";
 import miningUserRouterV2 from "./routes/miningApp/v2/miningUserRouterV2.js";
 import miningCartRouter from "./routes/miningApp/v2/miningCartRouter.js";
 import leaderboardRouter from "./routes/miningApp/v2/leaderboardRouter.js";
+import { endDowntime, startFarmDowntime } from "./cronJobs/announcementCron.js";
 
 // import { processBitGoPayouts } from "./cronJobs/BitgoCron.js";
 
@@ -241,7 +242,24 @@ try {
       timezone: "Asia/Dubai", // UAE time zone
     },
   );
-
+  cron.schedule(
+    "0 */1 * * *",
+    async () => {
+      await startFarmDowntime();
+    },
+    {
+      timezone: "Asia/Dubai", // UAE time zone
+    },
+  );
+  cron.schedule(
+    "0 */1 * * *",
+    async () => {
+      await endDowntime();
+    },
+    {
+      timezone: "Asia/Dubai", // UAE time zone
+    },
+  );
   app.listen(port, () => {
     console.log(`server running on port ${port}`);
   });

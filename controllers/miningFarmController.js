@@ -428,7 +428,7 @@ export const updateFarmStatus = async (req, res) => {
           const intermineBody = {
             farmCode: farm.facilityCode,
             serialNumbers: JSON.stringify(mappedSerialNumbers),
-            endAt: activationTime,
+            endAt: activationTime && activationTime,
           };
           try {
             await axios.post(`${intermineURL}/turn-off-farm`, intermineBody, {
@@ -446,22 +446,6 @@ export const updateFarmStatus = async (req, res) => {
             });
           }
         }
-        // const clients = [
-        //   ...new Set(miners.map((item) => item.client.toString())),
-        // ];
-        // const notifications = clients.map((clientId) => {
-        //   return {
-        //     client: clientId,
-        //     status: "unread",
-        //     isForAdmin: false,
-        //     problem: `Maintenance work at ${
-        //       farm.farm
-        //     }: The Farm is now offline due to a maintenance work. We are sorry for the inconvenience and will be Online as soon as possible.`,
-        //   };
-        // });
-        // if (notifications.length > 0) {
-        //   await Notification2.insertMany(notifications, { session });
-        // }
       }
       await session.commitTransaction();
       return res.status(200).json({ message: "success" });
@@ -557,22 +541,6 @@ export const updateFarmStatus = async (req, res) => {
             });
           }
         }
-        // const clients = [
-        //   ...new Set(miners.map((item) => item.client.toString())),
-        // ];
-        // const notifications = clients.map((clientId) => {
-        //   return {
-        //     client: clientId,
-        //     status: "unread",
-        //     isForAdmin: false,
-        //     problem: `Maintenance work Completed at ${
-        //       farm.farm
-        //     }: The Farm is now online `,
-        //   };
-        // });
-        // if (notifications.length > 0) {
-        //   await Notification2.insertMany(notifications, { session });
-        // }
       }
       await session.commitTransaction();
       return res.status(200).json({ message: "success" });

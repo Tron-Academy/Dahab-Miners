@@ -28,6 +28,7 @@ const DataSchema = new Schema(
     macAddress: {
       type: String,
       unique: true,
+      sparse: true,
     },
     modelName: {
       type: String,
@@ -35,6 +36,7 @@ const DataSchema = new Schema(
     serialNumber: {
       type: String,
       unique: true,
+      sparse: true,
     },
     clientName: {
       type: String,
@@ -45,6 +47,7 @@ const DataSchema = new Schema(
     workerId: {
       type: String,
       unique: true,
+      sparse: true,
     },
     serviceProviderChanged: {
       type: Boolean,

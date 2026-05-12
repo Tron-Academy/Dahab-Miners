@@ -76,7 +76,7 @@ app.use(mongoSanitize());
 // app.use(xss());
 
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
+  windowMs: 2 * 60 * 1000,
   max: 300, // block after 300 requests/15 min
   message: "Too many requests, please try again later.",
 });

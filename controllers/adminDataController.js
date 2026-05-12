@@ -277,7 +277,7 @@ export const bulkUploadDataV2 = async (req, res) => {
         _id: minerId,
         client: client._id,
         clientName: client.clientName,
-        workerId: row.workerId,
+        workerId: row.workerId?.trim() || undefined,
         serialNumber: row.serialNumber,
         model: model.name,
         modelId: model._id,
@@ -293,7 +293,7 @@ export const bulkUploadDataV2 = async (req, res) => {
         algorithm: model.algorithm,
         coolingType: model.coolingType,
         manufacturer: model.manufacturer,
-        macAddress: row.macAddress,
+        macAddress: row.macAddress?.trim() || undefined,
         temporaryOwner: row.nowRunning ? row.nowRunning : undefined,
         version: "2",
       };

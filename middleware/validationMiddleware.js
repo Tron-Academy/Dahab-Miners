@@ -573,6 +573,10 @@ export const validateAddMiningFarm = withValidationErrors([
   body("farmType").notEmpty().withMessage("Farm Type is required"),
   body("farmStatus").notEmpty().withMessage("Farm Status is required"),
   body("country").notEmpty().withMessage("Country is required"),
+  body("additionalCapacity")
+    .notEmpty()
+    .withMessage("Additional Capacity is required"),
+  body("category").notEmpty().withMessage("Category is required"),
   body("totalSlots").notEmpty().withMessage("Total Slots is required"),
   body("contract").notEmpty().withMessage("Contract Type is required"),
   body("commissioningDay")
@@ -590,6 +594,10 @@ export const validateUpdateMiningFarm = withValidationErrors([
   body("farmType").notEmpty().withMessage("Farm Type is required"),
   body("totalSlots").notEmpty().withMessage("Total Slots is required"),
   body("country").notEmpty().withMessage("Country is required"),
+  body("additionalCapacity")
+    .notEmpty()
+    .withMessage("Additional Capacity is required"),
+  body("category").notEmpty().withMessage("Category is required"),
   body("contract").notEmpty().withMessage("Contract Type is required"),
   body("commissioningDay")
     .notEmpty()

@@ -5,31 +5,69 @@ import Issue from "../../models/intermine/Issue.js";
 import Message from "../../models/intermine/Message.js";
 import Notification from "../../models/Notification.js";
 import DahabIssue from "../../models/DahabIssues.js";
+import Client from "../../models/Clients.js";
+import MiningFarm from "../../models/MiningFarm.js";
 
 export const AddMinerData = async (req, res) => {
-  const { client, nowRunning, location, model, serialNumber, mac, worker } =
-    req.body;
-  const data = await Data.findOne({ serialNumber: serialNumber });
-  if (!data) {
-    // const newData = new Data({
-    //   currentLocation: location,
-    //   actualLocation: location,
-    //   modelName: model,
-    //   serialNumber: serialNumber,
-    //   macAddress: mac,
-    //   clientName: client,
-    //   temporaryOwner: nowRunning,
-    //   workerId: worker,
-    // });
-    // const notification = await Notification.create({
-    //   notification: `A new Miner data has been created by Intermine. Model-${model}, serial Number-${serialNumber}`,
-    //   isRead: false,
-    // });
-    // await newData.save();
-    // return res.status(201).json({ msg: "success" });
-    throw new BadRequestError("Data not found on dahab database");
+  const session = await mongoose.startSession();
+  await session.startTransaction();
+  const {
+    client,
+    nowRunning,
+    location,
+    model,
+    serialNumber,
+    mac,
+    worker,
+    status,
+    poolAddress,
+  } = req.body;
+  try {
+    if (!serialNumber)
+      throw new BadRequestError(
+        "Serial Number is required for adding data in Dahab",
+      );
+    const data = await Data.findOne({ serialNumber: serialNumber }).session(
+      session,
+    );
+    const clientUser = await Client.findOne({
+      clientName: { $regex: "intermine", $options: "i" },
+    }).session(session);
+    if (!clientUser)
+      throw new BadRequestError("Client 404 error in Dahab Server");
+    let farm;
+    if (location) {
+      farm = await MiningFarm.findOne({ facilityCode: location }).session(
+        session,
+      );
+    }
+    if (!data) {
+      const newData = new Data({
+        client: clientUser._id,
+        clientName: clientUser.clientName,
+        workerId: worker || undefined,
+        serialNumber: serialNumber || undefined,
+        status: status,
+        actualLocation: farm?.farm || undefined,
+        actualLocationId: farm?._id || undefined,
+        pool: poolAddress || "",
+        macAddress: mac,
+        version: "2",
+      });
+      const notification = new Notification({
+        notification: `A new Miner data has been created by Intermine. Model-${model}, serial Number-${serialNumber}. The Model has not been assigned. Please assign the model`,
+        isRead: false,
+      });
+      await newData.save({ session });
+      await notification.save({ session });
+      return res.status(201).json({ msg: "success" });
+    }
+    res.status(200).json({ msg: "OK" });
+  } catch (error) {
+    res
+      .status(error.statusCode || 500)
+      .json({ msg: error.msg || error.message });
   }
-  res.status(200).json({ msg: "OK" });
 };
 
 export const editMinerData = async (req, res) => {

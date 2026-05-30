@@ -41,6 +41,8 @@ export const addNewMiningFarm = async (req, res) => {
       farmType,
       farmStatus,
       totalSlots,
+      additionalCapacity,
+      category,
       facilityCode,
       country,
       contract,
@@ -54,6 +56,8 @@ export const addNewMiningFarm = async (req, res) => {
       farmType: farmType,
       farmStatus,
       country,
+      additionalCapacity,
+      category,
       totalSlots: Number(totalSlots),
       contractType: contract,
       dayOfCommissioning: new Date(commissioningDay),
@@ -81,6 +85,8 @@ export const editMiningFarm = async (req, res) => {
       facilityCode,
       capacity,
       farmId,
+      additionalCapacity,
+      category,
       farmType,
       totalSlots,
       country,
@@ -107,6 +113,8 @@ export const editMiningFarm = async (req, res) => {
     miningFarm.capacity = capacity;
     miningFarm.farmType = farmType;
     miningFarm.country = country;
+    miningFarm.category = category;
+    miningFarm.additionalCapacity = additionalCapacity;
     miningFarm.contractType = contract;
     miningFarm.totalSlots = Number(totalSlots);
     miningFarm.dayOfCommissioning = new Date(commissioningDay);

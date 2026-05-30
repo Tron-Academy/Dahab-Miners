@@ -24,6 +24,14 @@ const MiningFarmSchema = new Schema(
     capacity: {
       type: Number,
     },
+    additionalCapacity: {
+      type: Number,
+    },
+    category: {
+      type: String,
+      enum: ["hosting-facility", "storage", "repair-center", "warranty-center"],
+      default: "hosting-facility",
+    },
     current: {
       type: Number,
       default: 0,

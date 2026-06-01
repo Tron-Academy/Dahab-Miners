@@ -7,6 +7,7 @@ import Notification from "../../models/Notification.js";
 import DahabIssue from "../../models/DahabIssues.js";
 import Client from "../../models/Clients.js";
 import MiningFarm from "../../models/MiningFarm.js";
+import MinerModel from "../../models/MinerModel.js";
 
 export const AddMinerData = async (req, res) => {
   const session = await mongoose.startSession();
@@ -30,6 +31,7 @@ export const AddMinerData = async (req, res) => {
     const data = await Data.findOne({ serialNumber: serialNumber }).session(
       session,
     );
+    const minerModel = await MinerModel.findOne({ modelCode: model });
     const clientUser = await Client.findOne({
       clientName: { $regex: "intermine", $options: "i" },
     }).session(session);

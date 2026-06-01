@@ -9,6 +9,7 @@ export const addNewMinerModel = async (req, res) => {
       hashrate,
       hashUnit,
       power,
+      modelCode,
       coolingType,
       algorithm,
       coins,
@@ -19,6 +20,7 @@ export const addNewMinerModel = async (req, res) => {
       hashRate: hashrate,
       hashUnit: hashUnit || "TH",
       power: power,
+      modelCode,
       coolingType: coolingType,
       algorithm,
       coins,
@@ -51,6 +53,7 @@ export const editMinerModel = async (req, res) => {
       manufacturer,
       name,
       hashrate,
+      modelCode,
       hashUnit,
       power,
       coolingType,
@@ -65,6 +68,7 @@ export const editMinerModel = async (req, res) => {
     miner.hashRate = hashrate;
     miner.hashUnit = hashUnit || "TH";
     miner.power = power;
+    miner.modelCode = modelCode;
     miner.coolingType = coolingType;
     miner.algorithm = algorithm;
     miner.coins = coins;

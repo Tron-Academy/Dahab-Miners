@@ -130,8 +130,8 @@ export const validateDataV2Input = withValidationErrors([
   body("model").notEmpty().withMessage("model is required"),
   body("status").notEmpty().withMessage("status is required"),
   body("location").notEmpty().withMessage("location is required"),
-  body("poolAddress").notEmpty().withMessage("pool address is required"),
-  body("macAddress").notEmpty().withMessage("mac Address is required"),
+  // body("poolAddress").notEmpty().withMessage("pool address is required"),
+  // body("macAddress").notEmpty().withMessage("mac Address is required"),
 ]);
 
 export const validateRepairInput = withValidationErrors([
@@ -504,6 +504,7 @@ export const validateAddMinerModel = withValidationErrors([
   body("name").notEmpty().withMessage("Name is required"),
   body("hashrate").notEmpty().withMessage("Hash Rate is required"),
   body("power").notEmpty().withMessage("Power is required"),
+  body("modelCode").notEmpty().withMessage("Model Code is required"),
   body("coolingType").notEmpty().withMessage("Cooling Type is required"),
   body("algorithm").notEmpty().withMessage("Name is required"),
   body("coins").notEmpty().withMessage("Coins are required"),

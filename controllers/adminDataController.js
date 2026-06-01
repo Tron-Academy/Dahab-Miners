@@ -81,19 +81,19 @@ export const addNewDataV2 = async (req, res) => {
     }
     if (temporaryFarm) {
       newTotal = temporaryFarm.current + Number(minerModel.power);
-      if (temporaryFarm.capacity < newTotal) {
-        throw new BadRequestError(
-          "Mining Farm maximum capacity reached at temporary farm",
-        );
-      }
+      // if (temporaryFarm.capacity < newTotal) {
+      //   throw new BadRequestError(
+      //     "Mining Farm maximum capacity reached at temporary farm",
+      //   );
+      // }
       if (temporaryFarm.occupiedSlots >= temporaryFarm.totalSlots) {
         throw new BadRequestError("No slots available at temporary farm");
       }
     } else if (miningFarm) {
       newTotal = miningFarm.current + Number(minerModel.power);
-      if (miningFarm.capacity < newTotal) {
-        throw new BadRequestError("Mining Farm maximum capacity reached");
-      }
+      // if (miningFarm.capacity < newTotal) {
+      //   throw new BadRequestError("Mining Farm maximum capacity reached");
+      // }
       if (miningFarm.occupiedSlots >= miningFarm.totalSlots) {
         throw new BadRequestError("No slots available at farm");
       }
@@ -268,8 +268,8 @@ export const bulkUploadDataV2 = async (req, res) => {
         throw new BadRequestError(`Dulicate miner ${row.serialNumber}`);
       const selectedFarm = tempFarm || farm;
       const newTotal = selectedFarm.current + Number(model.power);
-      if (selectedFarm.capacity < newTotal)
-        throw new BadRequestError(`Capacity exceeded in ${selectedFarm.farm}`);
+      // if (selectedFarm.capacity < newTotal)
+      //   throw new BadRequestError(`Capacity exceeded in ${selectedFarm.farm}`);
       if (selectedFarm.occupiedSlots >= selectedFarm.totalSlots)
         throw new BadRequestError(`No slots available at ${selectedFarm.farm}`);
       const minerId = new mongoose.Types.ObjectId();
@@ -587,8 +587,8 @@ export const editV2Data = async (req, res) => {
       if (!temporaryOldFarmId) {
         //if this is a first time temporary farm
         const adjusted = tempNewFarm.current + newPower;
-        if (adjusted > tempNewFarm.capacity)
-          throw new BadRequestError("Capacity exceeded at temporary farm");
+        // if (adjusted > tempNewFarm.capacity)
+        //   throw new BadRequestError("Capacity exceeded at temporary farm");
         if (tempNewFarm.occupiedSlots >= tempNewFarm.totalSlots) {
           throw new BadRequestError("No slots available in temporary farm");
         }
@@ -655,9 +655,9 @@ export const editV2Data = async (req, res) => {
         if (!tempOldFarm)
           throw new NotFoundError("Old temporary farm is not found");
         const adjusted = tempNewFarm.current + newPower;
-        if (adjusted > tempNewFarm.capacity) {
-          throw new BadRequestError("Capacity exceeded at new temporary farm");
-        }
+        // if (adjusted > tempNewFarm.capacity) {
+        //   throw new BadRequestError("Capacity exceeded at new temporary farm");
+        // }
         if (tempNewFarm.occupiedSlots >= tempNewFarm.totalSlots) {
           throw new BadRequestError("No slots available at new temporary farm");
         }
@@ -705,11 +705,11 @@ export const editV2Data = async (req, res) => {
         //if there is a change in power with no change in temporary farm
       } else if (oldPower !== newPower) {
         const adjusted = tempNewFarm.current - oldPower + newPower;
-        if (adjusted > tempNewFarm.capacity) {
-          throw new BadRequestError(
-            "Capacity exceeded at the temporary location",
-          );
-        }
+        // if (adjusted > tempNewFarm.capacity) {
+        //   throw new BadRequestError(
+        //     "Capacity exceeded at the temporary location",
+        //   );
+        // }
         tempNewFarm.current = adjusted;
         await tempNewFarm.save({ session });
         //if the actual farms are different with same temporary farms
@@ -741,9 +741,9 @@ export const editV2Data = async (req, res) => {
         oldFarm = await MiningFarm.findById(oldFarmId).session(session);
         if (!oldFarm) throw new NotFoundError("old mining farm not found");
         const adjusted = newFarm.current + newPower;
-        if (adjusted > newFarm.capacity) {
-          throw new BadRequestError("Capacity exceeded at new farm");
-        }
+        // if (adjusted > newFarm.capacity) {
+        //   throw new BadRequestError("Capacity exceeded at new farm");
+        // }
         if (newFarm.occupiedSlots >= newFarm.totalSlots) {
           throw new BadRequestError("No slots available in new farm");
         }
@@ -784,9 +784,9 @@ export const editV2Data = async (req, res) => {
         //if power is different and same actual farm without temporary farm
       } else if (oldPower !== newPower) {
         const adjusted = newFarm.current - oldPower + newPower;
-        if (adjusted > newFarm.capacity) {
-          throw new BadRequestError("Capacity ecxceeded at current farm");
-        }
+        // if (adjusted > newFarm.capacity) {
+        //   throw new BadRequestError("Capacity ecxceeded at current farm");
+        // }
         newFarm.current = adjusted;
         await newFarm.save({ session });
         //if old temp farm exists without change in actual farm and no new temp farm and change in power
@@ -816,9 +816,9 @@ export const editV2Data = async (req, res) => {
           (item) => item.miner.toString() !== miner._id.toString(),
         );
         const adjusted = newFarm.current + newPower;
-        if (adjusted > newFarm.capacity) {
-          throw new BadRequestError("Capacity exceeded at actual location");
-        }
+        // if (adjusted > newFarm.capacity) {
+        //   throw new BadRequestError("Capacity exceeded at actual location");
+        // }
         if (newFarm.occupiedSlots >= newFarm.totalSlots)
           throw new BadRequestError("Slots exceeded at actual location");
         newFarm.movedMiners = newFarm.movedMiners.filter(

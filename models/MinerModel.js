@@ -18,6 +18,11 @@ const MinerModelSchema = new Schema(
       type: String,
       default: "TH",
     },
+    modelCode: {
+      type: String,
+      unique: true,
+      sparse: true,
+    },
     coolingType: {
       type: String,
     },

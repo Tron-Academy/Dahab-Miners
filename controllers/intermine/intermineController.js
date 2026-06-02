@@ -31,7 +31,13 @@ export const AddMinerData = async (req, res) => {
     const data = await Data.findOne({ serialNumber: serialNumber }).session(
       session,
     );
-    const minerModel = await MinerModel.findOne({ modelCode: model });
+    const minerModel = await MinerModel.findOne({ modelCode: model }).session(
+      session,
+    );
+    if (!minerModel)
+      throw new BadRequestError(
+        `No miner model with code ${model} found on dahab server`,
+      );
     const clientUser = await Client.findOne({
       clientName: { $regex: "intermine", $options: "i" },
     }).session(session);
@@ -42,6 +48,13 @@ export const AddMinerData = async (req, res) => {
       farm = await MiningFarm.findOne({ facilityCode: location }).session(
         session,
       );
+      if (!farm)
+        throw new BadRequestError(
+          `Farm with facility code ${location} not found on dahab server`,
+        );
+    }
+    if (!farm && data.actualLocationId) {
+      farm = await MiningFarm.findById(data.actualLocationId).session(session);
     }
     if (!data) {
       const newData = new Data({
@@ -49,23 +62,139 @@ export const AddMinerData = async (req, res) => {
         clientName: clientUser.clientName,
         workerId: worker || undefined,
         serialNumber: serialNumber || undefined,
+        model: minerModel.name,
+        modelId: minerModel._id,
         status: status,
+        hashUnit: minerModel.hashUnit || "TH",
         actualLocation: farm?.farm || undefined,
         actualLocationId: farm?._id || undefined,
         pool: poolAddress || "",
         macAddress: mac,
+        hashRate: minerModel.hashRate,
+        power: minerModel.power,
+        coins: minerModel.coins,
+        algorithm: minerModel.algorithm,
+        coolingType: minerModel.coolingType,
+        manufacturer: minerModel.manufacturer,
         version: "2",
       });
+      if (farm) {
+        farm.current = farm.current + minerModel.power;
+        farm.occupiedSlots = farm.occupiedSlots + 1;
+        farm.miners.push(newData._id);
+        await farm.save({ session });
+      }
       const notification = new Notification({
-        notification: `A new Miner data has been created by Intermine. Model-${model}, serial Number-${serialNumber}. The Model has not been assigned. Please assign the model`,
+        notification: `A new Miner data has been created by Intermine. Model-${model}, serial Number-${serialNumber}.`,
         isRead: false,
       });
       await newData.save({ session });
       await notification.save({ session });
+      await session.commitTransaction();
+      session.endSession();
       return res.status(201).json({ msg: "success" });
+    } else {
+      if (data.actualLocationId && farm) {
+        if (data.actualLocationId?.toString() !== farm._id?.toString()) {
+          const oldFarm = await MiningFarm.findById(
+            data.actualLocationId,
+          ).session(session);
+          if (!oldFarm)
+            throw new BadRequestError("Old farm not found in dahab server");
+          if (data.currentLocationId) {
+            oldFarm.movedMiners = oldFarm.movedMiners.filter(
+              (item) => item.miner?.toString() !== data._id.toString(),
+            );
+            farm.movedMiners.push({
+              miner: data._id,
+              serialNumber: serialNumber,
+            });
+            data.actualLocation = farm.farm;
+            data.actualLocationId = farm._id;
+          } else {
+            if (data.modelId?.toString() === minerModel._id?.toString()) {
+              oldFarm.miners = oldFarm.miners.filter(
+                (item) => item.toString() !== data._id.toString(),
+              );
+              oldFarm.current = Math.max(0, oldFarm.current - minerModel.power);
+              oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
+              farm.current = farm.current + minerModel.power;
+              farm.occupiedSlots = farm.occupiedSlots + 1;
+              farm.miners.push(data._id);
+              data.actualLocation = farm.farm;
+              data.actualLocationId = farm._id;
+            } else {
+              oldFarm.miners = oldFarm.miners.filter(
+                (item) => item.toString() !== data._id.toString(),
+              );
+              oldFarm.current = Math.max(0, oldFarm.current - data.power);
+              oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
+              farm.current = farm.current + minerModel.power;
+              farm.occupiedSlots = farm.occupiedSlots + 1;
+              farm.miners.push(data._id);
+              data.actualLocation = farm.farm;
+              data.actualLocationId = farm._id;
+            }
+          }
+          await oldFarm.save({ session });
+        } else {
+          if (data.modelId?.toString() !== minerModel._id?.toString()) {
+            if (data.currentLocationId) {
+              const tempLocation = await MiningFarm.findById(
+                data.currentLocationId,
+              ).session(session);
+              if (!tempLocation)
+                throw new BadRequestError(
+                  "Temmporary location not found in dahab server",
+                );
+              tempLocation.current = Math.max(
+                0,
+                tempLocation.current - data.power,
+              );
+              tempLocation.current = tempLocation.current + minerModel.power;
+              await tempLocation.save({ session });
+            } else {
+              farm.current = Math.max(0, farm.current - data.power);
+              farm.current = farm.current + minerModel.power;
+            }
+          }
+        }
+      }
+      if (farm) {
+        await farm.save({ session });
+      }
+
+      data.client = clientUser._id;
+      data.clientName = clientUser.clientName;
+      data.workerId = worker || data.workerId || undefined;
+      data.serialNumber = serialNumber || data.serialNumber || undefined;
+      data.model = minerModel.name;
+      data.modelId = minerModel._id;
+      data.status = status;
+      data.hashUnit = minerModel.hashUnit || "TH";
+      data.pool = poolAddress || data.pool || undefined;
+      data.macAddress = mac || data.macAddress || undefined;
+      data.hashRate = minerModel.hashRate;
+      data.power = minerModel.power;
+      data.coins = minerModel.coins;
+      data.algorithm = minerModel.algorithm;
+      data.manufacturer = minerModel.manufacturer;
+      data.coolingType = minerModel.coolingType;
+
+      const notification = new Notification({
+        notification: `A Miner data has been edited by Intermine . Model-${model}, serial Number-${serialNumber}.`,
+        isRead: false,
+      });
+      await data.save({ session });
+      await notification.save({ session });
+      await session.commitTransaction();
+      session.endSession();
+      return res.status(200).json({ msg: "success" });
     }
-    res.status(200).json({ msg: "OK" });
+    throw new BadRequestError("Something went wrong in dahab server");
   } catch (error) {
+    await session.abortTransaction();
+    session.endSession();
     res
       .status(error.statusCode || 500)
       .json({ msg: error.msg || error.message });
@@ -73,24 +202,155 @@ export const AddMinerData = async (req, res) => {
 };
 
 export const editMinerData = async (req, res) => {
-  const { client, nowRunning, location, model, serialNumber, mac, worker } =
-    req.body;
-  const data = await Data.findOne({ serialNumber: serialNumber });
-  if (!data) throw new NotFoundError("No data found on dahab datacenter");
-  // data.actualLocation = location;
-  // data.currentLocation = location;
-  // data.macAddress = mac;
-  // data.modelName = model;
-  // data.serialNumber = serialNumber;
-  // data.clientName = client;
-  // data.temporaryOwner = nowRunning;
-  // data.workerId = worker;
-  // const notification = await Notification.create({
-  //   notification: `A mining data has been updated by Intermine. Miner-${model} Serial Number-${serialNumber}`,
-  //   isRead: false,
-  // });
-  // await data.save();
-  res.status(200).json({ msg: "success" });
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
+    const {
+      client,
+      nowRunning,
+      location,
+      model,
+      serialNumber,
+      mac,
+      worker,
+      status,
+      poolAddress,
+    } = req.body;
+    if (!serialNumber)
+      throw new BadRequestError(
+        "Serial Number is required by the dahab server",
+      );
+    const data = await Data.findOne({ serialNumber: serialNumber }).session(
+      session,
+    );
+    if (!data) throw new NotFoundError("No data found on dahab server");
+    const minerModel = await MinerModel.findOne({ modelCode: model }).session(
+      session,
+    );
+    if (!minerModel)
+      throw new BadRequestError(
+        `No miner model found for code ${model} in dahab servers`,
+      );
+    const clientUser = await Client.findOne({
+      clientName: { $regex: "intermine", $options: "i" },
+    }).session(session);
+    if (!clientUser)
+      throw new BadRequestError("Client 404 error in Dahab Server");
+    let farm;
+    if (location) {
+      farm = await MiningFarm.findOne({ facilityCode: location }).session(
+        session,
+      );
+      if (!farm)
+        throw new BadRequestError(
+          `Farm with facility code ${location} not found on dahab server`,
+        );
+    }
+    if (!farm && data.actualLocationId) {
+      farm = await MiningFarm.findById(data.actualLocationId).session(session);
+    }
+    if (data.actualLocationId && farm) {
+      if (data.actualLocationId?.toString() !== farm._id?.toString()) {
+        const oldFarm = await MiningFarm.findById(
+          data.actualLocationId,
+        ).session(session);
+        if (!oldFarm)
+          throw new BadRequestError("Old farm not found in dahab server");
+        if (data.currentLocationId) {
+          oldFarm.movedMiners = oldFarm.movedMiners.filter(
+            (item) => item.miner?.toString() !== data._id.toString(),
+          );
+          farm.movedMiners.push({
+            miner: data._id,
+            serialNumber: serialNumber,
+          });
+          data.actualLocation = farm.farm;
+          data.actualLocationId = farm._id;
+        } else {
+          if (data.modelId?.toString() === minerModel._id?.toString()) {
+            oldFarm.miners = oldFarm.miners.filter(
+              (item) => item.toString() !== data._id.toString(),
+            );
+            oldFarm.current = Math.max(0, oldFarm.current - minerModel.power);
+            oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
+            farm.current = farm.current + minerModel.power;
+            farm.occupiedSlots = farm.occupiedSlots + 1;
+            farm.miners.push(data._id);
+            data.actualLocation = farm.farm;
+            data.actualLocationId = farm._id;
+          } else {
+            oldFarm.miners = oldFarm.miners.filter(
+              (item) => item.toString() !== data._id.toString(),
+            );
+            oldFarm.current = Math.max(0, oldFarm.current - data.power);
+            oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
+            farm.current = farm.current + minerModel.power;
+            farm.occupiedSlots = farm.occupiedSlots + 1;
+            farm.miners.push(data._id);
+            data.actualLocation = farm.farm;
+            data.actualLocationId = farm._id;
+          }
+        }
+        await oldFarm.save({ session });
+      } else {
+        if (data.modelId?.toString() !== minerModel._id?.toString()) {
+          if (data.currentLocationId) {
+            const tempLocation = await MiningFarm.findById(
+              data.currentLocationId,
+            ).session(session);
+            if (!tempLocation)
+              throw new BadRequestError(
+                "Temmporary location not found in dahab server",
+              );
+            tempLocation.current = Math.max(
+              0,
+              tempLocation.current - data.power,
+            );
+            tempLocation.current = tempLocation.current + minerModel.power;
+            await tempLocation.save({ session });
+          } else {
+            farm.current = Math.max(0, farm.current - data.power);
+            farm.current = farm.current + minerModel.power;
+          }
+        }
+      }
+    }
+    if (farm) {
+      await farm.save({ session });
+    }
+    data.client = clientUser._id;
+    data.clientName = clientUser.clientName;
+    data.workerId = worker || data.workerId || undefined;
+    data.serialNumber = serialNumber || data.serialNumber || undefined;
+    data.model = minerModel.name;
+    data.modelId = minerModel._id;
+    data.status = status;
+    data.hashUnit = minerModel.hashUnit || "TH";
+    data.pool = poolAddress || data.pool || undefined;
+    data.macAddress = mac || data.macAddress || undefined;
+    data.hashRate = minerModel.hashRate;
+    data.power = minerModel.power;
+    data.coins = minerModel.coins;
+    data.algorithm = minerModel.algorithm;
+    data.manufacturer = minerModel.manufacturer;
+    data.coolingType = minerModel.coolingType;
+
+    const notification = new Notification({
+      notification: `A Miner data has been edited by Intermine . Model-${model}, serial Number-${serialNumber}.`,
+      isRead: false,
+    });
+    await data.save({ session });
+    await notification.save({ session });
+    await session.commitTransaction();
+    session.endSession();
+    res.status(200).json({ msg: "success" });
+  } catch (error) {
+    await session.abortTransaction();
+    session.endSession();
+    res
+      .status(error.statusCode || 500)
+      .json({ msg: error.msg || error.message });
+  }
 };
 
 export const issueReport = async (req, res) => {

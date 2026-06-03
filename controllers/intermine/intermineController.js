@@ -8,6 +8,7 @@ import DahabIssue from "../../models/DahabIssues.js";
 import Client from "../../models/Clients.js";
 import MiningFarm from "../../models/MiningFarm.js";
 import MinerModel from "../../models/MinerModel.js";
+import Warranty from "../../models/Warranty.js";
 
 export const AddMinerData = async (req, res) => {
   const session = await mongoose.startSession();
@@ -22,6 +23,8 @@ export const AddMinerData = async (req, res) => {
     worker,
     status,
     poolAddress,
+    warrantyStart,
+    warrantyEnd,
   } = req.body;
   try {
     if (!serialNumber)
@@ -53,9 +56,6 @@ export const AddMinerData = async (req, res) => {
           `Farm with facility code ${location} not found on dahab server`,
         );
     }
-    if (!farm && data.actualLocationId) {
-      farm = await MiningFarm.findById(data.actualLocationId).session(session);
-    }
     if (!data) {
       const newData = new Data({
         client: clientUser._id,
@@ -78,6 +78,23 @@ export const AddMinerData = async (req, res) => {
         manufacturer: minerModel.manufacturer,
         version: "2",
       });
+      let newWarranty;
+      if (warrantyStart && warrantyEnd) {
+        const start = new Date(warrantyStart);
+        const end = new Date(warrantyEnd);
+        newData.warrantyStartDate = start;
+        newData.warrantyEndDate = end;
+        newWarranty = new Warranty({
+          warrantyType: "Manufacturer",
+          startDate: start,
+          endDate: end,
+          user: clientUser._id,
+          miner: newData._id,
+          status: "active",
+        });
+        newData.relatedWarranty = newWarranty._id;
+        await newWarranty.save({ session });
+      }
       if (farm) {
         farm.current = farm.current + minerModel.power;
         farm.occupiedSlots = farm.occupiedSlots + 1;
@@ -94,6 +111,11 @@ export const AddMinerData = async (req, res) => {
       session.endSession();
       return res.status(201).json({ msg: "success" });
     } else {
+      if (!farm && data.actualLocationId) {
+        farm = await MiningFarm.findById(data.actualLocationId).session(
+          session,
+        );
+      }
       if (data.actualLocationId && farm) {
         if (data.actualLocationId?.toString() !== farm._id?.toString()) {
           const oldFarm = await MiningFarm.findById(
@@ -163,7 +185,35 @@ export const AddMinerData = async (req, res) => {
       if (farm) {
         await farm.save({ session });
       }
-
+      let newWarranty;
+      if (warrantyStart && warrantyEnd) {
+        const start = new Date(warrantyStart);
+        const end = new Date(warrantyEnd);
+        data.warrantyStartDate = start;
+        data.warrantyEndDate = end;
+        if (data.relatedWarranty) {
+          newWarranty = await Warranty.findById(data.relatedWarranty).session(
+            session,
+          );
+          if (!newWarranty)
+            throw new BadRequestError(
+              "No related warranty found in dahab servers",
+            );
+          newWarranty.startDate = start;
+          newWarranty.endDate = end;
+        } else {
+          newWarranty = new Warranty({
+            warrantyType: "Manufacturer",
+            startDate: start,
+            endDate: end,
+            user: clientUser._id,
+            miner: data._id,
+            status: "active",
+          });
+          data.relatedWarranty = newWarranty._id;
+        }
+        await newWarranty.save({ session });
+      }
       data.client = clientUser._id;
       data.clientName = clientUser.clientName;
       data.workerId = worker || data.workerId || undefined;

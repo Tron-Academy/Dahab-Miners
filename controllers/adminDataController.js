@@ -179,7 +179,7 @@ export const addNewDataV2 = async (req, res) => {
     if (clientUser.clientName?.toLowerCase() === "intermine" && serialNumber) {
       try {
         const response = await axios.post(
-          `${intermineURL}/addMiner`,
+          `${intermineURL}/create-miner`,
           {
             location: miningFarm?.facilityCode,
             model: minerModel?.modelCode,
@@ -598,6 +598,8 @@ export const editV2Data = async (req, res) => {
       poolAddress,
       connectionDate,
       macAddress,
+      warrantyStart,
+      warrantyEnd,
     } = req.body;
     const clientUser = await Client.findById(client).session(session);
     if (!clientUser) throw new NotFoundError("No user found");
@@ -917,10 +919,50 @@ export const editV2Data = async (req, res) => {
     miner.currentLocationId = tempNewFarm?._id || undefined;
     miner.temporaryOwner = nowRunning ? nowRunning : undefined;
 
+    if (clientUser.clientName?.toLowerCase() === "intermine" && serialNumber) {
+      if (!minermodel.modelCode) {
+        throw new BadRequestError(
+          `Please add model code for the miner model ${minermodel.name}`,
+        );
+      }
+      try {
+        const response = await axios.patch(
+          `${intermineURL}/edit-miner`,
+          {
+            location: newFarm?.facilityCode,
+            model: minermodel?.modelCode,
+            serialNumber: serialNumber || miner.serialNumber || "",
+            mac: macAddress || miner.macAddress || "",
+            worker: workerId || miner.workerId || "",
+            status,
+            poolAddress: poolAddress || miner.pool || "",
+            warrantyStart: warrantyStart || miner.warrantyStartDate || "",
+            warrantyEnd: warrantyEnd || miner.warrantyEndDate || "",
+          },
+          {
+            headers: {
+              "x-api-key": process.env.INTERMINE_API_KEY,
+            },
+          },
+        );
+      } catch (err) {
+        await session.abortTransaction();
+        session.endSession();
+
+        return res.status(err.response?.status || 500).json({
+          error:
+            err.response?.data?.msg ||
+            err.response?.data?.message ||
+            err.response?.data?.error ||
+            err.message,
+        });
+      }
+    }
     await miner.save({ session });
     await clientUser.save({ session });
     await session.commitTransaction();
     session.endSession();
+
     res.status(200).json({ message: "success" });
   } catch (error) {
     await session.abortTransaction();

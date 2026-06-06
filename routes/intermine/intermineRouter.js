@@ -3,6 +3,7 @@ import {
   AddMinerData,
   editMinerData,
   issueReport,
+  poolChange,
   recieveMessageStatus,
   sendReminder,
   updateIssueStatusFromIntermine,
@@ -14,6 +15,7 @@ const router = Router();
 router.post("/addMiner", AddMinerData);
 router.patch("/editMiner", editMinerData);
 router.patch("/report-issue", issueReport);
+router.patch("/pool-change", poolChange);
 router.patch("/reminder", sendReminder);
 router.patch("/update-status", updateIssueStatusFromIntermine);
 

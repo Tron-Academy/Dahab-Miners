@@ -182,6 +182,12 @@ export const AddMinerData = async (req, res) => {
           }
         }
       }
+      if (!data.actualLocationId && farm) {
+        farm.current = farm.current + minerModel.power;
+        farm.miners.push(data._id);
+        data.actualLocation = farm.farm;
+        data.actualLocationId = farm._id;
+      }
       if (farm) {
         await farm.save({ session });
       }
@@ -365,6 +371,12 @@ export const editMinerData = async (req, res) => {
         }
       }
     }
+    if (!data.actualLocationId && farm) {
+      farm.current = farm.current + minerModel.power;
+      farm.miners.push(data._id);
+      data.actualLocation = farm.farm;
+      data.actualLocationId = farm._id;
+    }
     if (farm) {
       await farm.save({ session });
     }
@@ -480,6 +492,91 @@ export const issueReport = async (req, res) => {
   }
 };
 
+export const poolChange = async (req, res) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
+    const { issue, serialNumber, newWorker, newPool, issueId } = req.body;
+    if (!serialNumber || !issue || !newWorker || !newPool || !issueId) {
+      throw new BadRequestError(
+        "Serial Number, issue, newWorker, newPool, issueId is required in DH",
+      );
+    }
+    const miner = await Data.findOne({ serialNumber: serialNumber }).session(
+      session,
+    );
+    if (!miner) throw new NotFoundError("The reported miner not found on DH");
+    const existingPendingRequest = await DahabIssue.findOne({
+      miner: miner._id,
+      type: "change",
+      status: "Pending",
+    }).session(session);
+
+    if (existingPendingRequest) {
+      throw new BadRequestError(
+        "A Pool change request is already pending on DH server for this miner",
+      );
+    }
+
+    const existingIssueId = await DahabIssue.findOne({
+      intermineId: issueId,
+    }).session(session);
+
+    if (existingIssueId) {
+      throw new BadRequestError(
+        "This Intermine issue has already been processed",
+      );
+    }
+    const notification = new Notification({
+      notification: issue,
+      isRead: false,
+    });
+    const newIssue = new DahabIssue({
+      issueName: "Pool Change Request",
+      workerAddress: miner.workerId,
+      miner: miner._id,
+      minerModel: miner.model,
+      user: miner.client,
+      username: miner.clientName,
+      status: "Pending",
+      type: "change",
+      changeRequest: {
+        pool: newPool,
+        worker: newWorker,
+      },
+      owner: "Intermine",
+      intermineId: issueId,
+      statusHistory: [
+        {
+          status: "Pending",
+          changedBy: "Intermine-Client",
+          changedOn: new Date(),
+        },
+      ],
+    });
+    const newMessage = new Message({
+      message: issue,
+      issue: newIssue._id,
+      sendBy: "Intermine-Client",
+    });
+    newIssue.messages.push(newMessage._id);
+    miner.changeHistory.push(newIssue._id);
+    await miner.save({ session });
+    await newIssue.save({ session });
+    await newMessage.save({ session });
+    await notification.save({ session });
+    await session.commitTransaction();
+    session.endSession();
+    res.status(200).json({ message: "success" });
+  } catch (error) {
+    await session.abortTransaction();
+    session.endSession();
+    res
+      .status(error.statusCode || 500)
+      .json({ msg: error.msg || error.message });
+  }
+};
+
 export const sendReminder = async (req, res) => {
   const session = await mongoose.startSession();
   try {
@@ -521,7 +618,11 @@ export const updateIssueStatusFromIntermine = async (req, res) => {
   const session = await mongoose.startSession();
   try {
     session.startTransaction();
-    const { issueId, status, serialNumber } = req.body;
+    const { issueId, status, serialNumber, type } = req.body;
+    if (!issueId || !status || !serialNumber || !type)
+      throw BadRequestError(
+        "Issue Id , status, serial Number and type is required for Dahab server",
+      );
     const issue = await DahabIssue.findOne({ intermineId: issueId })
       .populate("miner", "serialNumber")
       .session(session);
@@ -529,14 +630,14 @@ export const updateIssueStatusFromIntermine = async (req, res) => {
     if (serialNumber !== issue.miner.serialNumber) {
       throw new BadRequestError("Invalid serial number in Dahab Database");
     }
-    if (status !== "Resolved") {
+    if (status !== "Resolved" && type === "repair") {
       issue.status = status;
       issue.statusHistory.push({
         status: status,
         changedBy: "Intermine",
         changedOn: new Date(),
       });
-    } else if (status === "Resolved") {
+    } else if (status === "Resolved" && type === "repair") {
       issue.status = status;
       issue.statusHistory.push({
         status: status,
@@ -560,6 +661,22 @@ export const updateIssueStatusFromIntermine = async (req, res) => {
       if (minerOfflineObj && minerOfflineObj.isOpen) {
         minerOfflineObj.isOpen = false;
       }
+      await miner.save({ session });
+    } else if (status === "Resolved" && type === "change") {
+      issue.status = "Resolved";
+      issue.statusHistory.push({
+        status: status,
+        changedBy: "Intermine",
+        changedOn: new Date(),
+      });
+      issue.resolvedOn = new Date();
+      const miner = await Data.findById(issue.miner._id).session(session);
+      if (!miner)
+        throw new BadRequestError(
+          "The target miner is missing on Dahab Database",
+        );
+      miner.workerId = issue.changeRequest?.worker;
+      miner.pool = issue.changeRequest?.pool;
       await miner.save({ session });
     }
     await issue.save({ session });

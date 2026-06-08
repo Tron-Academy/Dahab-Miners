@@ -11,6 +11,8 @@ import DahabIssue from "../models/DahabIssues.js";
 import DahabMessage from "../models/DahabMessage.js";
 import { parseCSVBuffer } from "../utils/parseCSV.js";
 import fs from "fs";
+import axios from "axios";
+import { intermineURL } from "../utils/dropdowns.js";
 
 export const addNewData = async (req, res) => {
   const {
@@ -60,6 +62,10 @@ export const addNewDataV2 = async (req, res) => {
     if (!clientUser) throw new NotFoundError("No client found");
     const minerModel = await MinerModel.findById(model).session(session);
     if (!minerModel) throw new NotFoundError("No miner model found");
+    if (minerModel && !minerModel.modelCode)
+      throw new BadRequestError(
+        `Please add a model code for the miner ${minerModel.name}`,
+      );
     const existingMiner = await Data.findOne({
       $or: [
         { serialNumber: serialNumber },
@@ -74,6 +80,10 @@ export const addNewDataV2 = async (req, res) => {
     let newTotal;
     miningFarm = await MiningFarm.findById(location).session(session);
     if (!miningFarm) throw new NotFoundError("No miningfarm found");
+    if (miningFarm && !miningFarm.facilityCode)
+      throw new NotFoundError(
+        `Please add facility code to the farm ${miningFarm.farm}`,
+      );
     if (temporaryLocation) {
       temporaryFarm =
         await MiningFarm.findById(temporaryLocation).session(session);
@@ -166,6 +176,40 @@ export const addNewDataV2 = async (req, res) => {
     clientUser.owned.push(newData._id);
     await clientUser.save({ session });
     await newData.save({ session });
+    if (clientUser.clientName?.toLowerCase() === "intermine" && serialNumber) {
+      try {
+        const response = await axios.post(
+          `${intermineURL}/create-miner`,
+          {
+            location: miningFarm?.facilityCode,
+            model: minerModel?.modelCode,
+            serialNumber: serialNumber || "",
+            mac: macAddress || "",
+            worker: workerId || "",
+            status,
+            poolAddress: poolAddress || "",
+            warrantyStart: warrantyStart || undefined,
+            warrantyEnd: warrantyEnd || undefined,
+          },
+          {
+            headers: {
+              "x-api-key": process.env.INTERMINE_API_KEY,
+            },
+          },
+        );
+      } catch (err) {
+        await session.abortTransaction();
+        session.endSession();
+
+        return res.status(err.response?.status || 500).json({
+          error:
+            err.response?.data?.msg ||
+            err.response?.data?.message ||
+            err.response?.data?.error ||
+            err.message,
+        });
+      }
+    }
     await session.commitTransaction();
     session.endSession();
     res.status(200).json({ message: `New miner added` });
@@ -554,6 +598,8 @@ export const editV2Data = async (req, res) => {
       poolAddress,
       connectionDate,
       macAddress,
+      warrantyStart,
+      warrantyEnd,
     } = req.body;
     const clientUser = await Client.findById(client).session(session);
     if (!clientUser) throw new NotFoundError("No user found");
@@ -873,10 +919,50 @@ export const editV2Data = async (req, res) => {
     miner.currentLocationId = tempNewFarm?._id || undefined;
     miner.temporaryOwner = nowRunning ? nowRunning : undefined;
 
+    if (clientUser.clientName?.toLowerCase() === "intermine" && serialNumber) {
+      if (!minermodel.modelCode) {
+        throw new BadRequestError(
+          `Please add model code for the miner model ${minermodel.name}`,
+        );
+      }
+      try {
+        const response = await axios.patch(
+          `${intermineURL}/edit-miner`,
+          {
+            location: newFarm?.facilityCode,
+            model: minermodel?.modelCode,
+            serialNumber: serialNumber || miner.serialNumber || "",
+            mac: macAddress || miner.macAddress || "",
+            worker: workerId || miner.workerId || "",
+            status,
+            poolAddress: poolAddress || miner.pool || "",
+            warrantyStart: warrantyStart || miner.warrantyStartDate || "",
+            warrantyEnd: warrantyEnd || miner.warrantyEndDate || "",
+          },
+          {
+            headers: {
+              "x-api-key": process.env.INTERMINE_API_KEY,
+            },
+          },
+        );
+      } catch (err) {
+        await session.abortTransaction();
+        session.endSession();
+
+        return res.status(err.response?.status || 500).json({
+          error:
+            err.response?.data?.msg ||
+            err.response?.data?.message ||
+            err.response?.data?.error ||
+            err.message,
+        });
+      }
+    }
     await miner.save({ session });
     await clientUser.save({ session });
     await session.commitTransaction();
     session.endSession();
+
     res.status(200).json({ message: "success" });
   } catch (error) {
     await session.abortTransaction();

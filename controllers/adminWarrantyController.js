@@ -150,8 +150,10 @@ export const updateWarranty = async (req, res) => {
     warranty.warrantyType = type;
     warranty.startDate = new Date(startDate);
     warranty.endDate = new Date(endDate);
+    warranty.user = miner.client || "";
     miner.warrantyStartDate = new Date(startDate);
     miner.warrantyEndDate = new Date(endDate);
+
     await warranty.save({ session });
     await miner.save({ session });
     await session.commitTransaction();

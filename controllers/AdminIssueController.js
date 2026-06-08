@@ -194,7 +194,7 @@ export const updateIssueStatus = async (req, res) => {
     if (!issue) throw new NotFoundError("No issue found");
     if (issue.status === "Resolved")
       throw new BadRequestError("Issue Already Resolved");
-    if (status !== "Resolved") {
+    if (status !== "Resolved" && issue.type === "repair") {
       issue.status = status;
       issue.statusHistory.push({
         status: status,
@@ -209,6 +209,7 @@ export const updateIssueStatus = async (req, res) => {
               issueId: issue.intermineId,
               status,
               serialNumber: issue.miner.serialNumber,
+              type: "repair",
             },
             {
               headers: {
@@ -232,7 +233,7 @@ export const updateIssueStatus = async (req, res) => {
       await session.commitTransaction();
       session.endSession();
       return res.status(200).json({ message: "Status changed", issue });
-    } else if (status === "Resolved") {
+    } else if (status === "Resolved" && issue.type === "repair") {
       issue.status = "Resolved";
       issue.statusHistory.push({
         status: "Resolved",
@@ -258,6 +259,7 @@ export const updateIssueStatus = async (req, res) => {
               issueId: issue.intermineId,
               status,
               serialNumber: miner.serialNumber,
+              type: "repair",
             },
             {
               headers: {
@@ -304,7 +306,52 @@ export const updateIssueStatus = async (req, res) => {
       await session.commitTransaction();
       session.endSession();
       res.status(200).json({ message: "success", issue });
+    } else if (status === "Resolved" && issue.type === "change") {
+      issue.status = "Resolved";
+      issue.statusHistory.push({
+        status: "Resolved",
+        changedBy: "Admin",
+        changedOn: new Date(),
+      });
+      issue.resolvedOn = new Date();
+      const miner = await Data.findById(issue.miner).session(session);
+      if (!miner) throw new NotFoundError("Unable to find Miner");
+      miner.workerId = issue.changeRequest?.worker;
+      miner.pool = issue.changeRequest?.pool;
+      if (issue.username.toLowerCase() === "intermine") {
+        try {
+          await axios.patch(
+            `${intermineURL}/update-issue-status`,
+            {
+              issueId: issue.intermineId,
+              status,
+              serialNumber: miner.serialNumber,
+              type: "change",
+            },
+            {
+              headers: {
+                "x-api-key": process.env.INTERMINE_API_KEY,
+              },
+            },
+          );
+        } catch (error) {
+          await session.abortTransaction();
+          session.endSession();
+          return res.status(500).json({
+            error:
+              error.response.data.error ||
+              error.response.data.message ||
+              "something went wrong with intermine server",
+          });
+        }
+      }
+      await miner.save({ session });
+      await issue.save({ session });
+      await session.commitTransaction();
+      session.endSession();
+      res.status(200).json({ message: "success", issue });
     }
+    throw new BadRequestError("Invalid status type");
   } catch (error) {
     await session.abortTransaction();
     session.endSession();

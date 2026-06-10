@@ -183,9 +183,9 @@ export const addNewDataV2 = async (req, res) => {
           {
             location: miningFarm?.facilityCode,
             model: minerModel?.modelCode,
-            serialNumber: serialNumber || "",
-            mac: macAddress || "",
-            worker: workerId || "",
+            serialNumber: serialNumber || undefined,
+            mac: macAddress || undefined,
+            worker: workerId || undefined,
             status,
             poolAddress: poolAddress || "",
             warrantyStart: warrantyStart || undefined,

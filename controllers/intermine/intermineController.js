@@ -60,7 +60,7 @@ export const AddMinerData = async (req, res) => {
       const newData = new Data({
         client: clientUser._id,
         clientName: clientUser.clientName,
-        workerId: worker || null,
+        workerId: worker || undefined,
         serialNumber: serialNumber || undefined,
         model: minerModel.name,
         modelId: minerModel._id,
@@ -68,8 +68,8 @@ export const AddMinerData = async (req, res) => {
         hashUnit: minerModel.hashUnit || "TH",
         actualLocation: farm?.farm || undefined,
         actualLocationId: farm?._id || undefined,
-        pool: poolAddress || null,
-        macAddress: mac || null,
+        pool: poolAddress || undefined,
+        macAddress: mac || undefined,
         hashRate: minerModel.hashRate,
         power: minerModel.power,
         coins: minerModel.coins,
@@ -222,14 +222,14 @@ export const AddMinerData = async (req, res) => {
       }
       data.client = clientUser._id;
       data.clientName = clientUser.clientName;
-      data.workerId = worker || null;
-      data.serialNumber = serialNumber || null;
+      if (worker) data.workerId = worker;
+      if (serialNumber) data.serialNumber = serialNumber;
       data.model = minerModel.name;
       data.modelId = minerModel._id;
       data.status = status;
       data.hashUnit = minerModel.hashUnit || "TH";
-      data.pool = poolAddress || null;
-      data.macAddress = mac || null;
+      if (poolAddress) data.pool = poolAddress;
+      if (mac) data.macAddress = mac;
       data.hashRate = minerModel.hashRate;
       data.power = minerModel.power;
       data.coins = minerModel.coins;

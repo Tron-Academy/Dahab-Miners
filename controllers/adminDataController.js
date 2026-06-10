@@ -926,8 +926,8 @@ export const editV2Data = async (req, res) => {
         );
       }
       try {
-        const response = await axios.patch(
-          `${intermineURL}/edit-miner`,
+        const response = await axios.post(
+          `${intermineURL}/create-miner`,
           {
             location: newFarm?.facilityCode,
             model: minermodel?.modelCode,

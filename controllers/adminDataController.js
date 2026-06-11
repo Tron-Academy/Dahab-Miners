@@ -183,9 +183,9 @@ export const addNewDataV2 = async (req, res) => {
           {
             location: miningFarm?.facilityCode,
             model: minerModel?.modelCode,
-            serialNumber: serialNumber || "",
-            mac: macAddress || "",
-            worker: workerId || "",
+            serialNumber: serialNumber || undefined,
+            mac: macAddress || undefined,
+            worker: workerId || undefined,
             status,
             poolAddress: poolAddress || "",
             warrantyStart: warrantyStart || undefined,
@@ -919,45 +919,45 @@ export const editV2Data = async (req, res) => {
     miner.currentLocationId = tempNewFarm?._id || undefined;
     miner.temporaryOwner = nowRunning ? nowRunning : undefined;
 
-    if (clientUser.clientName?.toLowerCase() === "intermine" && serialNumber) {
-      if (!minermodel.modelCode) {
-        throw new BadRequestError(
-          `Please add model code for the miner model ${minermodel.name}`,
-        );
-      }
-      try {
-        const response = await axios.post(
-          `${intermineURL}/create-miner`,
-          {
-            location: newFarm?.facilityCode,
-            model: minermodel?.modelCode,
-            serialNumber: serialNumber || miner.serialNumber || "",
-            mac: macAddress || miner.macAddress || "",
-            worker: workerId || miner.workerId || "",
-            status,
-            poolAddress: poolAddress || miner.pool || "",
-            warrantyStart: warrantyStart || miner.warrantyStartDate || "",
-            warrantyEnd: warrantyEnd || miner.warrantyEndDate || "",
-          },
-          {
-            headers: {
-              "x-api-key": process.env.INTERMINE_API_KEY,
-            },
-          },
-        );
-      } catch (err) {
-        await session.abortTransaction();
-        session.endSession();
+    // if (clientUser.clientName?.toLowerCase() === "intermine" && serialNumber) {
+    //   if (!minermodel.modelCode) {
+    //     throw new BadRequestError(
+    //       `Please add model code for the miner model ${minermodel.name}`,
+    //     );
+    //   }
+    //   try {
+    //     const response = await axios.post(
+    //       `${intermineURL}/create-miner`,
+    //       {
+    //         location: newFarm?.facilityCode,
+    //         model: minermodel?.modelCode,
+    //         serialNumber: serialNumber || miner.serialNumber || "",
+    //         mac: macAddress || miner.macAddress || "",
+    //         worker: workerId || miner.workerId || "",
+    //         status,
+    //         poolAddress: poolAddress || miner.pool || "",
+    //         warrantyStart: warrantyStart || miner.warrantyStartDate || "",
+    //         warrantyEnd: warrantyEnd || miner.warrantyEndDate || "",
+    //       },
+    //       {
+    //         headers: {
+    //           "x-api-key": process.env.INTERMINE_API_KEY,
+    //         },
+    //       },
+    //     );
+    //   } catch (err) {
+    //     await session.abortTransaction();
+    //     session.endSession();
 
-        return res.status(err.response?.status || 500).json({
-          error:
-            err.response?.data?.msg ||
-            err.response?.data?.message ||
-            err.response?.data?.error ||
-            err.message,
-        });
-      }
-    }
+    //     return res.status(err.response?.status || 500).json({
+    //       error:
+    //         err.response?.data?.msg ||
+    //         err.response?.data?.message ||
+    //         err.response?.data?.error ||
+    //         err.message,
+    //     });
+    //   }
+    // }
     await miner.save({ session });
     await clientUser.save({ session });
     await session.commitTransaction();

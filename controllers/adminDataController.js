@@ -112,8 +112,8 @@ export const addNewDataV2 = async (req, res) => {
     const newData = new Data({
       client: client,
       clientName: clientUser.clientName,
-      workerId: workerId,
-      serialNumber: serialNumber,
+      workerId: workerId?.trim(),
+      serialNumber: serialNumber?.trim(),
       model: minerModel.name,
       modelId: minerModel._id,
       status: status,
@@ -129,7 +129,7 @@ export const addNewDataV2 = async (req, res) => {
       algorithm: minerModel.algorithm,
       coolingType: minerModel.coolingType,
       manufacturer: minerModel.manufacturer,
-      macAddress: macAddress,
+      macAddress: macAddress?.trim(),
       temporaryOwner: nowRunning ? nowRunning : undefined,
       version: "2",
     });
@@ -183,9 +183,9 @@ export const addNewDataV2 = async (req, res) => {
           {
             location: miningFarm?.facilityCode,
             model: minerModel?.modelCode,
-            serialNumber: serialNumber || undefined,
-            mac: macAddress || undefined,
-            worker: workerId || undefined,
+            serialNumber: serialNumber?.trim() || undefined,
+            mac: macAddress?.trim() || undefined,
+            worker: workerId?.trim() || undefined,
             status,
             poolAddress: poolAddress || "",
             warrantyStart: warrantyStart || undefined,
@@ -655,9 +655,6 @@ export const editV2Data = async (req, res) => {
       oldTempFarm.occupiedSlots = Math.max(0, oldTempFarm.occupiedSlots - 1);
     }
     if (tempNewFarm && newFarm) {
-      if (tempNewFarm.occupiedSlots >= tempNewFarm.totalSlots) {
-        throw new BadRequestError("No slots available at current location");
-      }
       if (
         !newFarm.movedMiners.some(
           (item) => item.miner?.toString() === miner._id.toString(),
@@ -668,28 +665,35 @@ export const editV2Data = async (req, res) => {
           serialNumber: miner.serialNumber,
         });
       }
-      tempNewFarm.current += newPower;
-      tempNewFarm.occupiedSlots += 1;
+
       if (
         !tempNewFarm.temporaryMiners.some(
           (item) => item.miner?.toString() === miner._id?.toString(),
         )
       ) {
+        if (tempNewFarm.occupiedSlots >= tempNewFarm.totalSlots) {
+          throw new BadRequestError("No slots available at current location");
+        }
+        tempNewFarm.current += newPower;
+        tempNewFarm.occupiedSlots += 1;
         tempNewFarm.temporaryMiners.push({
           miner: miner._id,
           serialNumber: miner.serialNumber,
         });
       }
     } else if (newFarm && !tempNewFarm) {
-      if (newFarm.occupiedSlots >= newFarm.totalSlots) {
-        throw new BadRequestError("No slots available at the Actual location");
-      }
-      newFarm.current += newPower;
-      newFarm.occupiedSlots += 1;
       if (
         !newFarm.miners.some((item) => item.toString() === miner._id.toString())
       ) {
+        if (newFarm.occupiedSlots >= newFarm.totalSlots) {
+          throw new BadRequestError(
+            "No slots available at the Actual location",
+          );
+        }
+
         newFarm.miners.push(miner._id);
+        newFarm.current += newPower;
+        newFarm.occupiedSlots += 1;
       }
     }
     if (miner.client?.toString() !== clientUser._id?.toString()) {
@@ -720,10 +724,10 @@ export const editV2Data = async (req, res) => {
     miner.coins = minermodel.coins;
     miner.algorithm = minermodel.algorithm;
     miner.coolingType = minermodel.coolingType;
-    miner.workerId = workerId;
-    miner.serialNumber = serialNumber;
+    miner.workerId = workerId?.trim();
+    miner.serialNumber = serialNumber?.trim();
     miner.pool = poolAddress;
-    miner.macAddress = macAddress;
+    miner.macAddress = macAddress?.trim();
     if (connectionDate) miner.connectionDate = new Date(connectionDate);
     miner.actualLocation = newFarm?.farm || undefined;
     miner.actualLocationId = newFarm?._id || undefined;
@@ -743,9 +747,10 @@ export const editV2Data = async (req, res) => {
           {
             location: newFarm?.facilityCode,
             model: minermodel?.modelCode,
-            serialNumber: serialNumber || miner.serialNumber || "",
-            mac: macAddress || miner.macAddress || "",
-            worker: workerId || miner.workerId || "",
+            serialNumber:
+              serialNumber?.trim() || miner.serialNumber?.trim() || "",
+            mac: macAddress?.trim() || miner.macAddress?.trim() || "",
+            worker: workerId?.trim() || miner.workerId?.trim() || "",
             status,
             poolAddress: poolAddress || miner.pool || "",
             warrantyStart: warrantyStart || miner.warrantyStartDate || "",

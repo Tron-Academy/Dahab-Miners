@@ -60,8 +60,8 @@ export const AddMinerData = async (req, res) => {
       const newData = new Data({
         client: clientUser._id,
         clientName: clientUser.clientName,
-        workerId: worker || undefined,
-        serialNumber: serialNumber || undefined,
+        workerId: worker?.trim() || undefined,
+        serialNumber: serialNumber?.trim() || undefined,
         model: minerModel.name,
         modelId: minerModel._id,
         status: status,
@@ -69,7 +69,7 @@ export const AddMinerData = async (req, res) => {
         actualLocation: farm?.farm || undefined,
         actualLocationId: farm?._id || undefined,
         pool: poolAddress || undefined,
-        macAddress: mac || undefined,
+        macAddress: mac?.trim() || undefined,
         hashRate: minerModel.hashRate,
         power: minerModel.power,
         coins: minerModel.coins,
@@ -111,86 +111,129 @@ export const AddMinerData = async (req, res) => {
       session.endSession();
       return res.status(201).json({ msg: "success" });
     } else {
-      if (!farm && data.actualLocationId) {
-        farm = await MiningFarm.findById(data.actualLocationId).session(
-          session,
-        );
-      }
-      if (data.actualLocationId && farm) {
-        if (data.actualLocationId?.toString() !== farm._id?.toString()) {
-          const oldFarm = await MiningFarm.findById(
-            data.actualLocationId,
-          ).session(session);
-          if (!oldFarm)
-            throw new BadRequestError("Old farm not found in dahab server");
-          if (data.currentLocationId) {
-            oldFarm.movedMiners = oldFarm.movedMiners.filter(
-              (item) => item.miner?.toString() !== data._id.toString(),
-            );
-            farm.movedMiners.push({
-              miner: data._id,
-              serialNumber: serialNumber,
-            });
-            data.actualLocation = farm.farm;
-            data.actualLocationId = farm._id;
-          } else {
-            if (data.modelId?.toString() === minerModel._id?.toString()) {
-              oldFarm.miners = oldFarm.miners.filter(
-                (item) => item.toString() !== data._id.toString(),
-              );
-              oldFarm.current = Math.max(0, oldFarm.current - minerModel.power);
-              oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
-              farm.current = farm.current + minerModel.power;
-              farm.occupiedSlots = farm.occupiedSlots + 1;
-              farm.miners.push(data._id);
-              data.actualLocation = farm.farm;
-              data.actualLocationId = farm._id;
-            } else {
-              oldFarm.miners = oldFarm.miners.filter(
-                (item) => item.toString() !== data._id.toString(),
-              );
-              oldFarm.current = Math.max(0, oldFarm.current - data.power);
-              oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
-              farm.current = farm.current + minerModel.power;
-              farm.occupiedSlots = farm.occupiedSlots + 1;
-              farm.miners.push(data._id);
-              data.actualLocation = farm.farm;
-              data.actualLocationId = farm._id;
-            }
-          }
-          await oldFarm.save({ session });
+      const oldFarm = data.actualLocationId
+        ? await MiningFarm.findById(data.actualLocationId).session(session)
+        : null;
+
+      const newFarm = farm ? farm : null;
+
+      if (oldFarm) {
+        if (data.currentLocationId) {
+          oldFarm.movedMiners = oldFarm.movedMiners.filter(
+            (item) => item.miner?.toString() !== data._id.toString(),
+          );
         } else {
-          if (data.modelId?.toString() !== minerModel._id?.toString()) {
-            if (data.currentLocationId) {
-              const tempLocation = await MiningFarm.findById(
-                data.currentLocationId,
-              ).session(session);
-              if (!tempLocation)
-                throw new BadRequestError(
-                  "Temmporary location not found in dahab server",
-                );
-              tempLocation.current = Math.max(
-                0,
-                tempLocation.current - data.power,
-              );
-              tempLocation.current = tempLocation.current + minerModel.power;
-              await tempLocation.save({ session });
-            } else {
-              farm.current = Math.max(0, farm.current - data.power);
-              farm.current = farm.current + minerModel.power;
-            }
+          oldFarm.miners = oldFarm.miners.filter(
+            (item) => item.toString() !== data._id.toString(),
+          );
+          oldFarm.current = Math.max(0, oldFarm.current - data.power);
+          oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
+        }
+      }
+      if (newFarm) {
+        if (data.currentLocationId) {
+          if (
+            !newFarm.movedMiners.some(
+              (item) => item.miner?.toString() === data._id.toString(),
+            )
+          ) {
+            newFarm.movedMiners.push({
+              miner: data._id,
+              serialNumber: data.serialNumber,
+            });
+          }
+        } else {
+          if (
+            !newFarm.miners.some(
+              (item) => item.toString() === data._id.toString(),
+            )
+          ) {
+            newFarm.miners.push(data._id);
+            newFarm.current += minerModel.power;
+            newFarm.occupiedSlots += 1;
           }
         }
       }
-      if (!data.actualLocationId && farm) {
-        farm.current = farm.current + minerModel.power;
-        farm.miners.push(data._id);
-        data.actualLocation = farm.farm;
-        data.actualLocationId = farm._id;
-      }
-      if (farm) {
-        await farm.save({ session });
-      }
+      // if (!farm && data.actualLocationId) {
+      //   farm = await MiningFarm.findById(data.actualLocationId).session(
+      //     session,
+      //   );
+      // }
+      // if (data.actualLocationId && farm) {
+      //   if (data.actualLocationId?.toString() !== farm._id?.toString()) {
+      //     const oldFarm = await MiningFarm.findById(
+      //       data.actualLocationId,
+      //     ).session(session);
+      //     if (!oldFarm)
+      //       throw new BadRequestError("Old farm not found in dahab server");
+      //     if (data.currentLocationId) {
+      //       oldFarm.movedMiners = oldFarm.movedMiners.filter(
+      //         (item) => item.miner?.toString() !== data._id.toString(),
+      //       );
+      //       farm.movedMiners.push({
+      //         miner: data._id,
+      //         serialNumber: serialNumber,
+      //       });
+      //       data.actualLocation = farm.farm;
+      //       data.actualLocationId = farm._id;
+      //     } else {
+      //       if (data.modelId?.toString() === minerModel._id?.toString()) {
+      //         oldFarm.miners = oldFarm.miners.filter(
+      //           (item) => item.toString() !== data._id.toString(),
+      //         );
+      //         oldFarm.current = Math.max(0, oldFarm.current - minerModel.power);
+      //         oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
+      //         farm.current = farm.current + minerModel.power;
+      //         farm.occupiedSlots = farm.occupiedSlots + 1;
+      //         farm.miners.push(data._id);
+      //         data.actualLocation = farm.farm;
+      //         data.actualLocationId = farm._id;
+      //       } else {
+      //         oldFarm.miners = oldFarm.miners.filter(
+      //           (item) => item.toString() !== data._id.toString(),
+      //         );
+      //         oldFarm.current = Math.max(0, oldFarm.current - data.power);
+      //         oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
+      //         farm.current = farm.current + minerModel.power;
+      //         farm.occupiedSlots = farm.occupiedSlots + 1;
+      //         farm.miners.push(data._id);
+      //         data.actualLocation = farm.farm;
+      //         data.actualLocationId = farm._id;
+      //       }
+      //     }
+      //     await oldFarm.save({ session });
+      //   } else {
+      //     if (data.modelId?.toString() !== minerModel._id?.toString()) {
+      //       if (data.currentLocationId) {
+      //         const tempLocation = await MiningFarm.findById(
+      //           data.currentLocationId,
+      //         ).session(session);
+      //         if (!tempLocation)
+      //           throw new BadRequestError(
+      //             "Temmporary location not found in dahab server",
+      //           );
+      //         tempLocation.current = Math.max(
+      //           0,
+      //           tempLocation.current - data.power,
+      //         );
+      //         tempLocation.current = tempLocation.current + minerModel.power;
+      //         await tempLocation.save({ session });
+      //       } else {
+      //         farm.current = Math.max(0, farm.current - data.power);
+      //         farm.current = farm.current + minerModel.power;
+      //       }
+      //     }
+      //   }
+      // }
+      // if (!data.actualLocationId && farm) {
+      //   farm.current = farm.current + minerModel.power;
+      //   farm.miners.push(data._id);
+      //   data.actualLocation = farm.farm;
+      //   data.actualLocationId = farm._id;
+      // }
+      // if (farm) {
+      //   await farm.save({ session });
+      // }
       let newWarranty;
       if (warrantyStart && warrantyEnd) {
         const start = new Date(warrantyStart);
@@ -222,17 +265,19 @@ export const AddMinerData = async (req, res) => {
       }
       data.client = clientUser._id;
       data.clientName = clientUser.clientName;
-      if (worker) data.workerId = worker;
-      if (serialNumber) data.serialNumber = serialNumber;
+      if (worker) data.workerId = worker?.trim();
+      if (serialNumber) data.serialNumber = serialNumber?.trim();
       data.model = minerModel.name;
       data.modelId = minerModel._id;
       data.status = status;
       data.hashUnit = minerModel.hashUnit || "TH";
       if (poolAddress) data.pool = poolAddress;
-      if (mac) data.macAddress = mac;
+      if (mac) data.macAddress = mac?.trim();
       data.hashRate = minerModel.hashRate;
       data.power = minerModel.power;
       data.coins = minerModel.coins;
+      data.actualLocation = newFarm?.farm;
+      data.actualLocationId = newFarm?._id;
       data.algorithm = minerModel.algorithm;
       data.manufacturer = minerModel.manufacturer;
       data.coolingType = minerModel.coolingType;
@@ -241,6 +286,8 @@ export const AddMinerData = async (req, res) => {
         notification: `A Miner data has been edited by Intermine . Model-${model}, serial Number-${serialNumber}.`,
         isRead: false,
       });
+      if (oldFarm) await oldFarm.save({ session });
+      if (newFarm) await newFarm.save({ session });
       await data.save({ session });
       await notification.save({ session });
       await session.commitTransaction();

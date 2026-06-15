@@ -611,281 +611,87 @@ export const editV2Data = async (req, res) => {
     const oldPower = Number(miner.power || 0);
     const newPower = Number(minermodel.power);
 
-    const oldFarmId = miner.actualLocationId || null;
-    let oldFarm = null;
-    let newFarm = null;
+    const oldActualFarm = miner.actualLocationId
+      ? await MiningFarm.findById(miner.actualLocationId).session(session)
+      : null;
 
-    const temporaryOldFarmId = miner.currentLocationId || null;
-    let tempOldFarm = null;
-    let tempNewFarm = null;
+    const oldTempFarm = miner.currentLocationId
+      ? await MiningFarm.findById(miner.currentLocationId).session(session)
+      : null;
 
-    newFarm = await MiningFarm.findById(location).session(session);
-    if (!newFarm) throw new NotFoundError("NO Farm found");
+    const newFarm = location
+      ? await MiningFarm.findById(location).session(session)
+      : null;
 
-    if (temporaryLocation) {
-      tempNewFarm =
-        await MiningFarm.findById(temporaryLocation).session(session);
-      if (!tempNewFarm) throw new NotFoundError("No temporary farm found");
-    }
+    const tempNewFarm = temporaryLocation
+      ? await MiningFarm.findById(temporaryLocation).session(session)
+      : null;
 
-    if (tempNewFarm) {
-      //if there is a temporary farm
-      if (!temporaryOldFarmId) {
-        //if this is a first time temporary farm
-        const adjusted = tempNewFarm.current + newPower;
-        // if (adjusted > tempNewFarm.capacity)
-        //   throw new BadRequestError("Capacity exceeded at temporary farm");
-        if (tempNewFarm.occupiedSlots >= tempNewFarm.totalSlots) {
-          throw new BadRequestError("No slots available in temporary farm");
-        }
-        tempNewFarm.current += newPower;
-        tempNewFarm.occupiedSlots += 1;
-        if (
-          !tempNewFarm.temporaryMiners.some(
-            (item) => item.miner.toString() === miner._id.toString(),
-          )
-        ) {
-          tempNewFarm.temporaryMiners.push({
-            miner: miner._id,
-            serialNumber: miner.serialNumber,
-          });
-        }
-        //if the the actual farms are different with a new temporary farm
-        if (newFarm._id?.toString() !== oldFarmId?.toString()) {
-          oldFarm = await MiningFarm.findById(oldFarmId).session(session);
-          if (!oldFarm)
-            throw new BadRequestError("Old Actual location not found");
-          oldFarm.miners = oldFarm.miners.filter(
-            (item) => item.toString() !== miner._id?.toString(),
-          );
-          oldFarm.current = Math.max(0, oldFarm.current - oldPower);
-          oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
-          if (
-            !newFarm.movedMiners.some(
-              (item) => item.miner?.toString() === miner._id?.toString(),
-            )
-          ) {
-            newFarm.movedMiners.push({
-              miner: miner._id,
-              serialNumber: miner.serialNumber,
-            });
-          }
-          await newFarm.save({ session });
-          await oldFarm.save({ session });
-
-          //if the actual farms are same with a new temporary farm
-        } else if (newFarm._id?.toString() === oldFarmId?.toString()) {
-          newFarm.miners = newFarm.miners.filter(
-            (item) => item.toString() !== miner._id?.toString(),
-          );
-          if (
-            !newFarm.movedMiners.some(
-              (item) => item.miner?.toString() === miner._id?.toString(),
-            )
-          ) {
-            newFarm.movedMiners.push({
-              miner: miner._id,
-              serialNumber: miner.serialNumber,
-            });
-          }
-
-          newFarm.current = Math.max(0, newFarm.current - oldPower);
-          newFarm.occupiedSlots = Math.max(0, newFarm.occupiedSlots - 1);
-          await newFarm.save({ session });
-        }
-        await tempNewFarm.save({ session });
-        //if there is a change in temporary farm
-      } else if (
-        temporaryOldFarmId?.toString() !== tempNewFarm._id?.toString()
+    if (oldActualFarm) {
+      if (
+        oldActualFarm.miners.some(
+          (item) => item.toString() === miner._id.toString(),
+        )
       ) {
-        tempOldFarm =
-          await MiningFarm.findById(temporaryOldFarmId).session(session);
-        if (!tempOldFarm)
-          throw new NotFoundError("Old temporary farm is not found");
-        const adjusted = tempNewFarm.current + newPower;
-        // if (adjusted > tempNewFarm.capacity) {
-        //   throw new BadRequestError("Capacity exceeded at new temporary farm");
-        // }
-        if (tempNewFarm.occupiedSlots >= tempNewFarm.totalSlots) {
-          throw new BadRequestError("No slots available at new temporary farm");
-        }
-        tempOldFarm.current = Math.max(0, tempOldFarm.current - oldPower);
-        tempOldFarm.occupiedSlots = Math.max(0, tempOldFarm.occupiedSlots - 1);
-        tempOldFarm.temporaryMiners = tempOldFarm.temporaryMiners.filter(
-          (item) => item.miner?.toString() !== miner._id?.toString(),
+        oldActualFarm.miners = oldActualFarm.miners.filter(
+          (item) => item.toString() !== miner._id.toString(),
         );
-        tempNewFarm.current += newPower;
-        tempNewFarm.occupiedSlots += 1;
-        if (
-          !tempNewFarm.temporaryMiners.some(
-            (item) => item.miner?.toString() === miner._id?.toString(),
-          )
-        ) {
-          tempNewFarm.temporaryMiners.push({
-            miner: miner._id,
-            serialNumber: miner.serialNumber,
-          });
-        }
-
-        //if the actual farms are different with different temporary farms
-        if (oldFarmId.toString() !== newFarm._id.toString()) {
-          oldFarm = await MiningFarm.findById(oldFarmId).session(session);
-          if (!oldFarm)
-            throw new NotFoundError("Old Actual location not found");
-          oldFarm.movedMiners = oldFarm.movedMiners.filter(
-            (item) => item.miner?.toString() !== miner._id?.toString(),
-          );
-          if (
-            !newFarm.movedMiners.some(
-              (item) => item.miner?.toString() === miner._id?.toString(),
-            )
-          ) {
-            newFarm.movedMiners.push({
-              miner: miner._id,
-              serialNumber: miner.serialNumber,
-            });
-          }
-          await oldFarm.save({ session });
-          await newFarm.save({ session });
-        }
-        await tempOldFarm.save({ session });
-        await tempNewFarm.save({ session });
-        //if there is a change in power with no change in temporary farm
-      } else if (oldPower !== newPower) {
-        const adjusted = tempNewFarm.current - oldPower + newPower;
-        // if (adjusted > tempNewFarm.capacity) {
-        //   throw new BadRequestError(
-        //     "Capacity exceeded at the temporary location",
-        //   );
-        // }
-        tempNewFarm.current = adjusted;
-        await tempNewFarm.save({ session });
-        //if the actual farms are different with same temporary farms
-        if (oldFarmId?.toString() !== newFarm._id?.toString()) {
-          oldFarm = await MiningFarm.findById(oldFarmId).session(session);
-          if (!oldFarm)
-            throw new NotFoundError("Old Actual location not found");
-          oldFarm.movedMiners = oldFarm.movedMiners.filter(
-            (item) => item.miner?.toString() !== miner._id?.toString(),
-          );
-          if (
-            !newFarm.movedMiners.some(
-              (item) => item.miner?.toString() === miner._id?.toString(),
-            )
-          ) {
-            newFarm.movedMiners.push({
-              miner: miner._id,
-              serialNumber: miner.serialNumber,
-            });
-          }
-          await oldFarm.save({ session });
-          await newFarm.save({ session });
-        }
+        oldActualFarm.current = Math.max(0, oldActualFarm.current - oldPower);
+        oldActualFarm.occupiedSlots = Math.max(
+          0,
+          oldActualFarm.occupiedSlots - 1,
+        );
       }
-      //if there is no temporary farm
-    } else {
-      //if both actual farms are different without a temporary farm
-      if (oldFarmId?.toString() !== newFarm._id?.toString()) {
-        oldFarm = await MiningFarm.findById(oldFarmId).session(session);
-        if (!oldFarm) throw new NotFoundError("old mining farm not found");
-        const adjusted = newFarm.current + newPower;
-        // if (adjusted > newFarm.capacity) {
-        //   throw new BadRequestError("Capacity exceeded at new farm");
-        // }
-        if (newFarm.occupiedSlots >= newFarm.totalSlots) {
-          throw new BadRequestError("No slots available in new farm");
-        }
-        oldFarm.current = Math.max(0, oldFarm.current - oldPower);
-        oldFarm.miners = oldFarm.miners.filter(
-          (item) => item.toString() !== miner._id?.toString(),
-        );
-        oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
-        newFarm.current += newPower;
-        if (
-          !newFarm.miners.some(
-            (item) => item.toString() === miner._id?.toString(),
-          )
-        ) {
-          newFarm.miners.push(miner._id);
-        }
 
-        newFarm.occupiedSlots += 1;
-        //if there is an old temporary farm and no new
-        if (temporaryOldFarmId) {
-          tempOldFarm =
-            await MiningFarm.findById(temporaryOldFarmId).session(session);
-          if (!tempOldFarm)
-            throw new NotFoundError("No old temporary farm found");
-          tempOldFarm.current = Math.max(0, tempOldFarm.current - oldPower);
-          tempOldFarm.occupiedSlots = Math.max(
-            0,
-            tempOldFarm.occupiedSlots - 1,
-          );
-          tempOldFarm.temporaryMiners = tempOldFarm.temporaryMiners.filter(
-            (item) => item.miner?.toString() !== miner._id?.toString(),
-          );
-          await tempOldFarm.save({ session });
-        }
-
-        await oldFarm.save({ session });
-        await newFarm.save({ session });
-        //if power is different and same actual farm without temporary farm
-      } else if (oldPower !== newPower) {
-        const adjusted = newFarm.current - oldPower + newPower;
-        // if (adjusted > newFarm.capacity) {
-        //   throw new BadRequestError("Capacity ecxceeded at current farm");
-        // }
-        newFarm.current = adjusted;
-        await newFarm.save({ session });
-        //if old temp farm exists without change in actual farm and no new temp farm and change in power
-        if (temporaryOldFarmId) {
-          tempOldFarm =
-            await MiningFarm.findById(temporaryOldFarmId).session(session);
-          if (!tempOldFarm)
-            throw new NotFoundError("No old temporary farm found");
-          tempOldFarm.current = Math.max(0, tempOldFarm.current - oldPower);
-          tempOldFarm.occupiedSlots = Math.max(
-            0,
-            tempOldFarm.occupiedSlots - 1,
-          );
-          tempOldFarm.temporaryMiners = tempOldFarm.temporaryMiners.filter(
-            (item) => item.miner?.toString() !== miner._id?.toString(),
-          );
-          await tempOldFarm.save({ session });
-        }
-      } else if (temporaryOldFarmId) {
-        tempOldFarm =
-          await MiningFarm.findById(temporaryOldFarmId).session(session);
-        if (!tempOldFarm)
-          throw new NotFoundError("No old temporary farm found");
-        tempOldFarm.current = Math.max(0, tempOldFarm.current - oldPower);
-        tempOldFarm.occupiedSlots = Math.max(0, tempOldFarm.occupiedSlots - 1);
-        tempOldFarm.temporaryMiners = tempOldFarm.temporaryMiners.filter(
-          (item) => item.miner?.toString() !== miner._id?.toString(),
-        );
-        const adjusted = newFarm.current + newPower;
-        // if (adjusted > newFarm.capacity) {
-        //   throw new BadRequestError("Capacity exceeded at actual location");
-        // }
-        if (newFarm.occupiedSlots >= newFarm.totalSlots)
-          throw new BadRequestError("Slots exceeded at actual location");
-        newFarm.movedMiners = newFarm.movedMiners.filter(
-          (item) => item.miner?.toString() !== miner._id?.toString(),
-        );
-        if (
-          !newFarm.miners.some(
-            (item) => item.toString() === miner._id?.toString(),
-          )
-        ) {
-          newFarm.miners.push(miner._id);
-        }
-        newFarm.current += newPower;
-        newFarm.occupiedSlots += 1;
-        await newFarm.save({ session });
-        await tempOldFarm.save({ session });
+      oldActualFarm.movedMiners = oldActualFarm.movedMiners.filter(
+        (item) => item.miner?.toString() !== miner._id.toString(),
+      );
+    }
+    if (oldTempFarm) {
+      oldTempFarm.temporaryMiners = oldTempFarm.temporaryMiners.filter(
+        (item) => item.miner?.toString() !== miner._id.toString(),
+      );
+      oldTempFarm.current = Math.max(0, oldTempFarm.current - oldPower);
+      oldTempFarm.occupiedSlots = Math.max(0, oldTempFarm.occupiedSlots - 1);
+    }
+    if (tempNewFarm && newFarm) {
+      if (tempNewFarm.occupiedSlots >= tempNewFarm.totalSlots) {
+        throw new BadRequestError("No slots available at current location");
+      }
+      if (
+        !newFarm.movedMiners.some(
+          (item) => item.miner?.toString() === miner._id.toString(),
+        )
+      ) {
+        newFarm.movedMiners.push({
+          miner: miner._id,
+          serialNumber: miner.serialNumber,
+        });
+      }
+      tempNewFarm.current += newPower;
+      tempNewFarm.occupiedSlots += 1;
+      if (
+        !tempNewFarm.temporaryMiners.some(
+          (item) => item.miner?.toString() === miner._id?.toString(),
+        )
+      ) {
+        tempNewFarm.temporaryMiners.push({
+          miner: miner._id,
+          serialNumber: miner.serialNumber,
+        });
+      }
+    } else if (newFarm && !tempNewFarm) {
+      if (newFarm.occupiedSlots >= newFarm.totalSlots) {
+        throw new BadRequestError("No slots available at the Actual location");
+      }
+      newFarm.current += newPower;
+      newFarm.occupiedSlots += 1;
+      if (
+        !newFarm.miners.some((item) => item.toString() === miner._id.toString())
+      ) {
+        newFarm.miners.push(miner._id);
       }
     }
-
     if (miner.client?.toString() !== clientUser._id?.toString()) {
       const oldClient = await Client.findById(miner.client).session(session);
       if (oldClient) {
@@ -894,7 +700,11 @@ export const editV2Data = async (req, res) => {
         );
         await oldClient.save({ session });
       }
-      if (!clientUser.owned.includes(miner._id)) {
+      if (
+        !clientUser.owned.some(
+          (item) => item.toString() === miner._id.toString(),
+        )
+      ) {
         clientUser.owned.push(miner._id);
       }
       miner.client = client;
@@ -915,8 +725,8 @@ export const editV2Data = async (req, res) => {
     miner.pool = poolAddress;
     miner.macAddress = macAddress;
     if (connectionDate) miner.connectionDate = new Date(connectionDate);
-    miner.actualLocation = newFarm.farm;
-    miner.actualLocationId = newFarm._id;
+    miner.actualLocation = newFarm?.farm || undefined;
+    miner.actualLocationId = newFarm?._id || undefined;
     miner.currentLocation = tempNewFarm?.farm || undefined;
     miner.currentLocationId = tempNewFarm?._id || undefined;
     miner.temporaryOwner = nowRunning ? nowRunning : undefined;
@@ -960,6 +770,10 @@ export const editV2Data = async (req, res) => {
         });
       }
     }
+    if (newFarm) await newFarm.save({ session });
+    if (tempNewFarm) await tempNewFarm.save({ session });
+    if (oldActualFarm) await oldActualFarm.save({ session });
+    if (oldTempFarm) await oldTempFarm.save({ session });
     await miner.save({ session });
     await clientUser.save({ session });
     await session.commitTransaction();
@@ -1054,3 +868,259 @@ export const getDataDropdown = async (req, res) => {
       .json({ error: error.msg || error.message });
   }
 };
+
+// const oldFarmId = miner.actualLocationId || null;
+// let oldFarm = null;
+// let newFarm = null;
+
+// const temporaryOldFarmId = miner.currentLocationId || null;
+// let tempOldFarm = null;
+// let tempNewFarm = null;
+
+// newFarm = await MiningFarm.findById(location).session(session);
+// if (!newFarm) throw new NotFoundError("NO Farm found");
+
+// if (temporaryLocation) {
+//   tempNewFarm = await MiningFarm.findById(temporaryLocation).session(session);
+//   if (!tempNewFarm) throw new NotFoundError("No temporary farm found");
+// }
+
+// if (tempNewFarm) {
+//   //if there is a temporary farm
+//   if (!temporaryOldFarmId) {
+//     //if this is a first time temporary farm
+//     const adjusted = tempNewFarm.current + newPower;
+//     // if (adjusted > tempNewFarm.capacity)
+//     //   throw new BadRequestError("Capacity exceeded at temporary farm");
+//     if (tempNewFarm.occupiedSlots >= tempNewFarm.totalSlots) {
+//       throw new BadRequestError("No slots available in temporary farm");
+//     }
+//     tempNewFarm.current += newPower;
+//     tempNewFarm.occupiedSlots += 1;
+//     if (
+//       !tempNewFarm.temporaryMiners.some(
+//         (item) => item.miner.toString() === miner._id.toString(),
+//       )
+//     ) {
+//       tempNewFarm.temporaryMiners.push({
+//         miner: miner._id,
+//         serialNumber: miner.serialNumber,
+//       });
+//     }
+//     //if the the actual farms are different with a new temporary farm
+//     if (newFarm._id?.toString() !== oldFarmId?.toString()) {
+//       oldFarm = await MiningFarm.findById(oldFarmId).session(session);
+//       if (!oldFarm) throw new BadRequestError("Old Actual location not found");
+//       oldFarm.miners = oldFarm.miners.filter(
+//         (item) => item.toString() !== miner._id?.toString(),
+//       );
+//       oldFarm.current = Math.max(0, oldFarm.current - oldPower);
+//       oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
+//       if (
+//         !newFarm.movedMiners.some(
+//           (item) => item.miner?.toString() === miner._id?.toString(),
+//         )
+//       ) {
+//         newFarm.movedMiners.push({
+//           miner: miner._id,
+//           serialNumber: miner.serialNumber,
+//         });
+//       }
+//       await newFarm.save({ session });
+//       await oldFarm.save({ session });
+
+//       //if the actual farms are same with a new temporary farm
+//     } else if (newFarm._id?.toString() === oldFarmId?.toString()) {
+//       newFarm.miners = newFarm.miners.filter(
+//         (item) => item.toString() !== miner._id?.toString(),
+//       );
+//       if (
+//         !newFarm.movedMiners.some(
+//           (item) => item.miner?.toString() === miner._id?.toString(),
+//         )
+//       ) {
+//         newFarm.movedMiners.push({
+//           miner: miner._id,
+//           serialNumber: miner.serialNumber,
+//         });
+//       }
+
+//       newFarm.current = Math.max(0, newFarm.current - oldPower);
+//       newFarm.occupiedSlots = Math.max(0, newFarm.occupiedSlots - 1);
+//       await newFarm.save({ session });
+//     }
+//     await tempNewFarm.save({ session });
+//     //if there is a change in temporary farm
+//   } else if (temporaryOldFarmId?.toString() !== tempNewFarm._id?.toString()) {
+//     tempOldFarm =
+//       await MiningFarm.findById(temporaryOldFarmId).session(session);
+//     if (!tempOldFarm)
+//       throw new NotFoundError("Old temporary farm is not found");
+//     const adjusted = tempNewFarm.current + newPower;
+//     // if (adjusted > tempNewFarm.capacity) {
+//     //   throw new BadRequestError("Capacity exceeded at new temporary farm");
+//     // }
+//     if (tempNewFarm.occupiedSlots >= tempNewFarm.totalSlots) {
+//       throw new BadRequestError("No slots available at new temporary farm");
+//     }
+//     tempOldFarm.current = Math.max(0, tempOldFarm.current - oldPower);
+//     tempOldFarm.occupiedSlots = Math.max(0, tempOldFarm.occupiedSlots - 1);
+//     tempOldFarm.temporaryMiners = tempOldFarm.temporaryMiners.filter(
+//       (item) => item.miner?.toString() !== miner._id?.toString(),
+//     );
+//     tempNewFarm.current += newPower;
+//     tempNewFarm.occupiedSlots += 1;
+//     if (
+//       !tempNewFarm.temporaryMiners.some(
+//         (item) => item.miner?.toString() === miner._id?.toString(),
+//       )
+//     ) {
+//       tempNewFarm.temporaryMiners.push({
+//         miner: miner._id,
+//         serialNumber: miner.serialNumber,
+//       });
+//     }
+
+//     //if the actual farms are different with different temporary farms
+//     if (oldFarmId.toString() !== newFarm._id.toString()) {
+//       oldFarm = await MiningFarm.findById(oldFarmId).session(session);
+//       if (!oldFarm) throw new NotFoundError("Old Actual location not found");
+//       oldFarm.movedMiners = oldFarm.movedMiners.filter(
+//         (item) => item.miner?.toString() !== miner._id?.toString(),
+//       );
+//       if (
+//         !newFarm.movedMiners.some(
+//           (item) => item.miner?.toString() === miner._id?.toString(),
+//         )
+//       ) {
+//         newFarm.movedMiners.push({
+//           miner: miner._id,
+//           serialNumber: miner.serialNumber,
+//         });
+//       }
+//       await oldFarm.save({ session });
+//       await newFarm.save({ session });
+//     }
+//     await tempOldFarm.save({ session });
+//     await tempNewFarm.save({ session });
+//     //if there is a change in power with no change in temporary farm
+//   } else if (oldPower !== newPower) {
+//     const adjusted = tempNewFarm.current - oldPower + newPower;
+//     // if (adjusted > tempNewFarm.capacity) {
+//     //   throw new BadRequestError(
+//     //     "Capacity exceeded at the temporary location",
+//     //   );
+//     // }
+//     tempNewFarm.current = adjusted;
+//     await tempNewFarm.save({ session });
+//     //if the actual farms are different with same temporary farms
+//     if (oldFarmId?.toString() !== newFarm._id?.toString()) {
+//       oldFarm = await MiningFarm.findById(oldFarmId).session(session);
+//       if (!oldFarm) throw new NotFoundError("Old Actual location not found");
+//       oldFarm.movedMiners = oldFarm.movedMiners.filter(
+//         (item) => item.miner?.toString() !== miner._id?.toString(),
+//       );
+//       if (
+//         !newFarm.movedMiners.some(
+//           (item) => item.miner?.toString() === miner._id?.toString(),
+//         )
+//       ) {
+//         newFarm.movedMiners.push({
+//           miner: miner._id,
+//           serialNumber: miner.serialNumber,
+//         });
+//       }
+//       await oldFarm.save({ session });
+//       await newFarm.save({ session });
+//     }
+//   }
+//   //if there is no temporary farm
+// } else {
+//   //if both actual farms are different without a temporary farm
+//   if (oldFarmId?.toString() !== newFarm._id?.toString()) {
+//     oldFarm = await MiningFarm.findById(oldFarmId).session(session);
+//     if (!oldFarm) throw new NotFoundError("old mining farm not found");
+//     const adjusted = newFarm.current + newPower;
+//     // if (adjusted > newFarm.capacity) {
+//     //   throw new BadRequestError("Capacity exceeded at new farm");
+//     // }
+//     if (newFarm.occupiedSlots >= newFarm.totalSlots) {
+//       throw new BadRequestError("No slots available in new farm");
+//     }
+//     oldFarm.current = Math.max(0, oldFarm.current - oldPower);
+//     oldFarm.miners = oldFarm.miners.filter(
+//       (item) => item.toString() !== miner._id?.toString(),
+//     );
+//     oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
+//     newFarm.current += newPower;
+//     if (
+//       !newFarm.miners.some((item) => item.toString() === miner._id?.toString())
+//     ) {
+//       newFarm.miners.push(miner._id);
+//     }
+
+//     newFarm.occupiedSlots += 1;
+//     //if there is an old temporary farm and no new
+//     if (temporaryOldFarmId) {
+//       tempOldFarm =
+//         await MiningFarm.findById(temporaryOldFarmId).session(session);
+//       if (!tempOldFarm) throw new NotFoundError("No old temporary farm found");
+//       tempOldFarm.current = Math.max(0, tempOldFarm.current - oldPower);
+//       tempOldFarm.occupiedSlots = Math.max(0, tempOldFarm.occupiedSlots - 1);
+//       tempOldFarm.temporaryMiners = tempOldFarm.temporaryMiners.filter(
+//         (item) => item.miner?.toString() !== miner._id?.toString(),
+//       );
+//       await tempOldFarm.save({ session });
+//     }
+
+//     await oldFarm.save({ session });
+//     await newFarm.save({ session });
+//     //if power is different and same actual farm without temporary farm
+//   } else if (oldPower !== newPower) {
+//     const adjusted = newFarm.current - oldPower + newPower;
+//     // if (adjusted > newFarm.capacity) {
+//     //   throw new BadRequestError("Capacity ecxceeded at current farm");
+//     // }
+//     newFarm.current = adjusted;
+//     await newFarm.save({ session });
+//     //if old temp farm exists without change in actual farm and no new temp farm and change in power
+//     if (temporaryOldFarmId) {
+//       tempOldFarm =
+//         await MiningFarm.findById(temporaryOldFarmId).session(session);
+//       if (!tempOldFarm) throw new NotFoundError("No old temporary farm found");
+//       tempOldFarm.current = Math.max(0, tempOldFarm.current - oldPower);
+//       tempOldFarm.occupiedSlots = Math.max(0, tempOldFarm.occupiedSlots - 1);
+//       tempOldFarm.temporaryMiners = tempOldFarm.temporaryMiners.filter(
+//         (item) => item.miner?.toString() !== miner._id?.toString(),
+//       );
+//       await tempOldFarm.save({ session });
+//     }
+//   } else if (temporaryOldFarmId) {
+//     tempOldFarm =
+//       await MiningFarm.findById(temporaryOldFarmId).session(session);
+//     if (!tempOldFarm) throw new NotFoundError("No old temporary farm found");
+//     tempOldFarm.current = Math.max(0, tempOldFarm.current - oldPower);
+//     tempOldFarm.occupiedSlots = Math.max(0, tempOldFarm.occupiedSlots - 1);
+//     tempOldFarm.temporaryMiners = tempOldFarm.temporaryMiners.filter(
+//       (item) => item.miner?.toString() !== miner._id?.toString(),
+//     );
+//     const adjusted = newFarm.current + newPower;
+//     // if (adjusted > newFarm.capacity) {
+//     //   throw new BadRequestError("Capacity exceeded at actual location");
+//     // }
+//     if (newFarm.occupiedSlots >= newFarm.totalSlots)
+//       throw new BadRequestError("Slots exceeded at actual location");
+//     newFarm.movedMiners = newFarm.movedMiners.filter(
+//       (item) => item.miner?.toString() !== miner._id?.toString(),
+//     );
+//     if (
+//       !newFarm.miners.some((item) => item.toString() === miner._id?.toString())
+//     ) {
+//       newFarm.miners.push(miner._id);
+//     }
+//     newFarm.current += newPower;
+//     newFarm.occupiedSlots += 1;
+//     await newFarm.save({ session });
+//     await tempOldFarm.save({ session });
+//   }
+// }

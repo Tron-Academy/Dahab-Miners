@@ -425,8 +425,8 @@ export const getAllDatas = async (req, res) => {
   if (farm && farm !== "ALL") {
     conditions.push({
       $or: [
-        { actualLocation: { $regex: farm.trim(), $options: "i" } }, //trimmed the space
-        { currentLocation: { $regex: farm.trim(), $options: "i" } },
+        { actualLocation: farm }, //trimmed the space
+        { currentLocation: farm },
       ],
     });
   }
@@ -607,7 +607,10 @@ export const editV2Data = async (req, res) => {
     if (!minermodel) throw new NotFoundError("No miner model found");
     const miner = await Data.findById(req.params.id).session(session);
     if (!miner) throw new NotFoundError("NO miners found");
-
+    if (location?.toString() === temporaryLocation?.toString())
+      throw new BadRequestError(
+        "Both current and temporary locations cant be same",
+      );
     const oldPower = Number(miner.power || 0);
     const newPower = Number(minermodel.power);
 
@@ -615,7 +618,7 @@ export const editV2Data = async (req, res) => {
       ? await MiningFarm.findById(miner.actualLocationId).session(session)
       : null;
 
-    const oldTempFarm = miner.currentLocationId
+    let oldTempFarm = miner.currentLocationId
       ? await MiningFarm.findById(miner.currentLocationId).session(session)
       : null;
 
@@ -724,10 +727,10 @@ export const editV2Data = async (req, res) => {
     miner.coins = minermodel.coins;
     miner.algorithm = minermodel.algorithm;
     miner.coolingType = minermodel.coolingType;
-    miner.workerId = workerId?.trim();
-    miner.serialNumber = serialNumber?.trim();
+    miner.workerId = workerId?.trim() || undefined;
+    miner.serialNumber = serialNumber?.trim() || undefined;
     miner.pool = poolAddress;
-    miner.macAddress = macAddress?.trim();
+    miner.macAddress = macAddress?.trim() || undefined;
     if (connectionDate) miner.connectionDate = new Date(connectionDate);
     miner.actualLocation = newFarm?.farm || undefined;
     miner.actualLocationId = newFarm?._id || undefined;

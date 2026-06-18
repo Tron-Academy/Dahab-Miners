@@ -46,16 +46,22 @@ export const AddMinerData = async (req, res) => {
     }).session(session);
     if (!clientUser)
       throw new BadRequestError("Client 404 error in Dahab Server");
-    let farm;
+
+    // Resolving the incoming Actual farm. (may be null if no location sent)
+
+    let incomingFarm = null;
     if (location) {
-      farm = await MiningFarm.findOne({ facilityCode: location }).session(
-        session,
-      );
-      if (!farm)
+      incomingFarm = await MiningFarm.findOne({
+        facilityCode: location,
+      }).session(session);
+      if (!incomingFarm)
         throw new BadRequestError(
           `Farm with facility code ${location} not found on dahab server`,
         );
     }
+
+    // Type -1 New Miner
+
     if (!data) {
       const newData = new Data({
         client: clientUser._id,
@@ -66,8 +72,8 @@ export const AddMinerData = async (req, res) => {
         modelId: minerModel._id,
         status: status,
         hashUnit: minerModel.hashUnit || "TH",
-        actualLocation: farm?.farm || undefined,
-        actualLocationId: farm?._id || undefined,
+        actualLocation: incomingFarm?.farm || undefined,
+        actualLocationId: incomingFarm?._id || undefined,
         pool: poolAddress || undefined,
         macAddress: mac?.trim() || undefined,
         hashRate: minerModel.hashRate,
@@ -78,13 +84,12 @@ export const AddMinerData = async (req, res) => {
         manufacturer: minerModel.manufacturer,
         version: "2",
       });
-      let newWarranty;
       if (warrantyStart && warrantyEnd) {
         const start = new Date(warrantyStart);
         const end = new Date(warrantyEnd);
         newData.warrantyStartDate = start;
         newData.warrantyEndDate = end;
-        newWarranty = new Warranty({
+        const newWarranty = new Warranty({
           warrantyType: "Manufacturer",
           startDate: start,
           endDate: end,
@@ -95,11 +100,16 @@ export const AddMinerData = async (req, res) => {
         newData.relatedWarranty = newWarranty._id;
         await newWarranty.save({ session });
       }
-      if (farm) {
-        farm.current = farm.current + minerModel.power;
-        farm.occupiedSlots = farm.occupiedSlots + 1;
-        farm.miners.push(newData._id);
-        await farm.save({ session });
+      if (incomingFarm) {
+        if (incomingFarm.occupiedSlots >= incomingFarm.totalSlots) {
+          throw new BadRequestError(
+            "No slots available at Actual location in dahab server",
+          );
+        }
+        incomingFarm.current += minerModel.power;
+        incomingFarm.occupiedSlots += 1;
+        incomingFarm.miners.push(newData._id);
+        await incomingFarm.save({ session });
       }
       const notification = new Notification({
         notification: `A new Miner data has been created by Intermine. Model-${model}, serial Number-${serialNumber}.`,
@@ -110,112 +120,228 @@ export const AddMinerData = async (req, res) => {
       await session.commitTransaction();
       session.endSession();
       return res.status(201).json({ msg: "success" });
-    } else {
-      const oldFarm = data.actualLocationId
-        ? await MiningFarm.findById(data.actualLocationId).session(session)
-        : null;
-
-      const newFarm = farm ? farm : null;
-
-      if (oldFarm) {
-        if (data.currentLocationId) {
-          oldFarm.movedMiners = oldFarm.movedMiners.filter(
-            (item) => item.miner?.toString() !== data._id.toString(),
-          );
-        } else {
-          oldFarm.miners = oldFarm.miners.filter(
-            (item) => item.toString() !== data._id.toString(),
-          );
-          oldFarm.current = Math.max(0, oldFarm.current - data.power);
-          oldFarm.occupiedSlots = Math.max(0, oldFarm.occupiedSlots - 1);
-        }
-      }
-      if (newFarm) {
-        if (data.currentLocationId) {
-          if (
-            !newFarm.movedMiners.some(
-              (item) => item.miner?.toString() === data._id.toString(),
-            )
-          ) {
-            newFarm.movedMiners.push({
-              miner: data._id,
-              serialNumber: data.serialNumber,
-            });
-          }
-        } else {
-          if (
-            !newFarm.miners.some(
-              (item) => item.toString() === data._id.toString(),
-            )
-          ) {
-            newFarm.miners.push(data._id);
-            newFarm.current += minerModel.power;
-            newFarm.occupiedSlots += 1;
-          }
-        }
-      }
-
-      let newWarranty;
-      if (warrantyStart && warrantyEnd) {
-        const start = new Date(warrantyStart);
-        const end = new Date(warrantyEnd);
-        data.warrantyStartDate = start;
-        data.warrantyEndDate = end;
-        if (data.relatedWarranty) {
-          newWarranty = await Warranty.findById(data.relatedWarranty).session(
-            session,
-          );
-          if (!newWarranty)
-            throw new BadRequestError(
-              "No related warranty found in dahab servers",
-            );
-          newWarranty.startDate = start;
-          newWarranty.endDate = end;
-        } else {
-          newWarranty = new Warranty({
-            warrantyType: "Manufacturer",
-            startDate: start,
-            endDate: end,
-            user: clientUser._id,
-            miner: data._id,
-            status: "active",
-          });
-          data.relatedWarranty = newWarranty._id;
-        }
-        await newWarranty.save({ session });
-      }
-      data.client = clientUser._id;
-      data.clientName = clientUser.clientName;
-      if (worker) data.workerId = worker?.trim();
-      if (serialNumber) data.serialNumber = serialNumber?.trim();
-      data.model = minerModel.name;
-      data.modelId = minerModel._id;
-      data.status = status;
-      data.hashUnit = minerModel.hashUnit || "TH";
-      if (poolAddress) data.pool = poolAddress;
-      if (mac) data.macAddress = mac?.trim();
-      data.hashRate = minerModel.hashRate;
-      data.power = minerModel.power;
-      data.coins = minerModel.coins;
-      data.actualLocation = newFarm?.farm;
-      data.actualLocationId = newFarm?._id;
-      data.algorithm = minerModel.algorithm;
-      data.manufacturer = minerModel.manufacturer;
-      data.coolingType = minerModel.coolingType;
-
-      const notification = new Notification({
-        notification: `A Miner data has been edited by Intermine . Model-${model}, serial Number-${serialNumber}.`,
-        isRead: false,
-      });
-      if (oldFarm) await oldFarm.save({ session });
-      if (newFarm) await newFarm.save({ session });
-      await data.save({ session });
-      await notification.save({ session });
-      await session.commitTransaction();
-      session.endSession();
-      return res.status(200).json({ msg: "success" });
     }
-    throw new BadRequestError("Something went wrong in dahab server");
+
+    // BRANCH B — Existing miner (update path)
+    //
+    // Key constraint: this API only receives `location` (actual farm).
+    // The temp location (data.currentLocationId) is NEVER changed here —
+    // it is always preserved exactly as-is on the miner document.
+    //
+    // Possible transitions (actual location only):
+    //
+    // STATE 1  — Miner has NO temp location
+    //   CASE 1a  no old actual  → no new actual   : nothing to do (power-only change handled)
+    //   CASE 1b  no old actual  → new actual       : add to newActual.miners[]
+    //   CASE 1c  same actual    → same actual      : no array change; adjust power if changed
+    //   CASE 1d  old actual     → no new actual    : remove from oldActual.miners[]
+    //   CASE 1e  old actual     → new actual       : remove from old, add to new
+    //
+    // STATE 2  — Miner HAS a temp location (currentLocationId set)
+    //   Power/slots always live on the TEMP farm.
+    //   Actual farm only holds movedMiners[] (no power/slots).
+    //
+    //   CASE 2a  no old actual  → no new actual   : nothing to do (power-only → adjust temp farm)
+    //   CASE 2b  no old actual  → new actual       : add to newActual.movedMiners[]
+    //   CASE 2c  same actual    → same actual      : no array change; adjust power on temp farm if changed
+    //   CASE 2d  old actual     → no new actual    : remove from oldActual.movedMiners[]
+    //   CASE 2e  old actual     → new actual       : remove from old movedMiners, add to new movedMiners
+
+    const oldPower = Number(data.power || 0);
+    const newPower = Number(minerModel.power);
+    const powerChanged = oldPower !== newPower;
+
+    // Fetch Old Farms from the existing miner record
+
+    const oldActualFarm = data.actualLocationId
+      ? await MiningFarm.findById(data.actualLocationId).session(session)
+      : null;
+
+    // Fetching Temporary Farm if existing only to change power if needed.
+
+    const existingTempFarm = data.currentLocationId
+      ? await MiningFarm.findById(data.currentLocationId).session(session)
+      : null;
+
+    const hasTempLocation = !!existingTempFarm;
+
+    // Check what changed for actual location
+
+    const oldActualId = data.actualLocationId?.toString() ?? null;
+    const newActualId = incomingFarm?._id?.toString() ?? null;
+    const actualLocationChanged = oldActualId !== newActualId;
+
+    // Helpers
+    // Helper: To remove from miners[]
+
+    const removeFromMiners = (farm) => {
+      if (!farm) return;
+      const had = farm.miners.some(
+        (id) => id.toString() === data._id.toString(),
+      );
+      if (had) {
+        farm.miners = farm.miners.filter(
+          (id) => id.toString() !== data._id.toString(),
+        );
+        farm.current = Math.max(0, farm.current - oldPower);
+        farm.occupiedSlots = Math.max(0, farm.occupiedSlots - 1);
+      }
+    };
+
+    //Helper: To Remove from moved miners[]
+
+    const removeFromMovedMiners = (farm) => {
+      if (!farm) return;
+      farm.movedMiners = farm.movedMiners.filter(
+        (item) => item.miner?.toString() !== data._id.toString(),
+      );
+    };
+
+    // Helper: To Add to Miners[]
+
+    const addToMiners = (farm) => {
+      if (!farm) return;
+      const alreadyThere = farm.miners.some(
+        (id) => id.toString() === data._id.toString(),
+      );
+      if (!alreadyThere) {
+        if (farm.occupiedSlots >= farm.totalSlots) {
+          throw new BadRequestError(
+            "No slots available at the actual location",
+          );
+        }
+        farm.miners.push(data._id);
+        farm.current += newPower;
+        farm.occupiedSlots += 1;
+      }
+    };
+
+    // Helper: To add to moved miners[]
+
+    const addToMovedMiners = (farm) => {
+      if (!farm) return;
+      const alreadyThere = farm.movedMiners.some(
+        (item) => item.miner?.toString() === data._id.toString(),
+      );
+      if (!alreadyThere) {
+        farm.movedMiners.push({
+          miner: data._id,
+          serialNumber: data.serialNumber,
+        });
+      }
+    };
+
+    // ── Core location transition ──────────────────────────────────────────────
+
+    if (!actualLocationChanged) {
+      // CASE 1c / 2c — Same actual location, only power may have changed
+      if (powerChanged) {
+        // Power always lives on the temp farm if one exists, else on actual farm
+        const powerFarm = existingTempFarm ?? oldActualFarm;
+        if (powerFarm) {
+          powerFarm.current = Math.max(
+            0,
+            powerFarm.current - oldPower + newPower,
+          );
+        }
+      }
+    } else {
+      // Actual location changed — teardown old, setup new
+
+      // ── TEARDOWN ───────────────────────────────────────────────────────────
+      if (oldActualFarm) {
+        if (hasTempLocation) {
+          // STATE 2: miner's power is on temp farm — actual farm only had movedMiners
+          removeFromMovedMiners(oldActualFarm);
+        } else {
+          // STATE 1: miner's power was on actual farm
+          removeFromMiners(oldActualFarm);
+        }
+      }
+
+      // ── SETUP ──────────────────────────────────────────────────────────────
+      if (incomingFarm) {
+        if (hasTempLocation) {
+          // STATE 2: new actual farm gets movedMiners entry only (no power/slots)
+          addToMovedMiners(incomingFarm);
+        } else {
+          // STATE 1: new actual farm gets miners[] entry with power/slots
+          addToMiners(incomingFarm);
+        }
+      }
+      // If incomingFarm is null: CASE 1d / 2d — location cleared, teardown already done
+    }
+
+    if (warrantyStart && warrantyEnd) {
+      const start = new Date(warrantyStart);
+      const end = new Date(warrantyEnd);
+      data.warrantyStartDate = start;
+      data.warrantyEndDate = end;
+      let warranty;
+      if (data.relatedWarranty) {
+        warranty = await Warranty.findById(data.relatedWarranty).session(
+          session,
+        );
+        if (!warranty)
+          throw new BadRequestError(
+            "No related warranty found in dahab servers",
+          );
+        warranty.startDate = start;
+        warranty.endDate = end;
+      } else {
+        warranty = new Warranty({
+          warrantyType: "Manufacturer",
+          startDate: start,
+          endDate: end,
+          user: clientUser._id,
+          miner: data._id,
+          status: "active",
+        });
+        data.relatedWarranty = warranty._id;
+      }
+      await warranty.save({ session });
+    }
+
+    data.client = clientUser._id;
+    data.clientName = clientUser.clientName;
+    if (worker) data.workerId = worker?.trim();
+    if (serialNumber) data.serialNumber = serialNumber?.trim();
+    data.model = minerModel.name;
+    data.modelId = minerModel._id;
+    data.status = status;
+    data.hashUnit = minerModel.hashUnit || "TH";
+    if (poolAddress) data.pool = poolAddress;
+    if (mac) data.macAddress = mac?.trim();
+    data.hashRate = minerModel.hashRate;
+    data.power = minerModel.power;
+    data.coins = minerModel.coins;
+    data.actualLocation = incomingFarm?.farm ?? undefined;
+    data.actualLocationId = incomingFarm?._id ?? undefined;
+    data.algorithm = minerModel.algorithm;
+    data.manufacturer = minerModel.manufacturer;
+    data.coolingType = minerModel.coolingType;
+
+    const farmsToSave = new Map();
+    const registerFarm = (farm) => {
+      if (farm) farmsToSave.set(farm._id.toString(), farm);
+    };
+    registerFarm(oldActualFarm);
+    registerFarm(incomingFarm);
+    registerFarm(existingTempFarm);
+
+    for (const farm of farmsToSave.values()) {
+      await farm.save({ session });
+    }
+
+    const notification = new Notification({
+      notification: `A Miner data has been edited by Intermine . Model-${model}, serial Number-${serialNumber}.`,
+      isRead: false,
+    });
+    await data.save({ session });
+    await notification.save({ session });
+    await session.commitTransaction();
+    session.endSession();
+    return res.status(200).json({ msg: "success" });
   } catch (error) {
     await session.abortTransaction();
     session.endSession();

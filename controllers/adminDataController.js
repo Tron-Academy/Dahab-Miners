@@ -113,7 +113,7 @@ export const addNewDataV2 = async (req, res) => {
       client: client,
       clientName: clientUser.clientName,
       workerId: workerId?.trim(),
-      serialNumber: serialNumber?.trim(),
+      serialNumber: serialNumber?.trim()?.toUpperCase(),
       model: minerModel.name,
       modelId: minerModel._id,
       status: status,
@@ -183,7 +183,7 @@ export const addNewDataV2 = async (req, res) => {
           {
             location: miningFarm?.facilityCode,
             model: minerModel?.modelCode,
-            serialNumber: serialNumber?.trim() || undefined,
+            serialNumber: serialNumber?.trim()?.toUpperCase() || undefined,
             mac: macAddress?.trim() || undefined,
             worker: workerId?.trim() || undefined,
             status,
@@ -895,7 +895,7 @@ export const editV2Data = async (req, res) => {
     miner.algorithm = minermodel.algorithm;
     miner.coolingType = minermodel.coolingType;
     miner.workerId = workerId?.trim() || undefined;
-    miner.serialNumber = serialNumber?.trim() || undefined;
+    miner.serialNumber = serialNumber?.trim()?.toUpperCase() || undefined;
     miner.pool = poolAddress;
     miner.macAddress = macAddress?.trim() || undefined;
     if (connectionDate) miner.connectionDate = new Date(connectionDate);
@@ -918,7 +918,9 @@ export const editV2Data = async (req, res) => {
             location: newActualFarm?.facilityCode,
             model: minermodel?.modelCode,
             serialNumber:
-              serialNumber?.trim() || miner.serialNumber?.trim() || "",
+              serialNumber?.trim()?.toUpperCase() ||
+              miner.serialNumber?.trim()?.toUpperCase() ||
+              "",
             mac: macAddress?.trim() || miner.macAddress?.trim() || "",
             worker: workerId?.trim() || miner.workerId?.trim() || "",
             status,

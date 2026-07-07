@@ -118,6 +118,7 @@ export const editProduct = async (req, res) => {
       specs,
       faq,
       alt,
+      isOutOfStock,
       schema,
       profitURL,
     } = req.body;
@@ -156,6 +157,7 @@ export const editProduct = async (req, res) => {
     product.description = description;
     product.overview = overview;
     product.price = price;
+    product.isOutOfStock = isOutOfStock;
     product.manufacturer = manufacturerItem;
     product.cryptoCurrency = JSON.parse(cryptoCurrencyItem);
     product.slug = slug;

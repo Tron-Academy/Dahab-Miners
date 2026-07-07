@@ -64,6 +64,10 @@ const ProductSchema = new Schema(
     metaDescription: {
       type: String,
     },
+    isOutOfStock: {
+      type: Boolean,
+      default: false,
+    },
     metaKeywords: {
       type: String,
     },

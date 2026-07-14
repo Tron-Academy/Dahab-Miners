@@ -20,6 +20,7 @@ import { calculateAndDeductHostingFee } from "./cronJobs/walletDeductions.js";
 import {
   authenticateUser,
   isAdmin,
+  isDahabOperations,
   isIntermine,
   isSuperAdmin,
 } from "./middleware/authMiddleware.js";
@@ -59,6 +60,7 @@ import warrantyRouter from "./routes/adminWarrantyRouter.js";
 import farmRouter from "./routes/miningFarmRouter.js";
 import issueRouter from "./routes/adminIssueRouter.js";
 import publishBlogRouter from "./routes/publishBlogRouter.js";
+import dahabOpsRouter from "./routes/dahabOpsRouter.js";
 
 //Version 2 Routes
 import miningUserRouterV2 from "./routes/miningApp/v2/miningUserRouterV2.js";
@@ -185,6 +187,7 @@ app.use("/api/admin/warranty", authenticateUser, isSuperAdmin, warrantyRouter);
 app.use("/api/admin/mining-farm", authenticateUser, isSuperAdmin, farmRouter);
 app.use("/api/admin/issue", authenticateUser, issueRouter);
 app.use("/api/publish-blog", publishBlogRouter);
+app.use("/api/dahab-ops", isDahabOperations, dahabOpsRouter);
 
 //version 2 routes
 app.use("/api/v2/user", authenticateUser, miningUserRouterV2);

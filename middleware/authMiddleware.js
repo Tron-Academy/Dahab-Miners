@@ -80,3 +80,16 @@ export const isIntermine = async (req, res, next) => {
     throw new BadRequestError("Invalid API Key");
   next();
 };
+
+export const isDahabOperations = async (req, res, next) => {
+  try {
+    const apiKey = req.headers["ops-api-key"];
+    if (!apiKey) throw new UnauthenticatedError("Missing API Key");
+    if (apiKey !== process.env.OPS_DAHAB_API_KEY)
+      throw new BadRequestError("Invalid API Key");
+    next();
+  } catch (error) {
+    console.log(error);
+    throw new UnauthenticatedError("API KEY ERROR:", error?.message);
+  }
+};

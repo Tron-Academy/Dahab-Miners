@@ -16,6 +16,7 @@ import axios from "axios";
 import mongoose from "mongoose";
 import MiningAccountClosure from "../../models/miningApp/MiningAccountClosure.js";
 import BitCoinData from "../../models/BitCoinData.js";
+import { resend } from "../../utils/resend.js";
 
 export const miningRegister = async (req, res) => {
   const { email, password, username, referral } = req.body;
@@ -80,6 +81,17 @@ export const miningRegister = async (req, res) => {
     text: `Welcome to Dahab Mining. Your verification code is ${code}`,
   };
   await sendMail(transporter, mailOptions);
+  // const { data: emailData, error: emailError } = await resend.emails.send({
+  //   from: `DAHAB <${process.env.RESEND_EMAIL}>`,
+  //   to: [newUser.email],
+  //   subject: "Account Verification",
+  //   html: `<p>Welcome to Dahab Mining. Your verification code is ${code}</p>`,
+  // });
+  // if (emailError) {
+  //   return console.error({ emailError });
+  // }
+
+  // console.log({ emailData });
   newUser.verificationCode = code;
   if (referredUser) {
     await referredUser.save();
@@ -210,6 +222,17 @@ export const verifyAccount = async (req, res) => {
     text: `Welcome to Dahab Mining. Your verification code is ${code}`,
   };
   await sendMail(transporter, mailOptions);
+  // const { data: emailData, error: emailError } = await resend.emails.send({
+  //   from: `DAHAB <${process.env.RESEND_EMAIL}>`,
+  //   to: [user.email],
+  //   subject: "Account Verification",
+  //   html: `<p>Welcome to Dahab Mining. Your verification code is ${code}</p>`,
+  // });
+  // if (emailError) {
+  //   return console.error({ emailError });
+  // }
+
+  // console.log({ emailData });
   user.verificationCode = code;
   await user.save();
   res.status(200).json({ message: "Otp send successfully" });
@@ -233,6 +256,17 @@ export const forgotPassword = async (req, res) => {
     text: `Welcome to Dahab Mining. We have received a request for password reset. Your verification code is ${code}`,
   };
   await sendMail(transporter, mailOptions);
+  // const { data: emailData, error: emailError } = await resend.emails.send({
+  //   from: `DAHAB <${process.env.RESEND_EMAIL}>`,
+  //   to: [user.email],
+  //   subject: "Password Reset",
+  //   html: `<p>Welcome to Dahab Mining. We have received a request for password reset. Your verification code is ${code}</p>`,
+  // });
+  // if (emailError) {
+  //   return console.error({ emailError });
+  // }
+
+  // console.log({ emailData });
   user.verificationCode = code;
   await user.save();
   res.status(200).json({ message: "Otp send successfully" });
@@ -366,10 +400,22 @@ export const deleteAccount = async (req, res) => {
         text: `Hello ${
           user.username
         },\n\n This is to confirm that your account has been permanently deleted as per your request. All associated data, including miners, transactions, and wallet balances, have been securely removed.\n\n We truly appreciate the trust you placed in us and regret seeing you leave. After account closure, you still have a remaining balance of AED ${totalFinal.toFixed(
-          2
+          2,
         )}. Please reply to this email with your bank or wallet details so we can process your refund promptly.\n\n Thank you once again for being part of Dahab Mining.\n\n Regards, \n Dahab Mining`,
       };
       await sendMail(transporter, mailOptions);
+      // const { data: emailData, error: emailError } = await resend.emails.send({
+      //   from: `DAHAB <${process.env.RESEND_EMAIL}>`,
+      //   to: [user.email],
+      //   subject: "Account Deletion - Payment Refund",
+      //   html: `<p>Hello ${user.username}</p><p>This is to confirm that your account has been permanently deleted as per your request. All associated data, including miners, transactions, and wallet balances, have been securely removed.</p><p>We truly appreciate the trust you placed in us and regret seeing you leave. After account closure, you still have a remaining balance of AED ${totalFinal.toFixed(2)}. Please reply to this email with your bank or wallet details so we can process your refund promptly.</p>
+      //   <p>Thank you once again for being part of Dahab Mining</p>`,
+      // });
+      // if (emailError) {
+      //   return console.error({ emailError });
+      // }
+
+      // console.log({ emailData });
     } else if (totalFinal < 0) {
       const mailOptions = {
         from: {
@@ -381,10 +427,22 @@ export const deleteAccount = async (req, res) => {
         text: `Hello ${
           user.username
         },\n\n This is to confirm that your account has been permanently deleted as per your request. All associated data, including miners, transactions, and wallet balances, have been securely removed.\n\n We sincerely appreciate the time you spent with us. After account closure, your account shows a pending due of AED ${totalFinal.toFixed(
-          2
+          2,
         )}. Please reply to this email with your preferred payment method so we can settle this amount and close your record.\n\n We kindly ask you to clear this balance at the earliest to avoid further escalation.\n\n Regards,\n Dahab Mining`,
       };
       await sendMail(transporter, mailOptions);
+      // const { data: emailData, error: emailError } = await resend.emails.send({
+      //   from: `DAHAB <${process.env.RESEND_EMAIL}>`,
+      //   to: [user.email],
+      //   subject: "Account Deletion - Payment Due",
+      //   html: `<p>Hello ${user.username}</p><p>This is to confirm that your account has been permanently deleted as per your request. All associated data, including miners, transactions, and wallet balances, have been securely removed.</p><p>We truly appreciate the trust you placed in us and regret seeing you leave. After account closure, your account shows a pending due of AED ${totalFinal.toFixed(2)}. Please reply to this email with your preferred payment method so we can settle this amount and close your record..</p>
+      //   <p>We kindly ask you to clear this balance at the earliest to avoid further escalation.</p>`,
+      // });
+      // if (emailError) {
+      //   return console.error({ emailError });
+      // }
+
+      // console.log({ emailData });
     } else {
       const mailOptions = {
         from: {

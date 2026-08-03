@@ -714,7 +714,7 @@ export const updateIssueStatusFromIntermine = async (req, res) => {
     session.startTransaction();
     const { issueId, status, serialNumber, type } = req.body;
     if (!issueId || !status || !serialNumber || !type)
-      throw BadRequestError(
+      throw new BadRequestError(
         "Issue Id , status, serial Number and type is required for Dahab server",
       );
     const issue = await DahabIssue.findOne({ intermineId: issueId })

@@ -110,8 +110,8 @@ const allowedOrigins = [
   "https://miningadmin.dahabminers.com",
   "https://webadmin.dahabminers.com",
   "http://localhost:5173",
-  // "http://localhost:5174",
-  // "http://localhost:3000",
+  "http://localhost:5174",
+  "http://localhost:3000",
   "https://api.intermine-solutions.de",
 ];
 //Test

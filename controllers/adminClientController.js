@@ -4,6 +4,7 @@ import Client from "../models/Clients.js";
 import { hashPassword } from "../utils/bcrypt.js";
 import { sendMail, transporter } from "../utils/nodemailer.js";
 import Data from "../models/DataModel.js";
+import { resend } from "../utils/resend.js";
 
 export const addNewClient = async (req, res) => {
   try {
@@ -32,6 +33,17 @@ export const addNewClient = async (req, res) => {
       text: `Welcome to Dahab Miners. \nYour Mining Account has been activated. Please login to your dashboard at  \nYou are free to reset your password once you logged in. \nEMAIL: ${user.email} \nPASSWORD: ${password}`,
     };
     await sendMail(transporter, mailOptions);
+    // const { data: emailData, error: emailError } = await resend.emails.send({
+    //   from: `DAHAB <${process.env.RESEND_EMAIL}>`,
+    //   to: [user.email],
+    //   subject: "Account Activated",
+    //   html: `<p>Welcome to Dahab Miners.</p><p>Your Mining Account has been activated. Please login to your dashboard at </p><p>You are free to reset your password once you logged in. </p><p>EMAIL: ${user.email} </p><p>PASSWORD: ${password}</p>`,
+    // });
+    // if (emailError) {
+    //   return console.error({ emailError });
+    // }
+
+    // console.log({ emailData });
     res.status(200).json({ message: "success", user });
   } catch (error) {
     res

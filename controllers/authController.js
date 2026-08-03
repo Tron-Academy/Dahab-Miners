@@ -7,6 +7,7 @@ import Admin from "../models/AdminModel.js";
 import { comparePassword, hashPassword } from "../utils/bcrypt.js";
 import { createJWT } from "../utils/jwtUtils.js";
 import { sendMail, transporter } from "../utils/nodemailer.js";
+import { resend } from "../utils/resend.js";
 
 export const registerAdmin = async (req, res) => {
   const hashedPassword = await hashPassword(req.body.password);
@@ -26,7 +27,7 @@ export const loginAdmin = async (req, res) => {
   if (!admin) throw new NotFoundError("No user found");
   const isPasswordCorrect = await comparePassword(
     req.body.password,
-    admin.password
+    admin.password,
   );
   if (!isPasswordCorrect) throw new UnauthenticatedError("Invalid credentials");
   const token = createJWT({
@@ -78,6 +79,17 @@ export const forgotPassword = async (req, res) => {
     text: `You have requested a password reset for your admin account on DAHAB MINERS. Your verification code is ${code}`,
   };
   await sendMail(transporter, mailOptions);
+  // const { data: emailData, error: emailError } = await resend.emails.send({
+  //   from: `DAHAB <${process.env.RESEND_EMAIL}>`,
+  //   to: [user.email],
+  //   subject: "PASSWORD RESET",
+  //   html: `<pYou have requested a password reset for your admin account on DAHAB MINERS.</p><p>Your verification code is ${code}</p>`,
+  // });
+  // if (emailError) {
+  //   return console.error({ emailError });
+  // }
+
+  // console.log({ emailData });
   res.status(200).json({ msg: "success" });
 };
 

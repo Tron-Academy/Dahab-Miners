@@ -772,6 +772,13 @@ export const updateIssueStatusFromIntermine = async (req, res) => {
       miner.workerId = issue.changeRequest?.worker;
       miner.pool = issue.changeRequest?.pool;
       await miner.save({ session });
+    } else if (status === "Cancelled" && type === "change") {
+      issue.status = "Cancelled";
+      issue.statusHistory.push({
+        status: status,
+        changedBy: "Intermine",
+        changedOn: new Date(),
+      });
     }
     await issue.save({ session });
     await session.commitTransaction();

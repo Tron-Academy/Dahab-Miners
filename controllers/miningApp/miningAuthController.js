@@ -454,6 +454,18 @@ export const deleteAccount = async (req, res) => {
         text: `Hello ${user.username},\n\n This is to confirm that your account has been permanently deleted as per your request. All associated data, including miners, transactions, and wallet balances, have been securely removed.\n\n We’re thankful for the time you spent with us and regret seeing you leave. Please note that you have no dues or refunds pending on your account. \n Thank you for being a valued part of Dahab Mining.\n\n Regards, \n Dahab Mining`,
       };
       await sendMail(transporter, mailOptions);
+      // const { data: emailData, error: emailError } = await resend.emails.send({
+      //   from: `DAHAB <${process.env.RESEND_EMAIL}>`,
+      //   to: [user.email],
+      //   subject: "Account Deletion - No Due",
+      //   html: `<p>Hello ${user.username}</p><p>This is to confirm that your account has been permanently deleted as per your request. All associated data, including miners, transactions, and wallet balances, have been securely removed.</p><p>We truly appreciate the trust you placed in us and regret seeing you leave. Please note that you have no dues or refunds pending on your account.</p>
+      //   <p>Thank you for being a valued part of Dahab Mining</p>`,
+      // });
+      // if (emailError) {
+      //   return console.error({ emailError });
+      // }
+
+      // console.log({ emailData });
     }
     await session.commitTransaction();
     res.status(200).json({ msg: "successfull" });

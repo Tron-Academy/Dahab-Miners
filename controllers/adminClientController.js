@@ -4,7 +4,7 @@ import Client from "../models/Clients.js";
 import { hashPassword } from "../utils/bcrypt.js";
 import { sendMail, transporter } from "../utils/nodemailer.js";
 import Data from "../models/DataModel.js";
-import { resend } from "../utils/resend.js";
+// import { resend } from "../utils/resend.js";
 
 export const addNewClient = async (req, res) => {
   try {

@@ -16,7 +16,7 @@ import axios from "axios";
 import mongoose from "mongoose";
 import MiningAccountClosure from "../../models/miningApp/MiningAccountClosure.js";
 import BitCoinData from "../../models/BitCoinData.js";
-import { resend } from "../../utils/resend.js";
+// import { resend } from "../../utils/resend.js";
 
 export const miningRegister = async (req, res) => {
   const { email, password, username, referral } = req.body;

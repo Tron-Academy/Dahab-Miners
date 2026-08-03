@@ -7,7 +7,7 @@ import Admin from "../models/AdminModel.js";
 import { comparePassword, hashPassword } from "../utils/bcrypt.js";
 import { createJWT } from "../utils/jwtUtils.js";
 import { sendMail, transporter } from "../utils/nodemailer.js";
-import { resend } from "../utils/resend.js";
+// import { resend } from "../utils/resend.js";
 
 export const registerAdmin = async (req, res) => {
   const hashedPassword = await hashPassword(req.body.password);
